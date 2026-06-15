@@ -1,0 +1,83 @@
+.inf-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.inf-ambient__mesh {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(ellipse 55% 45% at 12% 8%, var(--inf-mesh-1), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 88% 92%, var(--inf-mesh-2), transparent 50%),
+    radial-gradient(ellipse 40% 35% at 70% 15%, var(--inf-mesh-3), transparent 45%);
+  animation: inf-mesh-drift 28s ease-in-out infinite alternate;
+}
+
+.inf-ambient__noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.inf-ambient__pulse {
+  position: absolute;
+  bottom: -30%;
+  left: 50%;
+  width: 120%;
+  height: 60%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, var(--inf-accent-glow), transparent 65%);
+  opacity: 0.5;
+  animation: inf-tier-pulse 6s ease-in-out infinite;
+}
+
+@keyframes inf-mesh-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(2%, -1.5%) scale(1.03);
+  }
+}
+
+@keyframes inf-tier-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.65;
+    transform: translateX(-50%) scale(1.06);
+  }
+}
+
+.inf-scrollbar {
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--inf-accent) 40%, transparent);
+    border-radius: 999px;
+
+    &:hover {
+      background: color-mix(in srgb, var(--inf-accent) 60%, transparent);
+    }
+  }
+
+  @supports (scrollbar-width: thin) {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--inf-accent) 35%, transparent) transparent;
+  }
+}

@@ -1,0 +1,3145 @@
+<!-- LYsta：正则查找 <StatusPlaceHolderImpl/>；替换为本文件全文。楼层 MVU 使用 {{format_message_variable::stat_data…}}。详见 README.md -->
+<div class="lysta-root">
+  <input type="checkbox" id="lysta-theme" class="lysta-hide" aria-label="切换日间夜间主题" />
+  <input type="radio" name="lysta-tab" id="lysta-t1" class="lysta-hide" checked />
+  <input type="radio" name="lysta-tab" id="lysta-t2" class="lysta-hide" />
+
+  <div class="lysta-wrap">
+    <header class="lysta-head">
+      <div class="lysta-title-row">
+        <span class="lysta-title-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M12 3a6 6 0 0 0 6 9 6 6 0 1 1-6-9z" />
+            <path d="M12 11v4M10 15h4" stroke-linecap="round" />
+          </svg>
+        </span>
+        <div class="lysta-title lysta-engrave">当前信息</div>
+        <span class="lysta-title-led" aria-hidden="true"></span>
+      </div>
+      <nav class="lysta-tabs" aria-label="状态分页">
+        <label for="lysta-t1" class="lysta-tab">核心</label>
+        <label for="lysta-t2" class="lysta-tab">关系列表</label>
+      </nav>
+      <label for="lysta-theme" class="lysta-theme-btn" title="日间 / 夜间">
+        <span class="lysta-theme-icon lysta-theme-moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </span>
+        <span class="lysta-theme-icon lysta-theme-sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+        </span>
+      </label>
+    </header>
+
+    <section class="lysta-pane lysta-pane-core" aria-labelledby="lysta-t1">
+      <div class="lysta-core-grid">
+        <div class="lysta-core-card lysta-world-card lysta-world-date lysta-bezel lysta-world-card--metal">
+          <span class="lysta-rivets-mini" aria-hidden="true"><i></i><i></i></span>
+          <div class="lysta-core-head">
+            <span class="lysta-core-head__icon lysta-world-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg>
+            </span>
+            <span class="lysta-core-head__title lysta-engrave"><span class="lysta-label-dot" aria-hidden="true"></span>当前日期</span>
+            <div class="lysta-core-head__meta lysta-core-head__meta--placeholder" aria-hidden="true"></div>
+          </div>
+          <div class="lysta-core-body">
+            <span class="lysta-readout lysta-readout--core">
+              <span class="lysta-readout-screen lysta-readout-screen--core lysta-date-text lysta-readout-text">{{format_message_variable::stat_data.世界.当前日期}}</span>
+            </span>
+            <div class="lysta-core-track lysta-core-track--idle" aria-hidden="true">
+              <div class="lysta-core-track-rail"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lysta-core-card lysta-world-card lysta-world-money lysta-bezel lysta-world-card--metal" data-money-wrap>
+          <span class="lysta-rivets-mini" aria-hidden="true"><i></i><i></i></span>
+          <div class="lysta-core-head">
+            <span class="lysta-core-head__icon lysta-world-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </span>
+            <span class="lysta-core-head__title lysta-engrave"><span class="lysta-label-dot" aria-hidden="true"></span>生活费</span>
+            <div class="lysta-core-head__meta lysta-core-head__meta--placeholder" aria-hidden="true"></div>
+          </div>
+          <div class="lysta-core-body">
+            <span class="lysta-readout lysta-readout--money lysta-readout--core">
+              <span class="lysta-readout-screen lysta-readout-screen--core lysta-world-value lysta-money-num" data-money-value>¥{{format_message_variable::stat_data.世界.生活费}}</span>
+            </span>
+            <div class="lysta-core-track lysta-core-track--idle" aria-hidden="true">
+              <div class="lysta-core-track-rail"></div>
+            </div>
+          </div>
+        </div>
+
+        <article
+          class="lysta-core-card lysta-world-card lysta-stat lysta-stat-dep lysta-bezel lysta-world-card--metal"
+          data-stat="依赖程度"
+          data-value="{{format_message_variable::stat_data.凌月.依赖程度}}"
+        >
+          <span class="lysta-rivets-mini" aria-hidden="true"><i></i><i></i></span>
+          <span class="lysta-hide" data-stat-raw>{{format_message_variable::stat_data.凌月.依赖程度}}</span>
+          <span class="lysta-hide" data-stat-aria-live aria-live="polite"></span>
+          <div class="lysta-core-head">
+            <span class="lysta-core-head__icon lysta-stat-head-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 12h16M4 8h12M4 16h10" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="lysta-core-head__title lysta-engrave"><span class="lysta-label-dot" aria-hidden="true"></span>依赖程度</span>
+            <div class="lysta-core-head__meta">
+              <div class="lysta-stat-num-cluster">
+                <span class="lysta-stat-delta" data-stat-delta-wrap hidden>
+                  <span class="lysta-stat-delta-screen lysta-engrave" data-stat-delta aria-live="polite"></span>
+                </span>
+              </div>
+              <span class="lysta-stat-badge" data-badge>
+                <span class="lysta-badge-text" data-badge-text></span>
+              </span>
+            </div>
+          </div>
+          <div class="lysta-core-body">
+            <span class="lysta-readout lysta-readout--core">
+              <span class="lysta-readout-screen lysta-readout-screen--core lysta-readout-stat-lcd" aria-hidden="true">
+                <span class="lysta-readout-stat-val" data-bar-lcd>{{format_message_variable::stat_data.凌月.依赖程度}}</span
+                ><span class="lysta-readout-stat-sep">/</span><span class="lysta-readout-stat-max">100</span>
+              </span>
+            </span>
+            <div class="lysta-core-track">
+              <div class="lysta-bar lysta-bar-dep" aria-hidden="true">
+                <div class="lysta-bar-ghost" data-fill-prev></div>
+                <div class="lysta-bar-fill" data-fill data-fill-pct="{{format_message_variable::stat_data.凌月.依赖程度}}">
+                  <span class="lysta-bar-fill-liquid" aria-hidden="true"></span>
+                </div>
+                <span class="lysta-bar-particle"></span>
+                <span class="lysta-bar-particle"></span>
+                <span class="lysta-bar-particle"></span>
+                <span class="lysta-bar-particle"></span>
+                <span class="lysta-bar-particle"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="lysta-core-card lysta-world-card lysta-stat lysta-stat-desire lysta-bezel lysta-world-card--metal" data-stat="性欲值" data-value="{{format_message_variable::stat_data.凌月.性欲值}}">
+          <span class="lysta-rivets-mini" aria-hidden="true"><i></i><i></i></span>
+          <span class="lysta-hide" data-stat-raw>{{format_message_variable::stat_data.凌月.性欲值}}</span>
+          <span class="lysta-hide" data-stat-aria-live aria-live="polite"></span>
+          <div class="lysta-core-head">
+            <span class="lysta-core-head__icon lysta-stat-head-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <span class="lysta-core-head__title lysta-engrave"><span class="lysta-label-dot" aria-hidden="true"></span>性欲值</span>
+            <div class="lysta-core-head__meta">
+              <div class="lysta-stat-num-cluster">
+                <span class="lysta-stat-delta" data-stat-delta-wrap hidden>
+                  <span class="lysta-stat-delta-screen lysta-engrave" data-stat-delta aria-live="polite"></span>
+                </span>
+              </div>
+              <span class="lysta-stat-badge lysta-badge-desire" data-badge data-desire-badge>
+                <svg class="lysta-zap-icon" viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true">
+                  <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+                </svg>
+                <span class="lysta-badge-text lysta-hide" data-badge-text></span>
+              </span>
+            </div>
+          </div>
+          <div class="lysta-core-body">
+            <span class="lysta-readout lysta-readout--core">
+              <span class="lysta-readout-screen lysta-readout-screen--core lysta-readout-stat-lcd" aria-hidden="true">
+                <span class="lysta-readout-stat-val" data-bar-lcd>{{format_message_variable::stat_data.凌月.性欲值}}</span
+                ><span class="lysta-readout-stat-sep">/</span><span class="lysta-readout-stat-max">100</span>
+              </span>
+            </span>
+            <div class="lysta-core-track">
+              <div class="lysta-bar lysta-bar-desire" aria-hidden="true">
+                <div class="lysta-bar-ghost" data-fill-prev></div>
+                <div class="lysta-bar-fill" data-fill data-fill-pct="{{format_message_variable::stat_data.凌月.性欲值}}">
+                  <span class="lysta-bar-fill-liquid" aria-hidden="true"></span>
+                </div>
+                <span class="lysta-bar-particle"></span>
+                <span class="lysta-bar-particle"></span>
+                <span class="lysta-bar-particle"></span>
+                <span class="lysta-bar-particle"></span>
+                <span class="lysta-bar-particle"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="lysta-drift lysta-bezel--inset" data-drift-hub hidden aria-live="polite">
+        <span class="lysta-drift-pulse" aria-hidden="true"></span>
+        <div class="lysta-drift-rail" data-drift-rail></div>
+      </div>
+
+      <div class="lysta-crisis" data-crisis hidden role="status">
+        <span class="lysta-crisis-icon-slot lysta-bezel--inset" aria-hidden="true">
+          <span class="lysta-crisis-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 20h20L12 2z" />
+            </svg>
+          </span>
+        </span>
+        <span class="lysta-crisis-text lysta-engrave">财务危机：生活费已耗尽或透支，部分消费与依赖度可能受影响。</span>
+      </div>
+    </section>
+
+    <section class="lysta-pane lysta-pane-npc" aria-labelledby="lysta-t2">
+      <div class="lysta-npc-list" data-npc-list></div>
+      <p class="lysta-npc-empty" data-npc-empty hidden>当前没有特殊关系</p>
+      <!-- 聊天页若移除 &lt;script&gt;，卡片无法生成；保留宏展开文本便于对照 JSON 是否合法 -->
+      <div class="lysta-npc-ssr-fallback" data-npc-ssr-fallback>
+        <p class="lysta-npc-ssr-title">关系数据（仅脚本未执行时保留；正常情况由脚本移除）</p>
+        <pre class="lysta-npc-ssr-pre" dir="auto">{{format_message_variable::stat_data.NPC关系}}</pre>
+      </div>
+    </section>
+
+    <script type="application/json" class="lysta-npc-fallback">{{format_message_variable::stat_data.NPC关系}}</script>
+    <!-- 部分 ST 版本不在 &lt;script&gt; 内展开宏：隐蔽文本作 JSON 回退（与 script 同源） -->
+    <span class="lysta-hide lysta-npc-fallback-inline" aria-hidden="true">{{format_message_variable::stat_data.NPC关系}}</span>
+    <span class="lysta-rivets" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </div>
+
+<style>
+  @import url('https://fontsapi.zeoseven.com/219/main/result.css');
+  @import url('https://fontsapi.zeoseven.com/256/main/result.css');
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+  @keyframes lysta-fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes lysta-pulse {
+    0%,
+    100% {
+      opacity: 0.75;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes lysta-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.35);
+    }
+    50% {
+      box-shadow: 0 0 16px 2px rgba(255, 107, 107, 0.25);
+    }
+  }
+  @keyframes lysta-stat-delta-ring {
+    0% {
+      box-shadow:
+        inset 0 2px 8px rgba(0, 0, 0, 0.5),
+        0 0 0 0 rgba(176, 136, 255, 0.35);
+    }
+    45% {
+      box-shadow:
+        inset 0 2px 8px rgba(0, 0, 0, 0.45),
+        0 0 0 4px rgba(107, 255, 216, 0.18),
+        0 0 22px rgba(176, 136, 255, 0.35);
+    }
+    100% {
+      box-shadow:
+        inset 0 2px 8px rgba(0, 0, 0, 0.5),
+        0 0 0 0 rgba(176, 136, 255, 0);
+    }
+  }
+  @keyframes lysta-stat-delta-chip {
+    0% {
+      transform: scale(1);
+      filter: brightness(1);
+    }
+    35% {
+      transform: scale(1.06);
+      filter: brightness(1.2);
+    }
+    100% {
+      transform: scale(1);
+      filter: brightness(1);
+    }
+  }
+  @keyframes lysta-head-shine {
+    0% {
+      transform: translateX(-30%) rotate(12deg);
+    }
+    100% {
+      transform: translateX(130%) rotate(12deg);
+    }
+  }
+  @keyframes lysta-pane-in {
+    0% {
+      opacity: 0;
+      transform: translateY(8px);
+      filter: blur(4px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(1px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+  @keyframes lysta-bar-ripple {
+    0% {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0.55;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.6);
+      opacity: 0;
+    }
+  }
+  @keyframes lysta-liquid-flow {
+    0%,
+    100% {
+      background-position: 12% 50%;
+    }
+    50% {
+      background-position: 88% 50%;
+    }
+  }
+  @keyframes lysta-liquid-wave {
+    0%,
+    100% {
+      transform: translateX(-10%) scaleY(1);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translateX(10%) scaleY(1.12);
+      opacity: 0.85;
+    }
+  }
+  @keyframes lysta-liquid-glint {
+    0% {
+      transform: translateX(-140%) skewX(-18deg);
+      opacity: 0;
+    }
+    18% {
+      opacity: 0.65;
+    }
+    42% {
+      transform: translateX(160%) skewX(-18deg);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes lysta-bar-float {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.35;
+    }
+    50% {
+      transform: translateY(-3px) translateX(2px);
+      opacity: 0.75;
+    }
+  }
+  @keyframes lysta-zap-shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-1px) rotate(-6deg);
+    }
+    75% {
+      transform: translateX(1px) rotate(6deg);
+    }
+  }
+  @keyframes lysta-typing {
+    from {
+      max-width: 0;
+    }
+    to {
+      max-width: 100%;
+    }
+  }
+  @keyframes lysta-crisis-fan {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes lysta-aurora {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes lysta-ripple-once {
+    0% {
+      transform: scale(0);
+      opacity: 0.45;
+    }
+    100% {
+      transform: scale(12);
+      opacity: 0;
+    }
+  }
+  @keyframes lysta-icon-flip {
+    from {
+      transform: perspective(80px) rotateY(0deg);
+    }
+    to {
+      transform: perspective(80px) rotateY(360deg);
+    }
+  }
+  @keyframes lysta-coin-flip {
+    from {
+      transform: perspective(80px) rotateY(0deg);
+    }
+    to {
+      transform: perspective(80px) rotateY(720deg);
+    }
+  }
+  @keyframes lysta-tier-pulse {
+    0%,
+    100% {
+      box-shadow:
+        0 0 0 1px rgba(255, 142, 200, 0.45),
+        0 0 12px rgba(255, 142, 200, 0.35);
+    }
+    50% {
+      box-shadow:
+        0 0 0 2px rgba(255, 142, 200, 0.55),
+        0 0 20px rgba(255, 142, 200, 0.45);
+    }
+  }
+  @keyframes lysta-drift-breathe {
+    0%,
+    100% {
+      opacity: 0.65;
+      transform: scale(1);
+      filter: brightness(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.04);
+      filter: brightness(1.08);
+    }
+  }
+  @keyframes lysta-drift-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes lysta-drift-beacon {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(0.85);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+  @keyframes lysta-drift-scan {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes lysta-led-breathe {
+    0%,
+    100% {
+      opacity: 0.55;
+      filter: brightness(0.95);
+    }
+    50% {
+      opacity: 1;
+      filter: brightness(1.15);
+    }
+  }
+  @keyframes lysta-screen-scan {
+    0% {
+      transform: translateY(-120%);
+      opacity: 0;
+    }
+    15% {
+      opacity: 0.12;
+    }
+    50% {
+      transform: translateY(120%);
+      opacity: 0.08;
+    }
+    100% {
+      transform: translateY(120%);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lysta-root *,
+    .lysta-root *::before,
+    .lysta-root *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  .lysta-root {
+    --lysta-c-bg0: #0a0a0c;
+    --lysta-c-bg1: #12121a;
+    --lysta-c-surface: #16161f;
+    --lysta-c-surface2: #1c1c28;
+    --lysta-c-border: #2a2a38;
+    --lysta-c-fg: #e8e8ee;
+    --lysta-c-muted: #808090;
+    --lysta-c-accent: #b088ff;
+    --lysta-c-accent2: #6bffd8;
+    --lysta-c-warn: #ff6b6b;
+    --lysta-c-safe: #6bffb8;
+    --lysta-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    --lysta-noise: 0.04;
+    --lysta-bezel-high: rgba(255, 255, 255, 0.09);
+    --lysta-bezel-low: rgba(0, 0, 0, 0.55);
+    --lysta-bezel-rim: #3d3d52;
+    --lysta-screen-bg: #08080f;
+    --lysta-screen-border: rgba(0, 0, 0, 0.65);
+    --lysta-c-fg-engraved: #aeb0c4;
+    --lysta-led-purple: rgba(176, 136, 255, 0.85);
+    --lysta-led-teal: rgba(107, 255, 216, 0.65);
+    font-family: 'Child Fun Sans', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    font-weight: normal;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .lysta-root *,
+  .lysta-root *::before,
+  .lysta-root *::after {
+    box-sizing: border-box;
+  }
+
+  #lysta-theme:checked ~ .lysta-wrap {
+    --lysta-c-bg0: #f0ecf8;
+    --lysta-c-bg1: #f7f5fb;
+    --lysta-c-surface: #ffffff;
+    --lysta-c-surface2: #faf8ff;
+    --lysta-c-border: #dcd6ec;
+    --lysta-c-fg: #2a2335;
+    --lysta-c-muted: #6b6280;
+    --lysta-c-accent: #7e54ff;
+    --lysta-c-accent2: #0d9f8e;
+    --lysta-c-warn: #d93030;
+    --lysta-c-safe: #0d8a5a;
+    --lysta-shadow: 0 6px 24px rgba(46, 36, 86, 0.12);
+    --lysta-noise: 0.02;
+    --lysta-bezel-high: rgba(255, 255, 255, 0.92);
+    --lysta-bezel-low: rgba(46, 36, 86, 0.14);
+    --lysta-bezel-rim: #c4bed8;
+    --lysta-screen-bg: #e8e6f2;
+    --lysta-screen-border: rgba(46, 36, 86, 0.12);
+    --lysta-c-fg-engraved: #3a3048;
+    --lysta-led-purple: rgba(126, 84, 255, 0.75);
+    --lysta-led-teal: rgba(13, 159, 142, 0.55);
+  }
+
+  .lysta-hide {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    color: transparent !important;
+  }
+
+  .lysta-bezel {
+    position: relative;
+    border: 1px solid var(--lysta-bezel-rim);
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.4),
+      0 3px 12px rgba(0, 0, 0, 0.22);
+    background-image: linear-gradient(168deg, rgba(255, 255, 255, 0.05) 0%, transparent 42%);
+  }
+  .lysta-bezel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(180deg, var(--lysta-bezel-high) 0%, transparent 28%);
+    opacity: 0.22;
+    z-index: 0;
+  }
+  .lysta-bezel > *:not(.lysta-rivets-mini) {
+    position: relative;
+    z-index: 1;
+  }
+  .lysta-bezel--inset {
+    position: relative;
+    border: 1px solid var(--lysta-screen-border);
+    box-shadow:
+      inset 0 3px 10px rgba(0, 0, 0, 0.55),
+      inset 0 -1px 0 var(--lysta-bezel-high),
+      0 1px 0 rgba(255, 255, 255, 0.04);
+    background-color: var(--lysta-screen-bg);
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, transparent 40%);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-bezel--inset {
+    box-shadow:
+      inset 0 2px 8px rgba(46, 36, 86, 0.08),
+      inset 0 -1px 0 var(--lysta-bezel-high),
+      0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  .lysta-rivets {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    border-radius: inherit;
+  }
+  .lysta-rivets > i {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    list-style: none;
+    background: radial-gradient(circle at 32% 32%, var(--lysta-bezel-high), #2a2a38 45%, #0a0a0e 100%);
+    box-shadow:
+      inset 0 -1px 1px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(0, 0, 0, 0.35),
+      0 0 6px rgba(176, 136, 255, 0.2);
+    animation: lysta-led-breathe 4s ease-in-out infinite;
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-rivets > i {
+    background: radial-gradient(circle at 32% 32%, #ffffff, #c8c4d8 42%, #9a94b0 100%);
+    box-shadow:
+      inset 0 -1px 1px rgba(46, 36, 86, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.65);
+  }
+  .lysta-rivets > i:nth-child(1) {
+    top: 8px;
+    left: 8px;
+    animation-delay: 0s;
+  }
+  .lysta-rivets > i:nth-child(2) {
+    top: 8px;
+    right: 8px;
+    animation-delay: 0.5s;
+  }
+  .lysta-rivets > i:nth-child(3) {
+    bottom: 8px;
+    left: 8px;
+    animation-delay: 1s;
+  }
+  .lysta-rivets > i:nth-child(4) {
+    bottom: 8px;
+    right: 8px;
+    animation-delay: 1.5s;
+  }
+  .lysta-rivets-mini {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    z-index: 4;
+    display: flex;
+    gap: 7px;
+    pointer-events: none;
+  }
+  .lysta-rivets-mini > i {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--lysta-bezel-high), #2a2a38 50%, #0c0c12 100%);
+    box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.3);
+    animation: lysta-led-breathe 3.6s ease-in-out infinite;
+  }
+  .lysta-rivets-mini > i:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  .lysta-engrave {
+    color: var(--lysta-c-fg-engraved);
+    text-shadow:
+      0 1px 0 var(--lysta-bezel-high),
+      0 -1px 0 rgba(0, 0, 0, 0.55);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-engrave {
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.95),
+      0 -1px 0 rgba(46, 36, 86, 0.12);
+  }
+  .lysta-readout {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 2px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.55);
+    box-shadow:
+      inset 0 2px 8px rgba(0, 0, 0, 0.65),
+      inset 0 -1px 0 var(--lysta-bezel-high),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, transparent 22%), var(--lysta-screen-bg);
+    position: relative;
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-readout {
+    border-color: rgba(46, 36, 86, 0.14);
+    box-shadow:
+      inset 0 2px 6px rgba(46, 36, 86, 0.08),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.85),
+      0 0 0 1px rgba(255, 255, 255, 0.5);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, transparent 30%), var(--lysta-screen-bg);
+  }
+  .lysta-readout-screen {
+    display: block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.45);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 55%), var(--lysta-screen-bg);
+    position: relative;
+    overflow: hidden;
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-readout-screen {
+    border-color: rgba(46, 36, 86, 0.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 3px rgba(46, 36, 86, 0.06);
+  }
+  .lysta-readout-screen::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 40%;
+    background: linear-gradient(180deg, rgba(107, 255, 216, 0.06), transparent);
+    animation: lysta-screen-scan 6.5s ease-in-out infinite;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    z-index: 1;
+  }
+  .lysta-readout-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--lysta-c-accent2);
+    text-shadow:
+      0 0 8px rgba(107, 255, 216, 0.25),
+      0 1px 0 rgba(0, 0, 0, 0.85);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-readout-text {
+    color: var(--lysta-c-accent2);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+  .lysta-readout--money .lysta-money-num {
+    font-size: 17px;
+  }
+
+  .lysta-wrap {
+    position: relative;
+    width: 100%;
+    border: 2px solid var(--lysta-bezel-rim);
+    border-radius: 14px;
+    overflow: hidden;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 3px,
+        rgba(255, 255, 255, 0.018) 3px,
+        rgba(255, 255, 255, 0.018) 4px
+      ),
+      linear-gradient(165deg, var(--lysta-c-bg0) 0%, var(--lysta-c-bg1) 55%, var(--lysta-c-surface) 100%);
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -3px 12px rgba(0, 0, 0, 0.35),
+      0 2px 0 rgba(0, 0, 0, 0.35),
+      var(--lysta-shadow);
+    color: var(--lysta-c-fg);
+    animation: lysta-fadeIn 0.45s ease-out;
+  }
+  .lysta-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: var(--lysta-noise);
+    pointer-events: none;
+  }
+
+  .lysta-head {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px 12px;
+    border-bottom: none;
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.28) 0%, transparent 38%),
+      var(--lysta-c-surface);
+    box-shadow:
+      inset 0 2px 10px rgba(0, 0, 0, 0.45),
+      inset 0 -1px 0 var(--lysta-bezel-high);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    overflow: hidden;
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-head {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, transparent 40%),
+      var(--lysta-c-surface);
+    box-shadow:
+      inset 0 2px 6px rgba(46, 36, 86, 0.06),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.85);
+  }
+  .lysta-head::before {
+    content: '';
+    position: absolute;
+    inset: -40% -20%;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      transparent 0deg,
+      rgba(176, 136, 255, 0.07) 120deg,
+      rgba(107, 255, 216, 0.06) 240deg,
+      transparent 360deg
+    );
+    opacity: 0.85;
+    pointer-events: none;
+    animation: lysta-head-shine 18s linear infinite;
+  }
+  .lysta-head::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    bottom: 0;
+    height: 3px;
+    border-radius: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--lysta-led-purple),
+      var(--lysta-led-teal),
+      transparent
+    );
+    box-shadow: 0 0 12px rgba(176, 136, 255, 0.35), 0 0 8px rgba(107, 255, 216, 0.2);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.85;
+    animation: lysta-led-breathe 3.2s ease-in-out infinite;
+  }
+  .lysta-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    position: relative;
+    z-index: 3;
+    flex-wrap: wrap;
+  }
+  .lysta-title-led {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: radial-gradient(circle at 30% 30%, #fff, var(--lysta-led-teal) 55%, #064a42 100%);
+    box-shadow:
+      0 0 8px var(--lysta-led-teal),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.45);
+    animation: lysta-led-breathe 2.4s ease-in-out infinite;
+  }
+  .lysta-title-icon {
+    flex-shrink: 0;
+    display: flex;
+    color: var(--lysta-c-accent);
+    transition: transform 0.2s ease;
+  }
+  .lysta-title-row:hover .lysta-title-icon {
+    transform: rotate(15deg) scale(1.08);
+  }
+  .lysta-title {
+    font-family: 'Huiwen-mincho', 'Shippori Mincho', 'Songti SC', serif;
+    font-size: 15px;
+    font-weight: normal;
+    letter-spacing: 0.12em;
+    color: var(--lysta-c-fg-engraved);
+    text-shadow:
+      0 1px 0 var(--lysta-bezel-high),
+      0 -1px 0 rgba(0, 0, 0, 0.55),
+      0 0 12px rgba(176, 136, 255, 0.12);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-title {
+    color: var(--lysta-c-fg-engraved);
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9),
+      0 -1px 0 rgba(46, 36, 86, 0.08);
+  }
+  .lysta-tabs {
+    position: relative;
+    display: flex;
+    gap: 4px;
+    border-radius: 999px;
+    padding: 4px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.45);
+    box-shadow:
+      inset 0 3px 10px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 var(--lysta-bezel-high);
+    z-index: 3;
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-tabs {
+    background: linear-gradient(180deg, rgba(46, 36, 86, 0.06) 0%, rgba(255, 255, 255, 0.5) 100%);
+    border-color: rgba(46, 36, 86, 0.12);
+    box-shadow:
+      inset 0 2px 6px rgba(46, 36, 86, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+  .lysta-tabs::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: calc(50% - 6px);
+    height: calc(100% - 8px);
+    border-radius: 999px;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+      linear-gradient(135deg, rgba(176, 136, 255, 0.38), rgba(107, 255, 216, 0.22));
+    border: 1px solid var(--lysta-bezel-rim);
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(176, 136, 255, 0.25);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: 0;
+  }
+  #lysta-t2:checked ~ .lysta-wrap .lysta-tabs::before {
+    transform: translateX(calc(100% + 4px));
+  }
+  .lysta-tab {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 0;
+    text-align: center;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--lysta-c-muted);
+    border-radius: 999px;
+    cursor: pointer;
+    transition:
+      color 0.25s,
+      transform 0.2s;
+    -webkit-user-select: none;
+    user-select: none;
+    background: transparent;
+  }
+  .lysta-tab:hover {
+    color: var(--lysta-c-fg);
+    transform: scale(1.02);
+  }
+  #lysta-t1:checked ~ .lysta-wrap .lysta-tab[for='lysta-t1'],
+  #lysta-t2:checked ~ .lysta-wrap .lysta-tab[for='lysta-t2'] {
+    color: var(--lysta-c-fg);
+  }
+
+  .lysta-theme-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.45);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.12) 100%);
+    box-shadow:
+      inset 0 3px 10px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 var(--lysta-bezel-high);
+    color: var(--lysta-c-accent);
+    cursor: pointer;
+    transition:
+      transform 0.3s,
+      box-shadow 0.3s,
+      border-color 0.25s;
+    position: relative;
+    overflow: visible;
+    z-index: 3;
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-theme-btn {
+    border-color: rgba(46, 36, 86, 0.12);
+    background: linear-gradient(180deg, rgba(46, 36, 86, 0.06) 0%, rgba(255, 255, 255, 0.55) 100%);
+    box-shadow:
+      inset 0 2px 6px rgba(46, 36, 86, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+  .lysta-theme-btn::before {
+    content: '';
+    position: absolute;
+    inset: 50% 0 0 50%;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(176, 136, 255, 0.55) 0%, transparent 70%);
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .lysta-theme-btn:active {
+    transform: scale(0.92);
+  }
+  .lysta-theme-btn:active::before {
+    animation: lysta-ripple-once 0.55s ease-out forwards;
+  }
+  .lysta-theme-btn:hover {
+    border-color: var(--lysta-c-accent);
+    box-shadow:
+      inset 0 3px 10px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 var(--lysta-bezel-high),
+      0 0 14px rgba(176, 136, 255, 0.35);
+  }
+  .lysta-theme-icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.12) 0%, transparent 45%),
+      linear-gradient(135deg, rgba(176, 136, 255, 0.22), rgba(22, 22, 31, 0.9));
+    border: 1px solid var(--lysta-bezel-rim);
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.45),
+      0 1px 0 rgba(0, 0, 0, 0.35);
+    transition:
+      opacity 0.35s,
+      transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-theme-icon {
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.65) 0%, transparent 50%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(230, 228, 240, 0.98));
+  }
+  .lysta-theme-sun {
+    opacity: 0;
+    transform: rotate(-45deg) scale(0.6);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-theme-moon {
+    opacity: 0;
+    transform: rotate(45deg) scale(0.6);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-theme-sun {
+    opacity: 1;
+    transform: rotate(360deg) scale(1.1);
+    color: var(--lysta-c-accent2);
+  }
+
+  .lysta-pane {
+    position: relative;
+    z-index: 1;
+    padding: 14px 16px 16px;
+    display: none;
+    animation: lysta-pane-in 0.5s ease-out both;
+  }
+  #lysta-t1:checked ~ .lysta-wrap .lysta-pane-core {
+    display: block;
+  }
+  #lysta-t2:checked ~ .lysta-wrap .lysta-pane-npc {
+    display: block;
+  }
+
+  /* 四项指标同一 2×2 栅格：标题行 + 读数窗 + 底轨（世界项为空轨对齐） */
+  .lysta-core-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 12px;
+    margin-bottom: 12px;
+    align-items: stretch;
+  }
+  @media (max-width: 420px) {
+    .lysta-core-grid {
+      grid-template-columns: 1fr;
+    }
+    .lysta-head {
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+    }
+    .lysta-title-row {
+      grid-column: 1 / -1;
+    }
+  }
+  .lysta-core-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 13px 12px;
+    min-width: 0;
+    min-height: 100%;
+    border-radius: 12px;
+    transition:
+      transform 0.25s,
+      border-color 0.25s;
+    overflow: hidden;
+  }
+  .lysta-world-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: inherit;
+    transition:
+      transform 0.25s,
+      border-color 0.25s;
+    overflow: hidden;
+  }
+  .lysta-world-card.lysta-world-card--metal {
+    border: 1px solid var(--lysta-bezel-rim);
+    background:
+      linear-gradient(168deg, rgba(255, 255, 255, 0.07) 0%, transparent 46%),
+      linear-gradient(145deg, var(--lysta-c-surface2), var(--lysta-c-surface));
+  }
+  .lysta-world-card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 2px;
+    height: 0;
+    margin-top: 0;
+    transform: translateY(-50%);
+    border-radius: 2px;
+    background: linear-gradient(180deg, var(--lysta-c-accent), var(--lysta-c-accent2));
+    transition: height 0.4s ease;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .lysta-world-card:hover::after {
+    height: 72%;
+  }
+  .lysta-world-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(176, 136, 255, 0.32),
+      0 8px 22px rgba(0, 0, 0, 0.25);
+  }
+  .lysta-world-icon {
+    flex-shrink: 0;
+    color: var(--lysta-c-accent);
+    margin-top: 0;
+    display: inline-flex;
+    transition: transform 0.35s ease;
+    transform-style: preserve-3d;
+  }
+  .lysta-world-date:hover .lysta-world-icon {
+    animation: lysta-icon-flip 0.65s ease-in-out;
+  }
+  .lysta-world-money:hover .lysta-world-icon {
+    animation: lysta-coin-flip 0.9s ease-in-out;
+  }
+  .lysta-core-head {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) minmax(88px, max-content);
+    align-items: center;
+    gap: 8px 10px;
+    margin-bottom: 8px;
+  }
+  .lysta-core-head__icon {
+    display: inline-flex;
+    align-self: start;
+    margin-top: 2px;
+  }
+  .lysta-stat-head-icon {
+    flex-shrink: 0;
+    color: var(--lysta-c-accent);
+    transition: transform 0.35s ease;
+  }
+  .lysta-core-head__title {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    line-height: 1.35;
+    min-width: 0;
+  }
+  .lysta-core-head__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    min-height: 28px;
+  }
+  .lysta-core-head__meta--placeholder {
+    visibility: hidden;
+    pointer-events: none;
+    min-width: 88px;
+  }
+  .lysta-core-head__meta .lysta-stat-num-cluster {
+    flex: 0 1 auto;
+    min-width: 0;
+    justify-content: flex-end;
+  }
+  .lysta-core-body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+  }
+  .lysta-readout--core {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 52px;
+  }
+  .lysta-readout-screen--core {
+    flex: 1 1 auto;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 48px;
+    padding: 8px 10px !important;
+  }
+  .lysta-readout--money .lysta-readout-screen--core {
+    min-height: 52px;
+  }
+  .lysta-core-track {
+    flex-shrink: 0;
+    width: 100%;
+  }
+  .lysta-core-track--idle .lysta-core-track-rail {
+    height: 26px;
+    border-radius: 999px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.2) 100%);
+    box-shadow:
+      inset 0 3px 8px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 var(--lysta-bezel-high);
+    opacity: 0.72;
+    pointer-events: none;
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-core-track--idle .lysta-core-track-rail {
+    border-color: rgba(46, 36, 86, 0.1);
+    background: linear-gradient(180deg, rgba(46, 36, 86, 0.08) 0%, rgba(255, 255, 255, 0.35) 100%);
+    box-shadow:
+      inset 0 2px 5px rgba(46, 36, 86, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    opacity: 0.88;
+  }
+
+  .lysta-label-dot {
+    display: inline-block;
+    width: 8px;
+    height: 4px;
+    margin-right: 8px;
+    border-radius: 2px;
+    vertical-align: middle;
+    background: linear-gradient(90deg, var(--lysta-led-purple), var(--lysta-led-teal));
+    box-shadow:
+      0 0 8px rgba(176, 136, 255, 0.45),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.45);
+    animation: lysta-led-breathe 2.8s ease-in-out infinite;
+  }
+  .lysta-world-value {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+    word-break: break-all;
+  }
+  .lysta-money-num {
+    font-family: 'Huiwen-mincho', 'Cinzel', 'EB Garamond', ui-monospace, 'SF Mono', Monaco, Consolas, monospace;
+    font-size: 18px;
+    color: var(--lysta-c-accent2);
+    transition:
+      color 0.3s,
+      filter 0.3s;
+  }
+  .lysta-world-money[data-money-state='crisis'] .lysta-money-num {
+    color: var(--lysta-c-warn);
+    animation: lysta-zap-shake 0.65s ease-in-out infinite;
+    filter: drop-shadow(0 0 4px rgba(255, 107, 107, 0.45));
+  }
+  .lysta-world-money[data-money-state='crisis'] .lysta-readout-screen::after {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    margin-top: -4px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--lysta-c-warn);
+    filter: drop-shadow(0 0 4px rgba(255, 107, 107, 0.55));
+    z-index: 2;
+    animation: none;
+  }
+
+  .lysta-drift {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .lysta-drift[hidden] {
+    display: none !important;
+  }
+  .lysta-drift-pulse {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--lysta-c-accent2), var(--lysta-c-accent));
+    box-shadow: 0 0 10px rgba(176, 136, 255, 0.55);
+    animation: lysta-drift-beacon 1.8s ease-in-out infinite;
+  }
+  .lysta-drift::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+    animation: lysta-drift-scan 3.2s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+  .lysta-drift-rail {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    min-height: 26px;
+  }
+  .lysta-drift-node {
+    --drift-i: 0;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--lysta-bezel-rim);
+    background:
+      linear-gradient(165deg, rgba(255, 255, 255, 0.08) 0%, transparent 42%),
+      linear-gradient(145deg, rgba(30, 30, 42, 0.95), rgba(18, 18, 26, 0.98));
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+      0 1px 0 rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(176, 136, 255, 0.12);
+    font-size: 12px;
+    line-height: 1;
+    color: var(--lysta-c-fg);
+    animation: lysta-drift-breathe 2.9s ease-in-out infinite;
+    animation-delay: calc(var(--drift-i) * 0.45s);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-drift-node {
+    background:
+      linear-gradient(165deg, rgba(255, 255, 255, 0.5) 0%, transparent 45%),
+      linear-gradient(145deg, #ffffff, #f2f0fa);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 3px rgba(46, 36, 86, 0.08),
+      0 1px 0 rgba(46, 36, 86, 0.06);
+  }
+  .lysta-drift-node--up {
+    border-color: rgba(107, 255, 184, 0.35);
+    box-shadow: 0 0 0 1px rgba(107, 255, 184, 0.08);
+  }
+  .lysta-drift-node--down {
+    border-color: rgba(255, 107, 107, 0.38);
+    box-shadow: 0 0 0 1px rgba(255, 107, 107, 0.08);
+  }
+  .lysta-drift-node--date {
+    border-color: rgba(176, 136, 255, 0.5);
+    padding: 6px 11px;
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(176, 136, 255, 0.35),
+      0 0 12px rgba(176, 136, 255, 0.15);
+  }
+  .lysta-drift-svg {
+    flex-shrink: 0;
+    display: block;
+    color: var(--lysta-c-accent);
+    opacity: 0.95;
+  }
+  .lysta-drift-node--up .lysta-drift-svg {
+    color: var(--lysta-c-safe);
+  }
+  .lysta-drift-node--down .lysta-drift-svg {
+    color: var(--lysta-c-warn);
+  }
+  .lysta-drift-node--date .lysta-drift-cal-wrap {
+    display: inline-flex;
+    animation: lysta-drift-spin 5.5s linear infinite;
+  }
+  .lysta-drift-num {
+    font-family: 'Huiwen-mincho', 'Cinzel', 'EB Garamond', ui-monospace, 'SF Mono', Monaco, Consolas, monospace;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+  .lysta-drift-node--up .lysta-drift-num {
+    color: var(--lysta-c-safe);
+  }
+  .lysta-drift-node--down .lysta-drift-num {
+    color: var(--lysta-c-warn);
+  }
+  .lysta-drift-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .lysta-crisis {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 107, 107, 0.55);
+    background:
+      linear-gradient(180deg, rgba(255, 107, 107, 0.18) 0%, transparent 38%),
+      linear-gradient(135deg, rgba(255, 107, 107, 0.1), var(--lysta-c-surface2));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      inset 0 -2px 8px rgba(0, 0, 0, 0.35),
+      0 0 0 1px rgba(255, 107, 107, 0.25),
+      0 0 14px rgba(255, 107, 107, 0.12);
+    color: var(--lysta-c-warn);
+    font-size: 12px;
+    line-height: 1.45;
+    animation: lysta-pulse 2.2s ease-in-out infinite;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+    position: relative;
+  }
+  .lysta-crisis::before,
+  .lysta-crisis::after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    border-radius: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.85), transparent);
+    opacity: 0.65;
+    pointer-events: none;
+  }
+  .lysta-crisis::before {
+    top: 3px;
+  }
+  .lysta-crisis::after {
+    bottom: 3px;
+  }
+  .lysta-crisis:hover {
+    transform: skewX(-1deg) translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 -2px 8px rgba(0, 0, 0, 0.35),
+      0 8px 22px rgba(255, 107, 107, 0.2);
+  }
+  .lysta-crisis[hidden] {
+    display: none !important;
+  }
+  .lysta-crisis-icon-slot {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    padding: 3px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lysta-crisis-icon {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, rgba(255, 200, 200, 0.5), rgba(120, 20, 20, 0.85));
+    box-shadow:
+      inset 0 2px 6px rgba(0, 0, 0, 0.5),
+      0 0 12px rgba(255, 107, 107, 0.55);
+    color: #fff;
+    animation: lysta-led-breathe 1.6s ease-in-out infinite;
+  }
+  .lysta-crisis-icon::before {
+    content: '';
+    position: absolute;
+    inset: -7px;
+    border-radius: 50%;
+    box-shadow:
+      8px 0 0 -5px rgba(255, 107, 107, 0.22),
+      5px 5px 0 -5px rgba(255, 107, 107, 0.18),
+      0 8px 0 -5px rgba(255, 107, 107, 0.16),
+      -5px 5px 0 -5px rgba(255, 107, 107, 0.14),
+      -8px 0 0 -5px rgba(255, 107, 107, 0.12),
+      -5px -5px 0 -5px rgba(255, 107, 107, 0.1);
+    animation: lysta-crisis-fan 8s linear infinite;
+    pointer-events: none;
+  }
+  .lysta-crisis-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: lysta-typing 1.2s steps(28, end) 1 both;
+    max-width: 100%;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .lysta-stat {
+    padding: 0;
+    border-radius: 12px;
+    position: relative;
+    transition:
+      transform 0.25s,
+      box-shadow 0.25s;
+  }
+  .lysta-stat.lysta-bezel {
+    border: 1px solid var(--lysta-bezel-rim);
+    background:
+      linear-gradient(168deg, rgba(255, 255, 255, 0.06) 0%, transparent 44%),
+      linear-gradient(160deg, var(--lysta-c-surface2), var(--lysta-c-surface));
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.35),
+      0 4px 14px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+  }
+  .lysta-stat.lysta-bezel::before {
+    opacity: 0.18;
+  }
+  .lysta-stat:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+      0 8px 22px rgba(0, 0, 0, 0.28);
+  }
+  .lysta-stat-num-cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex: 0 1 auto;
+  }
+  .lysta-stat-delta {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 4px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.28) 0%, transparent 40%), var(--lysta-screen-bg);
+    box-shadow:
+      inset 0 2px 7px rgba(0, 0, 0, 0.55),
+      inset 0 -1px 0 var(--lysta-bezel-high),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+    flex: 0 0 auto;
+    transition:
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-stat-delta {
+    border-color: rgba(46, 36, 86, 0.12);
+    box-shadow:
+      inset 0 2px 5px rgba(46, 36, 86, 0.06),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.85),
+      0 0 0 1px rgba(255, 255, 255, 0.45);
+  }
+  .lysta-stat-delta-screen {
+    display: block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'Huiwen-mincho', 'Cinzel', 'EB Garamond', ui-monospace, 'SF Mono', Monaco, Consolas, monospace;
+    font-size: 12px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+    min-width: 2.25em;
+    text-align: center;
+    color: var(--lysta-c-muted);
+    text-shadow:
+      0 1px 0 var(--lysta-bezel-high),
+      0 -1px 0 rgba(0, 0, 0, 0.45);
+  }
+  .lysta-stat[data-stat-delta-dir='up'] .lysta-stat-delta-screen {
+    color: var(--lysta-c-safe);
+    text-shadow:
+      0 0 8px rgba(107, 255, 184, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.35);
+  }
+  .lysta-stat[data-stat-delta-dir='down'] .lysta-stat-delta-screen {
+    color: var(--lysta-c-warn);
+    text-shadow:
+      0 0 8px rgba(255, 107, 107, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.35);
+  }
+  .lysta-stat[data-stat-delta-dir='zero'] .lysta-stat-delta-screen {
+    color: var(--lysta-c-muted);
+  }
+  .lysta-stat--delta-flash {
+    animation: lysta-stat-delta-ring 0.75s ease-out 1;
+  }
+  .lysta-stat--delta-flash .lysta-stat-delta {
+    animation: lysta-stat-delta-chip 0.65s ease-out 1;
+  }
+  .lysta-stat-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    overflow: visible;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--lysta-bezel-rim);
+    letter-spacing: 0.06em;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+      linear-gradient(145deg, rgba(28, 28, 40, 0.95), rgba(18, 18, 26, 0.98));
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 3px rgba(0, 0, 0, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.3);
+    flex: 0 0 auto;
+  }
+  .lysta-badge-desire {
+    min-width: 34px;
+    min-height: 28px;
+    padding: 5px 8px;
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-stat-badge {
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.55) 0%, transparent 50%), #faf8ff;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 2px rgba(46, 36, 86, 0.06);
+  }
+  .lysta-zap-icon {
+    display: none;
+    flex-shrink: 0;
+  }
+  .lysta-stat-desire[data-desire-overflow='1'] .lysta-zap-icon {
+    display: block;
+    animation: lysta-zap-shake 1.4s ease-in-out infinite;
+  }
+  .lysta-stat-badge[data-stage='疏离'] {
+    color: #9aa0b4;
+    border-color: #4a5068;
+    background: rgba(74, 80, 104, 0.25);
+  }
+  .lysta-stat-badge[data-stage='亲近'] {
+    color: var(--lysta-c-accent2);
+    border-color: var(--lysta-c-border);
+    background: rgba(107, 255, 216, 0.12);
+  }
+  .lysta-stat-badge[data-stage='依恋'] {
+    color: var(--lysta-c-accent);
+    border-color: var(--lysta-c-border);
+    background: rgba(176, 136, 255, 0.14);
+  }
+  .lysta-stat-badge[data-stage='沉迷'] {
+    color: #ffb8e0;
+    border-color: #8a4a78;
+    background: rgba(176, 136, 255, 0.22);
+  }
+  .lysta-badge-desire[data-state='overflow'] {
+    color: var(--lysta-c-warn);
+    border-color: var(--lysta-c-border);
+    background: rgba(255, 107, 107, 0.15);
+    animation: lysta-glow 1.8s ease-in-out infinite;
+  }
+  .lysta-bar {
+    position: relative;
+    height: 26px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow:
+      inset 0 3px 8px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 var(--lysta-bezel-high);
+    overflow: hidden;
+  }
+  /* 刻度须在填充之下；勿用 mix-blend-mode 盖住整条，否则易把彩色填充在暗轨上“洗没”。 */
+  .lysta-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.45;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc(25% - 0.6px),
+      rgba(255, 255, 255, 0.12) calc(25% - 0.6px),
+      rgba(255, 255, 255, 0.12) calc(25% + 0.6px),
+      transparent calc(25% + 0.6px),
+      transparent 25%
+    );
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-bar {
+    border-color: rgba(46, 36, 86, 0.1);
+    background: linear-gradient(180deg, rgba(46, 36, 86, 0.08) 0%, rgba(255, 255, 255, 0.35) 100%);
+    box-shadow:
+      inset 0 2px 5px rgba(46, 36, 86, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  .lysta-bar-ghost {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 0%;
+    max-width: 100%;
+    z-index: 1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.38;
+    transition: width 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+  }
+  .lysta-bar-dep .lysta-bar-ghost {
+    background: linear-gradient(90deg, rgba(107, 79, 201, 0.55), rgba(176, 136, 255, 0.45), rgba(232, 180, 255, 0.5));
+  }
+  .lysta-bar-desire .lysta-bar-ghost {
+    background: linear-gradient(90deg, rgba(255, 142, 200, 0.55), rgba(255, 92, 135, 0.5), rgba(255, 107, 107, 0.48));
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-bar-ghost {
+    opacity: 0.32;
+  }
+  /* 宏写入 data-fill-pct（0–100 数字），无内联 style；脚本禁用时靠 attr() 算宽（需较新 Chromium）。脚本仍会写 fill 的 width。 */
+  .lysta-bar-fill[data-fill] {
+    width: 0%;
+  }
+  .lysta-bar-fill[data-fill][data-fill-pct] {
+    width: clamp(0%, calc(attr(data-fill-pct number, 0) * 1%), 100%);
+  }
+  .lysta-bar-fill {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    max-width: 100%;
+    z-index: 2;
+    height: auto;
+    border-radius: inherit;
+    transition: width 0.55s cubic-bezier(0.45, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.38),
+      inset 0 -2px 5px rgba(0, 0, 0, 0.42),
+      0 0 12px rgba(176, 136, 255, 0.42),
+      0 0 20px rgba(176, 136, 255, 0.18);
+    box-sizing: border-box;
+    overflow: hidden;
+    background: rgba(10, 10, 18, 0.35);
+  }
+  .lysta-bar-fill-liquid {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    box-shadow: inset 0 -3px 8px rgba(0, 0, 0, 0.35);
+  }
+  .lysta-bar-fill-liquid::before {
+    content: '';
+    position: absolute;
+    left: -15%;
+    right: -15%;
+    top: -55%;
+    bottom: 28%;
+    background: radial-gradient(
+      ellipse 72% 62% at 50% 100%,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(255, 255, 255, 0.08) 42%,
+      transparent 68%
+    );
+    animation: lysta-liquid-wave 2.6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .lysta-bar-fill-liquid::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 42%;
+    height: 100%;
+    background: linear-gradient(95deg, transparent 0%, rgba(255, 255, 255, 0.22) 48%, transparent 100%);
+    animation: lysta-liquid-glint 4.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .lysta-bar-particle {
+    position: absolute;
+    z-index: 4;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.65);
+    pointer-events: none;
+    display: none;
+    animation: lysta-bar-float 5s ease-in-out infinite;
+  }
+  #lysta-theme:not(:checked) ~ .lysta-wrap .lysta-bar-particle {
+    display: block;
+  }
+  .lysta-bar-particle:nth-child(3) {
+    left: 12%;
+    top: 30%;
+    animation-delay: 0s;
+  }
+  .lysta-bar-particle:nth-child(4) {
+    left: 38%;
+    top: 55%;
+    animation-delay: 0.6s;
+  }
+  .lysta-bar-particle:nth-child(5) {
+    left: 58%;
+    top: 25%;
+    animation-delay: 1.2s;
+  }
+  .lysta-bar-particle:nth-child(6) {
+    left: 78%;
+    top: 50%;
+    animation-delay: 1.8s;
+  }
+  .lysta-bar-particle:nth-child(7) {
+    left: 92%;
+    top: 35%;
+    animation-delay: 2.4s;
+  }
+
+  /* 主读数窗内液晶分数（与 aria-live 互补；扫描高光沿用 .lysta-readout-screen::before） */
+  .lysta-readout-stat-lcd {
+    display: inline-flex !important;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    font-family: 'Share Tech Mono', 'Consolas', 'Courier New', monospace;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+  .lysta-readout-stat-val,
+  .lysta-readout-stat-sep,
+  .lysta-readout-stat-max {
+    position: relative;
+    z-index: 2;
+  }
+  .lysta-stat-dep .lysta-readout-stat-val {
+    color: #8effd4;
+    text-shadow:
+      0 0 12px rgba(107, 255, 216, 0.55),
+      0 0 22px rgba(107, 255, 216, 0.2),
+      0 1px 0 rgba(0, 0, 0, 0.9);
+  }
+  .lysta-stat-dep .lysta-readout-stat-sep,
+  .lysta-stat-dep .lysta-readout-stat-max {
+    color: rgba(180, 255, 230, 0.55);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.75);
+  }
+  .lysta-stat-desire .lysta-readout-stat-val {
+    color: #ffb8d9;
+    text-shadow:
+      0 0 12px rgba(255, 142, 200, 0.48),
+      0 0 20px rgba(255, 92, 135, 0.24),
+      0 1px 0 rgba(0, 0, 0, 0.88);
+  }
+  .lysta-stat-desire .lysta-readout-stat-sep,
+  .lysta-stat-desire .lysta-readout-stat-max {
+    color: rgba(255, 200, 225, 0.52);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.72);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-stat-dep .lysta-readout-stat-val {
+    color: #1a8f6a;
+    text-shadow:
+      0 0 8px rgba(26, 143, 106, 0.32),
+      0 1px 0 rgba(255, 255, 255, 0.55);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-stat-dep .lysta-readout-stat-sep,
+  #lysta-theme:checked ~ .lysta-wrap .lysta-stat-dep .lysta-readout-stat-max {
+    color: rgba(26, 90, 70, 0.52);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-stat-desire .lysta-readout-stat-val {
+    color: #c43d72;
+    text-shadow:
+      0 0 8px rgba(196, 61, 114, 0.26),
+      0 1px 0 rgba(255, 255, 255, 0.55);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-stat-desire .lysta-readout-stat-sep,
+  #lysta-theme:checked ~ .lysta-wrap .lysta-stat-desire .lysta-readout-stat-max {
+    color: rgba(120, 48, 78, 0.5);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+
+  .lysta-bar-dep .lysta-bar-fill-liquid {
+    background: linear-gradient(
+      118deg,
+      #4f3a9a 0%,
+      #6b4fc9 18%,
+      var(--lysta-c-accent) 38%,
+      #e8c8ff 52%,
+      var(--lysta-c-accent) 68%,
+      #5c48c0 100%
+    );
+    background-size: 260% 100%;
+    animation: lysta-liquid-flow 5s ease-in-out infinite;
+  }
+  .lysta-bar-desire .lysta-bar-fill {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -2px 5px rgba(0, 0, 0, 0.42),
+      0 0 10px rgba(255, 92, 135, 0.38),
+      0 0 18px rgba(255, 107, 107, 0.2);
+  }
+  .lysta-bar-desire .lysta-bar-fill-liquid {
+    background: linear-gradient(
+      118deg,
+      #c94d8c 0%,
+      #ff8ec8 22%,
+      #ff5c87 45%,
+      #ffa4c0 58%,
+      var(--lysta-c-warn) 78%,
+      #e84870 100%
+    );
+    background-size: 260% 100%;
+    animation: lysta-liquid-flow 4.2s ease-in-out infinite;
+  }
+  .lysta-stat-desire[data-desire-overflow='1'] .lysta-bar-desire .lysta-bar-fill {
+    animation: lysta-pulse 1.2s ease-in-out infinite;
+  }
+
+  .lysta-npc-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .lysta-npc-card {
+    --lysta-anim-delay: 0s;
+    position: relative;
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    transition:
+      transform 0.25s,
+      border-color 0.25s;
+    animation: lysta-fadeIn 0.5s ease-out both;
+    animation-delay: var(--lysta-anim-delay);
+    overflow: hidden;
+  }
+  .lysta-npc-card.lysta-bezel {
+    border: 1px solid var(--lysta-bezel-rim);
+    background:
+      linear-gradient(168deg, rgba(255, 255, 255, 0.05) 0%, transparent 42%),
+      linear-gradient(145deg, var(--lysta-c-surface2), var(--lysta-c-surface));
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+      0 1px 0 rgba(0, 0, 0, 0.3);
+  }
+  .lysta-npc-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: conic-gradient(
+      from 0deg,
+      rgba(176, 136, 255, 0.35),
+      rgba(107, 255, 216, 0.28),
+      rgba(255, 142, 200, 0.32),
+      rgba(176, 136, 255, 0.35)
+    );
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+    animation: lysta-aurora 6s linear infinite;
+    transition: opacity 0.35s ease;
+    mix-blend-mode: screen;
+  }
+  .lysta-npc-card:hover::after {
+    opacity: 0.42;
+  }
+  .lysta-npc-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--lysta-c-border);
+    box-shadow: 0 0 0 1px rgba(176, 136, 255, 0.22);
+  }
+  .lysta-npc-card > * {
+    position: relative;
+    z-index: 1;
+  }
+  .lysta-npc-avatar {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--lysta-c-fg);
+    background: linear-gradient(135deg, rgba(176, 136, 255, 0.22), var(--lysta-c-surface2));
+    border: 1px solid var(--lysta-bezel-rim);
+    box-shadow:
+      inset 0 1px 0 var(--lysta-bezel-high),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+      2px 2px 0 -1px rgba(0, 0, 0, 0.35),
+      -2px -2px 0 -1px rgba(255, 255, 255, 0.03);
+    transition: box-shadow 0.3s ease;
+  }
+  .lysta-npc-avatar[data-tier='1'] {
+    box-shadow: 0 0 0 1px rgba(107, 159, 255, 0.45), 0 0 10px rgba(107, 159, 255, 0.25);
+  }
+  .lysta-npc-avatar[data-tier='2'] {
+    box-shadow: 0 0 0 1px rgba(107, 255, 216, 0.45), 0 0 12px rgba(107, 255, 216, 0.28);
+  }
+  .lysta-npc-avatar[data-tier='3'] {
+    box-shadow: 0 0 0 1px rgba(255, 179, 71, 0.5), 0 0 12px rgba(255, 179, 71, 0.3);
+  }
+  .lysta-npc-avatar[data-tier='4'] {
+    animation: lysta-tier-pulse 1.6s ease-in-out infinite;
+  }
+  .lysta-npc-main {
+    flex: 1;
+    min-width: 0;
+  }
+  .lysta-npc-name {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    word-break: break-all;
+    color: var(--lysta-c-fg-engraved);
+    text-shadow:
+      0 1px 0 var(--lysta-bezel-high),
+      0 -1px 0 rgba(0, 0, 0, 0.5);
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-npc-name {
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9),
+      0 -1px 0 rgba(46, 36, 86, 0.08);
+  }
+  .lysta-npc-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: var(--lysta-c-muted);
+  }
+  .lysta-npc-meta-val {
+    font-family: 'Huiwen-mincho', 'Cinzel', 'EB Garamond', ui-monospace, 'SF Mono', Monaco, Consolas, monospace;
+  }
+  .lysta-npc-bar {
+    position: relative;
+    height: 7px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.18) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.45);
+    box-shadow:
+      inset 0 2px 5px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 var(--lysta-bezel-high);
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+  .lysta-npc-bar-fill {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--lysta-c-accent2), var(--lysta-c-accent));
+    transition: width 0.45s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      0 0 8px rgba(176, 136, 255, 0.35);
+  }
+  .lysta-npc-bar-fill::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%) scale(0.5);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.18), transparent 55%);
+    animation: lysta-bar-ripple 3.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .lysta-npc-desc-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .lysta-npc-desc {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.4;
+    word-break: break-word;
+  }
+  .lysta-npc-tier-mark {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--lysta-c-accent);
+    opacity: 0.9;
+  }
+  .lysta-npc-desc[data-tier='0'] .lysta-npc-tier-mark {
+    color: var(--lysta-c-muted);
+  }
+  .lysta-npc-desc[data-tier='1'] .lysta-npc-tier-mark {
+    color: #6b9fff;
+  }
+  .lysta-npc-desc[data-tier='2'] .lysta-npc-tier-mark {
+    color: var(--lysta-c-accent2);
+  }
+  .lysta-npc-desc[data-tier='3'] .lysta-npc-tier-mark {
+    color: #ffb347;
+  }
+  .lysta-npc-desc[data-tier='4'] .lysta-npc-tier-mark {
+    color: #ff8ec8;
+  }
+  .lysta-npc-desc[data-tier='0'] {
+    color: var(--lysta-c-muted);
+  }
+  .lysta-npc-desc[data-tier='1'] {
+    color: #6b9fff;
+  }
+  .lysta-npc-desc[data-tier='2'] {
+    color: var(--lysta-c-accent2);
+  }
+  .lysta-npc-desc[data-tier='3'] {
+    color: #ffb347;
+  }
+  .lysta-npc-desc[data-tier='4'] {
+    color: #ff8ec8;
+  }
+
+  .lysta-npc-empty {
+    text-align: center;
+    padding: 28px 16px;
+    font-size: 13px;
+    color: var(--lysta-c-muted);
+    border: 1px dashed var(--lysta-c-border);
+    border-radius: 10px;
+    margin: 0;
+  }
+  .lysta-npc-empty[hidden] {
+    display: none !important;
+  }
+
+  .lysta-npc-fallback {
+    display: none !important;
+  }
+  .lysta-prev-stat-fallback {
+    display: none !important;
+  }
+
+  .lysta-npc-ssr-fallback {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border: 1px dashed var(--lysta-c-border);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.22);
+    font-size: 12px;
+    color: var(--lysta-c-muted);
+    max-height: 240px;
+    overflow: auto;
+  }
+  #lysta-theme:checked ~ .lysta-wrap .lysta-npc-ssr-fallback {
+    background: rgba(46, 36, 86, 0.06);
+  }
+  .lysta-npc-ssr-title {
+    margin: 0 0 8px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--lysta-c-muted);
+  }
+  .lysta-npc-ssr-pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: ui-monospace, Consolas, 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--lysta-c-fg);
+  }
+
+  /* 脚本已执行：即使 remove DOM 失败也不显示 SSR 提示栏（酒馆若剥 script 则不会加此类） */
+  .lysta-root.lysta-js-done .lysta-npc-ssr-fallback {
+    display: none !important;
+  }
+  /* 已渲染 NPC 卡片：兄弟选择器兜底隐藏（不依赖 JS remove） */
+  .lysta-pane-npc .lysta-npc-list[data-lysta-has-npcs='1'] ~ .lysta-npc-ssr-fallback {
+    display: none !important;
+  }
+</style>
+
+<script>
+  (function () {
+    function clamp(n, a, b) {
+      return Math.max(a, Math.min(b, n));
+    }
+    function prefersReducedMotion() {
+      try {
+        return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      } catch (e) {
+        return false;
+      }
+    }
+    function parseNum(v) {
+      const n = Number(String(v).replace(/[^\d.-]/g, ''));
+      return Number.isFinite(n) ? n : 0;
+    }
+    function tweenNumber(el, to, dur, formatter) {
+      if (!el) return;
+      var ms = dur == null ? 600 : dur;
+      var fmt = formatter || function (n) {
+        return String(Math.round(n));
+      };
+      if (prefersReducedMotion()) {
+        el.textContent = fmt(to);
+        return;
+      }
+      var from = parseNum(el.textContent);
+      var start = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+      function tick(now) {
+        var t = Math.min(1, ((now || start) - start) / ms);
+        if (t >= 1) {
+          el.textContent = fmt(to);
+          return;
+        }
+        var cur = from + (to - from) * easeOutCubic(t);
+        el.textContent = fmt(cur);
+        if (typeof requestAnimationFrame === 'function') {
+          requestAnimationFrame(tick);
+        } else {
+          setTimeout(function () {
+            tick((typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now());
+          }, 16);
+        }
+      }
+      if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(tick);
+      } else {
+        setTimeout(function () {
+          tick((typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now());
+        }, 0);
+      }
+    }
+    function tierMarkSvg(tier) {
+      var t = String(tier);
+      if (t === '1') {
+        return '<svg class="lysta-npc-tier-mark" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M8 1l1.8 5.5h6l-4.8 3.5 1.8 5.5-5-3.6-5 3.6 1.8-5.5-4.8-3.5h6z"/></svg>';
+      }
+      if (t === '2') {
+        return '<svg class="lysta-npc-tier-mark" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="8" cy="8" r="2"/><path d="M8 1v3M8 12v3M1 8h3M12 8h3M3 3l2 2M11 11l2 2M13 3l-2 2M5 11l-2 2"/></svg>';
+      }
+      if (t === '3') {
+        return '<svg class="lysta-npc-tier-mark" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M10.5 2a6 6 0 0 1 0 10 6 6 0 1 1-6-10"/></svg>';
+      }
+      if (t === '4') {
+        return '<svg class="lysta-npc-tier-mark" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M8 1l2.5 5 5.5.8-4 3.8 1 5.4L8 13.2 3 16l1-5.4-4-3.8L5.5 6z"/></svg>';
+      }
+      return '<svg class="lysta-npc-tier-mark" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="8" cy="8" r="2.5"/></svg>';
+    }
+    function depStage(v) {
+      if (v <= 30) return '疏离';
+      if (v <= 60) return '亲近';
+      if (v <= 80) return '依恋';
+      return '沉迷';
+    }
+    function npcTier(v) {
+      if (v <= 20) return '0';
+      if (v <= 40) return '1';
+      if (v <= 60) return '2';
+      if (v <= 80) return '3';
+      return '4';
+    }
+    function getPath(obj, path) {
+      if (!obj || !path) return undefined;
+      const parts = path.split('.');
+      let cur = obj;
+      for (const p of parts) {
+        if (cur == null) return undefined;
+        cur = cur[p];
+      }
+      return cur;
+    }
+    /** 正则/MVU 注入往往在父页面；iframe 内 window 可能没有 Mvu/getVariables。 */
+    function getLystaApiWindow() {
+      var candidates = [];
+      function addWin(w) {
+        if (!w) return;
+        for (var s = 0; s < candidates.length; s++) {
+          if (candidates[s] === w) return;
+        }
+        candidates.push(w);
+      }
+      addWin(window);
+      try {
+        addWin(window.parent);
+      } catch (e0) {}
+      try {
+        addWin(window.top);
+      } catch (e1) {}
+      var i;
+      for (i = 0; i < candidates.length; i++) {
+        try {
+          var w = candidates[i];
+          if (w && w.Mvu && typeof w.Mvu.getMvuData === 'function') {
+            return w;
+          }
+        } catch (e2) {}
+      }
+      for (i = 0; i < candidates.length; i++) {
+        try {
+          var w2 = candidates[i];
+          if (w2 && typeof w2.getVariables === 'function') {
+            return w2;
+          }
+        } catch (e3) {}
+      }
+      return window;
+    }
+    /** 正则插入的正文不在 iframe 内时往往没有 getCurrentMessageId，需从聊天 DOM 推断本条 mes 的 id。 */
+    function lystaResolveMessageId(root) {
+      var wins = [];
+      function addW(w) {
+        if (!w) return;
+        for (var t = 0; t < wins.length; t++) {
+          if (wins[t] === w) return;
+        }
+        wins.push(w);
+      }
+      addW(window);
+      try {
+        addW(window.parent);
+      } catch (eW) {}
+      try {
+        addW(window.top);
+      } catch (eW2) {}
+      var wi;
+      for (wi = 0; wi < wins.length; wi++) {
+        try {
+          var ww = wins[wi];
+          if (ww && typeof ww.getCurrentMessageId === 'function') {
+            var gid = ww.getCurrentMessageId();
+            if (gid !== undefined && gid !== null && String(gid) !== '') {
+              var gn = Number(gid);
+              if (!Number.isNaN(gn)) return gn;
+            }
+          }
+        } catch (e) {}
+      }
+      try {
+        if (root && typeof root.closest === 'function') {
+          var mesEl = root.closest('.mes');
+          if (mesEl) {
+            var mr =
+              mesEl.getAttribute('mesid') ||
+              mesEl.getAttribute('mesId') ||
+              mesEl.getAttribute('data-mes-id');
+            if (mr != null && String(mr) !== '') {
+              var mi = parseInt(String(mr), 10);
+              if (!Number.isNaN(mi)) return mi;
+            }
+          }
+        }
+      } catch (eMes) {}
+      try {
+        var el = root;
+        for (var depth = 0; depth < 24 && el; depth++, el = el.parentElement) {
+          if (!el || !el.getAttribute) continue;
+          var raw =
+            el.getAttribute('mesid') ||
+            el.getAttribute('mesId') ||
+            el.getAttribute('data-mes-id') ||
+            el.getAttribute('data-message-id') ||
+            (el.dataset && (el.dataset.mesId || el.dataset.messageId));
+          if (raw != null && String(raw) !== '') {
+            var num = parseInt(String(raw), 10);
+            if (!Number.isNaN(num)) return num;
+          }
+        }
+      } catch (e2) {}
+      return undefined;
+    }
+    function getStatDataForMessage(messageId) {
+      if (messageId === undefined || messageId === null) return null;
+      var mid = Number(messageId);
+      if (Number.isNaN(mid)) return null;
+      var W = getLystaApiWindow();
+      try {
+        if (W && W.Mvu && typeof W.Mvu.getMvuData === 'function') {
+          var mvuData = W.Mvu.getMvuData({ type: 'message', message_id: mid });
+          var sd = getPath(mvuData, 'stat_data');
+          if (sd && typeof sd === 'object') return sd;
+        }
+      } catch (e1) {}
+      try {
+        if (W && typeof W.getVariables === 'function') {
+          var vars = W.getVariables({ type: 'message', message_id: mid });
+          var sd2 = getPath(vars, 'stat_data');
+          if (sd2 && typeof sd2 === 'object') return sd2;
+        }
+      } catch (e2) {}
+      return null;
+    }
+    function readPrevStatFallback(root) {
+      try {
+        var fb = root.querySelector('.lysta-prev-stat-fallback');
+        if (fb && fb.textContent) {
+          var t = fb.textContent.trim();
+          if (t && t !== '{}' && t !== 'undefined') {
+            return JSON.parse(t);
+          }
+        }
+      } catch (e) {}
+      return null;
+    }
+    function getPrevStatForCompare(root, mid) {
+      if (mid !== undefined && mid !== null && !Number.isNaN(Number(mid)) && Number(mid) >= 1) {
+        var sd = getStatDataForMessage(Number(mid) - 1);
+        if (sd) return sd;
+      }
+      return readPrevStatFallback(root);
+    }
+    var DRIFT_SVG_CAL =
+      '<svg class="lysta-drift-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+    var DRIFT_SVG_YEN =
+      '<svg class="lysta-drift-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>';
+    var DRIFT_SVG_LINK =
+      '<svg class="lysta-drift-svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 1 1 7 7l-1 1M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 1 1-7-7l1-1"/></svg>';
+    var DRIFT_SVG_ZAP =
+      '<svg class="lysta-drift-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>';
+    function formatSignedDelta(n) {
+      var r = Math.round(Number(n));
+      if (!Number.isFinite(r) || r === 0) return '';
+      return (r > 0 ? '+' : '') + String(r);
+    }
+    /** 相较上一条：仅图标 + 带符号数字（日期无数字），NPC 列表仍为完整字段展示。 */
+    function syncDriftHub(root) {
+      var hub = root.querySelector('[data-drift-hub]');
+      var rail = root.querySelector('[data-drift-rail]');
+      if (!hub || !rail) return;
+      var mid = lystaResolveMessageId(root);
+      var prevStat = getPrevStatForCompare(root, mid);
+      if (!prevStat) {
+        hub.hidden = true;
+        rail.innerHTML = '';
+        hub.removeAttribute('aria-label');
+        return;
+      }
+      var ariaParts = [];
+      var htmlChunks = [];
+      var di = 0;
+      var curDateEl = root.querySelector('.lysta-date-text');
+      var curDate = curDateEl ? String(curDateEl.textContent || '').trim() : '';
+      var pDate = getPath(prevStat, '世界.当前日期');
+      var pDateStr = pDate != null ? String(pDate).trim() : '';
+      if (pDateStr !== '' && pDateStr !== curDate) {
+        ariaParts.push('叙事日期已相对上一条变化');
+        htmlChunks.push(
+          '<span class="lysta-drift-node lysta-drift-node--date" style="--drift-i:' +
+            di++ +
+            '" title="日期相对上一条已变化">' +
+            '<span class="lysta-drift-sr">相较上一条，叙事日期已变化</span>' +
+            '<span class="lysta-drift-cal-wrap" aria-hidden="true">' +
+            DRIFT_SVG_CAL +
+            '</span></span>'
+        );
+      }
+      var moneyEl = root.querySelector('[data-money-value]');
+      var curMoney = moneyEl ? parseNum(moneyEl.textContent) : 0;
+      var pMoney = getPath(prevStat, '世界.生活费');
+      if (pMoney !== undefined && pMoney !== null && String(pMoney).trim() !== '') {
+        var pm = parseNum(pMoney);
+        if (Number.isFinite(pm)) {
+          var dMoney = Math.round(curMoney) - Math.round(pm);
+          if (dMoney !== 0) {
+            ariaParts.push('生活费差额 ' + formatSignedDelta(dMoney));
+            var dirM = dMoney > 0 ? 'up' : 'down';
+            htmlChunks.push(
+              '<span class="lysta-drift-node lysta-drift-node--' +
+                dirM +
+                '" style="--drift-i:' +
+                di++ +
+                '">' +
+                '<span class="lysta-drift-sr">生活费变化 ' +
+                formatSignedDelta(dMoney) +
+                '</span>' +
+                DRIFT_SVG_YEN +
+                '<span class="lysta-drift-num">' +
+                formatSignedDelta(dMoney) +
+                '</span></span>'
+            );
+          }
+        }
+      }
+      var depStat = root.querySelector('.lysta-stat-dep');
+      var curDep = depStat ? resolveStatNumeric(depStat, root) : 0;
+      var pDep = getPath(prevStat, '凌月.依赖程度');
+      if (pDep !== undefined && pDep !== null && String(pDep).trim() !== '') {
+        var pd = clamp(parseNum(pDep), 0, 100);
+        var dDep = Math.round(curDep) - Math.round(pd);
+        if (dDep !== 0) {
+          ariaParts.push('依赖程度变化 ' + formatSignedDelta(dDep));
+          var dirD = dDep > 0 ? 'up' : 'down';
+          htmlChunks.push(
+            '<span class="lysta-drift-node lysta-drift-node--' +
+              dirD +
+              '" style="--drift-i:' +
+              di++ +
+              '">' +
+              '<span class="lysta-drift-sr">依赖程度变化 ' +
+              formatSignedDelta(dDep) +
+              '</span>' +
+              DRIFT_SVG_LINK +
+              '<span class="lysta-drift-num">' +
+              formatSignedDelta(dDep) +
+              '</span></span>'
+          );
+        }
+      }
+      var desireStat = root.querySelector('.lysta-stat-desire');
+      var curDesire = desireStat ? resolveStatNumeric(desireStat, root) : 0;
+      var pDesire = getPath(prevStat, '凌月.性欲值');
+      if (pDesire !== undefined && pDesire !== null && String(pDesire).trim() !== '') {
+        var pdes = clamp(parseNum(pDesire), 0, 100);
+        var dDesire = Math.round(curDesire) - Math.round(pdes);
+        if (dDesire !== 0) {
+          ariaParts.push('性欲值变化 ' + formatSignedDelta(dDesire));
+          var dirZ = dDesire > 0 ? 'up' : 'down';
+          htmlChunks.push(
+            '<span class="lysta-drift-node lysta-drift-node--' +
+              dirZ +
+              '" style="--drift-i:' +
+              di++ +
+              '">' +
+              '<span class="lysta-drift-sr">性欲值变化 ' +
+              formatSignedDelta(dDesire) +
+              '</span>' +
+              DRIFT_SVG_ZAP +
+              '<span class="lysta-drift-num">' +
+              formatSignedDelta(dDesire) +
+              '</span></span>'
+          );
+        }
+      }
+      if (htmlChunks.length === 0) {
+        hub.hidden = true;
+        rail.innerHTML = '';
+        hub.removeAttribute('aria-label');
+        return;
+      }
+      rail.innerHTML = htmlChunks.join('');
+      hub.hidden = false;
+      hub.setAttribute('aria-label', '相较上一条：' + ariaParts.join('；'));
+    }
+    /** API 常返回空的 NPC关系 {}，仍 truthy，会拦住 DOM 宏解析 —— 只有有关键条目才算命中。 */
+    function isNonEmptyNpcRecord(o) {
+      return o && typeof o === 'object' && !Array.isArray(o) && Object.keys(o).length > 0;
+    }
+    /** innerText 会把 &lt;br&gt; 等视作换行；textContent 在部分 DOM 下会粘成一行。隐藏节点 innerText 可能为空，需回退 textContent。 */
+    function lystaNpcDomRawText(el) {
+      if (!el) return '';
+      try {
+        var it = typeof el.innerText === 'string' ? String(el.innerText).trim() : '';
+        if (it !== '') return it;
+      } catch (e) {}
+      return String(el.textContent || '').trim();
+    }
+    /** 解析 NPC 关系 JSON；跳过未展开的 {{…}}；允许首尾多余空白或非 JSON 包裹（部分宏会带前缀）。 */
+    function tryParseNpcFallbackJson(raw) {
+      var t = raw == null ? '' : String(raw).trim();
+      if (!t || t === '{}' || t === 'undefined' || t === 'null') return null;
+      if (/\{\{[\s\S]*?\}\}/.test(t)) return null;
+      try {
+        var o = JSON.parse(t);
+        if (o && typeof o === 'object' && !Array.isArray(o)) return o;
+      } catch (err) {}
+      var start = t.indexOf('{');
+      var end = t.lastIndexOf('}');
+      if (start >= 0 && end > start) {
+        try {
+          var slice = t.slice(start, end + 1);
+          var o2 = JSON.parse(slice);
+          if (o2 && typeof o2 === 'object' && !Array.isArray(o2)) return o2;
+        } catch (err2) {}
+      }
+      var pretty = tryParseNpcMvuPrettyText(t);
+      if (pretty) return pretty;
+      return null;
+    }
+    /**
+     * MVU / format_message_variable 常把对象渲染为多行说明文而非 JSON，例如：
+     * 夏露:\n关系值: 15\n阶段说明: …
+     */
+    function tryParseNpcMvuPrettyText(raw) {
+      var t = raw == null ? '' : String(raw).trim();
+      if (!t || /\{\{[\s\S]*?\}\}/.test(t)) return null;
+      var fc = t.charAt(0);
+      if (fc === '{' || fc === '[') return null;
+      var lines = t.split(/\r?\n/).map(function (line) {
+        return String(line).trim();
+      });
+      function isNpcNameLine(line) {
+        if (!line) return false;
+        if (/^关系值\s*[:：]/.test(line)) return false;
+        if (/^阶段说明\s*[:：]/.test(line)) return false;
+        var m = line.match(/^(.+?)[:：]\s*(.*)$/);
+        if (!m) return false;
+        var head = m[1].trim();
+        if (head === '关系值' || head === '阶段说明') return false;
+        return true;
+      }
+      function nameFromLine(line) {
+        var m = line.match(/^(.+?)[:：]\s*(.*)$/);
+        if (!m) return null;
+        var head = m[1].trim();
+        if (head === '关系值' || head === '阶段说明') return null;
+        return head;
+      }
+      var result = {};
+      var i = 0;
+      while (i < lines.length) {
+        var line = lines[i];
+        if (!line) {
+          i++;
+          continue;
+        }
+        if (!isNpcNameLine(line)) {
+          i++;
+          continue;
+        }
+        var name = nameFromLine(line);
+        if (!name) {
+          i++;
+          continue;
+        }
+        var rec = { 关系值: 0, 阶段说明: '' };
+        i++;
+        while (i < lines.length) {
+          var L = lines[i];
+          if (!L) {
+            i++;
+            continue;
+          }
+          if (isNpcNameLine(L)) break;
+          var rm = L.match(/^关系值\s*[:：]\s*(.+)$/);
+          if (rm) {
+            rec.关系值 = clamp(parseNum(rm[1]), 0, 100);
+            i++;
+            continue;
+          }
+          var sm = L.match(/^阶段说明\s*[:：]\s*(.*)$/);
+          if (sm) {
+            var desc = sm[1] || '';
+            i++;
+            while (i < lines.length) {
+              var nx = lines[i];
+              if (!nx) {
+                i++;
+                continue;
+              }
+              if (isNpcNameLine(nx)) break;
+              if (/^关系值\s*[:：]/.test(nx)) break;
+              desc += (desc ? '\n' : '') + nx;
+              i++;
+            }
+            rec.阶段说明 = desc.trim();
+            continue;
+          }
+          i++;
+        }
+        result[name] = rec;
+      }
+      if (Object.keys(result).length) return result;
+      return tryParseNpcMvuPrettyTextGlued(t);
+    }
+    /** 无换行时被粘成一行，或 &lt;br&gt; 经 textContent 粘成一行：夏露:关系值:15阶段说明:… */
+    function tryParseNpcMvuPrettyTextGlued(t) {
+      if (!t || t.indexOf('关系值') < 0 || t.indexOf('阶段说明') < 0) return null;
+      var out = {};
+      var re = /([^\r\n]+?)[:：]\s*关系值\s*[:：]\s*([\d.]+)\s*阶段说明\s*[:：]\s*/g;
+      var matches = [];
+      var m;
+      while ((m = re.exec(t)) !== null) {
+        matches.push({
+          index: m.index,
+          name: String(m[1] || '').trim(),
+          val: m[2],
+          descStart: m.index + m[0].length,
+        });
+      }
+      if (matches.length === 0) {
+        var one = t.replace(/\s+/g, ' ').trim();
+        var single = one.match(/^(.+?)[:：]\s*关系值\s*[:：]\s*([\d.]+)\s*阶段说明\s*[:：]\s*(.+)$/);
+        if (single) {
+          var nm = single[1].trim();
+          if (nm && nm !== '关系值' && nm !== '阶段说明') {
+            out[nm] = {
+              关系值: clamp(parseNum(single[2]), 0, 100),
+              阶段说明: String(single[3] || '').trim(),
+            };
+          }
+        }
+        return Object.keys(out).length ? out : null;
+      }
+      for (var i = 0; i < matches.length; i++) {
+        var mm = matches[i];
+        if (!mm.name || mm.name === '关系值' || mm.name === '阶段说明') continue;
+        var descEnd = i + 1 < matches.length ? matches[i + 1].index : t.length;
+        var desc = t.slice(mm.descStart, descEnd).trim();
+        out[mm.name] = { 关系值: clamp(parseNum(mm.val), 0, 100), 阶段说明: desc };
+      }
+      return Object.keys(out).length ? out : null;
+    }
+    function normalizeNpcRelationValue(x) {
+      if (x == null) return null;
+      if (typeof x === 'string') {
+        var t = String(x).trim();
+        if (!t || t === '{}' || t === 'undefined' || t === 'null') return null;
+        if (/\{\{[\s\S]*?\}\}/.test(t)) return null;
+        if (t.charAt(0) === '{' || t.charAt(0) === '[') {
+          try {
+            var o = JSON.parse(t);
+            if (o && typeof o === 'object' && !Array.isArray(o)) return o;
+          } catch (eStr) {}
+          var start = t.indexOf('{');
+          var end = t.lastIndexOf('}');
+          if (start >= 0 && end > start) {
+            try {
+              var slice = t.slice(start, end + 1);
+              var o2 = JSON.parse(slice);
+              if (o2 && typeof o2 === 'object' && !Array.isArray(o2)) return o2;
+            } catch (eStr2) {}
+          }
+          return null;
+        }
+        var prettyNorm = tryParseNpcMvuPrettyText(t);
+        if (prettyNorm) return prettyNorm;
+        return null;
+      }
+      if (typeof x === 'object' && !Array.isArray(x)) return x;
+      return null;
+    }
+    function npcRelationFromVariableBlob(blob) {
+      if (!blob || typeof blob !== 'object') return null;
+      var paths = [
+        'stat_data.NPC关系',
+        'NPC关系',
+        'data.stat_data.NPC关系',
+        'message_data.stat_data.NPC关系',
+        'variables.stat_data.NPC关系',
+      ];
+      for (var p = 0; p < paths.length; p++) {
+        var x = getPath(blob, paths[p]);
+        var n = normalizeNpcRelationValue(x);
+        if (isNonEmptyNpcRecord(n)) return n;
+      }
+      return null;
+    }
+    function npcRelationFromApis(msgId) {
+      var W = getLystaApiWindow();
+      try {
+        if (W && W.Mvu && typeof W.Mvu.getMvuData === 'function') {
+          var mvuData = W.Mvu.getMvuData({ type: 'message', message_id: msgId });
+          var d1 = npcRelationFromVariableBlob(mvuData);
+          if (isNonEmptyNpcRecord(d1)) return d1;
+        }
+      } catch (e1) {}
+      try {
+        if (W && typeof W.getVariables === 'function') {
+          var vars = W.getVariables({ type: 'message', message_id: msgId });
+          var d2 = npcRelationFromVariableBlob(vars);
+          if (isNonEmptyNpcRecord(d2)) return d2;
+        }
+      } catch (e2) {}
+      return null;
+    }
+    function getNpcRecord(root) {
+      var mid = lystaResolveMessageId(root);
+      var tryIds = [];
+      if (mid !== undefined && mid !== null && !Number.isNaN(Number(mid))) {
+        tryIds.push(Number(mid));
+      }
+      if (tryIds.length === 0) {
+        tryIds.push('latest');
+        tryIds.push(-1);
+      }
+      for (var i = 0; i < tryIds.length; i++) {
+        var got = npcRelationFromApis(tryIds[i]);
+        if (isNonEmptyNpcRecord(got)) return got;
+      }
+      try {
+        var Wc = getLystaApiWindow();
+        if (Wc && typeof Wc.getVariables === 'function') {
+          var chatBlob = Wc.getVariables({ type: 'chat' });
+          var dc = npcRelationFromVariableBlob(chatBlob);
+          if (isNonEmptyNpcRecord(dc)) return dc;
+        }
+      } catch (eChat) {}
+      var inline = root.querySelector('.lysta-npc-fallback-inline');
+      if (inline) {
+        var p1 = tryParseNpcFallbackJson(lystaNpcDomRawText(inline));
+        if (isNonEmptyNpcRecord(p1)) return p1;
+      }
+      var fb = root.querySelector('.lysta-npc-fallback');
+      if (fb) {
+        var p2 = tryParseNpcFallbackJson(lystaNpcDomRawText(fb));
+        if (isNonEmptyNpcRecord(p2)) return p2;
+      }
+      var ssrPre = root.querySelector('.lysta-npc-ssr-pre');
+      if (ssrPre) {
+        var pSsr = tryParseNpcFallbackJson(lystaNpcDomRawText(ssrPre));
+        if (isNonEmptyNpcRecord(pSsr)) return pSsr;
+      }
+      return {};
+    }
+    function renderNpcs(root, data) {
+      var listEl = root.querySelector('[data-npc-list]');
+      var emptyEl = root.querySelector('[data-npc-empty]');
+      if (!listEl) return;
+      listEl.innerHTML = '';
+      var keys = Object.keys(data);
+      if (keys.length === 0) {
+        listEl.removeAttribute('data-lysta-has-npcs');
+        if (emptyEl) emptyEl.hidden = false;
+        return;
+      }
+      listEl.setAttribute('data-lysta-has-npcs', '1');
+      if (emptyEl) emptyEl.hidden = true;
+      keys.forEach(function (name, idx) {
+        var rec = data[name] || {};
+        var val = clamp(parseNum(rec.关系值), 0, 100);
+        var tier = npcTier(val);
+        var desc = rec.阶段说明 != null ? String(rec.阶段说明) : '';
+        var initial = name.length ? name.charAt(0) : '?';
+        var card = document.createElement('div');
+        card.className = 'lysta-npc-card lysta-bezel';
+        card.style.setProperty('--lysta-anim-delay', idx * 0.05 + 's');
+        var riv = document.createElement('span');
+        riv.className = 'lysta-rivets-mini';
+        riv.setAttribute('aria-hidden', 'true');
+        riv.innerHTML = '<i></i><i></i>';
+        card.insertBefore(riv, card.firstChild);
+        var av = document.createElement('div');
+        av.className = 'lysta-npc-avatar';
+        av.setAttribute('data-tier', tier);
+        av.textContent = initial;
+        var main = document.createElement('div');
+        main.className = 'lysta-npc-main';
+        var nm = document.createElement('div');
+        nm.className = 'lysta-npc-name lysta-engrave';
+        nm.textContent = name;
+        var barWrap = document.createElement('div');
+        barWrap.className = 'lysta-npc-bar';
+        var barFill = document.createElement('div');
+        barFill.className = 'lysta-npc-bar-fill';
+        barFill.style.width = val + '%';
+        barWrap.appendChild(barFill);
+        var row = document.createElement('div');
+        row.className = 'lysta-npc-meta';
+        var lab = document.createElement('span');
+        lab.textContent = '关系值';
+        var num = document.createElement('span');
+        num.className = 'lysta-npc-meta-val';
+        num.textContent = String(val);
+        row.appendChild(lab);
+        row.appendChild(num);
+        var des = document.createElement('div');
+        des.className = 'lysta-npc-desc';
+        des.setAttribute('data-tier', tier);
+        des.innerHTML = tierMarkSvg(tier) + '<span class="lysta-npc-desc-text"></span>';
+        var desText = des.querySelector('.lysta-npc-desc-text');
+        if (desText) desText.textContent = desc || '—';
+        main.appendChild(nm);
+        main.appendChild(row);
+        main.appendChild(barWrap);
+        main.appendChild(des);
+        card.appendChild(av);
+        card.appendChild(main);
+        listEl.appendChild(card);
+      });
+    }
+    function looksLikeMacroToken(s) {
+      return /\{\{[\s\S]*?\}\}/.test(String(s || ''));
+    }
+    /** 优先读文本节点里的宏展开结果，跳过未替换的 {{…}}；必要时读本条 message 的 stat_data。 */
+    function resolveStatNumeric(statEl, root) {
+      if (!statEl) return 0;
+      var rawEl = statEl.querySelector('[data-stat-raw]');
+      var chunks = [];
+      if (rawEl) chunks.push(String(rawEl.textContent || '').trim());
+      var attr = statEl.getAttribute('data-value');
+      if (attr != null && String(attr).trim() !== '') chunks.push(String(attr).trim());
+      for (var i = 0; i < chunks.length; i++) {
+        var chunk = chunks[i];
+        if (!chunk || looksLikeMacroToken(chunk)) continue;
+        var stripped = String(chunk).replace(/[^\d.-]/g, '');
+        if (stripped === '') continue;
+        var n = parseNum(chunk);
+        if (Number.isFinite(n)) return clamp(n, 0, 100);
+      }
+      var key = statEl.getAttribute('data-stat');
+      var pathByKey = { 依赖程度: '凌月.依赖程度', 性欲值: '凌月.性欲值' };
+      var subpath = pathByKey[key];
+      if (subpath && root) {
+        var mid = lystaResolveMessageId(root);
+        if (mid !== undefined && mid !== null && !Number.isNaN(Number(mid))) {
+          var sd = getStatDataForMessage(mid);
+          if (sd) {
+            var apiRaw = getPath(sd, subpath);
+            if (apiRaw !== undefined && apiRaw !== null && String(apiRaw).trim() !== '') {
+              return clamp(parseNum(apiRaw), 0, 100);
+            }
+          }
+        }
+      }
+      return 0;
+    }
+    function syncStatPrevLayer(statEl, root, v, key) {
+      var wrap = statEl.querySelector('[data-stat-delta-wrap]');
+      var deltaEl = statEl.querySelector('[data-stat-delta]');
+      var ghost = statEl.querySelector('[data-fill-prev]');
+      if (!wrap || !deltaEl) return;
+      var path = key === '依赖程度' ? '凌月.依赖程度' : '凌月.性欲值';
+      var mid = lystaResolveMessageId(root);
+      var prevStat = getPrevStatForCompare(root, mid);
+      var prevRaw = prevStat ? getPath(prevStat, path) : undefined;
+      statEl.classList.remove('lysta-stat--delta-flash');
+      if (prevRaw === undefined || prevRaw === null || String(prevRaw).trim() === '') {
+        wrap.hidden = true;
+        statEl.removeAttribute('data-stat-delta-dir');
+        if (ghost) ghost.style.width = '0%';
+        wrap.removeAttribute('title');
+        return;
+      }
+      wrap.hidden = false;
+      var prevVal = clamp(parseNum(prevRaw), 0, 100);
+      var d = Math.round(v) - Math.round(prevVal);
+      var label = d === 0 ? '0' : formatSignedDelta(d);
+      deltaEl.textContent = label;
+      statEl.setAttribute('data-stat-delta-dir', d > 0 ? 'up' : d < 0 ? 'down' : 'zero');
+      wrap.setAttribute('title', '较上一条：' + label);
+      if (ghost) {
+        ghost.style.width = prevVal + '%';
+      }
+      if (d !== 0 && !prefersReducedMotion()) {
+        statEl.classList.add('lysta-stat--delta-flash');
+        window.setTimeout(function () {
+          statEl.classList.remove('lysta-stat--delta-flash');
+        }, 750);
+      }
+    }
+    function syncStat(statEl, root) {
+      if (!statEl) return;
+      var v = resolveStatNumeric(statEl, root);
+      var ariaLive = statEl.querySelector('[data-stat-aria-live]');
+      var fillEl = statEl.querySelector('[data-fill]');
+      var badgeEl = statEl.querySelector('[data-badge]');
+      var badgeText = statEl.querySelector('[data-badge-text]');
+      var key = statEl.getAttribute('data-stat');
+      if (ariaLive && key) {
+        ariaLive.textContent = key + ' ' + String(Math.round(v)) + '，满分 100';
+      }
+      var lcdVal = statEl.querySelector('[data-bar-lcd]');
+      if (lcdVal) {
+        lcdVal.textContent = String(Math.round(v));
+      }
+      if (fillEl) {
+        fillEl.setAttribute('data-fill-pct', String(Math.round(v)));
+        fillEl.style.width = '0%';
+        if (typeof requestAnimationFrame === 'function') {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              fillEl.style.width = v + '%';
+            });
+          });
+        } else {
+          fillEl.style.width = v + '%';
+        }
+      }
+      if (key === '依赖程度' && badgeEl) {
+        var st = depStage(v);
+        if (badgeText) badgeText.textContent = st;
+        else badgeEl.textContent = st;
+        badgeEl.setAttribute('data-stage', st);
+      }
+      if (key === '性欲值') {
+        statEl.setAttribute('data-desire-overflow', v >= 80 ? '1' : '0');
+        if (badgeEl) {
+          if (badgeText) badgeText.textContent = '';
+          if (v >= 80) {
+            badgeEl.setAttribute('data-state', 'overflow');
+          } else {
+            badgeEl.removeAttribute('data-state');
+          }
+        }
+      }
+      if (key === '依赖程度' || key === '性欲值') {
+        syncStatPrevLayer(statEl, root, v, key);
+      }
+    }
+    function syncMoney(root) {
+      var wrap = root.querySelector('[data-money-wrap]');
+      var el = root.querySelector('[data-money-value]');
+      var crisis = root.querySelector('[data-crisis]');
+      if (!el) return;
+      var v = parseNum(el.textContent);
+      if (wrap) wrap.setAttribute('data-money-state', v < 0 ? 'crisis' : 'normal');
+      if (crisis) crisis.hidden = v > 0;
+      tweenNumber(el, v, 650, function (n) {
+        var rounded = Math.round(n);
+        var sign = rounded < 0 ? '-' : '';
+        var abs = Math.abs(rounded);
+        return '¥' + sign + abs;
+      });
+    }
+    function initLystaRoot(root) {
+      if (!root || !root.querySelector) return;
+      try {
+        root.querySelectorAll('.lysta-stat').forEach(function (se) {
+          try {
+            syncStat(se, root);
+          } catch (eSt) {
+            console.warn('[LYsta] syncStat', eSt);
+          }
+        });
+        try {
+          syncMoney(root);
+        } catch (eM) {
+          console.warn('[LYsta] syncMoney', eM);
+        }
+        try {
+          syncDriftHub(root);
+        } catch (eD) {
+          console.warn('[LYsta] syncDriftHub', eD);
+        }
+        try {
+          var rec = getNpcRecord(root);
+          renderNpcs(root, rec);
+        } catch (eN) {
+          console.warn('[LYsta] npc', eN);
+        }
+      } catch (e) {
+        console.warn('[LYsta]', e);
+      } finally {
+        try {
+          root.classList.add('lysta-js-done');
+        } catch (eCl) {}
+        try {
+          var ssrFb =
+            root.querySelector('[data-npc-ssr-fallback]') || root.querySelector('.lysta-npc-ssr-fallback');
+          if (ssrFb) ssrFb.remove();
+        } catch (eRm) {}
+      }
+    }
+    function bootAllLysta() {
+      document.querySelectorAll('.lysta-root').forEach(initLystaRoot);
+    }
+    bootAllLysta();
+    setTimeout(bootAllLysta, 0);
+    setTimeout(bootAllLysta, 80);
+    setTimeout(bootAllLysta, 320);
+    setTimeout(bootAllLysta, 900);
+    if (typeof jQuery !== 'undefined' && typeof jQuery === 'function') {
+      jQuery(bootAllLysta);
+    }
+    document.querySelectorAll('.lysta-root').forEach(function (root) {
+      if (typeof MutationObserver === 'undefined') return;
+      var watch = root.querySelector('.lysta-npc-fallback-inline');
+      var scriptFb = root.querySelector('.lysta-npc-fallback');
+      var ssrPre = root.querySelector('.lysta-npc-ssr-pre');
+      [watch, scriptFb, ssrPre].forEach(function (node) {
+        if (!node) return;
+        var obs = new MutationObserver(function () {
+          initLystaRoot(root);
+        });
+        obs.observe(node, { characterData: true, subtree: true, childList: true });
+      });
+    });
+  })();
+</script>
+</div>

@@ -1,0 +1,97 @@
+// Life-UI — 日系二次元休闲经营手游 设计 token
+// 风格: Claymorphism + Nintendo 粗描边 + 手账贴纸, 低饱和糖果色
+
+:root {
+  // —— 背景 (奶油糖果) ——
+  --lf-bg: #fff7f0;
+  --lf-bg-deep: #fdeede;
+  --lf-bg-paper: #fffdfb;
+  --lf-surface: #ffffff;
+  --lf-surface-soft: #fff6ef;
+  --lf-surface-sunken: #faece2;
+
+  // —— 主题色 (低饱和) ——
+  --lf-strawberry: #f7a8c4;
+  --lf-strawberry-deep: #ec85ab;
+  --lf-mint: #a8e6cf;
+  --lf-mint-deep: #79cdab;
+  --lf-sky: #aedff7;
+  --lf-sky-deep: #7cc2e8;
+  --lf-butter: #ffe3a3;
+  --lf-butter-deep: #f4c560;
+  --lf-lavender: #d6c8f5;
+  --lf-lavender-deep: #b39fe8;
+  --lf-peach: #ffb088; // CTA
+  --lf-peach-deep: #ff9460;
+
+  // —— 描边 / 墨色 (可可棕) ——
+  --lf-ink: #5b4a52;
+  --lf-ink-soft: #7a6670;
+  --lf-line: #e7d5cb;
+  --lf-line-strong: #d9c1b4;
+
+  // —— 文字 ——
+  --lf-text: #5b4a52;
+  --lf-text-secondary: #9a8a92;
+  --lf-text-muted: #b9aab2;
+  --lf-text-on-color: #ffffff;
+  --lf-text-on-color-ink: #5b4a52;
+
+  // —— 语义色 ——
+  --lf-success: #7cc9a0;
+  --lf-warning: #f4b860;
+  --lf-error: #f08a8a;
+  --lf-info: #8fc9ee;
+
+  // —— 圆角 (粗圆角) ——
+  --lf-radius-xs: 10px;
+  --lf-radius-sm: 14px;
+  --lf-radius-md: 20px;
+  --lf-radius-lg: 26px;
+  --lf-radius-xl: 32px;
+  --lf-radius-pill: 999px;
+
+  // —— 描边宽度 ——
+  --lf-outline: 2.5px;
+  --lf-outline-bold: 3px;
+
+  // —— 阴影 (双层柔影 + 偏移硬阴影) ——
+  --lf-ink-shadow: rgba(91, 74, 82, 0.9);
+  --lf-shadow-chunky: 4px 4px 0 var(--lf-ink-shadow);
+  --lf-shadow-chunky-sm: 3px 3px 0 var(--lf-ink-shadow);
+  --lf-shadow-chunky-lg: 6px 6px 0 var(--lf-ink-shadow);
+  --lf-shadow-soft: 0 8px 22px rgba(91, 74, 82, 0.12);
+  --lf-shadow-soft-sm: 0 4px 12px rgba(91, 74, 82, 0.1);
+  --lf-shadow-clay-inset: inset -3px -3px 7px rgba(91, 74, 82, 0.08),
+    inset 3px 3px 7px rgba(255, 255, 255, 0.65);
+  --lf-shadow-float: 0 14px 34px rgba(91, 74, 82, 0.18);
+
+  // —— 动效缓动 ——
+  --lf-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --lf-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --lf-ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --lf-dur-fast: 160ms;
+  --lf-dur: 230ms;
+  --lf-dur-slow: 380ms;
+
+  // —— 字体 ——
+  --lf-font-display: 'Fredoka', 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif;
+  --lf-font-body: 'Nunito', 'Noto Sans SC', system-ui, sans-serif;
+  --lf-font-hand: 'Caveat', 'ZCOOL KuaiLe', cursive;
+
+  // —— 层级 ——
+  --lf-z-panel: 30;
+  --lf-z-overlay: 60;
+  --lf-z-modal: 70;
+  --lf-z-toast: 90;
+
+  // —— 手机外壳尺寸 ——
+  --lf-shell-max: 480px;
+}
+
+// 角色主题色 (用于角色卡 / 好感度 / 气泡强调)
+:root {
+  --lf-char-qinghe: #b39fe8; // 林清和 · 薰衣草
+  --lf-char-suqing: #ffb088; // 苏晴 · 蜜桃
+  --lf-char-chenzhou: #7cc2e8; // 顾沉舟 · 海蓝
+}

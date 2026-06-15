@@ -1,0 +1,207 @@
+// Inf_status — Neural Terminal design tokens
+
+:root {
+  --inf-bg: #e8eaed;
+  --inf-bg-deep: #d8dce3;
+  --inf-bg-elevated: #ffffff;
+  --inf-surface-glass: rgba(255, 255, 255, 0.68);
+  --inf-surface-glass-strong: rgba(255, 255, 255, 0.88);
+  --inf-surface-glass-hover: rgba(255, 255, 255, 0.94);
+  --inf-border: rgba(15, 20, 30, 0.08);
+  --inf-border-strong: rgba(15, 20, 30, 0.14);
+  --inf-border-glow: rgba(13, 148, 136, 0.35);
+  --inf-text: #0f1117;
+  --inf-text-secondary: #3a4150;
+  --inf-text-muted: #565e6e;
+  --inf-accent: #0d9488;
+  --inf-accent-hover: #0f766e;
+  --inf-accent-bright: #14b8a6;
+  --inf-accent-soft: rgba(13, 148, 136, 0.12);
+  --inf-accent-glow: rgba(45, 212, 191, 0.28);
+  --inf-cta: #007aff;
+  --inf-cta-hover: #0066d6;
+  --inf-success: #059669;
+  --inf-warning: #d97706;
+  --inf-error: #dc2626;
+  --inf-info: #0284c7;
+  --inf-radius-xs: 6px;
+  --inf-radius-sm: 10px;
+  --inf-radius-md: 14px;
+  --inf-radius-lg: 22px;
+  --inf-radius-xl: 28px;
+  --inf-shadow-sm: 0 1px 2px rgba(10, 12, 18, 0.06), 0 4px 12px rgba(10, 12, 18, 0.04);
+  --inf-shadow-md: 0 8px 32px rgba(10, 12, 18, 0.1), 0 2px 8px rgba(10, 12, 18, 0.06);
+  --inf-shadow-lg: 0 24px 64px rgba(10, 12, 18, 0.14), 0 8px 24px rgba(10, 12, 18, 0.08);
+  --inf-shadow-glow: 0 0 0 1px var(--inf-border-glow), 0 12px 40px var(--inf-accent-glow);
+  --inf-blur: 24px;
+  --inf-blur-heavy: 40px;
+  --inf-transition-fast: 140ms cubic-bezier(0.4, 0, 0.2, 1);
+  --inf-transition: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --inf-transition-slow: 480ms cubic-bezier(0.22, 1, 0.36, 1);
+  --inf-transition-spring: 520ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --inf-font-display: 'Cormorant Garamond', 'Georgia', serif;
+  --inf-font-ui: 'LXGW Neo XiHei', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --inf-font-name: 'ZevHeiTC-N Dev', 'LXGW Neo XiHei', serif;
+  --inf-font-narrative: 'LXGW Neo XiHei', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --inf-font-quote: 'ZevHeiTC-N Dev', 'LXGW Neo XiHei', serif;
+  --inf-font-tech: 'Maple Mono NF CN', 'IBM Plex Mono', ui-monospace, monospace;
+  --inf-font: var(--inf-font-ui);
+  --inf-mono: var(--inf-font-tech);
+  --inf-status-rail-width: 268px;
+  --inf-status-rail-width-wide: 300px;
+  --inf-terminal-max-width: 100%;
+  --inf-terminal-height: 54rem;
+  --inf-compose-max-height: 17.25rem;
+  --inf-rail-max-height-mobile: 14.25rem;
+  --inf-outbreak-accent: #6366f1;
+  --inf-tier-accent: #059669;
+  --inf-tier-accent-strong: #10b981;
+  --inf-mesh-1: rgba(13, 148, 136, 0.14);
+  --inf-mesh-2: rgba(99, 102, 241, 0.1);
+  --inf-mesh-3: rgba(217, 119, 6, 0.06);
+  --inf-desire-accent: #a855f7;
+  --inf-desire-accent-strong: #ec4899;
+  --inf-desire-accent-soft: rgba(168, 85, 247, 0.12);
+  --inf-desire-glow: rgba(236, 72, 153, 0.28);
+  --inf-desire-tier-calm: #8b5cf6;
+  --inf-desire-tier-warm: #c026d3;
+  --inf-desire-tier-surge: #ec4899;
+  --inf-delta-up: #059669;
+  --inf-delta-down: #dc2626;
+  --inf-world-strip-height: 3.25rem;
+  --inf-chip-bg: color-mix(in srgb, var(--inf-surface-glass-strong) 88%, var(--inf-accent-soft));
+  --inf-chip-border: color-mix(in srgb, var(--inf-accent) 14%, var(--inf-border));
+  --inf-reading-frame-border: color-mix(in srgb, var(--inf-accent) 22%, var(--inf-border-strong));
+  --inf-reading-page-bg: color-mix(in srgb, var(--inf-bg-elevated) 92%, var(--inf-accent-soft));
+  --inf-reading-page-shadow: inset 0 1px 0 color-mix(in srgb, #fff 35%, transparent),
+    0 1px 3px color-mix(in srgb, var(--inf-text) 6%, transparent);
+  --inf-quote-bg: color-mix(in srgb, var(--inf-accent-soft) 55%, var(--inf-bg-elevated));
+  --inf-quote-border: color-mix(in srgb, var(--inf-accent) 28%, var(--inf-border));
+  --inf-quote-accent: var(--inf-accent);
+  --inf-quote-text-base: color-mix(in srgb, var(--inf-accent-hover) 58%, var(--inf-text));
+  --inf-quote-text-shadow: 0 0 0.55px color-mix(in srgb, var(--inf-quote-text-base) 85%, transparent),
+    0 1px 0 color-mix(in srgb, var(--inf-quote-block-accent, var(--inf-accent)) 8%, transparent),
+    0 0 18px color-mix(in srgb, var(--inf-quote-block-accent, var(--inf-accent)) 14%, transparent);
+  --inf-quote-text-size: clamp(1.02rem, 0.42vw + 0.96rem, 1.14rem);
+  --inf-typewriter-ms-per-char: 48;
+  --inf-typewriter-max-duration: 22;
+  --inf-reading-grid-unit: 0.5rem;
+  --inf-reading-line-step: calc(var(--inf-reading-grid-unit) * 4.25);
+  --inf-reading-col-step: calc(var(--inf-reading-grid-unit) * 3);
+  --inf-reading-grid-line: color-mix(in srgb, var(--inf-accent) 10%, var(--inf-border));
+  --inf-reading-grid-line-strong: color-mix(in srgb, var(--inf-accent) 18%, var(--inf-border-strong));
+  --inf-reading-grid-line-major: color-mix(in srgb, var(--inf-accent) 15%, var(--inf-border-strong));
+  --inf-reading-content-pad-x: clamp(1.35rem, 4.5vw, 2.75rem);
+  --inf-reading-content-pad-y: calc(var(--inf-reading-line-step) * 1.25);
+  --inf-reading-ink-shadow: 0 0 0.4px color-mix(in srgb, var(--inf-text) 75%, transparent);
+  --inf-reading-sheet-radius: var(--inf-radius-sm);
+  --inf-quote-elevation: 0 4px 18px color-mix(in srgb, var(--inf-text) 8%, transparent),
+    0 1px 0 color-mix(in srgb, #fff 18%, transparent);
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --inf-status-rail-width: var(--inf-status-rail-width-wide);
+  }
+}
+
+[data-inf-infection-tier='low'] {
+  --inf-tier-accent: #059669;
+  --inf-tier-accent-strong: #10b981;
+  --inf-mesh-3: rgba(5, 150, 105, 0.08);
+}
+
+[data-inf-infection-tier='mid'] {
+  --inf-tier-accent: #d97706;
+  --inf-tier-accent-strong: #f59e0b;
+  --inf-mesh-3: rgba(217, 119, 6, 0.12);
+}
+
+[data-inf-infection-tier='high'] {
+  --inf-tier-accent: #ea580c;
+  --inf-tier-accent-strong: #fb923c;
+  --inf-mesh-3: rgba(234, 88, 12, 0.14);
+}
+
+[data-inf-infection-tier='critical'] {
+  --inf-tier-accent: #dc2626;
+  --inf-tier-accent-strong: #f87171;
+  --inf-mesh-3: rgba(220, 38, 38, 0.16);
+}
+
+[data-inf-theme='dark'] {
+  --inf-bg: #0a0b0f;
+  --inf-bg-deep: #06070a;
+  --inf-bg-elevated: #161820;
+  --inf-surface-glass: rgba(22, 24, 32, 0.72);
+  --inf-surface-glass-strong: rgba(28, 30, 40, 0.9);
+  --inf-surface-glass-hover: rgba(36, 38, 50, 0.95);
+  --inf-border: rgba(255, 255, 255, 0.08);
+  --inf-border-strong: rgba(255, 255, 255, 0.14);
+  --inf-border-glow: rgba(45, 212, 191, 0.25);
+  --inf-text: #f4f5f7;
+  --inf-text-secondary: #c8cdd8;
+  --inf-text-muted: #949aab;
+  --inf-accent: #2dd4bf;
+  --inf-accent-hover: #14b8a6;
+  --inf-accent-bright: #5eead4;
+  --inf-accent-soft: rgba(45, 212, 191, 0.14);
+  --inf-accent-glow: rgba(45, 212, 191, 0.22);
+  --inf-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --inf-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --inf-shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.55);
+  --inf-mesh-1: rgba(45, 212, 191, 0.1);
+  --inf-mesh-2: rgba(99, 102, 241, 0.08);
+  --inf-desire-accent: #c084fc;
+  --inf-desire-accent-strong: #f472b6;
+  --inf-desire-accent-soft: rgba(192, 132, 252, 0.14);
+  --inf-desire-glow: rgba(244, 114, 182, 0.22);
+  --inf-desire-tier-calm: #a78bfa;
+  --inf-desire-tier-warm: #e879f9;
+  --inf-desire-tier-surge: #f472b6;
+  --inf-delta-up: #34d399;
+  --inf-delta-down: #f87171;
+  --inf-reading-frame-border: color-mix(in srgb, var(--inf-accent) 30%, var(--inf-border-strong));
+  --inf-reading-page-bg: color-mix(in srgb, var(--inf-bg-elevated) 94%, var(--inf-accent-soft));
+  --inf-reading-page-shadow: inset 0 1px 0 color-mix(in srgb, #fff 8%, transparent),
+    0 2px 8px color-mix(in srgb, #000 35%, transparent);
+  --inf-quote-bg: color-mix(in srgb, var(--inf-accent-soft) 70%, var(--inf-bg-elevated));
+  --inf-quote-border: color-mix(in srgb, var(--inf-accent) 35%, var(--inf-border));
+  --inf-quote-accent: var(--inf-accent-bright);
+  --inf-quote-text-base: color-mix(in srgb, var(--inf-accent-bright) 42%, var(--inf-text));
+  --inf-quote-text-shadow: 0 0 0.6px color-mix(in srgb, var(--inf-accent-bright) 60%, transparent),
+    0 1px 0 color-mix(in srgb, var(--inf-quote-block-accent, var(--inf-accent-bright)) 10%, transparent),
+    0 0 20px color-mix(in srgb, var(--inf-accent) 18%, transparent);
+  --inf-reading-grid-line: color-mix(in srgb, var(--inf-accent) 18%, var(--inf-border));
+  --inf-reading-grid-line-strong: color-mix(in srgb, var(--inf-accent) 32%, var(--inf-border-strong));
+  --inf-reading-grid-line-major: color-mix(in srgb, var(--inf-accent-bright) 26%, var(--inf-border-strong));
+  --inf-reading-ink-shadow: 0 0 0.5px color-mix(in srgb, var(--inf-text) 65%, transparent);
+  --inf-quote-elevation: 0 6px 24px color-mix(in srgb, #000 28%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #fff 6%, transparent);
+}
+
+[data-inf-desire-tier='calm'] {
+  --inf-desire-accent: var(--inf-desire-tier-calm);
+  --inf-desire-accent-strong: #9333ea;
+}
+
+[data-inf-desire-tier='warm'] {
+  --inf-desire-accent: var(--inf-desire-tier-warm);
+  --inf-desire-accent-strong: #db2777;
+}
+
+[data-inf-desire-tier='surge'] {
+  --inf-desire-accent: var(--inf-desire-tier-surge);
+  --inf-desire-accent-strong: #be185d;
+}
+
+[data-inf-layout='tile'] {
+  --inf-terminal-height: 54rem;
+}
+
+@media (max-width: 768px) {
+  [data-inf-layout='tile'] {
+    --inf-terminal-height: 48rem;
+    --inf-compose-max-height: 15rem;
+  }
+}

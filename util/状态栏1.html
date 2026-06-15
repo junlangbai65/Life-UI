@@ -1,0 +1,6222 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>感染态势栏 · 环境与角色</title>
+  <meta name="description" content="Apple Liquid Glass 风格感染态势栏：实时展示场景地点、日期时间、天气，以及角色衣物、姿态、感染进程与生理状态。" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Apple Liquid Glass 设计令牌 ── */
+    .状态栏外壳 {
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-display: "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+
+      --bar-height: 260px;
+      --accent-h: 210;
+      --accent-s: 72%;
+      --accent-l: 58%;
+      --accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+      --accent-soft: hsl(var(--accent-h) calc(var(--accent-s) - 12%) calc(var(--accent-l) + 14%));
+      --accent-deep: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) - 16%));
+      --accent-glow: hsl(var(--accent-h) 85% 62% / 0.38);
+      --accent-glow-soft: hsl(var(--accent-h) 70% 68% / 0.16);
+
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+      --radius-pill: 999px;
+
+      --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-glide: cubic-bezier(0.37, 1.95, 0.66, 0.56);
+      --ease-ring: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+      --orb-tint-a: hsl(210 80% 62% / 0.14);
+      --orb-tint-b: hsl(265 70% 58% / 0.12);
+      --orb-tint-c: hsl(330 65% 58% / 0.10);
+
+      --bg-main: hsl(220 30% 97%);
+      --surface: hsl(0 0% 100% / 0.62);
+      --surface-strong: hsl(0 0% 100% / 0.82);
+      --surface-inset: hsl(0 0% 100% / 0.42);
+
+      --text-main: hsl(240 8% 12%);
+      --text-sub: hsl(240 4% 38%);
+      --text-muted: hsl(240 3% 52%);
+
+      --line: hsl(0 0% 0% / 0.08);
+      --line-strong: hsl(0 0% 0% / 0.14);
+
+      --border-gradient: linear-gradient(163deg, hsl(var(--accent-h) 60% 72% / 0.55) 0%, hsl(0 0% 100% / 0.18) 48%, hsl(var(--accent-h) 50% 60% / 0.35) 100%);
+      --border-gradient-hover: linear-gradient(163deg, hsl(var(--accent-h) 70% 68% / 0.72) 0%, hsl(0 0% 100% / 0.28) 48%, hsl(var(--accent-h) 60% 55% / 0.48) 100%);
+      --glider-gradient: linear-gradient(135deg, hsl(var(--accent-h) 55% 88% / 0.95), hsl(var(--accent-h) 45% 78% / 0.82));
+      --progress-fill: linear-gradient(90deg, var(--accent-soft), var(--accent));
+      --progress-fill-soft: linear-gradient(90deg, hsl(var(--accent-h) 45% 78%), var(--accent-soft));
+      --desire-fill: linear-gradient(90deg, hsl(280 55% 72%), hsl(300 60% 62%));
+
+      --state-dot: var(--accent);
+      --state-pulse: hsl(var(--accent-h) 80% 58% / 0.28);
+
+      --glass-shadow:
+        0 22px 54px hsl(240 20% 20% / 0.10),
+        inset 1px 1px 3px hsl(0 0% 100% / 0.65),
+        inset -1px -1px 4px hsl(240 10% 20% / 0.05);
+      --glass-shadow-inset:
+        inset 1px 1px 4px hsl(0 0% 100% / 0.45),
+        inset -1px -1px 6px hsl(240 10% 20% / 0.06);
+
+      --progress-bg: hsl(240 8% 20% / 0.06);
+      --icon-bg: hsl(var(--accent-h) 40% 92% / 0.55);
+      --icon-color: hsl(var(--accent-h) 35% 42%);
+      --button-bg: hsl(0 0% 100% / 0.55);
+      --button-active: hsl(0 0% 100% / 0.88);
+      --tab-track: hsl(var(--accent-h) 30% 50% / 0.08);
+
+      --scrollbar-size: 5px;
+      --scrollbar-track: hsl(var(--accent-h) 30% 72% / 0.10);
+      --scrollbar-thumb: hsl(var(--accent-h) 45% 58% / 0.45);
+      --scrollbar-thumb-hover: hsl(var(--accent-h) 55% 50% / 0.68);
+      --scrollbar-thumb-active: hsl(var(--accent-h) 60% 46% / 0.82);
+
+      width: 100%;
+      height: var(--bar-height);
+      padding: 12px;
+      position: relative;
+      font-family: var(--font-body);
+      color: var(--text-main);
+      background: var(--bg-main);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow: hidden;
+      contain: layout style paint;
+    }
+
+    .状态栏外壳[data-theme="dark"] {
+      --bg-main: hsl(240 25% 6%);
+      --surface: hsl(240 18% 14% / 0.72);
+      --surface-strong: hsl(240 16% 18% / 0.86);
+      --surface-inset: hsl(240 20% 22% / 0.55);
+
+      --text-main: hsl(0 0% 96%);
+      --text-sub: hsl(240 5% 72%);
+      --text-muted: hsl(240 4% 52%);
+
+      --line: hsl(0 0% 100% / 0.10);
+      --line-strong: hsl(0 0% 100% / 0.16);
+
+      --border-gradient: linear-gradient(163deg, hsl(var(--accent-h) 70% 68% / 0.55) 0%, hsl(0 0% 100% / 0.06) 48%, hsl(var(--accent-h) 60% 50% / 0.38) 100%);
+      --border-gradient-hover: linear-gradient(163deg, hsl(var(--accent-h) 80% 62% / 0.72) 0%, hsl(0 0% 100% / 0.12) 48%, hsl(var(--accent-h) 70% 48% / 0.52) 100%);
+      --glider-gradient: linear-gradient(135deg, hsl(var(--accent-h) 55% 42% / 0.88), hsl(var(--accent-h) 45% 32% / 0.72));
+      --progress-fill-soft: linear-gradient(90deg, hsl(var(--accent-h) 40% 38%), var(--accent-soft));
+
+      --glass-shadow:
+        0 28px 64px hsl(240 40% 2% / 0.55),
+        inset 1px 1px 3px hsl(0 0% 100% / 0.10),
+        inset -1px -1px 5px hsl(240 30% 2% / 0.45);
+      --glass-shadow-inset:
+        inset 1px 1px 4px hsl(0 0% 100% / 0.08),
+        inset -1px -1px 6px hsl(240 30% 2% / 0.40);
+
+      --progress-bg: hsl(0 0% 100% / 0.08);
+      --icon-bg: hsl(var(--accent-h) 35% 28% / 0.45);
+      --icon-color: hsl(var(--accent-h) 45% 78%);
+      --button-bg: hsl(0 0% 100% / 0.06);
+      --button-active: hsl(0 0% 100% / 0.14);
+      --tab-track: hsl(0 0% 100% / 0.06);
+
+      --scrollbar-track: hsl(var(--accent-h) 25% 22% / 0.35);
+      --scrollbar-thumb: hsl(var(--accent-h) 48% 62% / 0.52);
+      --scrollbar-thumb-hover: hsl(var(--accent-h) 55% 58% / 0.72);
+      --scrollbar-thumb-active: hsl(var(--accent-h) 62% 54% / 0.88);
+    }
+
+    .状态栏外壳[data-infection-tier="safe"] {
+      --orb-tint-a: hsl(210 80% 60% / 0.20);
+      --orb-tint-b: hsl(195 75% 55% / 0.14);
+      --orb-tint-c: hsl(230 65% 58% / 0.12);
+    }
+
+    .状态栏外壳[data-infection-tier="warning"] {
+      --orb-tint-a: hsl(38 90% 55% / 0.18);
+      --orb-tint-b: hsl(28 85% 50% / 0.14);
+      --orb-tint-c: hsl(48 80% 58% / 0.10);
+    }
+
+    .状态栏外壳[data-infection-tier="danger"] {
+      --orb-tint-a: hsl(330 75% 58% / 0.22);
+      --orb-tint-b: hsl(350 70% 52% / 0.16);
+      --orb-tint-c: hsl(310 65% 55% / 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: var(--bar-height, 260px);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* 宏兜底隐蔽节点：参考 LYsta .lysta-hide，勿用 aria-hidden（部分 ST 不展开） */
+    .infection-bar-hide {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+      font-size: 0 !important;
+      line-height: 0 !important;
+      color: transparent !important;
+    }
+
+    /* ── 玻璃风滚动条 ── */
+    .状态栏外壳 .美滚动条,
+    .状态栏外壳 .角色内容区,
+    .状态栏外壳 .姿态文本 {
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar {
+      width: var(--scrollbar-size);
+      height: var(--scrollbar-size);
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar-track,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar-track,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: var(--radius-pill);
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar-thumb,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar-thumb,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar-thumb {
+      border-radius: var(--radius-pill);
+      background: linear-gradient(
+        180deg,
+        hsl(var(--accent-h) 55% 72% / 0.55),
+        var(--scrollbar-thumb)
+      );
+      border: 1px solid hsl(0 0% 100% / 0.12);
+      background-clip: padding-box;
+      box-shadow:
+        inset 0 1px 0 hsl(0 0% 100% / 0.22),
+        0 0 8px var(--accent-glow-soft);
+      transition: background 220ms var(--ease-spring), box-shadow 220ms var(--ease-spring);
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar-thumb:hover,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar-thumb:hover,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(
+        180deg,
+        hsl(var(--accent-h) 58% 68% / 0.72),
+        var(--scrollbar-thumb-hover)
+      );
+      box-shadow:
+        inset 0 1px 0 hsl(0 0% 100% / 0.28),
+        0 0 10px var(--accent-glow-soft);
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar-thumb:active,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar-thumb:active,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar-thumb:active {
+      background: var(--scrollbar-thumb-active);
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar-corner,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar-corner,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+
+    /* ── ambient layer ── */
+    .环境光层 {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .环境光层::before,
+    .环境光层::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      transition: background 420ms var(--ease-spring);
+    }
+
+    .环境光层::before {
+      width: 320px;
+      height: 320px;
+      top: -90px;
+      left: -50px;
+      background: radial-gradient(circle, var(--orb-tint-a), transparent 68%);
+      animation: ambientDriftA 28s var(--ease-spring) infinite alternate;
+      will-change: transform;
+    }
+
+    .环境光层::after {
+      width: 280px;
+      height: 280px;
+      top: -70px;
+      right: 8%;
+      background: radial-gradient(circle, var(--orb-tint-b), transparent 68%);
+      animation: ambientDriftB 32s var(--ease-spring) infinite alternate;
+      will-change: transform;
+    }
+
+    .环境光球 {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      bottom: -80px;
+      left: 42%;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--orb-tint-c), transparent 68%);
+      pointer-events: none;
+      animation: ambientDriftC 36s var(--ease-spring) infinite alternate;
+      will-change: transform;
+      transition: background 420ms var(--ease-spring);
+    }
+
+    @keyframes ambientDriftA {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(40px, 24px) scale(1.08); }
+    }
+
+    @keyframes ambientDriftB {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(-36px, 20px) scale(1.06); }
+    }
+
+    @keyframes ambientDriftC {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(-28px, -16px) scale(1.1); }
+    }
+
+    /* ── 渐变边框工具（参考 UI4） ── */
+    .渐变边框 {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .渐变边框::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: var(--border-gradient);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      transition: background 320ms var(--ease-spring);
+      z-index: 0;
+    }
+
+    .渐变边框:hover::before {
+      background: var(--border-gradient-hover);
+    }
+
+    /* ── glass shell ── */
+    .状态栏主体 {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      grid-template-columns: minmax(220px, 0.88fr) minmax(420px, 2.12fr);
+      gap: 12px;
+      padding: 12px;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(24px) saturate(1.35);
+      -webkit-backdrop-filter: blur(24px) saturate(1.35);
+      overflow: hidden;
+      contain: layout style paint;
+    }
+
+    .状态栏主体::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(125deg, hsl(0 0% 100% / 0.14), transparent 34%, transparent 66%, hsl(var(--accent-h) 60% 70% / 0.06));
+      pointer-events: none;
+      opacity: 0.65;
+    }
+
+    .状态栏主体.liquid-enter {
+      animation: liquidShellIn 520ms var(--ease-spring) both;
+    }
+
+    @keyframes liquidShellIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.992); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .世界面板,
+    .角色面板 {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+      min-height: 0;
+      border-radius: var(--radius-lg);
+      background: var(--surface-strong);
+      box-shadow: var(--glass-shadow-inset);
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+      overflow: hidden;
+      contain: layout style paint;
+    }
+
+    /* ── world panel ── */
+    .世界面板 {
+      padding: 12px;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .世界顶栏 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 38px;
+      align-items: start;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .世界摘要 {
+      min-width: 0;
+    }
+
+    .地点Hero {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.4vw, 24px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: linear-gradient(135deg, var(--text-main), hsl(var(--accent-h) 55% 68%));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .状态栏外壳[data-theme="light"] .地点Hero {
+      background: linear-gradient(135deg, hsl(240 8% 12%), hsl(var(--accent-h) 45% 42%));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* 主题按钮：参考 UI5 双环切换 */
+    .主题按钮 {
+      position: relative;
+      z-index: 2;
+      width: 38px;
+      height: 34px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      color: var(--text-main);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      overflow: hidden;
+      outline: none;
+      transition: transform 260ms var(--ease-spring);
+    }
+
+    .主题按钮环,
+    .主题按钮环::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      inset: 5px;
+      pointer-events: none;
+    }
+
+    .主题按钮环 {
+      border: 2px solid hsl(var(--accent-h) 40% 62% / 0.55);
+      transition:
+        opacity 400ms var(--ease-ring),
+        transform 500ms var(--ease-ring);
+    }
+
+    .主题按钮环::after {
+      inset: 0;
+      border: 2px solid var(--accent);
+      transform: scale(1.28);
+      opacity: 0;
+      transition:
+        opacity 400ms var(--ease-ring),
+        transform 500ms var(--ease-ring);
+    }
+
+    .主题按钮:hover .主题按钮环,
+    .主题按钮:focus-visible .主题按钮环 {
+      opacity: 0;
+      transform: scale(0.78);
+    }
+
+    .主题按钮:hover .主题按钮环::after,
+    .主题按钮:focus-visible .主题按钮环::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .主题按钮:active {
+      transform: scale(0.96);
+    }
+
+    .主题图标组 {
+      position: relative;
+      z-index: 1;
+      width: 16px;
+      height: 16px;
+    }
+
+    .主题图标 {
+      position: absolute;
+      inset: 0;
+      width: 18px;
+      height: 18px;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: opacity 280ms var(--ease-spring), transform 280ms var(--ease-spring);
+    }
+
+    .主题图标--太阳 {
+      opacity: 0;
+      transform: rotate(-30deg) scale(0.85);
+    }
+
+    .状态栏外壳[data-theme="light"] .主题图标--月亮 {
+      opacity: 0;
+      transform: rotate(30deg) scale(0.85);
+    }
+
+    .状态栏外壳[data-theme="light"] .主题图标--太阳 {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+
+    .状态栏外壳[data-theme="dark"] .主题图标--月亮 {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+
+    .图标 {
+      width: 24px;
+      height: 24px;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: 0 0 auto;
+      color: var(--icon-color);
+    }
+
+    .细图标 {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.92;
+      flex: 0 0 auto;
+      color: var(--icon-color);
+      transition: transform 240ms var(--ease-spring), stroke 200ms ease, opacity 200ms ease;
+    }
+
+    .进度卡:hover .细图标 {
+      stroke: var(--text-main);
+      opacity: 1;
+    }
+
+    .世界信息网格 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .信息磁贴 {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+      padding: 9px;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      overflow: hidden;
+      transition:
+        transform 260ms var(--ease-spring),
+        background 260ms var(--ease-spring),
+        box-shadow 260ms var(--ease-spring);
+    }
+
+    .信息磁贴:hover {
+      transform: translateY(-2px);
+      background: var(--button-active);
+      box-shadow: 0 12px 28px var(--accent-glow-soft);
+    }
+
+    .信息磁贴:active {
+      transform: translateY(0) scale(0.985);
+    }
+
+    .信息图标框 {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--icon-bg);
+      color: var(--icon-color);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      transition: transform 260ms var(--ease-spring);
+    }
+
+    .信息磁贴:hover .信息图标框 {
+      transform: scale(1.06);
+    }
+
+    .信息文本 {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .信息标签 {
+      font-size: 10px;
+      line-height: 1;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .信息值 {
+      font-size: 12px;
+      line-height: 1.16;
+      color: var(--text-main);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
+    /* ── character panel ── */
+    .角色面板 {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      min-height: 0;
+    }
+
+    .角色标签栏 {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* 分段控制器：参考 UI2 玻璃滑块 */
+    .分段控制器 {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      display: flex;
+      gap: 2px;
+      padding: 3px;
+      border-radius: 1rem;
+      background: var(--tab-track);
+      box-shadow: var(--glass-shadow-inset);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .分段控制器::-webkit-scrollbar {
+      display: none;
+    }
+
+    .分段滑块 {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      left: 0;
+      width: 0;
+      border-radius: calc(1rem - 3px);
+      background: var(--glider-gradient);
+      box-shadow:
+        0 0 18px var(--accent-glow-soft),
+        inset 0 1px 0 hsl(0 0% 100% / 0.35);
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      transition:
+        transform 0.5s var(--ease-glide),
+        width 0.5s var(--ease-glide),
+        opacity 240ms var(--ease-spring),
+        background 320ms var(--ease-spring);
+    }
+
+    .状态栏外壳[data-theme="dark"] .分段滑块 {
+      box-shadow:
+        0 0 20px var(--accent-glow),
+        inset 0 1px 0 hsl(0 0% 100% / 0.12);
+    }
+
+    .角色标签按钮 {
+      position: relative;
+      z-index: 2;
+      flex: 0 0 auto;
+      max-width: 128px;
+      min-width: 72px;
+      height: 30px;
+      padding: 0 14px;
+      border: none;
+      border-radius: calc(1rem - 3px);
+      background: transparent;
+      color: var(--text-sub);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 240ms var(--ease-spring);
+    }
+
+    .角色标签按钮:hover {
+      color: var(--text-main);
+    }
+
+    .角色标签按钮[aria-selected="true"] {
+      color: var(--text-main);
+      text-shadow: 0 0 12px var(--accent-glow-soft);
+    }
+
+    /* 感染胶囊 */
+    .感染胶囊 {
+      flex: 0 0 auto;
+      max-width: 120px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 12px;
+      border-radius: var(--radius-pill);
+      border: none;
+      background: var(--button-bg);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      box-shadow: 0 0 16px var(--accent-glow-soft);
+      transition: box-shadow 320ms var(--ease-spring), background 320ms var(--ease-spring);
+    }
+
+    .感染胶囊:hover {
+      box-shadow: 0 0 22px var(--accent-glow);
+    }
+
+    .感染胶囊文本 {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .感染胶囊[data-state="感染中"] {
+      --border-gradient: linear-gradient(163deg, hsl(38 85% 58% / 0.55) 0%, hsl(38 70% 48% / 0.18) 100%);
+    }
+
+    .感染胶囊[data-state="已感染"] {
+      --border-gradient: linear-gradient(163deg, hsl(330 72% 58% / 0.62) 0%, hsl(350 65% 48% / 0.22) 100%);
+    }
+
+    .感染胶囊点 {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: var(--state-dot);
+      flex: 0 0 auto;
+      animation: 状态脉冲 2.8s var(--ease-spring) infinite;
+    }
+
+    .感染胶囊[data-state="感染中"] .感染胶囊点 {
+      background: hsl(38 85% 58%);
+    }
+
+    .感染胶囊[data-state="已感染"] .感染胶囊点 {
+      background: hsl(330 72% 58%);
+      animation-duration: 2s;
+    }
+
+    @keyframes 状态脉冲 {
+      0%, 100% {
+        box-shadow: 0 0 0 0 var(--state-pulse);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 0 6px transparent;
+        transform: scale(1.08);
+      }
+    }
+
+    .角色内容区 {
+      min-height: 0;
+      padding: 10px;
+      padding-right: 6px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .角色卡片 {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 8px;
+    }
+
+    .姿态区块 {
+      grid-column: 1 / -1;
+      padding: 8px 10px;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      border: 1px solid hsl(var(--accent-h) 40% 50% / 0.14);
+      min-width: 0;
+    }
+
+    .姿态标签 {
+      font-size: 10px;
+      line-height: 1;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .姿态文本 {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.38;
+      color: var(--text-main);
+      font-weight: 500;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      max-height: 4.2em;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .角色卡片.入场动画 {
+      animation: fadeSlideIn 320ms var(--ease-spring) both;
+    }
+
+    .角色卡片.入场动画 .角色基础区 {
+      animation: liquidStagger 420ms var(--ease-spring) 40ms both;
+    }
+
+    .角色卡片.入场动画 .角色数值区 {
+      animation: liquidStagger 420ms var(--ease-spring) 90ms both;
+    }
+
+    @keyframes liquidStagger {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .角色基础区,
+    .角色数值区 {
+      min-width: 0;
+      min-height: 0;
+      border-radius: var(--radius-lg);
+      background: var(--surface-inset);
+      box-shadow: var(--glass-shadow-inset);
+      padding: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .角色数值区 {
+      justify-content: flex-start;
+    }
+
+    .衣物网格 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .衣物磁贴 {
+      min-width: 0;
+      min-height: 0;
+      padding: 6px;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      transition:
+        transform 240ms var(--ease-spring),
+        background 240ms var(--ease-spring),
+        box-shadow 240ms var(--ease-spring);
+    }
+
+    .衣物磁贴:hover {
+      transform: translateY(-2px) scale(0.99);
+      background: var(--button-active);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .衣物磁贴:hover .细图标 {
+      transform: scale(1.08);
+      stroke: var(--text-main);
+    }
+
+    .衣物标题 {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 6px;
+      font-size: 10px;
+      line-height: 1;
+      color: var(--text-muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .衣物值 {
+      min-height: 0;
+      font-size: 11px;
+      line-height: 1.28;
+      color: var(--text-main);
+      font-weight: 400;
+      word-break: break-word;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .数值标题 {
+      margin: 0 0 6px;
+      font-size: 12px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+
+    .进度组 {
+      display: grid;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+
+    .进度项,
+    .进度卡 {
+      min-width: 0;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      padding: 6px 7px;
+      transition:
+        transform 260ms var(--ease-spring),
+        background 260ms var(--ease-spring),
+        box-shadow 260ms var(--ease-spring);
+    }
+
+    .进度卡:hover,
+    .进度项:hover {
+      transform: translateY(-2px);
+      background: var(--button-bg);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .进度值 {
+      flex: 0 0 auto;
+      font-variant-numeric: tabular-nums;
+      font-size: 11px;
+      color: var(--text-sub);
+      font-weight: 600;
+    }
+
+    .进度头 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 5px;
+      min-width: 0;
+    }
+
+    .进度名称 {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-width: 0;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .进度数值 {
+      flex: 0 0 auto;
+      font-variant-numeric: tabular-nums;
+      font-size: 11px;
+      color: var(--text-sub);
+      font-weight: 600;
+    }
+
+    .进度填充 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      height: 100%;
+      width: calc(var(--fill-pct, 0) * 1%);
+      min-width: 0;
+      border-radius: inherit;
+      transform-origin: left center;
+      transition: width 520ms var(--ease-spring);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* 宏写入 data-fill-pct 时同步到 --fill-pct，避免单独 attr() 设 width 覆盖内联/变量 */
+    @supports (--fill-pct: attr(data-fill-pct type(<number>))) {
+      .进度填充[data-fill-pct] {
+        --fill-pct: attr(data-fill-pct type(<number>), 0);
+      }
+    }
+
+    .进度轨道 {
+      position: relative;
+      width: 100%;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: var(--progress-bg);
+      overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.10);
+      z-index: 1;
+    }
+
+    .进度项 > *,
+    .进度卡 > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .进度填充::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 2.6s var(--ease-spring) infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-110%); }
+      54% { transform: translateX(120%); }
+      100% { transform: translateX(120%); }
+    }
+
+    .感染填充 {
+      background: var(--progress-fill-soft);
+      box-shadow: 0 0 14px var(--accent-glow-soft);
+    }
+
+    .感染填充[data-level="safe"] {
+      background: var(--progress-fill-soft);
+      box-shadow: 0 0 14px var(--accent-glow-soft);
+    }
+
+    .感染填充[data-level="warning"] {
+      background: linear-gradient(90deg, hsl(38 85% 58%), hsl(28 80% 48%));
+      box-shadow: 0 0 16px hsl(38 85% 55% / 0.35);
+    }
+
+    .感染填充[data-level="danger"] {
+      background: linear-gradient(90deg, hsl(330 72% 58%), hsl(350 68% 48%));
+      box-shadow: 0 0 18px hsl(330 70% 55% / 0.42);
+    }
+
+    .性欲填充 {
+      background: var(--desire-fill);
+      box-shadow: 0 0 14px hsl(290 60% 55% / 0.28);
+    }
+
+    .空状态 {
+      height: 100%;
+      min-height: 110px;
+      display: grid;
+      place-items: center;
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius-lg);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      background: var(--surface-inset);
+      text-align: center;
+      padding: 16px;
+    }
+
+    .空状态--角色 {
+      place-content: center;
+      gap: 6px;
+    }
+
+    .空状态标题 {
+      color: var(--text-sub);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .空状态提示 {
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.45;
+      max-width: 28em;
+    }
+
+    /* 0 或 1 个角色时隐藏 Tab 切换条，仅多角色时显示 */
+    .角色标签栏[data-character-mode="empty"] .分段控制器,
+    .角色标签栏[data-character-mode="single"] .分段控制器 {
+      display: none;
+    }
+
+    .角色标签栏[data-character-mode="empty"] .感染胶囊,
+    .角色标签栏[data-character-mode="single"] .感染胶囊 {
+      margin-left: auto;
+    }
+
+    .角色标签栏[data-character-mode="multi"] .分段控制器 {
+      display: flex;
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 760px) {
+      .状态栏外壳 {
+        --bar-height: 300px;
+      }
+
+      .状态栏主体 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .世界面板 {
+        padding: 10px;
+        gap: 7px;
+      }
+
+      .世界信息网格 {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+
+      .信息磁贴 {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 7px;
+      }
+
+      .信息图标框 {
+        display: none;
+      }
+
+      .角色卡片 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 6px;
+      }
+
+      .角色基础区,
+      .角色数值区 {
+        grid-column: 1 / -1;
+      }
+
+      .衣物磁贴 {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .状态栏外壳 {
+        padding: 8px;
+      }
+
+      .状态栏主体 {
+        border-radius: 22px;
+      }
+
+      .感染胶囊 {
+        max-width: 96px;
+        padding: 0 9px;
+      }
+
+      .衣物值,
+      .信息值,
+      .进度名称 {
+        font-size: 11px;
+      }
+    }
+
+    /* ── a11y: reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .环境光层::before,
+      .环境光层::after,
+      .环境光球 {
+        animation: none !important;
+      }
+
+      .进度填充::after {
+        animation: none !important;
+      }
+
+      .感染胶囊点 {
+        animation: none !important;
+      }
+
+      .角色卡片.入场动画,
+      .角色卡片.入场动画 .角色基础区,
+      .角色卡片.入场动画 .角色数值区,
+      .状态栏主体.liquid-enter {
+        animation: none !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 1ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 正则：粘贴整段 <main class="状态栏外壳">…</main>（含末尾 textarea 运行时，勿截断）；无需 boot，靠 img onload 执行 -->
+  <main class="状态栏外壳" data-theme="dark" data-infection-tier="safe" aria-label="感染态势栏">
+    <h1 class="sr-only">感染态势栏</h1>
+
+    <!-- 宏兜底：infection-bar-hide（非 aria-hidden）；世界区另有可见宏供无 JS 时 SSR -->
+    <span class="infection-bar-hide infection-bar-stat-inline">{{format_message_variable::stat_data}}</span>
+    <span class="infection-bar-hide infection-bar-characters-parse">{{format_message_variable::stat_data.角色}}</span>
+    <span class="infection-bar-hide infection-bar-characters-inline">{{format_message_variable::stat_data.角色}}</span>
+    <span class="infection-bar-hide infection-bar-characters-pre">{{format_message_variable::stat_data.角色}}</span>
+    <span class="infection-bar-hide infection-bar-characters-fallback">{{format_message_variable::stat_data.角色}}</span>
+
+    <div class="环境光层" aria-hidden="true">
+      <div class="环境光球"></div>
+    </div>
+
+    <section class="状态栏主体 渐变边框 liquid-enter" aria-label="状态栏主体">
+      <aside class="世界面板 渐变边框" aria-label="环境态势">
+        <header class="世界顶栏">
+          <div class="世界摘要">
+            <h2 class="地点Hero" id="infection-bar-world-location-hero">{{format_message_variable::stat_data.世界.地点}}</h2>
+          </div>
+
+          <button class="主题按钮 infection-bar-theme-toggle" type="button" aria-label="切换深浅主题" title="切换深浅主题">
+            <span class="主题按钮环" aria-hidden="true"></span>
+            <span class="主题图标组" aria-hidden="true">
+              <svg class="主题图标 主题图标--月亮" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 13.2A8.2 8.2 0 0 1 10.8 3a7.6 7.6 0 1 0 10.2 10.2Z"/>
+              </svg>
+              <svg class="主题图标 主题图标--太阳" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v2.2M12 18.8V21M4.22 4.22l1.56 1.56M18.22 18.22l1.56 1.56M3 12h2.2M18.8 12H21M4.22 19.78l1.56-1.56M18.22 5.78l1.56-1.56"/>
+                <circle cx="12" cy="12" r="4.2"/>
+              </svg>
+            </span>
+          </button>
+        </header>
+
+        <div class="世界信息网格">
+          <article class="信息磁贴 渐变边框" aria-label="日期与时间">
+            <div class="信息图标框">
+              <svg class="图标" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 3v3M17 3v3M4.5 8.5h15M6 5h12a2 2 0 0 1 2 2v13H4V7a2 2 0 0 1 2-2Z"/>
+                <path d="M8 12h3M8 16h6"/>
+              </svg>
+            </div>
+            <div class="信息文本">
+              <div class="信息标签">日期与时间</div>
+              <div class="信息值" id="infection-bar-world-datetime">{{format_message_variable::stat_data.世界.日期与时间}}</div>
+            </div>
+          </article>
+
+          <article class="信息磁贴 渐变边框" aria-label="天气">
+            <div class="信息图标框">
+              <svg class="图标" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.5 18h10a4 4 0 0 0 .4-7.98A6 6 0 0 0 6.2 8.8A4.6 4.6 0 0 0 7.5 18Z"/>
+                <path d="M9 21h6"/>
+              </svg>
+            </div>
+            <div class="信息文本">
+              <div class="信息标签">天气</div>
+              <div class="信息值" id="infection-bar-world-weather">{{format_message_variable::stat_data.世界.天气}}</div>
+            </div>
+          </article>
+        </div>
+      </aside>
+
+      <section class="角色面板 渐变边框" aria-label="角色态势">
+        <header class="角色标签栏" data-character-mode="empty">
+          <nav class="分段控制器" id="infection-bar-character-tabs" role="tablist" aria-label="角色切换">
+            <div class="分段滑块" aria-hidden="true"></div>
+          </nav>
+
+          <div class="感染胶囊 渐变边框" id="infection-bar-infection-badge" data-state="—" aria-label="感染状态">
+            <span class="感染胶囊点" aria-hidden="true"></span>
+            <span class="感染胶囊文本" id="infection-bar-infection-text">—</span>
+          </div>
+        </header>
+
+        <div class="角色内容区" id="infection-bar-character-content">
+          <div class="空状态 空状态--角色 infection-bar-content-placeholder" aria-live="polite">
+            <div class="空状态标题">等待角色数据</div>
+            <div class="空状态提示">变量就绪后将自动显示角色状态</div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <!-- 无 boot：ST 剥离 script 时，由 textarea 存运行时，img onload 拉起 -->
+    <img
+      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      width="0"
+      height="0"
+      alt=""
+      decoding="async"
+      class="infection-bar-hide infection-bar-boot-trigger"
+      onload="(function(img){try{var w=window;var shell=img.closest&amp;&amp;img.closest('.状态栏外壳');if(!shell)return;var p=w;try{if(w.parent&amp;&amp;w.parent.document)p=w.parent;}catch(x){}var go=function(){(p.__initInfectionStatusBar||w.__initInfectionStatusBar||function(){}).call(p);};if(p.__infectionBarRuntimeLoaded||w.__infectionBarRuntimeLoaded){go();return}var el=shell.querySelector('.infection-bar-runtime-source');var src=el&amp;&amp;(el.value||el.textContent||'').trim();if(!src){go();return}try{(new Function(src))();p.__infectionBarRuntimeLoaded=w.__infectionBarRuntimeLoaded=true}catch(err){console.error('[状态栏] 运行时加载失败',err)}go()}catch(e){console.error('[状态栏]',e)}})(this)"
+    />
+    <textarea class="infection-bar-hide infection-bar-runtime-source" aria-hidden="true" readonly tabindex="-1">
+    (() => {
+      "use strict";
+
+      /** 酒馆助手脚本 iframe 内 document 不含聊天 DOM，须用 parent（参考 LYsta npc_boot） */
+      function 获取根文档() {
+        try {
+          const pd = window.parent?.document;
+          if (pd?.documentElement) return pd;
+        } catch (_) {}
+        try {
+          const td = window.top?.document;
+          if (td?.documentElement && td !== document) return td;
+        } catch (_) {}
+        return document;
+      }
+
+      function 获取绑定窗口() {
+        return 获取存储窗口();
+      }
+
+      const 根文档 = 获取根文档();
+      const 主题存储键 = "mvu-infection-status-theme";
+
+      function 获取存储窗口() {
+        try {
+          if (window.parent?.localStorage) return window.parent;
+        } catch (_) {}
+        return window;
+      }
+
+      function 设置实例主题(shell, theme) {
+        if (!shell) return;
+        const nextTheme = theme === "light" ? "light" : "dark";
+        shell.dataset.theme = nextTheme;
+        try {
+          获取存储窗口().localStorage.setItem(主题存储键, nextTheme);
+        } catch (_) {}
+      }
+
+      function 初始化实例主题(shell) {
+        if (!shell) return;
+        let saved = null;
+        try {
+          saved = 获取存储窗口().localStorage.getItem(主题存储键);
+        } catch (_) {}
+
+        if (saved === "light" || saved === "dark") {
+          设置实例主题(shell, saved);
+          return;
+        }
+
+        let preferLight = false;
+        try {
+          const mediaWin = 获取存储窗口();
+          preferLight = mediaWin.matchMedia && mediaWin.matchMedia("(prefers-color-scheme: light)").matches;
+        } catch (_) {}
+
+        设置实例主题(shell, preferLight ? "light" : "dark");
+      }
+
+      function 切换实例主题(shell) {
+        if (!shell) return;
+        const next = shell.dataset.theme === "light" ? "dark" : "light";
+        设置实例主题(shell, next);
+      }
+
+      function 确保全局主题委托() {
+        const bindWin = 获取绑定窗口();
+        const doc = 获取根文档();
+
+        if (bindWin.__infectionBarThemeBound && bindWin.__infectionBarThemeDoc === doc) return;
+
+        if (bindWin.__infectionBarThemeHandler && bindWin.__infectionBarThemeDoc) {
+          try {
+            bindWin.__infectionBarThemeDoc.removeEventListener("click", bindWin.__infectionBarThemeHandler, true);
+          } catch (_) {}
+        }
+
+        const handler = (event) => {
+          const btn = event.target?.closest?.(".infection-bar-theme-toggle");
+          if (!btn) return;
+          const shell = btn.closest(".状态栏外壳");
+          if (!shell) return;
+          event.preventDefault();
+          event.stopPropagation();
+          切换实例主题(shell);
+        };
+
+        bindWin.__infectionBarThemeBound = true;
+        bindWin.__infectionBarThemeDoc = doc;
+        bindWin.__infectionBarThemeHandler = handler;
+        doc.addEventListener("click", handler, true);
+      }
+
+      const 实例刷新表 = window.__infectionBarRefreshers ?? (window.__infectionBarRefreshers = new WeakMap());
+      let _mvuGlobalBound = window.__infectionBarMvuBound === true;
+
+      /* ── core/dom ── */
+      function 定位外壳自脚本() {
+        const script = document.currentScript;
+        if (script) {
+          const prev = script.previousElementSibling;
+          if (prev?.classList?.contains("状态栏外壳")) return prev;
+          const scoped = script.parentElement?.querySelector(":scope > .状态栏外壳");
+          if (scoped) return scoped;
+          const inParent = script.parentElement?.closest?.(".状态栏外壳");
+          if (inParent) return inParent;
+        }
+        return null;
+      }
+
+      function 挂载状态栏实例(外壳) {
+        if (!外壳 || 外壳.getAttribute("data-infection-bar-mounted") === "1") return;
+
+      const 状态栏 = {
+        当前角色键: "",
+        上次数据签名: "",
+        上次角色标签签名: "",
+        上次角色内容签名: "",
+        缓存角色表: {},
+        刷新定时器: undefined,
+        主题键: "mvu-infection-status-theme"
+      };
+
+      const 节点 = {
+        外壳,
+        地点Hero: 外壳.querySelector("#infection-bar-world-location-hero"),
+        世界时间: 外壳.querySelector("#infection-bar-world-datetime"),
+        世界天气: 外壳.querySelector("#infection-bar-world-weather"),
+        角色标签: 外壳.querySelector("#infection-bar-character-tabs"),
+        角色内容: 外壳.querySelector("#infection-bar-character-content"),
+        感染徽章: 外壳.querySelector("#infection-bar-infection-badge"),
+        感染文本: 外壳.querySelector("#infection-bar-infection-text"),
+        主题按钮: 外壳.querySelector(".infection-bar-theme-toggle"),
+      };
+
+      if (!节点.角色内容) {
+        console.warn("[状态栏] 实例 DOM 不完整，跳过挂载", 外壳);
+        return;
+      }
+
+      const 图标 = {
+        上身: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l4 3 4-3 4 3-2 5-2-1v9H8v-9l-2 1-2-5 4-3Z"/></svg>',
+        下身: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6l1 16h-4l-1-9-1 9H6L9 4Z"/></svg>',
+        鞋袜: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h6v7l4 2h4a2 2 0 0 1 2 2v2H4V6h1Z"/></svg>',
+        感染: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 6l10 12M17 6L7 18"/><circle cx="12" cy="12" r="8"/></svg>',
+        性欲: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.6-7-10.5A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 7 3.5C19 16.4 12 21 12 21Z"/></svg>'
+      };
+
+      function 安全读取存储(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function 安全写入存储(key, value) {
+        try {
+          window.localStorage.setItem(key, value);
+        } catch (_) {}
+      }
+
+      function 设置节点文本(node, text) {
+        if (!node) return;
+        const next = String(text ?? "");
+        if (node.textContent !== next) node.textContent = next;
+      }
+
+      function 稳定序列化(value) {
+        return JSON.stringify(value, (_, v) => {
+          if (v && typeof v === "object" && !Array.isArray(v)) {
+            return Object.keys(v)
+              .sort()
+              .reduce((out, key) => {
+                out[key] = v[key];
+                return out;
+              }, {});
+          }
+          return v;
+        });
+      }
+      function 安全文本(value, fallback = "未记录") {
+        const text = String(value ?? "").trim();
+        return text.length > 0 ? text : fallback;
+      }
+
+      function 转义HTML(value) {
+        return 安全文本(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function 安全ID(value) {
+        return String(value ?? "unknown")
+          .replace(/[^\u4e00-\u9fa5a-zA-Z0-9_-]/g, "-")
+          .replace(/-+/g, "-")
+          .slice(0, 42);
+      }
+
+      function 限制数值(value) {
+        const v = 解包MVU值(value);
+        const num = Number(String(v ?? "").replace(/[^\d.-]/g, ""));
+        if (!Number.isFinite(num)) return 0;
+        return Math.max(0, Math.min(100, Math.round(num)));
+      }
+
+      function 感染等级(value) {
+        const v = 限制数值(value);
+        if (v <= 30) return "safe";
+        if (v <= 70) return "warning";
+        return "danger";
+      }
+
+      function 计算Accent色相(进程) {
+        const v = 限制数值(进程);
+        if (v <= 30) return 210 - (v / 30) * 10;
+        if (v <= 70) return 200 + ((v - 30) / 40) * (38 - 200);
+        return 38 + ((v - 70) / 30) * (330 - 38);
+      }
+
+      function 应用感染Accent(进程) {
+        const shell = 节点.外壳;
+        if (!shell) return;
+        const hue = Math.round(计算Accent色相(进程));
+        shell.style.setProperty("--accent-h", String(hue));
+        shell.dataset.infectionTier = 感染等级(进程);
+      }
+
+      function 解包MVU值(value) {
+        if (Array.isArray(value) && value.length > 0) return value[0];
+        return value;
+      }
+
+      function 解包为对象(value) {
+        const v = 解包MVU值(value);
+        if (v && typeof v === "object" && !Array.isArray(v)) return v;
+        return null;
+      }
+
+      function 是元数据键(key) {
+        return key.startsWith("$") || key.startsWith("__");
+      }
+
+      /** 解包 MVU 对象各字段（跳过 $meta 等键） */
+      function 解包对象字段(obj) {
+        const source = 解包为对象(obj);
+        if (!source) return {};
+        const out = {};
+        for (const [key, val] of Object.entries(source)) {
+          if (是元数据键(key)) continue;
+          out[key] = 解包MVU值(val);
+        }
+        return out;
+      }
+
+      const 角色字段名 = new Set(["姓名", "上身", "下身", "鞋袜", "姿态", "感染进程", "性欲", "感染状态"]);
+
+      function 获取lodash() {
+        for (const w of 收集候选窗口()) {
+          try {
+            if (w._ && typeof w._.get === "function") return w._;
+          } catch (_) {}
+        }
+        return null;
+      }
+
+      function getPath(obj, path) {
+        if (!obj || !path) return undefined;
+        const lodash = 获取lodash();
+        if (lodash) return lodash.get(obj, path);
+        return String(path).split(".").reduce((o, k) => (o == null ? undefined : o[k]), obj);
+      }
+
+      /** 解包单条 z.record 角色值为字段表 */
+      function 解包角色记录字段(val) {
+        let v = 解包MVU值(val);
+        if (Array.isArray(v)) {
+          const obj = v.find((item) => item && typeof item === "object" && !Array.isArray(item));
+          v = obj ?? v[0];
+        }
+        const role = 解包为对象(v);
+        if (!role) return null;
+        if (role.data && typeof role.data === "object" && !Array.isArray(role.data)) {
+          return 解包对象字段(role.data);
+        }
+        return 解包对象字段(role);
+      }
+
+      function 已是角色表对象(obj) {
+        if (!obj || typeof obj !== "object" || Array.isArray(obj)) return false;
+        const keys = Object.keys(obj).filter((k) => !是元数据键(k));
+        if (keys.length === 0) return false;
+        return keys.every((k) => {
+          const fields = 解包角色记录字段(obj[k]);
+          return fields && Object.keys(fields).length > 0;
+        });
+      }
+
+      /** 归一化 z.record 角色表：解包记录值、过滤元数据键；支持 MVU 数组/tuple/字符串 */
+      function 提取角色表(raw) {
+        if (typeof raw === "string") {
+          const parsed = 解析角色fallback文本(raw);
+          return 角色表有内容(parsed) ? parsed : {};
+        }
+
+        const unwrapped = 解包MVU值(raw);
+
+        if (Array.isArray(unwrapped)) {
+          const out = {};
+          for (const item of unwrapped) {
+            if (Array.isArray(item) && item.length >= 2) {
+              const key = String(解包MVU值(item[0]) ?? "").trim();
+              const fields = 解包角色记录字段(item[1]);
+              if (key && fields) out[key] = fields;
+              continue;
+            }
+            const fields = 解包角色记录字段(item);
+            if (!fields) continue;
+            const name = String(fields.姓名 ?? "").trim();
+            if (name) out[name] = fields;
+          }
+          if (Object.keys(out).length > 0) return out;
+        }
+
+        const 表 = 解包为对象(解包MVU值(raw));
+        if (!表) return {};
+
+        if (已是角色表对象(表)) {
+          const out = {};
+          for (const [key, val] of Object.entries(表)) {
+            if (是元数据键(key)) continue;
+            const fields = 解包角色记录字段(val);
+            if (fields && Object.keys(fields).length > 0) {
+              if (!fields.姓名) fields.姓名 = key;
+              out[key] = fields;
+            }
+          }
+          if (角色表有内容(out)) return out;
+        }
+
+        // 单角色扁平结构：stat_data.角色 = { 姓名, 上身, … }（非 z.record 多键）
+        if (像角色记录(表)) {
+          const fields = 解包对象字段(表);
+          const nameKey = String(fields.姓名 ?? "角色").trim() || "角色";
+          return { [nameKey]: fields };
+        }
+
+        const out = {};
+        for (const [key, val] of Object.entries(表)) {
+          if (是元数据键(key)) continue;
+          const fields = 解包角色记录字段(val);
+          if (!fields || !像角色记录(fields)) continue;
+          if (!fields.姓名) fields.姓名 = key;
+          out[key] = fields;
+        }
+        return out;
+      }
+
+      function 角色表有内容(角色表) {
+        return !!(角色表 && typeof 角色表 === "object" && !Array.isArray(角色表) && Object.keys(角色表).length > 0);
+      }
+
+      function 像角色记录(value) {
+        const role = 解包为对象(value);
+        if (!role) return false;
+        const fields = 解包对象字段(role);
+        for (const field of 角色字段名) {
+          if (field in fields) return true;
+        }
+        return false;
+      }
+
+      function 从stat根收集扁平角色字段(stat) {
+        if (!stat || typeof stat !== "object" || Array.isArray(stat)) return null;
+
+        const rec = {};
+        for (const field of 角色字段名) {
+          if (field in stat) rec[field] = 解包MVU值(stat[field]);
+        }
+        if (Object.keys(rec).length === 0) return null;
+
+        const nameKey = String(rec.姓名 ?? "角色").trim() || "角色";
+        return { [nameKey]: rec };
+      }
+
+      /** 部分角色卡把人物直接挂在 stat_data 根下（如 stat_data.凌月），而非 stat_data.角色 */
+      function 从stat根提取散落角色(stat) {
+        if (!stat || typeof stat !== "object" || Array.isArray(stat)) return null;
+
+        const out = {};
+        for (const [key, val] of Object.entries(stat)) {
+          if (key === "世界" || key === "角色" || 是元数据键(key)) continue;
+          const fields = 解包角色记录字段(val);
+          if (!fields || Object.keys(fields).length === 0) continue;
+          if (!fields.姓名) fields.姓名 = key;
+          out[key] = fields;
+        }
+
+        return 角色表有内容(out) ? out : null;
+      }
+
+      function 合并角色表(...tables) {
+        const out = {};
+        for (const table of tables) {
+          if (!角色表有内容(table)) continue;
+          Object.assign(out, table);
+        }
+        return 角色表有内容(out) ? out : null;
+      }
+
+      function 从stat对象收集角色(stat) {
+        if (!stat || typeof stat !== "object") return null;
+        return 合并角色表(
+          提取角色表(stat.角色),
+          从stat根提取散落角色(stat),
+          从stat根收集扁平角色字段(stat),
+        );
+      }
+
+      function 是角色字段行(line) {
+        if (!line) return false;
+        for (const field of 角色字段名) {
+          if (new RegExp(`^${field}\\s*[:：]`).test(line)) return true;
+        }
+        return false;
+      }
+
+      function 解析扁平角色字段块(lines, startIndex) {
+        const rec = {};
+        let i = startIndex;
+
+        while (i < lines.length) {
+          const L = lines[i];
+          if (!L) {
+            i++;
+            continue;
+          }
+          if (是角色名字行(L) || /^角色\s*[:：]/.test(L)) break;
+
+          let matched = false;
+          for (const field of 角色字段名) {
+            const fm = L.match(new RegExp(`^${field}\\s*[:：]\\s*(.*)<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>感染态势栏 · 环境与角色</title>
+  <meta name="description" content="Apple Liquid Glass 风格感染态势栏：实时展示场景地点、日期时间、天气，以及角色衣物、姿态、感染进程与生理状态。" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Apple Liquid Glass 设计令牌 ── */
+    .状态栏外壳 {
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-display: "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+
+      --bar-height: 260px;
+      --accent-h: 210;
+      --accent-s: 72%;
+      --accent-l: 58%;
+      --accent: hsl(var(--accent-h) var(--accent-s) var(--accent-l));
+      --accent-soft: hsl(var(--accent-h) calc(var(--accent-s) - 12%) calc(var(--accent-l) + 14%));
+      --accent-deep: hsl(var(--accent-h) var(--accent-s) calc(var(--accent-l) - 16%));
+      --accent-glow: hsl(var(--accent-h) 85% 62% / 0.38);
+      --accent-glow-soft: hsl(var(--accent-h) 70% 68% / 0.16);
+
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+      --radius-pill: 999px;
+
+      --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-glide: cubic-bezier(0.37, 1.95, 0.66, 0.56);
+      --ease-ring: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+      --orb-tint-a: hsl(210 80% 62% / 0.14);
+      --orb-tint-b: hsl(265 70% 58% / 0.12);
+      --orb-tint-c: hsl(330 65% 58% / 0.10);
+
+      --bg-main: hsl(220 30% 97%);
+      --surface: hsl(0 0% 100% / 0.62);
+      --surface-strong: hsl(0 0% 100% / 0.82);
+      --surface-inset: hsl(0 0% 100% / 0.42);
+
+      --text-main: hsl(240 8% 12%);
+      --text-sub: hsl(240 4% 38%);
+      --text-muted: hsl(240 3% 52%);
+
+      --line: hsl(0 0% 0% / 0.08);
+      --line-strong: hsl(0 0% 0% / 0.14);
+
+      --border-gradient: linear-gradient(163deg, hsl(var(--accent-h) 60% 72% / 0.55) 0%, hsl(0 0% 100% / 0.18) 48%, hsl(var(--accent-h) 50% 60% / 0.35) 100%);
+      --border-gradient-hover: linear-gradient(163deg, hsl(var(--accent-h) 70% 68% / 0.72) 0%, hsl(0 0% 100% / 0.28) 48%, hsl(var(--accent-h) 60% 55% / 0.48) 100%);
+      --glider-gradient: linear-gradient(135deg, hsl(var(--accent-h) 55% 88% / 0.95), hsl(var(--accent-h) 45% 78% / 0.82));
+      --progress-fill: linear-gradient(90deg, var(--accent-soft), var(--accent));
+      --progress-fill-soft: linear-gradient(90deg, hsl(var(--accent-h) 45% 78%), var(--accent-soft));
+      --desire-fill: linear-gradient(90deg, hsl(280 55% 72%), hsl(300 60% 62%));
+
+      --state-dot: var(--accent);
+      --state-pulse: hsl(var(--accent-h) 80% 58% / 0.28);
+
+      --glass-shadow:
+        0 22px 54px hsl(240 20% 20% / 0.10),
+        inset 1px 1px 3px hsl(0 0% 100% / 0.65),
+        inset -1px -1px 4px hsl(240 10% 20% / 0.05);
+      --glass-shadow-inset:
+        inset 1px 1px 4px hsl(0 0% 100% / 0.45),
+        inset -1px -1px 6px hsl(240 10% 20% / 0.06);
+
+      --progress-bg: hsl(240 8% 20% / 0.06);
+      --icon-bg: hsl(var(--accent-h) 40% 92% / 0.55);
+      --icon-color: hsl(var(--accent-h) 35% 42%);
+      --button-bg: hsl(0 0% 100% / 0.55);
+      --button-active: hsl(0 0% 100% / 0.88);
+      --tab-track: hsl(var(--accent-h) 30% 50% / 0.08);
+
+      --scrollbar-size: 5px;
+      --scrollbar-track: hsl(var(--accent-h) 30% 72% / 0.10);
+      --scrollbar-thumb: hsl(var(--accent-h) 45% 58% / 0.45);
+      --scrollbar-thumb-hover: hsl(var(--accent-h) 55% 50% / 0.68);
+      --scrollbar-thumb-active: hsl(var(--accent-h) 60% 46% / 0.82);
+
+      width: 100%;
+      height: var(--bar-height);
+      padding: 12px;
+      position: relative;
+      font-family: var(--font-body);
+      color: var(--text-main);
+      background: var(--bg-main);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow: hidden;
+      contain: layout style paint;
+    }
+
+    .状态栏外壳[data-theme="dark"] {
+      --bg-main: hsl(240 25% 6%);
+      --surface: hsl(240 18% 14% / 0.72);
+      --surface-strong: hsl(240 16% 18% / 0.86);
+      --surface-inset: hsl(240 20% 22% / 0.55);
+
+      --text-main: hsl(0 0% 96%);
+      --text-sub: hsl(240 5% 72%);
+      --text-muted: hsl(240 4% 52%);
+
+      --line: hsl(0 0% 100% / 0.10);
+      --line-strong: hsl(0 0% 100% / 0.16);
+
+      --border-gradient: linear-gradient(163deg, hsl(var(--accent-h) 70% 68% / 0.55) 0%, hsl(0 0% 100% / 0.06) 48%, hsl(var(--accent-h) 60% 50% / 0.38) 100%);
+      --border-gradient-hover: linear-gradient(163deg, hsl(var(--accent-h) 80% 62% / 0.72) 0%, hsl(0 0% 100% / 0.12) 48%, hsl(var(--accent-h) 70% 48% / 0.52) 100%);
+      --glider-gradient: linear-gradient(135deg, hsl(var(--accent-h) 55% 42% / 0.88), hsl(var(--accent-h) 45% 32% / 0.72));
+      --progress-fill-soft: linear-gradient(90deg, hsl(var(--accent-h) 40% 38%), var(--accent-soft));
+
+      --glass-shadow:
+        0 28px 64px hsl(240 40% 2% / 0.55),
+        inset 1px 1px 3px hsl(0 0% 100% / 0.10),
+        inset -1px -1px 5px hsl(240 30% 2% / 0.45);
+      --glass-shadow-inset:
+        inset 1px 1px 4px hsl(0 0% 100% / 0.08),
+        inset -1px -1px 6px hsl(240 30% 2% / 0.40);
+
+      --progress-bg: hsl(0 0% 100% / 0.08);
+      --icon-bg: hsl(var(--accent-h) 35% 28% / 0.45);
+      --icon-color: hsl(var(--accent-h) 45% 78%);
+      --button-bg: hsl(0 0% 100% / 0.06);
+      --button-active: hsl(0 0% 100% / 0.14);
+      --tab-track: hsl(0 0% 100% / 0.06);
+
+      --scrollbar-track: hsl(var(--accent-h) 25% 22% / 0.35);
+      --scrollbar-thumb: hsl(var(--accent-h) 48% 62% / 0.52);
+      --scrollbar-thumb-hover: hsl(var(--accent-h) 55% 58% / 0.72);
+      --scrollbar-thumb-active: hsl(var(--accent-h) 62% 54% / 0.88);
+    }
+
+    .状态栏外壳[data-infection-tier="safe"] {
+      --orb-tint-a: hsl(210 80% 60% / 0.20);
+      --orb-tint-b: hsl(195 75% 55% / 0.14);
+      --orb-tint-c: hsl(230 65% 58% / 0.12);
+    }
+
+    .状态栏外壳[data-infection-tier="warning"] {
+      --orb-tint-a: hsl(38 90% 55% / 0.18);
+      --orb-tint-b: hsl(28 85% 50% / 0.14);
+      --orb-tint-c: hsl(48 80% 58% / 0.10);
+    }
+
+    .状态栏外壳[data-infection-tier="danger"] {
+      --orb-tint-a: hsl(330 75% 58% / 0.22);
+      --orb-tint-b: hsl(350 70% 52% / 0.16);
+      --orb-tint-c: hsl(310 65% 55% / 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: var(--bar-height, 260px);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* 宏兜底隐蔽节点：参考 LYsta .lysta-hide，勿用 aria-hidden（部分 ST 不展开） */
+    .infection-bar-hide {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+      font-size: 0 !important;
+      line-height: 0 !important;
+      color: transparent !important;
+    }
+
+    /* ── 玻璃风滚动条 ── */
+    .状态栏外壳 .美滚动条,
+    .状态栏外壳 .角色内容区,
+    .状态栏外壳 .姿态文本 {
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar {
+      width: var(--scrollbar-size);
+      height: var(--scrollbar-size);
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar-track,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar-track,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: var(--radius-pill);
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar-thumb,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar-thumb,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar-thumb {
+      border-radius: var(--radius-pill);
+      background: linear-gradient(
+        180deg,
+        hsl(var(--accent-h) 55% 72% / 0.55),
+        var(--scrollbar-thumb)
+      );
+      border: 1px solid hsl(0 0% 100% / 0.12);
+      background-clip: padding-box;
+      box-shadow:
+        inset 0 1px 0 hsl(0 0% 100% / 0.22),
+        0 0 8px var(--accent-glow-soft);
+      transition: background 220ms var(--ease-spring), box-shadow 220ms var(--ease-spring);
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar-thumb:hover,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar-thumb:hover,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(
+        180deg,
+        hsl(var(--accent-h) 58% 68% / 0.72),
+        var(--scrollbar-thumb-hover)
+      );
+      box-shadow:
+        inset 0 1px 0 hsl(0 0% 100% / 0.28),
+        0 0 10px var(--accent-glow-soft);
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar-thumb:active,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar-thumb:active,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar-thumb:active {
+      background: var(--scrollbar-thumb-active);
+    }
+
+    .状态栏外壳 .美滚动条::-webkit-scrollbar-corner,
+    .状态栏外壳 .角色内容区::-webkit-scrollbar-corner,
+    .状态栏外壳 .姿态文本::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+
+    /* ── ambient layer ── */
+    .环境光层 {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .环境光层::before,
+    .环境光层::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      transition: background 420ms var(--ease-spring);
+    }
+
+    .环境光层::before {
+      width: 320px;
+      height: 320px;
+      top: -90px;
+      left: -50px;
+      background: radial-gradient(circle, var(--orb-tint-a), transparent 68%);
+      animation: ambientDriftA 28s var(--ease-spring) infinite alternate;
+      will-change: transform;
+    }
+
+    .环境光层::after {
+      width: 280px;
+      height: 280px;
+      top: -70px;
+      right: 8%;
+      background: radial-gradient(circle, var(--orb-tint-b), transparent 68%);
+      animation: ambientDriftB 32s var(--ease-spring) infinite alternate;
+      will-change: transform;
+    }
+
+    .环境光球 {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      bottom: -80px;
+      left: 42%;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--orb-tint-c), transparent 68%);
+      pointer-events: none;
+      animation: ambientDriftC 36s var(--ease-spring) infinite alternate;
+      will-change: transform;
+      transition: background 420ms var(--ease-spring);
+    }
+
+    @keyframes ambientDriftA {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(40px, 24px) scale(1.08); }
+    }
+
+    @keyframes ambientDriftB {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(-36px, 20px) scale(1.06); }
+    }
+
+    @keyframes ambientDriftC {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(-28px, -16px) scale(1.1); }
+    }
+
+    /* ── 渐变边框工具（参考 UI4） ── */
+    .渐变边框 {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .渐变边框::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: var(--border-gradient);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      transition: background 320ms var(--ease-spring);
+      z-index: 0;
+    }
+
+    .渐变边框:hover::before {
+      background: var(--border-gradient-hover);
+    }
+
+    /* ── glass shell ── */
+    .状态栏主体 {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      grid-template-columns: minmax(220px, 0.88fr) minmax(420px, 2.12fr);
+      gap: 12px;
+      padding: 12px;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(24px) saturate(1.35);
+      -webkit-backdrop-filter: blur(24px) saturate(1.35);
+      overflow: hidden;
+      contain: layout style paint;
+    }
+
+    .状态栏主体::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(125deg, hsl(0 0% 100% / 0.14), transparent 34%, transparent 66%, hsl(var(--accent-h) 60% 70% / 0.06));
+      pointer-events: none;
+      opacity: 0.65;
+    }
+
+    .状态栏主体.liquid-enter {
+      animation: liquidShellIn 520ms var(--ease-spring) both;
+    }
+
+    @keyframes liquidShellIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.992); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .世界面板,
+    .角色面板 {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+      min-height: 0;
+      border-radius: var(--radius-lg);
+      background: var(--surface-strong);
+      box-shadow: var(--glass-shadow-inset);
+      backdrop-filter: blur(18px) saturate(1.25);
+      -webkit-backdrop-filter: blur(18px) saturate(1.25);
+      overflow: hidden;
+      contain: layout style paint;
+    }
+
+    /* ── world panel ── */
+    .世界面板 {
+      padding: 12px;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .世界顶栏 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 38px;
+      align-items: start;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .世界摘要 {
+      min-width: 0;
+    }
+
+    .地点Hero {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.4vw, 24px);
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: linear-gradient(135deg, var(--text-main), hsl(var(--accent-h) 55% 68%));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .状态栏外壳[data-theme="light"] .地点Hero {
+      background: linear-gradient(135deg, hsl(240 8% 12%), hsl(var(--accent-h) 45% 42%));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* 主题按钮：参考 UI5 双环切换 */
+    .主题按钮 {
+      position: relative;
+      z-index: 2;
+      width: 38px;
+      height: 34px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      color: var(--text-main);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      overflow: hidden;
+      outline: none;
+      transition: transform 260ms var(--ease-spring);
+    }
+
+    .主题按钮环,
+    .主题按钮环::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      inset: 5px;
+      pointer-events: none;
+    }
+
+    .主题按钮环 {
+      border: 2px solid hsl(var(--accent-h) 40% 62% / 0.55);
+      transition:
+        opacity 400ms var(--ease-ring),
+        transform 500ms var(--ease-ring);
+    }
+
+    .主题按钮环::after {
+      inset: 0;
+      border: 2px solid var(--accent);
+      transform: scale(1.28);
+      opacity: 0;
+      transition:
+        opacity 400ms var(--ease-ring),
+        transform 500ms var(--ease-ring);
+    }
+
+    .主题按钮:hover .主题按钮环,
+    .主题按钮:focus-visible .主题按钮环 {
+      opacity: 0;
+      transform: scale(0.78);
+    }
+
+    .主题按钮:hover .主题按钮环::after,
+    .主题按钮:focus-visible .主题按钮环::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .主题按钮:active {
+      transform: scale(0.96);
+    }
+
+    .主题图标组 {
+      position: relative;
+      z-index: 1;
+      width: 16px;
+      height: 16px;
+    }
+
+    .主题图标 {
+      position: absolute;
+      inset: 0;
+      width: 18px;
+      height: 18px;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: opacity 280ms var(--ease-spring), transform 280ms var(--ease-spring);
+    }
+
+    .主题图标--太阳 {
+      opacity: 0;
+      transform: rotate(-30deg) scale(0.85);
+    }
+
+    .状态栏外壳[data-theme="light"] .主题图标--月亮 {
+      opacity: 0;
+      transform: rotate(30deg) scale(0.85);
+    }
+
+    .状态栏外壳[data-theme="light"] .主题图标--太阳 {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+
+    .状态栏外壳[data-theme="dark"] .主题图标--月亮 {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+
+    .图标 {
+      width: 24px;
+      height: 24px;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: 0 0 auto;
+      color: var(--icon-color);
+    }
+
+    .细图标 {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.92;
+      flex: 0 0 auto;
+      color: var(--icon-color);
+      transition: transform 240ms var(--ease-spring), stroke 200ms ease, opacity 200ms ease;
+    }
+
+    .进度卡:hover .细图标 {
+      stroke: var(--text-main);
+      opacity: 1;
+    }
+
+    .世界信息网格 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .信息磁贴 {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+      padding: 9px;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      overflow: hidden;
+      transition:
+        transform 260ms var(--ease-spring),
+        background 260ms var(--ease-spring),
+        box-shadow 260ms var(--ease-spring);
+    }
+
+    .信息磁贴:hover {
+      transform: translateY(-2px);
+      background: var(--button-active);
+      box-shadow: 0 12px 28px var(--accent-glow-soft);
+    }
+
+    .信息磁贴:active {
+      transform: translateY(0) scale(0.985);
+    }
+
+    .信息图标框 {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--icon-bg);
+      color: var(--icon-color);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      transition: transform 260ms var(--ease-spring);
+    }
+
+    .信息磁贴:hover .信息图标框 {
+      transform: scale(1.06);
+    }
+
+    .信息文本 {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .信息标签 {
+      font-size: 10px;
+      line-height: 1;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .信息值 {
+      font-size: 12px;
+      line-height: 1.16;
+      color: var(--text-main);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
+    /* ── character panel ── */
+    .角色面板 {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      min-height: 0;
+    }
+
+    .角色标签栏 {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* 分段控制器：参考 UI2 玻璃滑块 */
+    .分段控制器 {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      display: flex;
+      gap: 2px;
+      padding: 3px;
+      border-radius: 1rem;
+      background: var(--tab-track);
+      box-shadow: var(--glass-shadow-inset);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .分段控制器::-webkit-scrollbar {
+      display: none;
+    }
+
+    .分段滑块 {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      left: 0;
+      width: 0;
+      border-radius: calc(1rem - 3px);
+      background: var(--glider-gradient);
+      box-shadow:
+        0 0 18px var(--accent-glow-soft),
+        inset 0 1px 0 hsl(0 0% 100% / 0.35);
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      transition:
+        transform 0.5s var(--ease-glide),
+        width 0.5s var(--ease-glide),
+        opacity 240ms var(--ease-spring),
+        background 320ms var(--ease-spring);
+    }
+
+    .状态栏外壳[data-theme="dark"] .分段滑块 {
+      box-shadow:
+        0 0 20px var(--accent-glow),
+        inset 0 1px 0 hsl(0 0% 100% / 0.12);
+    }
+
+    .角色标签按钮 {
+      position: relative;
+      z-index: 2;
+      flex: 0 0 auto;
+      max-width: 128px;
+      min-width: 72px;
+      height: 30px;
+      padding: 0 14px;
+      border: none;
+      border-radius: calc(1rem - 3px);
+      background: transparent;
+      color: var(--text-sub);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 240ms var(--ease-spring);
+    }
+
+    .角色标签按钮:hover {
+      color: var(--text-main);
+    }
+
+    .角色标签按钮[aria-selected="true"] {
+      color: var(--text-main);
+      text-shadow: 0 0 12px var(--accent-glow-soft);
+    }
+
+    /* 感染胶囊 */
+    .感染胶囊 {
+      flex: 0 0 auto;
+      max-width: 120px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 12px;
+      border-radius: var(--radius-pill);
+      border: none;
+      background: var(--button-bg);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      box-shadow: 0 0 16px var(--accent-glow-soft);
+      transition: box-shadow 320ms var(--ease-spring), background 320ms var(--ease-spring);
+    }
+
+    .感染胶囊:hover {
+      box-shadow: 0 0 22px var(--accent-glow);
+    }
+
+    .感染胶囊文本 {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .感染胶囊[data-state="感染中"] {
+      --border-gradient: linear-gradient(163deg, hsl(38 85% 58% / 0.55) 0%, hsl(38 70% 48% / 0.18) 100%);
+    }
+
+    .感染胶囊[data-state="已感染"] {
+      --border-gradient: linear-gradient(163deg, hsl(330 72% 58% / 0.62) 0%, hsl(350 65% 48% / 0.22) 100%);
+    }
+
+    .感染胶囊点 {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: var(--state-dot);
+      flex: 0 0 auto;
+      animation: 状态脉冲 2.8s var(--ease-spring) infinite;
+    }
+
+    .感染胶囊[data-state="感染中"] .感染胶囊点 {
+      background: hsl(38 85% 58%);
+    }
+
+    .感染胶囊[data-state="已感染"] .感染胶囊点 {
+      background: hsl(330 72% 58%);
+      animation-duration: 2s;
+    }
+
+    @keyframes 状态脉冲 {
+      0%, 100% {
+        box-shadow: 0 0 0 0 var(--state-pulse);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 0 6px transparent;
+        transform: scale(1.08);
+      }
+    }
+
+    .角色内容区 {
+      min-height: 0;
+      padding: 10px;
+      padding-right: 6px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .角色卡片 {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 8px;
+    }
+
+    .姿态区块 {
+      grid-column: 1 / -1;
+      padding: 8px 10px;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      border: 1px solid hsl(var(--accent-h) 40% 50% / 0.14);
+      min-width: 0;
+    }
+
+    .姿态标签 {
+      font-size: 10px;
+      line-height: 1;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .姿态文本 {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.38;
+      color: var(--text-main);
+      font-weight: 500;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      max-height: 4.2em;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .角色卡片.入场动画 {
+      animation: fadeSlideIn 320ms var(--ease-spring) both;
+    }
+
+    .角色卡片.入场动画 .角色基础区 {
+      animation: liquidStagger 420ms var(--ease-spring) 40ms both;
+    }
+
+    .角色卡片.入场动画 .角色数值区 {
+      animation: liquidStagger 420ms var(--ease-spring) 90ms both;
+    }
+
+    @keyframes liquidStagger {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .角色基础区,
+    .角色数值区 {
+      min-width: 0;
+      min-height: 0;
+      border-radius: var(--radius-lg);
+      background: var(--surface-inset);
+      box-shadow: var(--glass-shadow-inset);
+      padding: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .角色数值区 {
+      justify-content: flex-start;
+    }
+
+    .衣物网格 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .衣物磁贴 {
+      min-width: 0;
+      min-height: 0;
+      padding: 6px;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      transition:
+        transform 240ms var(--ease-spring),
+        background 240ms var(--ease-spring),
+        box-shadow 240ms var(--ease-spring);
+    }
+
+    .衣物磁贴:hover {
+      transform: translateY(-2px) scale(0.99);
+      background: var(--button-active);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .衣物磁贴:hover .细图标 {
+      transform: scale(1.08);
+      stroke: var(--text-main);
+    }
+
+    .衣物标题 {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 6px;
+      font-size: 10px;
+      line-height: 1;
+      color: var(--text-muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .衣物值 {
+      min-height: 0;
+      font-size: 11px;
+      line-height: 1.28;
+      color: var(--text-main);
+      font-weight: 400;
+      word-break: break-word;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .数值标题 {
+      margin: 0 0 6px;
+      font-size: 12px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+
+    .进度组 {
+      display: grid;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+
+    .进度卡 {
+      min-width: 0;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      padding: 6px 7px;
+      transition:
+        transform 260ms var(--ease-spring),
+        background 260ms var(--ease-spring),
+        box-shadow 260ms var(--ease-spring);
+    }
+
+    .进度卡:hover {
+      transform: translateY(-2px);
+      background: var(--button-bg);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .进度头 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 5px;
+      min-width: 0;
+    }
+
+    .进度名称 {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-width: 0;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .进度数值 {
+      flex: 0 0 auto;
+      font-variant-numeric: tabular-nums;
+      font-size: 11px;
+      color: var(--text-sub);
+      font-weight: 600;
+    }
+
+    .进度轨道 {
+      position: relative;
+      width: 100%;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: var(--progress-bg);
+      overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.10);
+    }
+
+    .进度填充 {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0%;
+      border-radius: inherit;
+      transform-origin: left center;
+      transition: width 520ms var(--ease-spring);
+      overflow: hidden;
+    }
+
+    .进度填充::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 2.6s var(--ease-spring) infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-110%); }
+      54% { transform: translateX(120%); }
+      100% { transform: translateX(120%); }
+    }
+
+    .感染填充[data-level="safe"] {
+      background: var(--progress-fill-soft);
+      box-shadow: 0 0 14px var(--accent-glow-soft);
+    }
+
+    .感染填充[data-level="warning"] {
+      background: linear-gradient(90deg, hsl(38 85% 58%), hsl(28 80% 48%));
+      box-shadow: 0 0 16px hsl(38 85% 55% / 0.35);
+    }
+
+    .感染填充[data-level="danger"] {
+      background: linear-gradient(90deg, hsl(330 72% 58%), hsl(350 68% 48%));
+      box-shadow: 0 0 18px hsl(330 70% 55% / 0.42);
+    }
+
+    .性欲填充 {
+      background: var(--desire-fill);
+      box-shadow: 0 0 14px hsl(290 60% 55% / 0.28);
+    }
+
+    .空状态 {
+      height: 100%;
+      min-height: 110px;
+      display: grid;
+      place-items: center;
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius-lg);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      background: var(--surface-inset);
+      text-align: center;
+      padding: 16px;
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 760px) {
+      .状态栏外壳 {
+        --bar-height: 300px;
+      }
+
+      .状态栏主体 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .世界面板 {
+        padding: 10px;
+        gap: 7px;
+      }
+
+      .世界信息网格 {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+
+      .信息磁贴 {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 7px;
+      }
+
+      .信息图标框 {
+        display: none;
+      }
+
+      .角色卡片 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 6px;
+      }
+
+      .角色基础区,
+      .角色数值区 {
+        grid-column: 1 / -1;
+      }
+
+      .衣物磁贴 {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .状态栏外壳 {
+        padding: 8px;
+      }
+
+      .状态栏主体 {
+        border-radius: 22px;
+      }
+
+      .感染胶囊 {
+        max-width: 96px;
+        padding: 0 9px;
+      }
+
+      .衣物值,
+      .信息值,
+      .进度名称 {
+        font-size: 11px;
+      }
+    }
+
+    /* ── a11y: reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .环境光层::before,
+      .环境光层::after,
+      .环境光球 {
+        animation: none !important;
+      }
+
+      .进度填充::after {
+        animation: none !important;
+      }
+
+      .感染胶囊点 {
+        animation: none !important;
+      }
+
+      .角色卡片.入场动画,
+      .角色卡片.入场动画 .角色基础区,
+      .角色卡片.入场动画 .角色数值区,
+      .状态栏主体.liquid-enter {
+        animation: none !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 1ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 正则：粘贴时建议从 <main class="状态栏外壳"> 起（勿含 doctype/html/head）；须启用 infection_bar_boot -->
+  <main class="状态栏外壳" data-theme="dark" data-infection-tier="safe" aria-label="感染态势栏">
+    <h1 class="sr-only">感染态势栏</h1>
+
+    <!-- 宏兜底：infection-bar-hide（非 aria-hidden）；世界区另有可见宏供无 JS 时 SSR -->
+    <span class="infection-bar-hide infection-bar-stat-inline">{{format_message_variable::stat_data}}</span>
+    <span class="infection-bar-hide infection-bar-characters-inline">{{format_message_variable::stat_data.角色}}</span>
+    <span class="infection-bar-hide infection-bar-characters-pre">{{format_message_variable::stat_data.角色}}</span>
+    <script type="application/json" class="infection-bar-hide infection-bar-characters-fallback">{{format_message_variable::stat_data.角色}}</script>
+
+    <div class="环境光层" aria-hidden="true">
+      <div class="环境光球"></div>
+    </div>
+
+    <section class="状态栏主体 渐变边框 liquid-enter" aria-label="状态栏主体">
+      <aside class="世界面板 渐变边框" aria-label="环境态势">
+        <header class="世界顶栏">
+          <div class="世界摘要">
+            <h2 class="地点Hero" id="infection-bar-world-location-hero">{{format_message_variable::stat_data.世界.地点}}</h2>
+          </div>
+
+          <button class="主题按钮 infection-bar-theme-toggle" id="infection-bar-theme-toggle" type="button" aria-label="切换深浅主题" title="切换深浅主题">
+            <span class="主题按钮环" aria-hidden="true"></span>
+            <span class="主题图标组" aria-hidden="true">
+              <svg class="主题图标 主题图标--月亮" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 13.2A8.2 8.2 0 0 1 10.8 3a7.6 7.6 0 1 0 10.2 10.2Z"/>
+              </svg>
+              <svg class="主题图标 主题图标--太阳" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v2.2M12 18.8V21M4.22 4.22l1.56 1.56M18.22 18.22l1.56 1.56M3 12h2.2M18.8 12H21M4.22 19.78l1.56-1.56M18.22 5.78l1.56-1.56"/>
+                <circle cx="12" cy="12" r="4.2"/>
+              </svg>
+            </span>
+          </button>
+        </header>
+
+        <div class="世界信息网格">
+          <article class="信息磁贴 渐变边框" aria-label="日期与时间">
+            <div class="信息图标框">
+              <svg class="图标" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 3v3M17 3v3M4.5 8.5h15M6 5h12a2 2 0 0 1 2 2v13H4V7a2 2 0 0 1 2-2Z"/>
+                <path d="M8 12h3M8 16h6"/>
+              </svg>
+            </div>
+            <div class="信息文本">
+              <div class="信息标签">日期与时间</div>
+              <div class="信息值" id="infection-bar-world-datetime">{{format_message_variable::stat_data.世界.日期与时间}}</div>
+            </div>
+          </article>
+
+          <article class="信息磁贴 渐变边框" aria-label="天气">
+            <div class="信息图标框">
+              <svg class="图标" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.5 18h10a4 4 0 0 0 .4-7.98A6 6 0 0 0 6.2 8.8A4.6 4.6 0 0 0 7.5 18Z"/>
+                <path d="M9 21h6"/>
+              </svg>
+            </div>
+            <div class="信息文本">
+              <div class="信息标签">天气</div>
+              <div class="信息值" id="infection-bar-world-weather">{{format_message_variable::stat_data.世界.天气}}</div>
+            </div>
+          </article>
+        </div>
+      </aside>
+
+      <section class="角色面板 渐变边框" aria-label="角色态势">
+        <header class="角色标签栏">
+          <nav class="分段控制器" id="infection-bar-character-tabs" role="tablist" aria-label="角色切换">
+            <div class="分段滑块" aria-hidden="true"></div>
+          </nav>
+
+          <div class="感染胶囊 渐变边框" id="infection-bar-infection-badge" data-state="未感染" aria-label="感染状态">
+            <span class="感染胶囊点" aria-hidden="true"></span>
+            <span class="感染胶囊文本" id="infection-bar-infection-text">未感染</span>
+          </div>
+        </header>
+
+        <div class="角色内容区" id="infection-bar-character-content">
+          <div class="空状态">等待变量数据</div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      /** 酒馆助手脚本 iframe 内 document 不含聊天 DOM，须用 parent（参考 LYsta npc_boot） */
+      function 获取根文档() {
+        try {
+          const pd = window.parent?.document;
+          if (pd?.querySelectorAll && pd.querySelector(".mes, .状态栏外壳")) return pd;
+        } catch (_) {}
+        try {
+          const td = window.top?.document;
+          if (td?.querySelectorAll && td !== document) return td;
+        } catch (_) {}
+        return document;
+      }
+
+      const 根文档 = 获取根文档();
+      const 主题存储键 = "mvu-infection-status-theme";
+
+      function 获取存储窗口() {
+        try {
+          if (window.parent?.localStorage) return window.parent;
+        } catch (_) {}
+        return window;
+      }
+
+      function 设置实例主题(shell, theme) {
+        if (!shell) return;
+        const nextTheme = theme === "light" ? "light" : "dark";
+        shell.dataset.theme = nextTheme;
+        try {
+          获取存储窗口().localStorage.setItem(主题存储键, nextTheme);
+        } catch (_) {}
+      }
+
+      function 初始化实例主题(shell) {
+        if (!shell) return;
+        let saved = null;
+        try {
+          saved = 获取存储窗口().localStorage.getItem(主题存储键);
+        } catch (_) {}
+
+        if (saved === "light" || saved === "dark") {
+          设置实例主题(shell, saved);
+          return;
+        }
+
+        let preferLight = false;
+        try {
+          const mediaWin = 获取存储窗口();
+          preferLight = mediaWin.matchMedia && mediaWin.matchMedia("(prefers-color-scheme: light)").matches;
+        } catch (_) {}
+
+        设置实例主题(shell, preferLight ? "light" : "dark");
+      }
+
+      function 确保全局主题委托() {
+        if (window.__infectionBarThemeBound) return;
+        window.__infectionBarThemeBound = true;
+
+        根文档.addEventListener(
+          "click",
+          (event) => {
+            const btn = event.target?.closest?.(".infection-bar-theme-toggle");
+            if (!btn) return;
+            const shell = btn.closest(".状态栏外壳");
+            if (!shell) return;
+            event.preventDefault();
+            event.stopPropagation();
+            const next = shell.dataset.theme === "light" ? "dark" : "light";
+            设置实例主题(shell, next);
+          },
+          true,
+        );
+      }
+
+      const 实例刷新表 = window.__infectionBarRefreshers ?? (window.__infectionBarRefreshers = new WeakMap());
+      let _mvuGlobalBound = window.__infectionBarMvuBound === true;
+
+      /* ── core/dom ── */
+      function 定位外壳自脚本() {
+        const script = document.currentScript;
+        if (script) {
+          const prev = script.previousElementSibling;
+          if (prev?.classList?.contains("状态栏外壳")) return prev;
+          const scoped = script.parentElement?.querySelector(":scope > .状态栏外壳");
+          if (scoped) return scoped;
+          const inParent = script.parentElement?.closest?.(".状态栏外壳");
+          if (inParent) return inParent;
+        }
+        return null;
+      }
+
+      function 挂载状态栏实例(外壳) {
+        if (!外壳 || 外壳.getAttribute("data-infection-bar-mounted") === "1") return;
+
+      const 状态栏 = {
+        当前角色键: "",
+        上次数据签名: "",
+        上次角色标签签名: "",
+        上次角色内容签名: "",
+        缓存角色表: {},
+        刷新定时器: undefined,
+        主题键: "mvu-infection-status-theme"
+      };
+
+      const 节点 = {
+        外壳,
+        地点Hero: 外壳.querySelector("#infection-bar-world-location-hero"),
+        世界时间: 外壳.querySelector("#infection-bar-world-datetime"),
+        世界天气: 外壳.querySelector("#infection-bar-world-weather"),
+        角色标签: 外壳.querySelector("#infection-bar-character-tabs"),
+        角色内容: 外壳.querySelector("#infection-bar-character-content"),
+        感染徽章: 外壳.querySelector("#infection-bar-infection-badge"),
+        感染文本: 外壳.querySelector("#infection-bar-infection-text"),
+        主题按钮: 外壳.querySelector("#infection-bar-theme-toggle"),
+      };
+
+      if (!节点.角色内容) {
+        console.warn("[状态栏] 实例 DOM 不完整，跳过挂载", 外壳);
+        return;
+      }
+
+      const 图标 = {
+        上身: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l4 3 4-3 4 3-2 5-2-1v9H8v-9l-2 1-2-5 4-3Z"/></svg>',
+        下身: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6l1 16h-4l-1-9-1 9H6L9 4Z"/></svg>',
+        鞋袜: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h6v7l4 2h4a2 2 0 0 1 2 2v2H4V6h1Z"/></svg>',
+        感染: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 6l10 12M17 6L7 18"/><circle cx="12" cy="12" r="8"/></svg>',
+        性欲: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.6-7-10.5A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 7 3.5C19 16.4 12 21 12 21Z"/></svg>'
+      };
+
+      function 安全读取存储(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function 安全写入存储(key, value) {
+        try {
+          window.localStorage.setItem(key, value);
+        } catch (_) {}
+      }
+
+      function 设置节点文本(node, text) {
+        if (!node) return;
+        const next = String(text ?? "");
+        if (node.textContent !== next) node.textContent = next;
+      }
+
+      function 稳定序列化(value) {
+        return JSON.stringify(value, (_, v) => {
+          if (v && typeof v === "object" && !Array.isArray(v)) {
+            return Object.keys(v)
+              .sort()
+              .reduce((out, key) => {
+                out[key] = v[key];
+                return out;
+              }, {});
+          }
+          return v;
+        });
+      }
+      function 安全文本(value, fallback = "未记录") {
+        const text = String(value ?? "").trim();
+        return text.length > 0 ? text : fallback;
+      }
+
+      function 转义HTML(value) {
+        return 安全文本(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function 安全ID(value) {
+        return String(value ?? "unknown")
+          .replace(/[^\u4e00-\u9fa5a-zA-Z0-9_-]/g, "-")
+          .replace(/-+/g, "-")
+          .slice(0, 42);
+      }
+
+      function 限制数值(value) {
+        const num = Number(value);
+        if (!Number.isFinite(num)) return 0;
+        return Math.max(0, Math.min(100, Math.round(num)));
+      }
+
+      function 感染等级(value) {
+        const v = 限制数值(value);
+        if (v <= 30) return "safe";
+        if (v <= 70) return "warning";
+        return "danger";
+      }
+
+      function 计算Accent色相(进程) {
+        const v = 限制数值(进程);
+        if (v <= 30) return 210 - (v / 30) * 10;
+        if (v <= 70) return 200 + ((v - 30) / 40) * (38 - 200);
+        return 38 + ((v - 70) / 30) * (330 - 38);
+      }
+
+      function 应用感染Accent(进程) {
+        const shell = 节点.外壳;
+        if (!shell) return;
+        const hue = Math.round(计算Accent色相(进程));
+        shell.style.setProperty("--accent-h", String(hue));
+        shell.dataset.infectionTier = 感染等级(进程);
+      }
+
+      function 解包MVU值(value) {
+        if (Array.isArray(value) && value.length > 0) return value[0];
+        return value;
+      }
+
+      function 解包为对象(value) {
+        const v = 解包MVU值(value);
+        if (v && typeof v === "object" && !Array.isArray(v)) return v;
+        return null;
+      }
+
+      function 是元数据键(key) {
+        return key.startsWith("$") || key.startsWith("__");
+      }
+
+      /** 解包 MVU 对象各字段（跳过 $meta 等键） */
+      function 解包对象字段(obj) {
+        const source = 解包为对象(obj);
+        if (!source) return {};
+        const out = {};
+        for (const [key, val] of Object.entries(source)) {
+          if (是元数据键(key)) continue;
+          out[key] = 解包MVU值(val);
+        }
+        return out;
+      }
+
+      const 角色字段名 = new Set(["姓名", "上身", "下身", "鞋袜", "姿态", "感染进程", "性欲", "感染状态"]);
+
+      function 获取lodash() {
+        for (const w of 收集候选窗口()) {
+          try {
+            if (w._ && typeof w._.get === "function") return w._;
+          } catch (_) {}
+        }
+        return null;
+      }
+
+      function getPath(obj, path) {
+        if (!obj || !path) return undefined;
+        const lodash = 获取lodash();
+        if (lodash) return lodash.get(obj, path);
+        return String(path).split(".").reduce((o, k) => (o == null ? undefined : o[k]), obj);
+      }
+
+      /** 归一化 z.record 角色表：解包记录值、过滤元数据键；支持 MVU 数组/tuple/字符串 */
+      function 提取角色表(raw) {
+        if (typeof raw === "string") {
+          const parsed = 解析角色fallback文本(raw);
+          return 角色表有内容(parsed) ? parsed : {};
+        }
+
+        const unwrapped = 解包MVU值(raw);
+
+        if (Array.isArray(unwrapped)) {
+          const out = {};
+          for (const item of unwrapped) {
+            if (Array.isArray(item) && item.length >= 2) {
+              const key = String(解包MVU值(item[0]) ?? "").trim();
+              const role = 解包为对象(item[1]);
+              if (key && role) out[key] = 解包对象字段(role);
+              continue;
+            }
+            const asObj = 解包为对象(item);
+            if (!asObj) continue;
+            const name = String(解包MVU值(asObj.姓名 ?? asObj.name) ?? "").trim();
+            if (name) out[name] = 解包对象字段(asObj);
+          }
+          if (Object.keys(out).length > 0) return out;
+        }
+
+        const 表 = 解包为对象(解包MVU值(raw));
+        if (!表) return {};
+
+        // 单角色扁平结构：stat_data.角色 = { 姓名, 上身, … }（非 z.record 多键）
+        if (像角色记录(表)) {
+          const fields = 解包对象字段(表);
+          const nameKey = String(fields.姓名 ?? "角色").trim() || "角色";
+          return { [nameKey]: fields };
+        }
+
+        const out = {};
+        for (const [key, val] of Object.entries(表)) {
+          if (是元数据键(key)) continue;
+          const role = 解包为对象(解包MVU值(val));
+          if (!role) continue;
+          const fields = 解包对象字段(role);
+          const nameKey = String(fields.姓名 ?? key).trim() || key;
+          out[nameKey] = fields;
+        }
+        return out;
+      }
+
+      function 角色表有内容(角色表) {
+        return !!(角色表 && typeof 角色表 === "object" && !Array.isArray(角色表) && Object.keys(角色表).length > 0);
+      }
+
+      function 像角色记录(value) {
+        const role = 解包为对象(value);
+        if (!role) return false;
+        const fields = 解包对象字段(role);
+        for (const field of 角色字段名) {
+          if (field in fields) return true;
+        }
+        return false;
+      }
+
+      function 从stat根收集扁平角色字段(stat) {
+        if (!stat || typeof stat !== "object" || Array.isArray(stat)) return null;
+
+        const rec = {};
+        for (const field of 角色字段名) {
+          if (field in stat) rec[field] = 解包MVU值(stat[field]);
+        }
+        if (Object.keys(rec).length === 0) return null;
+
+        const nameKey = String(rec.姓名 ?? "角色").trim() || "角色";
+        return { [nameKey]: rec };
+      }
+
+      /** 部分角色卡把人物直接挂在 stat_data 根下（如 stat_data.凌月），而非 stat_data.角色 */
+      function 从stat根提取散落角色(stat) {
+        if (!stat || typeof stat !== "object" || Array.isArray(stat)) return null;
+
+        const out = {};
+        for (const [key, val] of Object.entries(stat)) {
+          if (key === "世界" || key === "角色" || 是元数据键(key)) continue;
+          if (!像角色记录(val)) continue;
+          const fields = 解包对象字段(解包为对象(val));
+          const nameKey = String(fields.姓名 ?? key).trim() || key;
+          out[nameKey] = fields;
+        }
+
+        return 角色表有内容(out) ? out : null;
+      }
+
+      function 合并角色表(...tables) {
+        const out = {};
+        for (const table of tables) {
+          if (!角色表有内容(table)) continue;
+          Object.assign(out, table);
+        }
+        return 角色表有内容(out) ? out : null;
+      }
+
+));
+            if (fm) {
+              rec[field] = fm[1] ?? "";
+              matched = true;
+              break;
+            }
+          }
+          if (!matched) break;
+          i++;
+        }
+
+        if (Object.keys(rec).length === 0) return null;
+        const nameKey = String(rec.姓名 ?? "角色").trim() || "角色";
+        return { [nameKey]: rec };
+      }
+
+      function 解析stat说明文(raw) {
+        const text = String(raw ?? "").trim();
+        if (!text || 像宏文本(text)) return null;
+
+        const 角色锚 = text.search(/(?:^|\n)\s*角色\s*[:：]/);
+        if (角色锚 >= 0) {
+          const 角色段 = text.slice(角色锚).replace(/^[^\n]*\n?/, "");
+          const 角色行 = 角色段.split(/\r?\n/).map((line) => String(line).trim());
+          const 扁平 = 解析扁平角色字段块(角色行, 0);
+          if (角色表有内容(扁平)) return { 角色: 扁平 };
+
+          const table = 解析角色说明文(角色段);
+          if (角色表有内容(table)) return { 角色: table };
+        }
+
+        const direct = 解析角色说明文(text);
+        if (角色表有内容(direct)) return { 角色: direct };
+
+        return null;
+      }
+
+      function 规范化角色表值(value) {
+        if (value == null) return null;
+        if (typeof value === "string") {
+          const parsed = 解析角色fallback文本(value);
+          return 角色表有内容(parsed) ? parsed : null;
+        }
+        const table = 提取角色表(value);
+        return 角色表有内容(table) ? table : null;
+      }
+
+      function 是角色名字行(line) {
+        if (!line) return false;
+        for (const field of 角色字段名) {
+          if (new RegExp(`^${field}\\s*[:：]`).test(line)) return false;
+        }
+        const m = String(line).match(/^(.+?)[:：]\s*(.*)$/);
+        if (!m) return false;
+        const head = m[1].trim();
+        return head.length > 0 && !角色字段名.has(head);
+      }
+
+      function 从名字行提取键(line) {
+        const m = String(line).match(/^(.+?)[:：]\s*(.*)$/);
+        if (!m) return null;
+        const head = m[1].trim();
+        if (!head || 角色字段名.has(head)) return null;
+        return head;
+      }
+
+      /** MVU 宏常把 z.record 渲染为多行说明文而非 JSON */
+      function 解析角色说明文(raw) {
+        const text = String(raw ?? "").trim();
+        if (!text || 像宏文本(text)) return null;
+        if (text.charAt(0) === "{" || text.charAt(0) === "[") return null;
+
+        const lines = text.split(/\r?\n/).map((line) => String(line).trim());
+        const out = {};
+        let i = 0;
+
+        while (i < lines.length) {
+          const line = lines[i];
+          if (!line) {
+            i++;
+            continue;
+          }
+
+          let key = 从名字行提取键(line);
+          if (!key && !line.includes(":") && !line.includes("：")) {
+            const bare = line.trim();
+            if (
+              bare &&
+              bare !== "角色" &&
+              bare !== "世界" &&
+              !角色字段名.has(bare) &&
+              !/^[\[{]/.test(bare)
+            ) {
+              key = bare;
+            }
+          }
+
+          if (!key) {
+            i++;
+            continue;
+          }
+
+          const rec = {};
+          if (是角色名字行(line)) i++;
+          else i++;
+          while (i < lines.length) {
+            const L = lines[i];
+            if (!L) {
+              i++;
+              continue;
+            }
+            if (是角色名字行(L)) break;
+            if (!L.includes(":") && !L.includes("：")) {
+              const bare = L.trim();
+              if (bare && bare !== "角色" && bare !== "世界" && !角色字段名.has(bare)) break;
+            }
+
+            let matched = false;
+            for (const field of 角色字段名) {
+              const fm = L.match(new RegExp(`^${field}\\s*[:：]\\s*(.*)<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>感染状态栏 · 世界与角色态势</title>
+  <meta name="description" content="单色调简约风格的状态栏：展示世界时间、天气、地点与角色衣物、姿态、感染进程、性欲状态。" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── 单色调设计令牌（参考 UI1–UI5 统一风格） ── */
+    .状态栏外壳 {
+      --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-display: "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+
+      --bar-height: 260px;
+
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+      --radius-pill: 999px;
+
+      --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-glide: cubic-bezier(0.37, 1.95, 0.66, 0.56);
+      --ease-ring: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+      /* 浅色单色调 */
+      --bg-main: #f5f5f7;
+      --bg-orb-a: rgba(0, 0, 0, 0.04);
+      --bg-orb-b: rgba(0, 0, 0, 0.03);
+      --bg-orb-c: rgba(0, 0, 0, 0.025);
+
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-strong: rgba(255, 255, 255, 0.88);
+      --surface-inset: rgba(255, 255, 255, 0.06);
+
+      --text-main: #1d1d1f;
+      --text-sub: #6e6e73;
+      --text-muted: #aeaeb2;
+
+      --line: rgba(0, 0, 0, 0.08);
+      --line-strong: rgba(0, 0, 0, 0.14);
+
+      --border-gradient: linear-gradient(163deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.04) 48%, rgba(0, 0, 0, 0.10) 100%);
+      --border-gradient-hover: linear-gradient(163deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0.06) 48%, rgba(0, 0, 0, 0.16) 100%);
+      --glider-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(232, 232, 237, 0.88));
+      --progress-fill: linear-gradient(90deg, #aeaeb2, #636366);
+      --progress-fill-soft: linear-gradient(90deg, #d1d1d6, #aeaeb2);
+
+      --state-dot: #aeaeb2;
+      --state-pulse: rgba(0, 0, 0, 0.08);
+
+      --glass-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.06),
+        inset 1px 1px 3px rgba(255, 255, 255, 0.55),
+        inset -1px -1px 4px rgba(0, 0, 0, 0.04);
+      --glass-shadow-inset:
+        inset 1px 1px 4px rgba(255, 255, 255, 0.35),
+        inset -1px -1px 6px rgba(0, 0, 0, 0.06);
+
+      --progress-bg: rgba(0, 0, 0, 0.06);
+      --icon-bg: rgba(255, 255, 255, 0.65);
+      --icon-color: #48484a;
+      --button-bg: rgba(255, 255, 255, 0.55);
+      --button-active: rgba(255, 255, 255, 0.92);
+      --tab-track: rgba(0, 0, 0, 0.05);
+
+      width: 100%;
+      height: var(--bar-height);
+      padding: 12px;
+      position: relative;
+      font-family: var(--font-body);
+      color: var(--text-main);
+      background: var(--bg-main);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow: hidden;
+    }
+
+    .状态栏外壳[data-theme="dark"] {
+      --bg-main: #0a0a0c;
+      --bg-orb-a: rgba(255, 255, 255, 0.05);
+      --bg-orb-b: rgba(255, 255, 255, 0.035);
+      --bg-orb-c: rgba(255, 255, 255, 0.025);
+
+      --surface: rgba(28, 28, 30, 0.78);
+      --surface-strong: rgba(44, 44, 46, 0.88);
+      --surface-inset: rgba(255, 255, 255, 0.04);
+
+      --text-main: #f5f5f7;
+      --text-sub: #a1a1a6;
+      --text-muted: #636366;
+
+      --line: rgba(255, 255, 255, 0.10);
+      --line-strong: rgba(255, 255, 255, 0.16);
+
+      --border-gradient: linear-gradient(163deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.04) 48%, rgba(255, 255, 255, 0.14) 100%);
+      --border-gradient-hover: linear-gradient(163deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.06) 48%, rgba(255, 255, 255, 0.22) 100%);
+      --glider-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
+      --progress-fill: linear-gradient(90deg, #aeaeb2, #f5f5f7);
+      --progress-fill-soft: linear-gradient(90deg, #636366, #aeaeb2);
+
+      --state-dot: #636366;
+      --state-pulse: rgba(255, 255, 255, 0.10);
+
+      --glass-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.45),
+        inset 1px 1px 3px rgba(255, 255, 255, 0.08),
+        inset -1px -1px 5px rgba(0, 0, 0, 0.35);
+      --glass-shadow-inset:
+        inset 1px 1px 4px rgba(255, 255, 255, 0.06),
+        inset -1px -1px 6px rgba(0, 0, 0, 0.35);
+
+      --progress-bg: rgba(255, 255, 255, 0.08);
+      --icon-bg: rgba(255, 255, 255, 0.08);
+      --icon-color: #d1d1d6;
+      --button-bg: rgba(255, 255, 255, 0.06);
+      --button-active: rgba(255, 255, 255, 0.14);
+      --tab-track: rgba(255, 255, 255, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: var(--bar-height, 260px);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ── ambient layer ── */
+    .环境光层 {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .环境光层::before,
+    .环境光层::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      transition: background 420ms var(--ease-spring);
+    }
+
+    .环境光层::before {
+      width: 280px;
+      height: 280px;
+      top: -80px;
+      left: -40px;
+      background: radial-gradient(circle, var(--bg-orb-a), transparent 68%);
+      animation: ambientDriftA 28s var(--ease-spring) infinite alternate;
+      will-change: transform;
+    }
+
+    .环境光层::after {
+      width: 240px;
+      height: 240px;
+      top: -60px;
+      right: 10%;
+      background: radial-gradient(circle, var(--bg-orb-b), transparent 68%);
+      animation: ambientDriftB 32s var(--ease-spring) infinite alternate;
+      will-change: transform;
+    }
+
+    .环境光球 {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      bottom: -70px;
+      left: 45%;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--bg-orb-c), transparent 68%);
+      pointer-events: none;
+      animation: ambientDriftC 36s var(--ease-spring) infinite alternate;
+      will-change: transform;
+      transition: background 420ms var(--ease-spring);
+    }
+
+    @keyframes ambientDriftA {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(40px, 24px) scale(1.08); }
+    }
+
+    @keyframes ambientDriftB {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(-36px, 20px) scale(1.06); }
+    }
+
+    @keyframes ambientDriftC {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(-28px, -16px) scale(1.1); }
+    }
+
+    /* ── 渐变边框工具（参考 UI4） ── */
+    .渐变边框 {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .渐变边框::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: var(--border-gradient);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      transition: background 320ms var(--ease-spring);
+      z-index: 0;
+    }
+
+    .渐变边框:hover::before {
+      background: var(--border-gradient-hover);
+    }
+
+    /* ── glass shell ── */
+    .状态栏主体 {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      grid-template-columns: minmax(240px, 0.9fr) minmax(420px, 2.1fr);
+      gap: 12px;
+      padding: 12px;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(20px) saturate(1.2);
+      -webkit-backdrop-filter: blur(20px) saturate(1.2);
+      overflow: hidden;
+    }
+
+    .状态栏主体::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(120deg, rgba(255,255,255,0.12), transparent 32%, transparent 68%, rgba(255,255,255,0.04));
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .世界面板,
+    .角色面板 {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+      min-height: 0;
+      border-radius: var(--radius-lg);
+      background: var(--surface-strong);
+      box-shadow: var(--glass-shadow-inset);
+      backdrop-filter: blur(14px) saturate(1.15);
+      -webkit-backdrop-filter: blur(14px) saturate(1.15);
+      overflow: hidden;
+    }
+
+    /* ── world panel ── */
+    .世界面板 {
+      padding: 12px;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .世界顶栏 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 38px;
+      align-items: start;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .世界摘要 {
+      min-width: 0;
+    }
+
+    .地点Hero {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(17px, 2.2vw, 22px);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .世界副信息 {
+      margin-top: 5px;
+      font-size: 11px;
+      line-height: 1.2;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 主题按钮：参考 UI5 双环切换 */
+    .主题按钮 {
+      position: relative;
+      z-index: 2;
+      width: 38px;
+      height: 34px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      color: var(--text-main);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      overflow: hidden;
+      outline: none;
+      transition: transform 260ms var(--ease-spring);
+    }
+
+    .主题按钮环,
+    .主题按钮环::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      inset: 5px;
+      pointer-events: none;
+    }
+
+    .主题按钮环 {
+      border: 2px solid var(--text-muted);
+      transition:
+        opacity 400ms var(--ease-ring),
+        transform 500ms var(--ease-ring);
+    }
+
+    .主题按钮环::after {
+      inset: 0;
+      border: 2px solid var(--text-main);
+      transform: scale(1.28);
+      opacity: 0;
+      transition:
+        opacity 400ms var(--ease-ring),
+        transform 500ms var(--ease-ring);
+    }
+
+    .主题按钮:hover .主题按钮环,
+    .主题按钮:focus-visible .主题按钮环 {
+      opacity: 0;
+      transform: scale(0.78);
+    }
+
+    .主题按钮:hover .主题按钮环::after,
+    .主题按钮:focus-visible .主题按钮环::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .主题按钮:active {
+      transform: scale(0.96);
+    }
+
+    .主题图标组 {
+      position: relative;
+      z-index: 1;
+      width: 16px;
+      height: 16px;
+    }
+
+    .主题图标 {
+      position: absolute;
+      inset: 0;
+      width: 18px;
+      height: 18px;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: opacity 280ms var(--ease-spring), transform 280ms var(--ease-spring);
+    }
+
+    .主题图标--太阳 {
+      opacity: 0;
+      transform: rotate(-30deg) scale(0.85);
+    }
+
+    .状态栏外壳[data-theme="light"] .主题图标--月亮 {
+      opacity: 0;
+      transform: rotate(30deg) scale(0.85);
+    }
+
+    .状态栏外壳[data-theme="light"] .主题图标--太阳 {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+
+    .状态栏外壳[data-theme="dark"] .主题图标--月亮 {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+
+    .图标 {
+      width: 24px;
+      height: 24px;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: 0 0 auto;
+      color: var(--icon-color);
+    }
+
+    .细图标 {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.92;
+      flex: 0 0 auto;
+      color: var(--icon-color);
+      transition: transform 240ms var(--ease-spring), stroke 200ms ease, opacity 200ms ease;
+    }
+
+    .进度卡:hover .细图标 {
+      stroke: var(--text-main);
+      opacity: 1;
+    }
+
+    .世界信息网格 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 8px;
+      min-height: 0;
+    }
+
+    .信息磁贴 {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+      padding: 9px;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      overflow: hidden;
+      transition:
+        transform 260ms var(--ease-spring),
+        background 260ms var(--ease-spring),
+        box-shadow 260ms var(--ease-spring);
+    }
+
+    .信息磁贴:hover {
+      transform: translateY(-2px) scale(0.99);
+      background: var(--button-active);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .信息磁贴:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .地点磁贴 {
+      grid-column: 1 / -1;
+      grid-template-columns: 32px minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .信息图标框 {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--icon-bg);
+      color: var(--icon-color);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+      transition: transform 260ms var(--ease-spring);
+    }
+
+    .信息磁贴:hover .信息图标框 {
+      transform: scale(1.06);
+    }
+
+    .信息文本 {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .信息标签 {
+      font-size: 10px;
+      line-height: 1;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .信息值 {
+      font-size: 12px;
+      line-height: 1.16;
+      color: var(--text-main);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+
+    .地点值 {
+      white-space: normal;
+      line-height: 1.28;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    /* ── character panel ── */
+    .角色面板 {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+
+    .角色标签栏 {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* 分段控制器：参考 UI2 玻璃滑块 */
+    .分段控制器 {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      display: flex;
+      gap: 2px;
+      padding: 3px;
+      border-radius: 1rem;
+      background: var(--tab-track);
+      box-shadow: var(--glass-shadow-inset);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .分段控制器::-webkit-scrollbar {
+      display: none;
+    }
+
+    .分段滑块 {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      left: 0;
+      width: 0;
+      border-radius: calc(1rem - 3px);
+      background: var(--glider-gradient);
+      box-shadow:
+        0 0 14px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      transition:
+        transform 0.5s var(--ease-glide),
+        width 0.5s var(--ease-glide),
+        opacity 240ms var(--ease-spring);
+    }
+
+    .状态栏外壳[data-theme="dark"] .分段滑块 {
+      box-shadow:
+        0 0 16px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    }
+
+    .角色标签按钮 {
+      position: relative;
+      z-index: 2;
+      flex: 0 0 auto;
+      max-width: 128px;
+      min-width: 72px;
+      height: 30px;
+      padding: 0 14px;
+      border: none;
+      border-radius: calc(1rem - 3px);
+      background: transparent;
+      color: var(--text-sub);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 240ms var(--ease-spring);
+    }
+
+    .角色标签按钮:hover {
+      color: var(--text-main);
+    }
+
+    .角色标签按钮[aria-selected="true"] {
+      color: var(--text-main);
+    }
+
+    /* 感染胶囊：参考 UI1 脉冲胶囊（单色调） */
+    .感染胶囊 {
+      flex: 0 0 auto;
+      max-width: 112px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 12px;
+      border-radius: var(--radius-pill);
+      border: none;
+      background: var(--button-bg);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .感染胶囊文本 {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .感染胶囊[data-state="感染中"] {
+      --border-gradient: linear-gradient(163deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.06) 100%);
+    }
+
+    .状态栏外壳[data-theme="dark"] .感染胶囊[data-state="感染中"] {
+      --border-gradient: linear-gradient(163deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.06) 100%);
+    }
+
+    .感染胶囊[data-state="已感染"] {
+      --border-gradient: linear-gradient(163deg, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.10) 100%);
+    }
+
+    .状态栏外壳[data-theme="dark"] .感染胶囊[data-state="已感染"] {
+      --border-gradient: linear-gradient(163deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.10) 100%);
+    }
+
+    .感染胶囊点 {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: var(--state-dot);
+      flex: 0 0 auto;
+      animation: 状态脉冲 2.8s var(--ease-spring) infinite;
+    }
+
+    .感染胶囊[data-state="感染中"] .感染胶囊点 {
+      background: var(--text-sub);
+    }
+
+    .感染胶囊[data-state="已感染"] .感染胶囊点 {
+      background: var(--text-main);
+      animation-duration: 2s;
+    }
+
+    @keyframes 状态脉冲 {
+      0%, 100% {
+        box-shadow: 0 0 0 0 var(--state-pulse);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 0 6px transparent;
+        transform: scale(1.08);
+      }
+    }
+
+    .角色内容区 {
+      min-height: 0;
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    .角色卡片 {
+      height: 100%;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(210px, 0.82fr) minmax(320px, 1.18fr);
+      gap: 12px;
+      animation: fadeSlideIn 280ms var(--ease-spring) both;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .角色基础区,
+    .角色数值区 {
+      min-width: 0;
+      min-height: 0;
+      border-radius: var(--radius-lg);
+      background: var(--surface-inset);
+      box-shadow: var(--glass-shadow-inset);
+      padding: 11px;
+      overflow: hidden;
+    }
+
+    .角色姓名行 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 9px;
+      min-width: 0;
+    }
+
+    .角色姓名 {
+      min-width: 0;
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .姿态徽章 {
+      flex: 0 0 auto;
+      max-width: 110px;
+      height: 27px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 9px;
+      border-radius: var(--radius-pill);
+      color: var(--text-sub);
+      background: var(--button-bg);
+      border: 1px solid var(--line);
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .衣物网格 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+      min-height: 0;
+    }
+
+    .衣物磁贴 {
+      min-width: 0;
+      min-height: 66px;
+      padding: 8px;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      transition:
+        transform 240ms var(--ease-spring),
+        background 240ms var(--ease-spring),
+        box-shadow 240ms var(--ease-spring);
+    }
+
+    .衣物磁贴:hover {
+      transform: translateY(-2px) scale(0.99);
+      background: var(--button-active);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .衣物磁贴:hover .细图标 {
+      transform: scale(1.08);
+      stroke: var(--text-main);
+    }
+
+    .衣物标题 {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 6px;
+      font-size: 10px;
+      line-height: 1;
+      color: var(--text-muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .衣物值 {
+      min-height: 30px;
+      font-size: 12px;
+      line-height: 1.32;
+      color: var(--text-main);
+      font-weight: 400;
+      word-break: break-word;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .数值标题行 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 9px;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .数值标题 {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .状态摘要 {
+      min-width: 0;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .进度组 {
+      display: grid;
+      gap: 9px;
+    }
+
+    .进度卡 {
+      min-width: 0;
+      border-radius: var(--radius-md);
+      background: var(--surface-inset);
+      padding: 9px;
+      transition:
+        transform 260ms var(--ease-spring),
+        background 260ms var(--ease-spring),
+        box-shadow 260ms var(--ease-spring);
+    }
+
+    .进度卡:hover {
+      transform: translateY(-2px);
+      background: var(--button-bg);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    }
+
+    .进度头 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 7px;
+      min-width: 0;
+    }
+
+    .进度名称 {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .进度数值 {
+      flex: 0 0 auto;
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+      color: var(--text-sub);
+      font-weight: 600;
+    }
+
+    .进度轨道 {
+      position: relative;
+      width: 100%;
+      height: 10px;
+      border-radius: var(--radius-pill);
+      background: var(--progress-bg);
+      overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.10);
+    }
+
+    .进度填充 {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0%;
+      border-radius: inherit;
+      transform-origin: left center;
+      transition: width 520ms var(--ease-spring);
+      overflow: hidden;
+    }
+
+    .进度填充::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent);
+      transform: translateX(-100%);
+      animation: shimmer 2.6s var(--ease-spring) infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-110%); }
+      54% { transform: translateX(120%); }
+      100% { transform: translateX(120%); }
+    }
+
+    .感染填充[data-level="safe"] {
+      background: var(--progress-fill-soft);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .感染填充[data-level="warning"] {
+      background: var(--progress-fill);
+      box-shadow: 0 0 14px rgba(0, 0, 0, 0.10);
+    }
+
+    .感染填充[data-level="danger"] {
+      background: linear-gradient(90deg, #48484a, #1d1d1f);
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.18);
+    }
+
+    .状态栏外壳[data-theme="dark"] .感染填充[data-level="danger"] {
+      background: linear-gradient(90deg, #aeaeb2, #f5f5f7);
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.08);
+    }
+
+    .性欲填充 {
+      background: var(--progress-fill-soft);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .状态栏外壳[data-theme="dark"] .性欲填充 {
+      background: var(--progress-fill);
+    }
+
+    .空状态 {
+      height: 100%;
+      min-height: 110px;
+      display: grid;
+      place-items: center;
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius-lg);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      background: var(--surface-inset);
+      text-align: center;
+      padding: 16px;
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 760px) {
+      .状态栏外壳 {
+        --bar-height: 300px;
+      }
+
+      .状态栏主体 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .世界面板 {
+        padding: 10px;
+        gap: 7px;
+      }
+
+      .世界信息网格 {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 6px;
+      }
+
+      .信息磁贴 {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 7px;
+      }
+
+      .信息图标框 {
+        display: none;
+      }
+
+      .地点磁贴 {
+        grid-column: 1 / -1;
+        grid-template-columns: minmax(0, 1fr);
+        align-items: center;
+      }
+
+      .地点值 {
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .角色卡片 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 8px;
+      }
+
+      .衣物磁贴 {
+        min-height: 58px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .状态栏外壳 {
+        padding: 8px;
+      }
+
+      .状态栏主体 {
+        border-radius: 22px;
+      }
+
+      .感染胶囊 {
+        max-width: 96px;
+        padding: 0 9px;
+      }
+
+      .衣物值,
+      .信息值,
+      .进度名称,
+      .状态摘要 {
+        font-size: 11px;
+      }
+    }
+
+    /* ── a11y: reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .环境光层::before,
+      .环境光层::after,
+      .环境光球 {
+        animation: none !important;
+      }
+
+      .进度填充::after {
+        animation: none !important;
+      }
+
+      .感染胶囊点 {
+        animation: none !important;
+      }
+
+      .角色卡片 {
+        animation: none !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 1ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="状态栏外壳" data-theme="dark" aria-label="感染状态栏">
+    <h1 class="sr-only">感染状态栏</h1>
+
+    <!-- 宏 JSON 兜底：部分环境不在 script 内展开宏，但会展开正文/隐藏节点 -->
+    <script type="application/json" class="infection-bar-stat-fallback" aria-hidden="true">{{format_message_variable::stat_data}}</script>
+    <span class="sr-only infection-bar-stat-inline" aria-hidden="true">{{format_message_variable::stat_data}}</span>
+    <!-- 角色专用兜底：API 常返回空 角色:{} 仍 truthy，须单独宏 + DOM 解析（参考 LYsta NPC关系） -->
+    <script type="application/json" class="infection-bar-characters-fallback" aria-hidden="true">{{format_message_variable::stat_data.角色}}</script>
+    <span class="sr-only infection-bar-characters-inline" aria-hidden="true">{{format_message_variable::stat_data.角色}}</span>
+
+    <div class="环境光层" aria-hidden="true">
+      <div class="环境光球"></div>
+    </div>
+
+    <section class="状态栏主体 渐变边框" aria-label="状态栏主体">
+      <aside class="世界面板 渐变边框" aria-label="环境态势">
+        <div class="世界顶栏">
+          <div class="世界摘要">
+            <h2 class="地点Hero" id="infection-bar-world-location-hero">{{format_message_variable::stat_data.世界.地点}}</h2>
+            <div class="世界副信息" id="infection-bar-world-subtitle">{{format_message_variable::stat_data.世界.日期与时间}} · {{format_message_variable::stat_data.世界.天气}}</div>
+          </div>
+
+          <button class="主题按钮" id="infection-bar-theme-toggle" type="button" aria-label="切换日夜主题" title="切换日夜主题">
+            <span class="主题按钮环" aria-hidden="true"></span>
+            <span class="主题图标组" aria-hidden="true">
+              <svg class="主题图标 主题图标--月亮" viewBox="0 0 24 24">
+                <path d="M21 13.2A8.2 8.2 0 0 1 10.8 3a7.6 7.6 0 1 0 10.2 10.2Z"/>
+              </svg>
+              <svg class="主题图标 主题图标--太阳" viewBox="0 0 24 24">
+                <path d="M12 3v2.2M12 18.8V21M4.22 4.22l1.56 1.56M18.22 18.22l1.56 1.56M3 12h2.2M18.8 12H21M4.22 19.78l1.56-1.56M18.22 5.78l1.56-1.56"/>
+                <circle cx="12" cy="12" r="4.2"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="世界信息网格">
+          <article class="信息磁贴 渐变边框" aria-label="日期与时间">
+            <div class="信息图标框">
+              <svg class="图标" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 3v3M17 3v3M4.5 8.5h15M6 5h12a2 2 0 0 1 2 2v13H4V7a2 2 0 0 1 2-2Z"/>
+                <path d="M8 12h3M8 16h6"/>
+              </svg>
+            </div>
+            <div class="信息文本">
+              <div class="信息标签">日期与时间</div>
+              <div class="信息值" id="infection-bar-world-datetime">{{format_message_variable::stat_data.世界.日期与时间}}</div>
+            </div>
+          </article>
+
+          <article class="信息磁贴 渐变边框" aria-label="天气">
+            <div class="信息图标框">
+              <svg class="图标" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.5 18h10a4 4 0 0 0 .4-7.98A6 6 0 0 0 6.2 8.8A4.6 4.6 0 0 0 7.5 18Z"/>
+                <path d="M9 21h6"/>
+              </svg>
+            </div>
+            <div class="信息文本">
+              <div class="信息标签">天气</div>
+              <div class="信息值" id="infection-bar-world-weather">{{format_message_variable::stat_data.世界.天气}}</div>
+            </div>
+          </article>
+
+          <article class="信息磁贴 地点磁贴 渐变边框" aria-label="地点详情">
+            <div class="信息图标框">
+              <svg class="图标" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s7-5.1 7-11.2A7 7 0 0 0 5 9.8C5 15.9 12 21 12 21Z"/>
+                <circle cx="12" cy="9.8" r="2.3"/>
+              </svg>
+            </div>
+            <div class="信息文本">
+              <div class="信息标签">地点详情</div>
+              <div class="信息值 地点值" id="infection-bar-world-location">{{format_message_variable::stat_data.世界.地点}}</div>
+            </div>
+          </article>
+        </div>
+      </aside>
+
+      <section class="角色面板 渐变边框" aria-label="角色态势">
+        <header class="角色标签栏">
+          <nav class="分段控制器" id="infection-bar-character-tabs" role="tablist" aria-label="角色切换">
+            <div class="分段滑块" aria-hidden="true"></div>
+          </nav>
+
+          <div class="感染胶囊 渐变边框" id="infection-bar-infection-badge" data-state="未感染" aria-label="感染状态">
+            <span class="感染胶囊点" aria-hidden="true"></span>
+            <span class="感染胶囊文本" id="infection-bar-infection-text">未感染</span>
+          </div>
+        </header>
+
+        <div class="角色内容区" id="infection-bar-character-content">
+          <div class="空状态">等待变量数据</div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      if (window.__infectionBarRuntimeActive) {
+        window.__initInfectionStatusBar?.();
+        return;
+      }
+      window.__infectionBarRuntimeActive = true;
+
+      /* ── core/dom ── */
+      function 定位外壳() {
+        const script = document.currentScript;
+        if (script) {
+          const prev = script.previousElementSibling;
+          if (prev?.classList?.contains("状态栏外壳")) return prev;
+          const scoped = script.parentElement?.querySelector(":scope > .状态栏外壳");
+          if (scoped) return scoped;
+        }
+        return document.querySelector(".状态栏外壳");
+      }
+
+      const 外壳 = 定位外壳();
+
+      const 状态栏 = {
+        当前角色键: "",
+        上次数据签名: "",
+        主题键: "mvu-infection-status-theme"
+      };
+
+      const 节点 = {
+        外壳,
+        地点Hero: 外壳?.querySelector("#infection-bar-world-location-hero") ?? document.getElementById("infection-bar-world-location-hero"),
+        世界副信息: 外壳?.querySelector("#infection-bar-world-subtitle") ?? document.getElementById("infection-bar-world-subtitle"),
+        世界时间: 外壳?.querySelector("#infection-bar-world-datetime") ?? document.getElementById("infection-bar-world-datetime"),
+        世界天气: 外壳?.querySelector("#infection-bar-world-weather") ?? document.getElementById("infection-bar-world-weather"),
+        世界地点: 外壳?.querySelector("#infection-bar-world-location") ?? document.getElementById("infection-bar-world-location"),
+        角色标签: 外壳?.querySelector("#infection-bar-character-tabs") ?? document.getElementById("infection-bar-character-tabs"),
+        角色内容: 外壳?.querySelector("#infection-bar-character-content") ?? document.getElementById("infection-bar-character-content"),
+        感染徽章: 外壳?.querySelector("#infection-bar-infection-badge") ?? document.getElementById("infection-bar-infection-badge"),
+        感染文本: 外壳?.querySelector("#infection-bar-infection-text") ?? document.getElementById("infection-bar-infection-text"),
+        主题按钮: 外壳?.querySelector("#infection-bar-theme-toggle") ?? document.getElementById("infection-bar-theme-toggle")
+      };
+
+      const 图标 = {
+        上身: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l4 3 4-3 4 3-2 5-2-1v9H8v-9l-2 1-2-5 4-3Z"/></svg>',
+        下身: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4h6l1 16h-4l-1-9-1 9H6L9 4Z"/></svg>',
+        鞋袜: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h6v7l4 2h4a2 2 0 0 1 2 2v2H4V6h1Z"/></svg>',
+        感染: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M7 6l10 12M17 6L7 18"/><circle cx="12" cy="12" r="8"/></svg>',
+        性欲: '<svg class="细图标" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.6-7-10.5A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 7 3.5C19 16.4 12 21 12 21Z"/></svg>'
+      };
+
+      function 安全读取存储(key) {
+        try {
+          return window.localStorage.getItem(key);
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function 安全写入存储(key, value) {
+        try {
+          window.localStorage.setItem(key, value);
+        } catch (_) {}
+      }
+
+      function 安全文本(value, fallback = "未记录") {
+        const text = String(value ?? "").trim();
+        return text.length > 0 ? text : fallback;
+      }
+
+      function 转义HTML(value) {
+        return 安全文本(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function 安全ID(value) {
+        return String(value ?? "unknown")
+          .replace(/[^\u4e00-\u9fa5a-zA-Z0-9_-]/g, "-")
+          .replace(/-+/g, "-")
+          .slice(0, 42);
+      }
+
+      function 限制数值(value) {
+        const num = Number(value);
+        if (!Number.isFinite(num)) return 0;
+        return Math.max(0, Math.min(100, Math.round(num)));
+      }
+
+      function 感染等级(value) {
+        const v = 限制数值(value);
+        if (v <= 30) return "safe";
+        if (v <= 70) return "warning";
+        return "danger";
+      }
+
+      function 解包MVU值(value) {
+        if (Array.isArray(value) && value.length > 0) return value[0];
+        return value;
+      }
+
+      function 解包为对象(value) {
+        const v = 解包MVU值(value);
+        if (v && typeof v === "object" && !Array.isArray(v)) return v;
+        return null;
+      }
+
+      function 是元数据键(key) {
+        return key.startsWith("$") || key.startsWith("__");
+      }
+
+      /** 解包 MVU 对象各字段（跳过 $meta 等键） */
+      function 解包对象字段(obj) {
+        const source = 解包为对象(obj);
+        if (!source) return {};
+        const out = {};
+        for (const [key, val] of Object.entries(source)) {
+          if (是元数据键(key)) continue;
+          out[key] = 解包MVU值(val);
+        }
+        return out;
+      }
+
+));
+              if (fm) {
+                rec[field] = fm[1] ?? "";
+                matched = true;
+                break;
+              }
+            }
+            if (!matched && rec.姿态 != null && String(rec.姿态).length > 0) {
+              rec.姿态 = `${rec.姿态}\n${L}`;
+            } else if (!matched && Object.keys(rec).length === 0) {
+              rec.姓名 = key;
+            }
+            i++;
+          }
+
+          if (!rec.姓名) rec.姓名 = key;
+          out[key] = rec;
+        }
+
+        return 角色表有内容(out) ? out : null;
+      }
+
+      function 解析角色fallback文本(text) {
+        const raw = String(text ?? "").trim();
+        if (!raw || raw === "{}" || raw === "undefined" || raw === "null") return null;
+        if (像宏文本(raw)) return null;
+
+        try {
+          const parsed = JSON.parse(raw);
+          const table = 提取角色表(parsed);
+          if (角色表有内容(table)) return table;
+        } catch (_) {}
+
+        const start = raw.indexOf("{");
+        const end = raw.lastIndexOf("}");
+        if (start >= 0 && end > start) {
+          try {
+            const parsed = JSON.parse(raw.slice(start, end + 1));
+            const table = 提取角色表(parsed);
+            if (角色表有内容(table)) return table;
+          } catch (_) {}
+        }
+
+        return 解析角色说明文(raw);
+      }
+
+      function 从变量blob读取角色(blob) {
+        if (!blob || typeof blob !== "object") return null;
+
+        for (const path of [
+          "stat_data",
+          "data.stat_data",
+          "message_data.stat_data",
+          "variables.stat_data",
+        ]) {
+          const stat = getPath(blob, path);
+          if (stat && typeof stat === "object" && !Array.isArray(stat)) {
+            const table = 从stat对象收集角色(stat);
+            if (角色表有内容(table)) return table;
+          }
+        }
+
+        for (const path of [
+          "stat_data.角色",
+          "角色",
+          "data.stat_data.角色",
+          "message_data.stat_data.角色",
+          "variables.stat_data.角色",
+        ]) {
+          const table = 提取角色表(getPath(blob, path));
+          if (角色表有内容(table)) return table;
+        }
+
+        return null;
+      }
+
+      function 从API读取角色(apiWin, messageId) {
+        try {
+          if (apiWin?.Mvu && typeof apiWin.Mvu.getMvuData === "function") {
+            const data = apiWin.Mvu.getMvuData({ type: "message", message_id: messageId });
+            const table = 从变量blob读取角色(data);
+            if (角色表有内容(table)) return table;
+          }
+        } catch (error) {
+          console.warn("[状态栏] Mvu 读取角色失败:", messageId, error);
+        }
+
+        try {
+          if (typeof apiWin?.getVariables === "function") {
+            const vars = apiWin.getVariables({ type: "message", message_id: messageId });
+            const table = 从变量blob读取角色(vars);
+            if (角色表有内容(table)) return table;
+          }
+        } catch (error) {
+          console.warn("[状态栏] getVariables 读取角色失败:", messageId, error);
+        }
+
+        return null;
+      }
+
+      function 收集角色宏兜底节点(root) {
+        const scope = root ?? 节点.外壳;
+        if (!scope) return [];
+        return [
+          scope.querySelector(".infection-bar-characters-parse"),
+          scope.querySelector(".infection-bar-characters-inline"),
+          scope.querySelector(".infection-bar-characters-pre"),
+          scope.querySelector(".infection-bar-characters-fallback"),
+        ].filter(Boolean);
+      }
+
+      /** 统一读取角色表：API → stat 合并 → DOM 宏 */
+      function 读取当前角色表(root, messageId, stat) {
+        const rootEl = root ?? 节点.外壳;
+        const mid = messageId ?? 解析消息ID(rootEl);
+
+        let table = 从stat对象收集角色(stat);
+        if (角色表有内容(table)) return table;
+
+        table = 读取角色表(rootEl, mid);
+        if (角色表有内容(table)) return table;
+
+        table = 从DOM读取角色兜底(rootEl);
+        if (角色表有内容(table)) return table;
+
+        return {};
+      }
+
+      function 从DOM读取角色兜底(root) {
+        const scope = root ?? 节点.外壳;
+        if (!scope) return null;
+
+        const fromStructured = 从结构化卡读取角色(scope);
+        if (角色表有内容(fromStructured)) return fromStructured;
+
+        for (const el of 收集角色宏兜底节点(scope)) {
+          const table = 解析角色fallback文本(归一化宏节点文本(el));
+          if (角色表有内容(table)) return table;
+        }
+
+        const statEl = scope.querySelector(".infection-bar-stat-inline");
+        if (statEl) {
+          const statText = 归一化宏节点文本(statEl);
+          const fromStat = 从stat对象收集角色(解析statJSON文本(statText) ?? 解析stat说明文(statText));
+          if (角色表有内容(fromStat)) return fromStat;
+        }
+
+        return null;
+      }
+
+      /** 独立读取角色表：API 空 {} 不算命中，须回退 DOM 宏（参考 LYsta getNpcRecord） */
+      function 读取角色表(root, messageId) {
+        const apiWin = 获取API窗口();
+        const rootEl = root ?? 节点.外壳;
+        const mid = messageId ?? 解析消息ID(rootEl);
+
+        for (const id of 收集读取候选楼层(mid)) {
+          const fromApi = 从API读取角色(apiWin, id);
+          if (角色表有内容(fromApi)) return fromApi;
+        }
+
+        for (const w of 收集候选窗口()) {
+          try {
+            if (typeof w?.getVariables !== "function") continue;
+            const fromChat = 从变量blob读取角色(w.getVariables({ type: "chat" }));
+            if (角色表有内容(fromChat)) return fromChat;
+          } catch (_) {}
+        }
+
+        for (const w of 收集候选窗口()) {
+          try {
+            if (typeof w?.getAllVariables !== "function") continue;
+            const fromAll = 从变量blob读取角色(w.getAllVariables());
+            if (角色表有内容(fromAll)) return fromAll;
+          } catch (_) {}
+        }
+
+        const domTable = 从DOM读取角色兜底(rootEl);
+        if (角色表有内容(domTable)) return domTable;
+
+        return {};
+      }
+
+      /** 合并多楼层 stat_data：先写旧层，后写新层；空 角色 不覆盖已有角色 */
+      function 深合并stat(目标, 来源) {
+        if (!来源 || typeof 来源 !== "object") return 目标 ?? {};
+
+        const out = { ...(目标 ?? {}) };
+
+        const 世界 = 解包为对象(来源.世界);
+        if (世界) {
+          out.世界 = { ...(out.世界 ?? {}), ...解包对象字段(世界) };
+        }
+
+        const 新角色 = 提取角色表(来源.角色);
+        if (角色表有内容(新角色)) {
+          out.角色 = { ...(out.角色 ?? {}), ...新角色 };
+        }
+
+        return out;
+      }
+
+      /* ── core/theme ── */
+      function 当前主题() {
+        return 节点.外壳?.dataset.theme === "light" ? "light" : "dark";
+      }
+
+      function 设置主题(theme) {
+        设置实例主题(节点.外壳, theme);
+      }
+
+      function 初始化主题() {
+        初始化实例主题(节点.外壳);
+      }
+
+      /* ── core/mvu ── */
+      function 收集候选窗口() {
+        const out = [];
+        const add = (w) => {
+          if (w && !out.includes(w)) out.push(w);
+        };
+        add(window);
+        try { add(window.parent); } catch (_) {}
+        try { add(window.top); } catch (_) {}
+        return out;
+      }
+
+      function 获取API窗口() {
+        for (const w of 收集候选窗口()) {
+          try {
+            if (w?.Mvu && typeof w.Mvu.getMvuData === "function") return w;
+          } catch (_) {}
+        }
+
+        for (const w of 收集候选窗口()) {
+          try {
+            if (typeof w?.getAllVariables === "function") return w;
+          } catch (_) {}
+        }
+
+        for (const w of 收集候选窗口()) {
+          try {
+            if (typeof w?.getVariables === "function") return w;
+          } catch (_) {}
+        }
+
+        return window;
+      }
+
+      function 遍历候选窗口执行(回调) {
+        const 结果 = [];
+        for (const w of 收集候选窗口()) {
+          try {
+            const piece = 回调(w);
+            if (piece) 结果.push(piece);
+          } catch (_) {}
+        }
+        return 结果;
+      }
+
+      function 解析mes元素ID(mes) {
+        if (!mes) return null;
+        const raw =
+          mes.getAttribute("mesid") ||
+          mes.getAttribute("mesId") ||
+          mes.getAttribute("data-mes-id");
+        if (raw == null || String(raw) === "") return null;
+        const num = parseInt(String(raw), 10);
+        return Number.isNaN(num) ? null : num;
+      }
+
+      function 解析消息ID(root) {
+        try {
+          if (root?.closest) {
+            const fromRoot = 解析mes元素ID(root.closest(".mes"));
+            if (fromRoot !== null) return fromRoot;
+          }
+        } catch (_) {}
+
+        try {
+          let el = root;
+          for (let depth = 0; depth < 32 && el; depth++, el = el.parentElement) {
+            if (!el?.getAttribute) continue;
+            const raw =
+              el.getAttribute("mesid") ||
+              el.getAttribute("mesId") ||
+              el.getAttribute("data-mes-id") ||
+              el.getAttribute("data-message-id") ||
+              (el.dataset && (el.dataset.mesId || el.dataset.messageId));
+            if (raw != null && String(raw) !== "") {
+              const num = parseInt(String(raw), 10);
+              if (!Number.isNaN(num)) return num;
+            }
+          }
+        } catch (_) {}
+
+        for (const w of 收集候选窗口()) {
+          try {
+            if (typeof w?.getCurrentMessageId === "function") {
+              const id = w.getCurrentMessageId();
+              if (id !== undefined && id !== null && String(id) !== "") {
+                const num = Number(id);
+                if (!Number.isNaN(num)) return num;
+              }
+            }
+          } catch (_) {}
+        }
+
+        try {
+          if (window.frameElement) {
+            const fromFrame = 解析mes元素ID(window.frameElement.closest(".mes"));
+            if (fromFrame !== null) return fromFrame;
+          }
+        } catch (_) {}
+
+        for (const w of 收集候选窗口()) {
+          if (w === window) continue;
+          try {
+            if (!w?.document) continue;
+            const iframes = w.document.querySelectorAll("iframe");
+            for (const iframe of iframes) {
+              try {
+                if (iframe.contentWindow !== window) continue;
+                const fromParent = 解析mes元素ID(iframe.closest(".mes"));
+                if (fromParent !== null) return fromParent;
+              } catch (_) {}
+            }
+          } catch (_) {}
+        }
+
+        return null;
+      }
+
+      function 变量中有内容(stat) {
+        return !!(stat && typeof stat === "object" && !Array.isArray(stat) && Object.keys(stat).length > 0);
+      }
+
+      function 提取stat_data(raw) {
+        if (!raw || typeof raw !== "object") return null;
+        const stat = 解包为对象(raw.stat_data ?? raw);
+        return 变量中有内容(stat) ? stat : null;
+      }
+
+      function 从楼层读取(apiWin, messageId) {
+        try {
+          if (apiWin?.Mvu && typeof apiWin.Mvu.getMvuData === "function") {
+            const data = apiWin.Mvu.getMvuData({ type: "message", message_id: messageId });
+            const stat = 提取stat_data(data);
+            if (stat) return stat;
+          }
+        } catch (error) {
+          console.warn("[状态栏] Mvu.getMvuData 失败:", messageId, error);
+        }
+
+        try {
+          if (typeof apiWin?.getVariables === "function") {
+            const vars = apiWin.getVariables({ type: "message", message_id: messageId });
+            const stat = 提取stat_data(vars);
+            if (stat) return stat;
+          }
+        } catch (error) {
+          console.warn("[状态栏] getVariables 失败:", messageId, error);
+        }
+
+        return null;
+      }
+
+      function 收集读取候选楼层(messageId) {
+        const ids = [];
+        const seen = new Set();
+
+        const push = (value) => {
+          if (value === undefined || value === null || value === "") return;
+          const key = String(value);
+          if (seen.has(key)) return;
+          seen.add(key);
+          ids.push(value);
+        };
+
+        // 0 层 initvar 优先参与合并（基底数据）
+        push(0);
+
+        push(messageId);
+        push("latest");
+        push(-1);
+
+        const apiWin = 获取API窗口();
+        try {
+          if (typeof apiWin.getLastMessageId === "function") {
+            push(apiWin.getLastMessageId());
+          }
+        } catch (_) {}
+
+        try {
+          if (typeof apiWin.getChatMessages === "function") {
+            const assistants = apiWin.getChatMessages(-1, { role: "assistant" });
+            if (assistants?.length) {
+              for (const msg of assistants) {
+                push(msg.message_id);
+              }
+            }
+          }
+        } catch (_) {}
+
+        return ids;
+      }
+
+      function 收集全部stat片段(apiWin, messageId, root) {
+        const 片段 = [];
+
+        for (const stat of 遍历候选窗口执行((w) => {
+          if (typeof w?.getAllVariables !== "function") return null;
+          return 提取stat_data(w.getAllVariables());
+        })) {
+          片段.push(stat);
+        }
+
+        for (const mid of 收集读取候选楼层(messageId)) {
+          const stat = 从楼层读取(apiWin, mid);
+          if (stat) 片段.push(stat);
+        }
+
+        if (messageId != null && typeof apiWin.getChatMessages === "function") {
+          try {
+            const currentMsgs = apiWin.getChatMessages(messageId, { include_swipes: true });
+            for (const msg of currentMsgs ?? []) {
+              const stat = 提取stat_data(msg?.data);
+              if (stat) 片段.push(stat);
+            }
+          } catch (error) {
+            console.warn("[状态栏] 读取当前楼层 chat data 失败:", messageId, error);
+          }
+        }
+
+        for (const stat of 遍历候选窗口执行((w) => {
+          if (typeof w?.getVariables !== "function") return null;
+          return 提取stat_data(w.getVariables({ type: "message", message_id: 0 }));
+        })) {
+          片段.push(stat);
+        }
+
+        try {
+          if (typeof apiWin.getChatMessages === "function") {
+            const assistants = apiWin.getChatMessages(-1, { role: "assistant" });
+            for (const msg of assistants ?? []) {
+              const stat = 提取stat_data(msg?.data);
+              if (stat) 片段.push(stat);
+            }
+          }
+        } catch (error) {
+          console.warn("[状态栏] 读取 assistant data 失败:", error);
+        }
+
+        for (const stat of 遍历候选窗口执行((w) => {
+          if (typeof w?.getVariables !== "function") return null;
+          return 提取stat_data(w.getVariables({ type: "chat" }));
+        })) {
+          片段.push(stat);
+        }
+
+        const domStat = 从DOM读取stat兜底(root);
+        if (domStat) 片段.push(domStat);
+
+        const domChars = 从DOM读取角色兜底(root);
+        if (domChars) 片段.push({ 角色: domChars });
+
+        return 片段;
+      }
+
+      function 读取变量数据() {
+        const apiWin = 获取API窗口();
+        const root = 节点.外壳;
+        const messageId = 解析消息ID(root);
+        const 片段 = 收集全部stat片段(apiWin, messageId, root);
+
+        if (片段.length === 0) return null;
+
+        let merged = {};
+        for (const stat of 片段) {
+          merged = 深合并stat(merged, stat);
+        }
+
+        const mergedChars = 从stat对象收集角色(merged);
+        if (角色表有内容(mergedChars)) {
+          merged.角色 = { ...(merged.角色 ?? {}), ...mergedChars };
+        }
+
+        if (!角色表有内容(提取角色表(merged.角色))) {
+          const extra = 读取角色表(root, messageId);
+          if (角色表有内容(extra)) {
+            merged.角色 = { ...(merged.角色 ?? {}), ...extra };
+          }
+        }
+
+        return 变量中有内容(merged) ? merged : null;
+      }
+
+      function 像宏文本(value) {
+        return /\{\{[\s\S]*?\}\}/.test(String(value ?? ""));
+      }
+
+      function 读取DOM兜底文本(node) {
+        if (!node) return "";
+        const text = String(node.textContent ?? "").trim();
+        if (!text || text === "—" || text === "–" || 像宏文本(text)) return "";
+        return text;
+      }
+
+      function 从DOM读取世界兜底() {
+        const 日期与时间 = 读取DOM兜底文本(节点.世界时间);
+        const 天气 = 读取DOM兜底文本(节点.世界天气);
+        const 地点 = 读取DOM兜底文本(节点.地点Hero);
+        if (!日期与时间 && !天气 && !地点) return null;
+        return { 日期与时间, 天气, 地点 };
+      }
+
+      function 读取节点文本(node) {
+        if (!node) return "";
+        try {
+          const inner = String(node.innerText ?? "").trim();
+          if (inner) return inner;
+        } catch (_) {}
+        return String(node.textContent ?? "").trim();
+      }
+
+      function 归一化宏节点文本(node) {
+        if (!node) return "";
+        try {
+          const html = String(node.innerHTML ?? "");
+          if (/<[a-z][\s\S]*>/i.test(html)) {
+            return html
+              .replace(/<br\s*\/?>/gi, "\n")
+              .replace(/<\/p>\s*<p[^>]*>/gi, "\n")
+              .replace(/<\/div>\s*<div[^>]*>/gi, "\n")
+              .replace(/<[^>]+>/g, "")
+              .replace(/&nbsp;/gi, " ")
+              .replace(/&amp;/g, "&")
+              .replace(/&lt;/g, "<")
+              .replace(/&gt;/g, ">")
+              .trim();
+          }
+        } catch (_) {}
+        return 读取节点文本(node);
+      }
+
+      function 从结构化卡读取角色(root) {
+        const scope = root ?? 节点.外壳;
+        const cards = scope?.querySelectorAll(".角色卡片[data-character-key]");
+        if (!cards?.length) return null;
+
+        const out = {};
+        for (const card of cards) {
+          const recordKey = String(card.getAttribute("data-character-key") ?? "").trim();
+          if (!recordKey) continue;
+
+          const rec = {};
+          for (const el of card.querySelectorAll("[data-role-field]")) {
+            const key = el.getAttribute("data-role-field");
+            const val = 读取DOM兜底文本(el);
+            if (key && val !== "") rec[key] = val;
+          }
+
+          const pose = card.querySelector(".姿态文本");
+          if (pose) {
+            const val = 读取DOM兜底文本(pose);
+            if (val) rec.姿态 = val;
+          }
+
+          if (Object.keys(rec).length === 0) continue;
+          if (!rec.姓名) rec.姓名 = recordKey;
+          out[recordKey] = rec;
+        }
+
+        return 角色表有内容(out) ? out : null;
+      }
+
+      function 获取角色显示名(key, role) {
+        return 安全文本(解包MVU值(role?.姓名) || key, key || "未命名角色");
+      }
+
+      function 更新角色栏模式(角色表) {
+        const bar = 节点.外壳?.querySelector(".角色标签栏");
+        if (!bar) return;
+        const n = Object.keys(角色表 ?? {}).length;
+        bar.dataset.characterMode = n <= 0 ? "empty" : n === 1 ? "single" : "multi";
+      }
+
+      function 设置角色内容HTML(html) {
+        if (!节点.角色内容) return;
+        节点.角色内容.innerHTML = html;
+      }
+
+      function 标记JS渲染完成() {
+        节点.外壳?.classList.add("infection-bar-js-done");
+      }
+
+      function 解析statJSON文本(text) {
+        const raw = String(text ?? "").trim();
+        if (!raw || raw === "{}" || raw === "undefined" || raw === "null") return null;
+        if (像宏文本(raw)) return null;
+
+        try {
+          const parsed = JSON.parse(raw);
+          const stat = 提取stat_data(parsed) ?? 解包为对象(parsed);
+          if (变量中有内容(stat)) return stat;
+        } catch (_) {}
+
+        const start = raw.indexOf("{");
+        const end = raw.lastIndexOf("}");
+        if (start >= 0 && end > start) {
+          try {
+            const parsed = JSON.parse(raw.slice(start, end + 1));
+            const stat = 提取stat_data(parsed) ?? 解包为对象(parsed);
+            if (变量中有内容(stat)) return stat;
+          } catch (_) {}
+        }
+
+        return null;
+      }
+
+      function 从DOM读取stat兜底(root) {
+        const scope = root ?? 节点.外壳;
+        if (!scope) return null;
+
+        const candidates = [
+          scope.querySelector(".infection-bar-stat-inline"),
+        ];
+
+        for (const el of candidates) {
+          const text = 读取节点文本(el);
+          const stat = 解析statJSON文本(text) ?? 解析stat说明文(text);
+          if (stat) return stat;
+        }
+
+        return null;
+      }
+
+      /* ── render/world ── */
+      function 渲染世界(世界 = {}) {
+        const 日期与时间 = 安全文本(解包MVU值(世界.日期与时间), "—");
+        const 天气 = 安全文本(解包MVU值(世界.天气), "—");
+        const 地点 = 安全文本(解包MVU值(世界.地点), "—");
+
+        设置节点文本(节点.世界时间, 日期与时间);
+        设置节点文本(节点.世界天气, 天气);
+        设置节点文本(节点.地点Hero, 地点);
+        if (节点.地点Hero) 节点.地点Hero.title = 地点;
+      }
+
+      /* ── render/character ── */
+      function 更新分段滑块() {
+        const track = 节点.角色标签;
+        if (!track) return;
+
+        const glider = track.querySelector(".分段滑块");
+        const selected = track.querySelector('.角色标签按钮[aria-selected="true"]');
+        if (!glider || !selected) {
+          if (glider) glider.style.opacity = "0";
+          return;
+        }
+
+        glider.style.opacity = "1";
+        glider.style.width = `${selected.offsetWidth}px`;
+        glider.style.transform = `translateX(${selected.offsetLeft}px)`;
+      }
+
+      function 更新角色Tab选中() {
+        const key = 状态栏.当前角色键;
+        for (const btn of 节点.角色标签?.querySelectorAll(".角色标签按钮") ?? []) {
+          btn.setAttribute("aria-selected", btn.dataset.characterKey === key ? "true" : "false");
+        }
+        requestAnimationFrame(更新分段滑块);
+      }
+
+      function 渲染角色标签(角色表) {
+        const keys = Object.keys(角色表 ?? {});
+        const signature = 稳定序列化({ keys, 当前: 状态栏.当前角色键 });
+        更新角色栏模式(角色表 ?? {});
+
+        if (keys.length === 0) {
+          if (状态栏.上次角色标签签名 === "__empty__") return;
+          状态栏.上次角色标签签名 = "__empty__";
+          状态栏.当前角色键 = "";
+          节点.角色标签.innerHTML = '<div class="分段滑块" aria-hidden="true"></div>';
+          if (节点.感染徽章) 节点.感染徽章.dataset.state = "—";
+          设置节点文本(节点.感染文本, "—");
+          return;
+        }
+
+        if (signature === 状态栏.上次角色标签签名) {
+          更新角色Tab选中();
+          return;
+        }
+        状态栏.上次角色标签签名 = signature;
+
+        if (!状态栏.当前角色键 || !角色表[状态栏.当前角色键]) {
+          状态栏.当前角色键 = keys[0];
+        }
+
+        const tabs = keys.map((key, index) => {
+          const role = 角色表[key] ?? {};
+          const name = 转义HTML(获取角色显示名(key, role));
+          const selected = key === 状态栏.当前角色键 ? "true" : "false";
+          const id = `infection-bar-tab-${安全ID(key)}-${index}`;
+
+          return `
+            <button
+              class="角色标签按钮"
+              id="${id}"
+              type="button"
+              role="tab"
+              aria-selected="${selected}"
+              aria-controls="infection-bar-character-content"
+              data-character-key="${转义HTML(key)}"
+              title="${name}"
+            >${name}</button>
+          `;
+        }).join("");
+
+        节点.角色标签.innerHTML = `<div class="分段滑块" aria-hidden="true"></div>${tabs}`;
+        requestAnimationFrame(更新分段滑块);
+      }
+
+      function 衣物磁贴HTML(标题, 值, icon) {
+        const field = 标题;
+        return `
+          <article class="衣物磁贴 渐变边框">
+            <div class="衣物标题">${icon}<span>${标题}</span></div>
+            <div class="衣物值" data-role-field="${field}" title="${转义HTML(值)}">${转义HTML(值)}</div>
+          </article>
+        `;
+      }
+
+      /* ── render/progress ── */
+      function 进度项HTML(名称, 数值, 类型, idSuffix = "") {
+        const value = 限制数值(数值);
+        const isInfection = 类型 === "感染";
+        const levelAttr = isInfection ? `data-level="${感染等级(value)}"` : "";
+        const fillClass = isInfection ? "感染填充" : "性欲填充";
+        const icon = isInfection ? 图标.感染 : 图标.性欲;
+        const progressKey = isInfection ? "感染进程" : "性欲";
+        const cardId = idSuffix ? ` id="infection-bar-progress-${idSuffix}"` : "";
+
+        return `
+          <article class="进度卡 渐变边框"${cardId} data-progress-card="${progressKey}">
+            <div class="进度头">
+              <div class="进度名称">${icon}<span>${名称}</span></div>
+              <div class="进度数值" data-role-field="${progressKey}" data-progress-value="${progressKey}">${value}%</div>
+            </div>
+            <div class="进度轨道" aria-label="${名称} ${value}%" data-progress-track="${progressKey}">
+              <div class="进度填充 ${fillClass}" data-progress-fill="${progressKey}" data-fill-pct="${value}" ${levelAttr} data-value="${value}" style="--fill-pct: ${value}"></div>
+            </div>
+          </article>
+        `;
+      }
+
+      function 更新进度条(类型, 数值) {
+        const key = 类型 === "感染" ? "感染进程" : "性欲";
+        const value = 限制数值(数值);
+        const root = 节点.角色内容;
+        if (!root) return false;
+
+        let fill = root.querySelector(`[data-progress-fill="${key}"]`);
+        let track = root.querySelector(`[data-progress-track="${key}"]`);
+        let numEl = root.querySelector(`[data-progress-value="${key}"]`);
+
+        if (!fill) {
+          const valEl = root.querySelector(`[data-role-field="${key}"]`);
+          const host = valEl?.closest(".进度项, .进度卡");
+          fill = host?.querySelector(".进度填充") ?? null;
+          track = host?.querySelector(".进度轨道") ?? null;
+          numEl = numEl ?? valEl ?? host?.querySelector(".进度值, .进度数值");
+        }
+
+        if (!fill || !track) return false;
+
+        fill.style.setProperty("--fill-pct", String(value));
+        fill.style.width = `${value}%`;
+        fill.setAttribute("data-fill-pct", String(value));
+        fill.dataset.value = String(value);
+        if (key === "感染进程") fill.dataset.level = 感染等级(value);
+        if (numEl) 设置节点文本(numEl, `${value}%`);
+        track.setAttribute("aria-label", `${key} ${value}%`);
+        return true;
+      }
+
+      function 从DOM读取进度数值(key) {
+        const root = 节点.角色内容;
+        if (!root) return null;
+
+        const valEl = root.querySelector(`[data-role-field="${key}"], [data-progress-value="${key}"]`);
+        const fromText = 读取DOM兜底文本(valEl);
+        if (fromText) return 限制数值(fromText);
+
+        const typeSel = key === "感染进程" ? '[data-type="infection"]' : '[data-type="desire"]';
+        const host =
+          valEl?.closest(".进度项, .进度卡") ??
+          root.querySelector(`[data-progress-fill="${key}"]`)?.closest(".进度卡") ??
+          root.querySelector(`.进度项${typeSel}`);
+
+        const fill = host?.querySelector(".进度填充");
+        if (!fill) return null;
+
+        const fromCss = 限制数值(fill.style.getPropertyValue("--fill-pct"));
+        if (fromCss > 0 || fill.style.getPropertyValue("--fill-pct")) return fromCss;
+
+        if (fill.hasAttribute("data-fill-pct")) {
+          const fromAttr = 限制数值(fill.getAttribute("data-fill-pct"));
+          if (!像宏文本(fill.getAttribute("data-fill-pct"))) return fromAttr;
+        }
+
+        const fromWidth = 限制数值(String(fill.style.width ?? "").replace("%", ""));
+        if (fromWidth > 0) return fromWidth;
+
+        return 限制数值(fill.dataset.value);
+      }
+
+      function 应用全部进度条(role) {
+        const fields = [
+          ["感染", "感染进程"],
+          ["性欲", "性欲"],
+        ];
+
+        for (const [type, key] of fields) {
+          const fromDom = 从DOM读取进度数值(key);
+          let val = fromDom ?? 0;
+
+          if (role && role[key] !== undefined && role[key] !== null && String(role[key]).trim() !== "") {
+            const fromRole = 限制数值(解包MVU值(role[key]));
+            if (fromRole > 0 || fromDom === null) val = fromRole;
+            else if (fromDom === 0 && fromRole > 0) val = fromRole;
+          }
+
+          更新进度条(type, val);
+        }
+      }
+
+      function 尝试增量更新角色卡片(role) {
+        const card = 节点.角色内容?.querySelector(".角色卡片[data-character-key]");
+        if (!card || !role) return false;
+        if (card.getAttribute("data-character-key") !== 状态栏.当前角色键) return false;
+
+        const 姿态 = 安全文本(解包MVU值(role.姿态), "未记录");
+        const 感染状态 = 安全文本(解包MVU值(role.感染状态), "未感染");
+        const 感染进程 = 限制数值(解包MVU值(role.感染进程));
+        const 性欲 = 限制数值(解包MVU值(role.性欲));
+
+        const poseEl = card.querySelector(".姿态文本");
+        if (!poseEl) return false;
+
+        设置节点文本(poseEl, 姿态);
+        poseEl.title = 姿态;
+
+        for (const [label, field] of [["上身", "上身"], ["下身", "下身"], ["鞋袜", "鞋袜"]]) {
+          const tile = [...card.querySelectorAll(".衣物磁贴")].find((el) => el.querySelector(".衣物标题 span")?.textContent === label);
+          if (!tile) continue;
+          const val = 安全文本(解包MVU值(role[field]), "未记录");
+          const valEl = tile.querySelector(".衣物值");
+          设置节点文本(valEl, val);
+          if (valEl) valEl.title = val;
+        }
+
+        节点.感染徽章.dataset.state = 感染状态;
+        设置节点文本(节点.感染文本, 感染状态);
+        应用全部进度条(role);
+        应用感染Accent(感染进程);
+        return true;
+      }
+
+      function 渲染空角色(title, hint = "") {
+        const sig = `__empty__:${title}:${hint}`;
+        if (状态栏.上次角色内容签名 === sig) return;
+        状态栏.上次角色内容签名 = sig;
+        设置角色内容HTML(`
+          <div class="空状态 空状态--角色" aria-live="polite">
+            <div class="空状态标题">${转义HTML(title, "暂无角色数据")}</div>
+            ${hint ? `<div class="空状态提示">${转义HTML(hint)}</div>` : ""}
+          </div>
+        `);
+        if (节点.感染徽章) 节点.感染徽章.dataset.state = "—";
+        设置节点文本(节点.感染文本, "—");
+        应用感染Accent(0);
+      }
+
+      function 渲染角色内容(角色表, { 播放入场动画 = false, 允许增量 = true } = {}) {
+        const keys = Object.keys(角色表 ?? {});
+
+        if (keys.length === 0) {
+          渲染空角色("暂无角色", "stat_data.角色 为空或未初始化");
+          return;
+        }
+
+        if (!状态栏.当前角色键 || !角色表[状态栏.当前角色键]) {
+          状态栏.当前角色键 = keys[0];
+        }
+
+        const role = 角色表[状态栏.当前角色键] ?? 角色表[keys[0]] ?? {};
+        const contentSig = 稳定序列化({
+          key: 状态栏.当前角色键,
+          role: 解包对象字段(role),
+        });
+        if (contentSig === 状态栏.上次角色内容签名) {
+          应用全部进度条(role);
+          return;
+        }
+        状态栏.上次角色内容签名 = contentSig;
+
+        const 姓名 = 获取角色显示名(状态栏.当前角色键, role);
+        const 姿态 = 安全文本(解包MVU值(role.姿态), "未记录");
+        const 感染状态 = 安全文本(解包MVU值(role.感染状态), "未感染");
+        const 感染进程 = 限制数值(解包MVU值(role.感染进程));
+        const 性欲 = 限制数值(解包MVU值(role.性欲));
+
+        if (允许增量 && 尝试增量更新角色卡片(role)) {
+          return;
+        }
+
+        节点.感染徽章.dataset.state = 感染状态;
+        设置节点文本(节点.感染文本, 感染状态);
+        应用感染Accent(感染进程);
+
+        const cardClass = 播放入场动画 ? "角色卡片 入场动画" : "角色卡片";
+
+        设置角色内容HTML(`
+          <article class="${cardClass}" data-character-key="${转义HTML(状态栏.当前角色键)}" aria-label="${转义HTML(姓名)}状态卡片">
+            <div class="姿态区块 渐变边框">
+              <div class="姿态标签">姿态</div>
+              <p class="姿态文本" data-role-field="姿态" title="${转义HTML(姿态)}">${转义HTML(姿态)}</p>
+            </div>
+
+            <div class="角色基础区 渐变边框">
+              <div class="衣物网格">
+                ${衣物磁贴HTML("上身", 解包MVU值(role.上身), 图标.上身)}
+                ${衣物磁贴HTML("下身", 解包MVU值(role.下身), 图标.下身)}
+                ${衣物磁贴HTML("鞋袜", 解包MVU值(role.鞋袜), 图标.鞋袜)}
+              </div>
+            </div>
+
+            <div class="角色数值区 渐变边框">
+              <h4 class="数值标题">生理状态</h4>
+              <div class="进度组">
+                ${进度项HTML("感染进程", 感染进程, "感染", "infection")}
+                ${进度项HTML("性欲", 性欲, "性欲", "desire")}
+              </div>
+            </div>
+          </article>
+        `);
+        标记JS渲染完成();
+        requestAnimationFrame(() => 应用全部进度条(role));
+      }
+
+      /* ── app ── */
+      function 渲染全部() {
+        const root = 节点.外壳 ?? document.querySelector(".状态栏外壳");
+        const messageId = 解析消息ID(root);
+        const stat = 读取变量数据();
+
+        let 世界 = stat?.世界 ?? null;
+        let 角色表 = 从stat对象收集角色(stat) ?? 读取角色表(root, messageId);
+
+        if (!角色表有内容(角色表)) {
+          const domStat = 从DOM读取stat兜底(root);
+          const domChars = 从stat对象收集角色(domStat) ?? 从DOM读取角色兜底(root);
+          if (角色表有内容(domChars)) 角色表 = domChars;
+        }
+
+        if (!世界) {
+          const domWorld = 从DOM读取世界兜底();
+          if (domWorld) 世界 = domWorld;
+        }
+
+        if (!世界 && !角色表有内容(角色表)) {
+          设置节点文本(节点.地点Hero, "等待变量数据");
+          设置节点文本(节点.世界时间, "—");
+          设置节点文本(节点.世界天气, "—");
+          状态栏.上次数据签名 = "";
+          渲染角色标签({});
+          应用感染Accent(0);
+          渲染空角色("等待变量数据", "世界与角色变量尚未就绪");
+          return;
+        }
+
+        const signature = 稳定序列化({ 世界: 世界 ?? {} });
+        const 角色签名 = 稳定序列化(角色表 ?? {});
+        const combinedSig = `${signature}|${角色签名}`;
+        const role = 状态栏.缓存角色表[状态栏.当前角色键] ?? 角色表?.[Object.keys(角色表 ?? {})[0]];
+
+        if (combinedSig === 状态栏.上次数据签名) {
+          应用全部进度条(role);
+          return;
+        }
+
+        const 首次渲染 = !状态栏.上次数据签名;
+        状态栏.上次数据签名 = combinedSig;
+        状态栏.缓存角色表 = 角色表 ?? {};
+
+        渲染世界(世界 ?? {});
+        渲染角色标签(角色表);
+        渲染角色内容(角色表, { 播放入场动画: 首次渲染 });
+        应用全部进度条(状态栏.缓存角色表[状态栏.当前角色键] ?? 角色表[Object.keys(角色表)[0]]);
+        requestAnimationFrame(() => 应用全部进度条(状态栏.缓存角色表[状态栏.当前角色键] ?? 角色表[Object.keys(角色表)[0]]));
+      }
+
+      function 同步进度条() {
+        const role = 状态栏.缓存角色表[状态栏.当前角色键] ?? null;
+        应用全部进度条(role);
+      }
+
+      function 轮询直到角色就绪() {
+        let n = 0;
+        const tick = () => {
+          if (n++ > 120) return;
+
+          const table = 读取当前角色表(节点.外壳, 解析消息ID(节点.外壳), 读取变量数据());
+          if (角色表有内容(table) && !角色表有内容(状态栏.缓存角色表)) {
+            状态栏.上次数据签名 = "";
+            状态栏.上次角色内容签名 = "";
+            状态栏.上次角色标签签名 = "";
+            强制重渲染();
+            return;
+          }
+
+          if (角色表有内容(状态栏.缓存角色表)) {
+            同步进度条();
+            监听进度条节点();
+          } else {
+            尝试刷新();
+          }
+
+          window.setTimeout(tick, 250);
+        };
+        window.setTimeout(tick, 0);
+      }
+
+      function 尝试刷新() {
+        渲染全部();
+      }
+
+      function 强制重渲染() {
+        状态栏.上次数据签名 = "";
+        状态栏.上次角色标签签名 = "";
+        状态栏.上次角色内容签名 = "";
+        渲染全部();
+      }
+
+      function 绑定主题按钮() {
+        const shell = 节点.外壳;
+        const btn = 节点.主题按钮 ?? shell?.querySelector(".infection-bar-theme-toggle");
+        if (!btn || !shell || btn.dataset.infectionBarThemeBound === "1") return;
+
+        btn.dataset.infectionBarThemeBound = "1";
+        btn.addEventListener(
+          "click",
+          (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            切换实例主题(shell);
+          },
+          true,
+        );
+      }
+
+      function 绑定基础事件() {
+        绑定主题按钮();
+
+        if (节点.角色标签) {
+          节点.角色标签.addEventListener("click", (event) => {
+            const button = event.target.closest(".角色标签按钮");
+            if (!button) return;
+
+            const nextKey = button.dataset.characterKey;
+            if (!nextKey || nextKey === 状态栏.当前角色键) return;
+
+            状态栏.当前角色键 = nextKey;
+            更新角色Tab选中();
+            状态栏.上次角色内容签名 = "";
+            渲染角色内容(状态栏.缓存角色表, { 播放入场动画: true, 允许增量: false });
+          });
+
+          节点.角色标签.addEventListener("scroll", () => {
+            requestAnimationFrame(更新分段滑块);
+          }, { passive: true });
+        }
+
+        window.addEventListener("resize", () => {
+          requestAnimationFrame(更新分段滑块);
+        }, { passive: true });
+      }
+
+      async function 等待变量就绪() {
+        const root = 节点.外壳 ?? document.querySelector(".状态栏外壳");
+        const messageId = 解析消息ID(root);
+
+        const ready = () => {
+          const stat = 读取变量数据();
+          if (stat && (stat.世界 || 角色表有内容(从stat对象收集角色(stat)))) return true;
+          if (角色表有内容(读取当前角色表(root, messageId, stat))) return true;
+          if (从DOM读取世界兜底()) return true;
+          return false;
+        };
+
+        if (ready()) return;
+
+        const deadline = Date.now() + 8000;
+        while (Date.now() < deadline) {
+          await new Promise((resolve) => window.setTimeout(resolve, 200));
+          if (ready()) return;
+        }
+      }
+
+      function 调度刷新() {
+        clearTimeout(状态栏.刷新定时器);
+        状态栏.刷新定时器 = window.setTimeout(() => {
+          requestAnimationFrame(尝试刷新);
+        }, 150);
+      }
+
+      function 监听进度条节点() {
+        const root = 节点.角色内容;
+        if (!root || typeof MutationObserver === "undefined") return;
+
+        const sync = () => {
+          requestAnimationFrame(() => {
+            应用全部进度条(状态栏.缓存角色表[状态栏.当前角色键] ?? null);
+          });
+        };
+
+        for (const el of root.querySelectorAll('[data-role-field="感染进程"], [data-role-field="性欲"], .进度填充')) {
+          if (el.__infectionBarProgressObs) continue;
+          el.__infectionBarProgressObs = true;
+          const obs = new MutationObserver(sync);
+          obs.observe(el, {
+            characterData: true,
+            attributes: true,
+            attributeFilter: ["data-fill-pct", "style", "class"],
+            subtree: true,
+          });
+        }
+      }
+
+      function 监听宏兜底节点() {
+        const root = 节点.外壳;
+        if (!root || typeof MutationObserver === "undefined") return;
+
+        const targets = [
+          ...收集角色宏兜底节点(root),
+          root.querySelector(".infection-bar-stat-inline"),
+          节点.地点Hero,
+          节点.世界时间,
+          节点.世界天气,
+        ].filter(Boolean);
+
+        const lastSnapshot = new Map();
+
+        for (const target of targets) {
+          lastSnapshot.set(target, 读取节点文本(target));
+          const obs = new MutationObserver(() => {
+            const next = 读取节点文本(target);
+            const prev = lastSnapshot.get(target);
+            if (next === prev) return;
+            lastSnapshot.set(target, next);
+            调度刷新();
+          });
+          obs.observe(target, { characterData: true, childList: true, subtree: true });
+        }
+
+        监听进度条节点();
+      }
+
+      async function 初始化MVU() {
+        const apiWin = 获取API窗口();
+
+        if (typeof apiWin.waitGlobalInitialized === "function") {
+          try {
+            await apiWin.waitGlobalInitialized("Mvu");
+          } catch (error) {
+            console.warn("[状态栏] 等待 Mvu 初始化失败:", error);
+          }
+        }
+
+        await 等待变量就绪();
+        渲染全部();
+
+        for (const delay of [0, 80, 320, 900, 2000]) {
+          window.setTimeout(尝试刷新, delay);
+        }
+      }
+
+        外壳.setAttribute("data-infection-bar-mounted", "1");
+        初始化主题();
+        绑定基础事件();
+        监听宏兜底节点();
+        监听进度条节点();
+        初始化MVU();
+        轮询直到角色就绪();
+        requestAnimationFrame(() => 同步进度条());
+        实例刷新表.set(外壳, {
+          刷新: () => 尝试刷新(),
+          强制重渲染: () => 强制重渲染(),
+        });
+      }
+
+      function 刷新全部已挂载实例() {
+        for (const el of 根文档.querySelectorAll(".状态栏外壳[data-infection-bar-mounted]")) {
+          try {
+            实例刷新表.get(el)?.刷新?.();
+          } catch (_) {}
+        }
+      }
+
+      function 强制刷新全部已挂载实例() {
+        for (const el of 根文档.querySelectorAll(".状态栏外壳[data-infection-bar-mounted]")) {
+          try {
+            实例刷新表.get(el)?.强制重渲染?.();
+          } catch (_) {}
+        }
+      }
+
+      function 确保全局MVU监听() {
+        if (_mvuGlobalBound) return;
+        const apiWin = 获取API窗口();
+        try {
+          if (apiWin.Mvu?.events && typeof apiWin.eventOn === "function") {
+            _mvuGlobalBound = true;
+            window.__infectionBarMvuBound = true;
+            const refreshAll = () => requestAnimationFrame(刷新全部已挂载实例);
+            const forceAll = () => requestAnimationFrame(强制刷新全部已挂载实例);
+            apiWin.eventOn(apiWin.Mvu.events.VARIABLE_INITIALIZED, forceAll);
+            apiWin.eventOn(apiWin.Mvu.events.VARIABLE_UPDATE_ENDED, forceAll);
+            apiWin.eventOn(apiWin.Mvu.events.BEFORE_MESSAGE_UPDATE, refreshAll);
+          }
+        } catch (error) {
+          console.warn("[状态栏] 绑定全局 MVU 事件失败:", error);
+        }
+      }
+
+      function 扫描并挂载所有状态栏() {
+        确保全局主题委托();
+        const fromScript = 定位外壳自脚本();
+        if (fromScript?.getAttribute("data-infection-bar-mounted") !== "1") {
+          挂载状态栏实例(fromScript);
+        }
+        for (const el of 根文档.querySelectorAll(".状态栏外壳:not([data-infection-bar-mounted])")) {
+          挂载状态栏实例(el);
+        }
+        刷新全部已挂载实例();
+        确保全局MVU监听();
+      }
+
+      function 暴露初始化到全局() {
+        window.__initInfectionStatusBar = 扫描并挂载所有状态栏;
+        try {
+          if (window.parent && window.parent !== window) {
+            window.parent.__initInfectionStatusBar = 扫描并挂载所有状态栏;
+          }
+        } catch (_) {}
+      }
+
+      暴露初始化到全局();
+      扫描并挂载所有状态栏();
+    })();
+    </textarea>
+  </main>
+</body>
+</html>

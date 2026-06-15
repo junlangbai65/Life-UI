@@ -1,0 +1,1299 @@
+/* Goth — cards, chat, stat bar, nav chips, modal */
+
+/* 与根一致的档案条（顶栏时间条、侧栏等复用） */
+.goth-surface-strip {
+  border: none;
+  border-radius: var(--g-radius);
+  background: var(--g-strip-surface);
+  box-shadow: var(--g-depth-raised);
+}
+
+.goth-inset-slot {
+  border: none;
+  border-radius: 4px;
+  background: rgba(38, 34, 30, 0.52);
+  box-shadow: var(--g-depth-recess);
+}
+
+/* 进度条凹槽（关系、道德、侧栏数值条） */
+.goth-meter-track {
+  border-radius: 999px;
+  overflow: hidden;
+  border: none;
+  background: rgba(28, 26, 22, 0.58);
+  box-shadow:
+    var(--g-depth-recess),
+    inset 0 2px 5px rgba(8, 6, 5, 0.35);
+}
+
+/* 侧栏肖像框：金属压槽感（木框仅用于叙事栏 .goth-chat-section） */
+.goth-portrait-frame {
+  border-radius: 6px;
+  overflow: hidden;
+  border: none;
+  background: linear-gradient(165deg, rgba(42, 38, 34, 0.75), rgba(24, 22, 18, 0.92));
+  box-shadow:
+    0 3px 14px rgba(14, 11, 9, 0.32),
+    inset 0 1px 0 rgba(96, 88, 74, 0.06),
+    inset 0 -4px 14px rgba(8, 6, 5, 0.38),
+    inset 0 0 0 1px rgba(22, 18, 15, 0.55);
+}
+
+/* 选项芯片（案卷 File 面板等复用） */
+.goth-option-chip {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+  text-align: left;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--g-radius);
+  border: none;
+  background: linear-gradient(175deg, rgba(58, 52, 46, 0.85), rgba(30, 26, 22, 0.92));
+  box-shadow: var(--g-depth-chip);
+  color: var(--g-text);
+  cursor: pointer;
+  font-family: var(--g-font-ui);
+  font-size: 0.82rem;
+  min-height: 44px;
+  transition:
+    transform var(--g-motion-fast, 0.18s) var(--g-motion-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    box-shadow var(--g-motion-fast, 0.18s) ease,
+    background var(--g-motion-medium, 0.28s) ease,
+    filter var(--g-motion-fast, 0.18s) ease;
+}
+
+.goth-option-chip:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: linear-gradient(175deg, rgba(64, 56, 50, 0.9), rgba(32, 28, 22, 0.94));
+  box-shadow:
+    var(--g-depth-chip),
+    0 5px 14px rgba(12, 10, 8, 0.22),
+    inset 0 1px 0 rgba(118, 106, 88, 0.08);
+  filter: brightness(1.03);
+}
+
+.goth-option-chip:focus-visible:not(:disabled) {
+  outline: none;
+  transform: translateY(-1px);
+  box-shadow:
+    var(--g-depth-chip),
+    0 0 0 2px rgba(157, 136, 104, 0.35),
+    0 5px 14px rgba(12, 10, 8, 0.2),
+    inset 0 1px 0 rgba(118, 106, 88, 0.08);
+}
+
+.goth-option-chip:active:not(:disabled) {
+  transform: translateY(0);
+  filter: brightness(0.98);
+  box-shadow:
+    var(--g-depth-chip),
+    inset 0 2px 8px rgba(8, 6, 5, 0.35);
+}
+
+.goth-option-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.goth-option-id {
+  flex-shrink: 0;
+  font-family: var(--g-font-mono);
+  color: var(--g-archive-beige);
+}
+
+.goth-option-text {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.goth-stat-bar {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45rem;
+  padding: 0.5rem 0.65rem;
+  border: none;
+  border-radius: var(--g-radius);
+  background: linear-gradient(178deg, rgba(52, 48, 44, 0.95) 0%, var(--g-bg-panel) 48%, rgba(30, 26, 22, 0.98) 100%);
+  box-shadow:
+    var(--g-depth-raised),
+    inset 0 1px 0 rgba(72, 66, 58, 0.06);
+}
+
+@media (max-width: 900px) {
+  .goth-stat-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.goth-stat-pill {
+  font-family: var(--g-font-ui);
+  padding: 0.35rem 0.45rem;
+  border-radius: 4px;
+  border: none;
+  background: linear-gradient(175deg, rgba(68, 62, 56, 0.65), rgba(34, 30, 26, 0.85));
+  box-shadow: var(--g-depth-chip);
+  min-height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
+.goth-stat-pill__label {
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--g-text-muted);
+}
+
+.goth-stat-pill__value {
+  font-family: var(--g-font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--g-text-title);
+}
+
+.goth-stat-pill--hp .goth-stat-pill__value {
+  color: #9c8073;
+}
+
+.goth-stat-pill--san .goth-stat-pill__value {
+  color: #7b8895;
+}
+
+.goth-stat-pill--pollution .goth-stat-pill__value {
+  color: #847785;
+}
+
+.goth-stat-pill--stamina .goth-stat-pill__value {
+  color: #859177;
+}
+
+.goth-stat-pill--money .goth-stat-pill__value {
+  color: var(--g-archive-beige);
+}
+
+.goth-main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.35rem 0;
+}
+
+.goth-nav-chip {
+  font-family: var(--g-font-ui);
+  font-size: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(165deg, rgba(62, 56, 50, 0.75), rgba(32, 28, 24, 0.88));
+  box-shadow: var(--g-depth-chip);
+  color: var(--g-text);
+  cursor: pointer;
+  min-height: 44px;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.goth-nav-chip svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.goth-nav-chip:hover {
+  background: linear-gradient(165deg, rgba(68, 62, 54, 0.82), rgba(34, 30, 26, 0.9));
+  box-shadow:
+    var(--g-depth-chip),
+    0 6px 20px rgba(14, 11, 9, 0.28);
+}
+
+.goth-nav-chip:active {
+  transform: scale(0.98);
+}
+
+/* 宽度驱动叙事区高度（避免 vh）；仅此框纵向滚动，权衡前端界面规则 */
+.goth-chat-frame {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* 叙事栏目：唯一使用木框饰边；其余面板见分层阴影方案 */
+.goth-chat-section {
+  position: relative;
+  isolation: isolate;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: var(--g-frame-thick-main) solid transparent;
+  border-radius: var(--g-frame-radius-outer);
+  background:
+    linear-gradient(168deg, var(--g-surface-raised) 0%, var(--g-bg-panel) 42%, var(--g-bg-deep) 100%) padding-box,
+    var(--g-frame-wood-grain) border-box,
+    var(--g-frame-wood-face) border-box;
+  background-clip: padding-box, border-box, border-box;
+  box-shadow: var(--g-frame-drop-main), var(--g-frame-lit-rim);
+}
+
+.goth-chat-section::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: var(--g-frame-inner-r-main);
+  top: var(--g-frame-thick-main);
+  left: var(--g-frame-thick-main);
+  right: var(--g-frame-thick-main);
+  bottom: var(--g-frame-thick-main);
+  box-shadow: var(--g-frame-rebate-shadow);
+}
+
+.goth-chat-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.goth-chat-section header {
+  padding: 0.5rem 0.75rem;
+  border-bottom: none;
+  background-image: var(--g-divider-fade);
+  background-size: 100% 1px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 -14px 28px -10px rgba(10, 8, 6, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.goth-chat-section header h2 {
+  margin: 0;
+  font-family: var(--g-font-display);
+  font-size: 1rem;
+  color: var(--g-text-title);
+}
+
+.goth-chat-log {
+  flex: 1;
+  overflow-y: visible;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.goth-chat-bubble {
+  max-width: min(92%, 720px);
+  padding: 0.55rem 0.7rem;
+  border-radius: 6px;
+  border: none;
+  font-family: var(--g-font-narration);
+  font-size: 0.95rem;
+  line-height: var(--g-narration-line-height);
+  letter-spacing: var(--g-narration-tracking);
+  box-shadow: var(--g-depth-bubble);
+}
+
+.goth-chat-bubble--user {
+  align-self: flex-end;
+  margin-left: 2rem;
+  background: linear-gradient(165deg, rgba(58, 54, 62, 0.92), rgba(38, 36, 34, 0.96));
+}
+
+.goth-chat-bubble--assistant {
+  position: relative;
+  align-self: flex-start;
+  margin-right: 2rem;
+  padding-left: 0.85rem;
+  border-left: none;
+  background: linear-gradient(175deg, rgba(56, 52, 46, 0.88), rgba(34, 30, 26, 0.94));
+}
+
+.goth-chat-bubble--assistant::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(192, 172, 138, 0.52) 0%,
+    rgba(108, 82, 62, 0.58) 52%,
+    rgba(52, 42, 34, 0.62) 100%
+  );
+  opacity: 0.88;
+  pointer-events: none;
+}
+
+.goth-chat-bubble--system {
+  align-self: center;
+  font-family: var(--g-font-ui);
+  font-size: 0.78rem;
+  color: var(--g-text-muted);
+  border: 1px dashed rgba(104, 88, 68, 0.34);
+  background: linear-gradient(175deg, rgba(48, 44, 40, 0.55), rgba(28, 26, 22, 0.72));
+  box-shadow:
+    inset 0 1px 0 rgba(200, 188, 160, 0.03),
+    inset 0 -1px 0 rgba(22, 18, 14, 0.22);
+}
+
+.goth-chat-meta {
+  font-family: var(--g-font-mono);
+  font-size: 0.65rem;
+  color: var(--g-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.goth-chat-input-row {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0.6rem 0.7rem 0.65rem;
+  border-top: none;
+  background: linear-gradient(180deg, rgba(24, 20, 17, 0.88) 0%, rgba(14, 12, 10, 0.94) 100%);
+  box-shadow: inset 0 10px 28px rgba(6, 5, 4, 0.42);
+}
+
+.goth-chat-input-row::before {
+  content: '';
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  top: 0;
+  height: 1px;
+  background: var(--g-divider-fade);
+  opacity: 0.55;
+  pointer-events: none;
+  transition:
+    opacity var(--g-motion-medium, 0.28s) var(--g-motion-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    height var(--g-motion-fast, 0.18s) ease;
+}
+
+.goth-chat-input-row:focus-within::before {
+  opacity: 0.92;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(157, 136, 104, 0.35) 18%,
+    rgba(196, 182, 150, 0.42) 50%,
+    rgba(157, 136, 104, 0.35) 82%,
+    transparent 100%
+  );
+}
+
+.goth-chat-input-row::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(196, 182, 150, 0.38) 42%,
+    rgba(157, 136, 104, 0.48) 50%,
+    rgba(196, 182, 150, 0.38) 58%,
+    transparent 100%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    width var(--g-motion-slow, 0.45s) var(--g-motion-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    opacity var(--g-motion-fast, 0.18s) ease;
+}
+
+.goth-chat-input-row:focus-within::after {
+  width: min(94%, 42rem);
+  opacity: 1;
+}
+
+/* 调查终端输入槽：非网页表单观感 */
+.goth-chat-input-row textarea {
+  flex: 1;
+  resize: vertical;
+  min-height: 48px;
+  max-height: 140px;
+  padding: 0.52rem 0.65rem;
+  border-radius: 2px;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background: linear-gradient(180deg, var(--g-surface-input-recess) 0%, #12100e 100%);
+  box-shadow:
+    var(--g-depth-recess),
+    inset 0 3px 14px rgba(4, 3, 2, 0.55),
+    inset 0 -2px 10px rgba(2, 2, 2, 0.45);
+  color: var(--g-ink);
+  font-family: var(--g-font-narration);
+  font-size: 0.92rem;
+  line-height: var(--g-narration-line-height);
+  letter-spacing: var(--g-narration-tracking);
+  caret-color: rgba(196, 182, 152, 0.88);
+  transition:
+    box-shadow var(--g-motion-medium, 0.28s) ease,
+    background var(--g-motion-medium, 0.28s) ease,
+    color var(--g-motion-fast, 0.18s) ease;
+}
+
+.goth-chat-input-row textarea::placeholder {
+  color: rgba(118, 108, 96, 0.72);
+  font-family: var(--g-font-ui);
+  font-size: 0.86rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  opacity: 1;
+}
+
+.goth-chat-input-row textarea:focus {
+  outline: none;
+  background: linear-gradient(180deg, #1c1916 0%, #141210 100%);
+  box-shadow:
+    var(--g-depth-recess),
+    inset 0 3px 16px rgba(4, 3, 2, 0.72),
+    inset 0 1px 0 rgba(72, 62, 52, 0.32),
+    inset 0 -2px 12px rgba(2, 2, 2, 0.62),
+    inset 0 0 0 1px rgba(82, 72, 58, 0.38),
+    0 0 24px rgba(22, 18, 14, 0.72),
+    0 0 42px rgba(42, 36, 28, 0.22);
+}
+
+.goth-chat-input-row textarea:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* 发送：与终端壳体同一套档案边，仅输入条使用（其它 goth-btn-primary 不变） */
+.goth-chat-input-row .goth-dock-send {
+  flex-shrink: 0;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.72rem;
+  border-radius: 2px;
+  border: none;
+  background: linear-gradient(175deg, rgba(54, 48, 42, 0.94), rgba(24, 20, 17, 0.98));
+  box-shadow:
+    var(--g-depth-chip),
+    inset 0 1px 0 rgba(118, 104, 82, 0.06);
+  color: var(--g-archive-beige);
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease,
+    transform 0.12s ease;
+}
+
+.goth-chat-input-row .goth-dock-send:hover:not(:disabled) {
+  background: linear-gradient(175deg, rgba(62, 54, 48, 0.96), rgba(28, 24, 20, 0.99));
+  color: var(--g-text-title);
+  box-shadow:
+    var(--g-depth-chip),
+    inset 0 1px 0 rgba(128, 112, 88, 0.07),
+    0 5px 18px rgba(12, 10, 8, 0.32);
+}
+
+.goth-chat-input-row .goth-dock-send:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* 叙事区角落：生成中 Newton cradle（样式见 animations.css） */
+.goth-narrative-pane__generating {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.65rem;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  padding: 0.15rem;
+  border-radius: 4px;
+  background: rgba(18, 15, 12, 0.42);
+  box-shadow:
+    var(--g-depth-chip),
+    inset 0 1px 0 rgba(92, 82, 68, 0.06);
+}
+
+.goth-btn-primary {
+  font-family: var(--g-font-ui);
+  font-weight: 600;
+  padding: 0.45rem 0.85rem;
+  border-radius: 4px;
+  border: none;
+  background: linear-gradient(175deg, rgba(72, 78, 62, 0.52), rgba(30, 28, 24, 0.94));
+  box-shadow:
+    var(--g-depth-chip),
+    inset 0 1px 0 rgba(118, 108, 88, 0.06);
+  color: var(--g-text-title);
+  cursor: pointer;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.goth-btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.goth-btn-ghost {
+  font-family: var(--g-font-ui);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 4px;
+  border: none;
+  background: rgba(38, 34, 30, 0.35);
+  box-shadow: var(--g-depth-chip);
+  color: var(--g-text-muted);
+  cursor: pointer;
+  min-height: 40px;
+}
+
+.goth-panels-launcher {
+  padding: 0.85rem;
+  border: none;
+  border-radius: var(--g-radius);
+  background: linear-gradient(172deg, rgba(54, 50, 46, 0.98) 0%, var(--g-bg-deep) 100%);
+  box-shadow:
+    var(--g-depth-metallic),
+    inset 0 1px 0 rgba(82, 74, 66, 0.05);
+}
+
+.goth-panels-launcher h2 {
+  margin: 0 0 0.5rem;
+  font-family: var(--g-font-display);
+  font-size: 1.1rem;
+}
+
+.goth-panels-launcher p {
+  margin: 0 0 0.75rem;
+  color: var(--g-text-muted);
+  font-size: 0.88rem;
+}
+
+.goth-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.45rem;
+}
+
+.goth-panel-tile {
+  text-align: left;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--g-radius);
+  border: none;
+  background: linear-gradient(168deg, rgba(62, 56, 50, 0.75), rgba(30, 26, 22, 0.9));
+  box-shadow: var(--g-depth-chip);
+  cursor: pointer;
+  min-height: 72px;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.goth-panel-tile:hover {
+  background: linear-gradient(168deg, rgba(68, 62, 54, 0.82), rgba(32, 28, 24, 0.92));
+  box-shadow:
+    var(--g-depth-chip),
+    0 6px 18px rgba(12, 10, 8, 0.26);
+}
+
+.goth-panel-tile:active {
+  transform: translateY(1px);
+}
+
+.goth-panel-tile strong {
+  display: block;
+  font-family: var(--g-font-display);
+  font-size: 0.92rem;
+  margin-bottom: 0.2rem;
+}
+
+.goth-panel-tile small {
+  color: var(--g-text-muted);
+  font-size: 0.72rem;
+}
+
+/* Modal：遮罩为交互层，固定定位；非叙事正文流 */
+.goth-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(18, 14, 12, 0.62);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+}
+
+@media (min-width: 720px) {
+  .goth-modal-overlay {
+    align-items: center;
+  }
+}
+
+.goth-modal-sheet {
+  width: min(960px, 100%);
+  max-height: min(720px, 92%);
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: var(--g-radius);
+  background: linear-gradient(168deg, var(--g-surface-raised), var(--g-bg-deep));
+  box-shadow: var(--g-depth-metallic);
+  overflow: hidden;
+}
+
+.goth-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-bottom: none;
+  background-image: var(--g-divider-fade);
+  background-size: 100% 1px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.goth-modal-head h2 {
+  margin: 0;
+  font-family: var(--g-font-display);
+  font-size: 1.15rem;
+  color: var(--g-text-title);
+}
+
+.goth-modal-head p {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+  color: var(--g-text-muted);
+  font-family: var(--g-font-ui);
+}
+
+/* 面板内容较多时仅此区域纵向滚动（尽量减少 iframe 内多重滚动条） */
+.goth-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem 0.85rem 1rem;
+}
+
+.goth-modal-close {
+  font-family: var(--g-font-ui);
+  flex-shrink: 0;
+  padding: 0.4rem 0.65rem;
+  border-radius: 4px;
+  border: none;
+  background: rgba(38, 34, 30, 0.65);
+  box-shadow: var(--g-depth-chip);
+  color: var(--g-text);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+/* Combat：固定遮罩层，非正文流 */
+.goth-combat-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: linear-gradient(165deg, rgba(22, 18, 15, 0.82), rgba(14, 11, 9, 0.92));
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.goth-combat-card {
+  width: min(720px, 100%);
+  border: none;
+  border-radius: var(--g-radius);
+  padding: 0.85rem 1rem;
+  background: linear-gradient(170deg, var(--g-surface-raised), var(--g-bg-deep));
+  box-shadow: var(--g-depth-metallic);
+}
+
+.goth-combat-card h2 {
+  margin: 0 0 0.65rem;
+  font-family: var(--g-font-display);
+  font-size: 1.2rem;
+  color: var(--g-text-title);
+}
+
+.goth-enemy-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr repeat(4, minmax(0, 1fr));
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0.45rem 0.5rem;
+  border-bottom: none;
+  font-size: 0.82rem;
+}
+
+.goth-enemy-row:not(:last-of-type)::after {
+  content: '';
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: 0;
+  height: 1px;
+  background: var(--g-divider-fade-subtle);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.goth-enemy-row--header {
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+
+.goth-enemy-row--header:not(:last-of-type)::after {
+  left: 1%;
+  right: 1%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(148, 122, 92, 0.38) 18%,
+    rgba(52, 42, 34, 0.52) 50%,
+    rgba(132, 108, 82, 0.32) 82%,
+    transparent 100%
+  );
+  opacity: 0.75;
+}
+
+.goth-enemy-row header,
+.goth-enemy-row--header > div {
+  font-weight: 600;
+  font-family: var(--g-font-ui);
+  color: var(--g-text-muted);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.goth-enemy-row--empty .goth-enemy-empty-msg {
+  grid-column: 1 / -1;
+  color: var(--g-text-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .goth-enemy-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Panel inner blocks */
+.goth-columns-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+@media (max-width: 720px) {
+  .goth-columns-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.goth-card {
+  border: none;
+  border-radius: var(--g-radius);
+  padding: 0.55rem 0.65rem;
+  background: linear-gradient(172deg, rgba(52, 48, 44, 0.92) 0%, rgba(34, 30, 26, 0.96) 100%);
+  box-shadow:
+    var(--g-depth-raised),
+    inset 0 1px 0 rgba(68, 62, 54, 0.05);
+}
+
+#goth-backstage .goth-card {
+  transition:
+    box-shadow var(--g-motion-medium, 0.28s) var(--g-motion-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    filter var(--g-motion-fast, 0.18s) ease;
+}
+
+#goth-backstage .goth-card:hover {
+  box-shadow:
+    var(--g-depth-raised),
+    inset 0 1px 0 rgba(82, 74, 62, 0.07),
+    0 0 0 1px rgba(196, 182, 150, 0.06),
+    0 6px 22px rgba(10, 8, 6, 0.28);
+  filter: brightness(1.02);
+}
+
+.goth-card h3 {
+  margin: 0 0 0.45rem;
+  font-family: var(--g-font-display);
+  font-size: 0.98rem;
+  color: var(--g-text-accent);
+}
+
+.goth-mono {
+  font-family: var(--g-font-mono);
+}
+
+.goth-progress {
+  height: 6px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(22, 18, 15, 0.65);
+  box-shadow:
+    var(--g-depth-recess),
+    inset 0 2px 4px rgba(8, 6, 5, 0.35);
+  overflow: hidden;
+  margin-top: 0.2rem;
+}
+
+.goth-progress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(130, 118, 102, 0.85), var(--g-archive-beige));
+  transition: width 0.35s ease;
+}
+
+.goth-tag {
+  display: inline-block;
+  font-family: var(--g-font-ui);
+  font-size: 0.68rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 3px;
+  border: none;
+  background: rgba(28, 24, 20, 0.35);
+  box-shadow:
+    var(--g-depth-chip),
+    inset 0 1px 0 rgba(96, 86, 72, 0.05);
+  color: var(--g-text-muted);
+}
+
+.goth-toolbar-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  margin-top: 0.35rem;
+}
+
+/* --- 主终端布局 --- */
+.goth-terminal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--g-layout-gap, 0.65rem);
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.goth-terminal__body {
+  display: grid;
+  grid-template-columns: minmax(12.25rem, 15rem) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: calc(var(--g-layout-gap, 0.65rem) + 0.45rem);
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.goth-terminal__sidebar {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 主终端：侧栏与叙事区之间的微弱分界线，强化两栏分工 */
+.goth-terminal__sidebar--rail {
+  position: relative;
+  padding-right: 0.72rem;
+}
+
+@media (min-width: 901px) {
+  .goth-terminal__sidebar--rail::after {
+    content: '';
+    position: absolute;
+    top: 0.2rem;
+    bottom: 0.2rem;
+    right: 0;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(118, 102, 82, 0.2) 12%,
+      rgba(72, 62, 52, 0.38) 50%,
+      rgba(118, 102, 82, 0.16) 88%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .goth-terminal__sidebar--rail {
+    padding-right: 0;
+  }
+
+  .goth-terminal__sidebar--rail::after {
+    display: none;
+  }
+}
+
+.goth-terminal__sidebar > * {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.goth-terminal__center {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 0;
+  min-width: 0;
+}
+
+.goth-terminal__center-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 1.15rem;
+  margin-bottom: 0.2rem;
+  padding-right: 0.05rem;
+}
+
+.goth-terminal__lane-label {
+  font-family: var(--g-font-ui, system-ui, sans-serif);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(148, 138, 122, 0.72);
+  user-select: none;
+}
+
+/* 主终端搜索入口 beacon 绝对定位锚点 */
+.goth-terminal__center--search-anchor {
+  position: relative;
+}
+
+/* 叙事区 + 输入栏整体与侧栏同高：取消宽高比，随栅格行拉伸 */
+.goth-terminal__chat-frame {
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.goth-terminal__chat-section {
+  min-height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.goth-terminal__chat-stack {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* 正文固定高度后，输入栏贴底吸收中部余量 */
+.goth-terminal__chat-stack > .goth-input-dock {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .goth-terminal__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- 档案后台 --- */
+#goth-backstage {
+  --g-backstage-accent: var(--g-archive-beige);
+  --g-backstage-accent-soft: rgba(196, 182, 150, 0.22);
+}
+
+#goth-backstage[data-active-section='attributes'] {
+  --g-backstage-accent: #b8a882;
+  --g-backstage-accent-soft: rgba(184, 168, 130, 0.28);
+}
+
+#goth-backstage[data-active-section='skills'] {
+  --g-backstage-accent: #8f9e86;
+  --g-backstage-accent-soft: rgba(143, 158, 134, 0.26);
+}
+
+#goth-backstage[data-active-section='physiology'] {
+  --g-backstage-accent: #8a9bab;
+  --g-backstage-accent-soft: rgba(138, 155, 171, 0.24);
+}
+
+#goth-backstage[data-active-section='status'] {
+  --g-backstage-accent: #a87c6c;
+  --g-backstage-accent-soft: rgba(168, 124, 108, 0.28);
+}
+
+#goth-backstage[data-active-section='inventory'] {
+  --g-backstage-accent: #9d8868;
+  --g-backstage-accent-soft: rgba(157, 136, 104, 0.26);
+}
+
+#goth-backstage[data-active-section='case'] {
+  --g-backstage-accent: #7d8a9e;
+  --g-backstage-accent-soft: rgba(125, 138, 158, 0.24);
+}
+
+#goth-backstage[data-active-section='map'] {
+  --g-backstage-accent: #6e8f8a;
+  --g-backstage-accent-soft: rgba(110, 143, 138, 0.24);
+}
+
+#goth-backstage[data-active-section='relation'] {
+  --g-backstage-accent: #9b86a8;
+  --g-backstage-accent-soft: rgba(155, 134, 168, 0.26);
+}
+
+.goth-backstage {
+  display: grid;
+  grid-template-columns: minmax(11.5rem, 12.25rem) minmax(0, 1fr);
+  gap: var(--g-layout-gap, 0.65rem);
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+.goth-backstage__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.goth-backstage__link {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  text-align: left;
+  padding: 0.45rem 0.5rem;
+  border-radius: var(--g-radius);
+  border: 1px solid transparent;
+  background: linear-gradient(168deg, rgba(62, 56, 50, 0.72), rgba(30, 26, 22, 0.88));
+  box-shadow: var(--g-depth-chip);
+  color: var(--g-text);
+  text-decoration: none;
+  font-family: var(--g-font-ui);
+  font-size: 0.78rem;
+  transition:
+    box-shadow var(--g-motion-fast, 0.18s) ease,
+    background var(--g-motion-fast, 0.18s) ease,
+    border-color var(--g-motion-fast, 0.18s) ease;
+}
+
+.goth-backstage__link-icon {
+  flex-shrink: 0;
+  width: 1.85rem;
+  height: 1.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--g-text-muted);
+  opacity: 0.92;
+}
+
+.goth-backstage__link-icon svg {
+  display: block;
+  transition: transform var(--g-motion-fast, 0.18s) var(--g-motion-ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.goth-backstage__link:hover .goth-backstage__link-icon svg,
+.goth-backstage__link:focus-visible .goth-backstage__link-icon svg {
+  transform: rotate(2deg) scale(1.03);
+}
+
+.goth-backstage__link-text {
+  min-width: 0;
+}
+
+.goth-backstage__link:hover {
+  background: linear-gradient(168deg, rgba(68, 62, 54, 0.78), rgba(32, 28, 24, 0.9));
+  box-shadow:
+    var(--g-depth-chip),
+    0 5px 16px rgba(12, 10, 8, 0.26);
+}
+
+.goth-backstage__link.router-link-active,
+.goth-backstage__link.is-active {
+  border-color: var(--g-backstage-accent-soft);
+  background: linear-gradient(168deg, rgba(58, 54, 48, 0.82), rgba(28, 24, 20, 0.92));
+  box-shadow:
+    var(--g-depth-chip),
+    inset 0 0 22px rgba(48, 42, 32, 0.2),
+    inset 0 2px 10px rgba(8, 6, 5, 0.38),
+    inset 0 1px 0 rgba(108, 96, 76, 0.06);
+}
+
+.goth-backstage__link.router-link-active .goth-backstage__link-icon,
+.goth-backstage__link.is-active .goth-backstage__link-icon {
+  color: var(--g-backstage-accent);
+}
+
+.goth-backstage__link strong {
+  display: block;
+  font-family: var(--g-font-display);
+  margin-bottom: 0.15rem;
+}
+
+.goth-backstage__link small {
+  color: var(--g-text-muted);
+  font-size: 0.68rem;
+}
+
+.goth-backstage__content {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* 后台分区页眉（与各面板 scoped 样式互补） */
+.goth-backstage-section {
+  min-width: 0;
+}
+
+.goth-backstage-section__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: var(--g-radius);
+  background: linear-gradient(165deg, rgba(48, 44, 38, 0.55), rgba(28, 26, 22, 0.72));
+  box-shadow:
+    inset 0 1px 0 rgba(120, 108, 88, 0.08),
+    0 4px 14px rgba(8, 6, 5, 0.18);
+  border-left: 3px solid var(--g-backstage-accent);
+  transition:
+    box-shadow var(--g-motion-medium, 0.28s) var(--g-motion-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    filter var(--g-motion-fast, 0.18s) ease;
+}
+
+.goth-backstage-section__header:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(128, 116, 96, 0.1),
+    0 5px 18px rgba(8, 6, 5, 0.22),
+    0 0 26px var(--g-backstage-accent-soft);
+}
+
+.goth-backstage-section__icon-wrap {
+  flex-shrink: 0;
+  width: 2.35rem;
+  height: 2.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--g-backstage-accent);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.goth-backstage-section__title {
+  margin: 0;
+  font-family: var(--g-font-display);
+  font-size: 1.12rem;
+  color: var(--g-text-title);
+  letter-spacing: 0.04em;
+}
+
+.goth-backstage-section__desc {
+  margin: 0.2rem 0 0;
+  font-size: 0.76rem;
+  font-family: var(--g-font-ui);
+  color: var(--g-text-muted);
+  line-height: 1.35;
+}
+
+.goth-backstage-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 分区内容区局部强调（与当前路由 accent 呼应） */
+.goth-backstage-section--attributes .goth-card {
+  border-left: 2px solid rgba(184, 168, 130, 0.35);
+}
+
+.goth-backstage-section--skills .goth-card {
+  border-left: 2px solid rgba(143, 158, 134, 0.35);
+}
+
+.goth-backstage-section--physiology .goth-card {
+  border-left: 2px solid rgba(138, 155, 171, 0.35);
+}
+
+.goth-backstage-section--status .goth-card {
+  border-left: 2px solid rgba(168, 124, 108, 0.35);
+}
+
+.goth-backstage-section--inventory .goth-card {
+  border-left: 2px solid rgba(157, 136, 104, 0.35);
+}
+
+.goth-backstage-section--case .goth-card {
+  border-left: 2px solid rgba(125, 138, 158, 0.35);
+}
+
+.goth-backstage-section--map .goth-card {
+  border-left: 2px solid rgba(110, 143, 138, 0.35);
+}
+
+.goth-backstage-section--relation .goth-card {
+  border-left: 2px solid rgba(155, 134, 168, 0.35);
+}
+
+.goth-panel-section-title {
+  margin: 0 0 0.45rem;
+  font-family: var(--g-font-display);
+  font-size: 1rem;
+  color: var(--g-text-accent);
+}
+
+@media (max-width: 900px) {
+  .goth-backstage {
+    grid-template-columns: 1fr;
+  }
+}

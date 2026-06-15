@@ -1,0 +1,17 @@
+{
+  "type": "script",
+  "enabled": true,
+  "name": "隐藏楼层",
+  "id": "dfe36b01-5ad5-47c5-ae4f-c3f1a602e4e7",
+  "content": "$(() => {\n  errorCatched(init)();\n\n  function init() {\n    const ATTR = 'data-th-only-latest-ai';\n    const CLS = 'th-only-latest-ai-hidden';\n\n    function getLatestAssistantMessageId() {\n      const last = getLastMessageId();\n      if (last < 0) return null;\n      const assistants = getChatMessages('0-' + last, { role: 'assistant' });\n      if (!assistants.length) return null;\n      return assistants[assistants.length - 1].message_id;\n    }\n\n    function applyOnlyLatestAiVisible() {\n      const latestAiId = getLatestAssistantMessageId();\n      $('#chat > .mes').each(function () {\n        const $mes = $(this);\n        const mesId = Number($mes.attr('mesid'));\n        const shouldShow = latestAiId !== null && !Number.isNaN(mesId) && mesId === latestAiId;\n        if (shouldShow) {\n          $mes.removeClass(CLS).removeAttr(ATTR).css('display', '');\n        } else {\n          $mes.addClass(CLS).attr(ATTR, '1').css('display', 'none');\n        }\n      });\n    }\n\n    function restoreAllMessagesVisible() {\n      $('#chat > .mes').removeClass(CLS).removeAttr(ATTR).css('display', '');\n    }\n\n    const apply = _.debounce(applyOnlyLatestAiVisible, 120);\n    applyOnlyLatestAiVisible();\n\n    const stops = [\n      eventOn(tavern_events.MESSAGE_RECEIVED, apply),\n      eventOn(tavern_events.MESSAGE_UPDATED, apply),\n      eventOn(tavern_events.MESSAGE_DELETED, apply),\n      eventOn(tavern_events.MESSAGE_SWIPED, apply),\n      eventOn(tavern_events.CHARACTER_MESSAGE_RENDERED, apply),\n      eventOn(tavern_events.USER_MESSAGE_RENDERED, apply),\n      eventOn(tavern_events.MORE_MESSAGES_LOADED, apply),\n    ];\n\n    let current_chat_id = SillyTavern.getCurrentChatId();\n    eventOn(tavern_events.CHAT_CHANGED, chat_id => {\n      if (current_chat_id !== chat_id) {\n        current_chat_id = chat_id;\n        reloadIframe();\n      }\n    });\n\n    $(window).on('pagehide', () => {\n      apply.cancel();\n      stops.forEach(stop => stop.stop());\n      restoreAllMessagesVisible();\n    });\n  }\n});",
+  "info": "",
+  "button": {
+    "enabled": true,
+    "buttons": []
+  },
+  "data": {},
+  "export_with": {
+    "data": true,
+    "button": true
+  }
+}

@@ -1,0 +1,498 @@
+@media (prefers-reduced-motion: reduce) {
+  .inf-root *,
+  .inf-root *::before,
+  .inf-root *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .inf-ambient__mesh,
+  .inf-ambient__pulse {
+    animation: none !important;
+  }
+}
+
+.inf-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--inf-border) 0%,
+    color-mix(in srgb, var(--inf-accent) 12%, transparent) 50%,
+    var(--inf-border) 100%
+  );
+  background-size: 200% 100%;
+  animation: inf-shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes inf-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes inf-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes inf-border-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes inf-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes inf-toast-progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.inf-fade-enter-active,
+.inf-fade-leave-active {
+  transition: opacity var(--inf-transition);
+}
+
+.inf-fade-enter-from,
+.inf-fade-leave-to {
+  opacity: 0;
+}
+
+.inf-slide-enter-active,
+.inf-slide-leave-active {
+  transition:
+    opacity var(--inf-transition),
+    transform var(--inf-transition);
+}
+
+.inf-slide-enter-from,
+.inf-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.inf-toast-enter-active {
+  transition:
+    opacity var(--inf-transition-slow),
+    transform var(--inf-transition-spring);
+}
+
+.inf-toast-leave-active {
+  transition:
+    opacity var(--inf-transition-fast),
+    transform var(--inf-transition);
+}
+
+.inf-toast-enter-from {
+  opacity: 0;
+  transform: translateX(24px) scale(0.94);
+}
+
+.inf-toast-leave-to {
+  opacity: 0;
+  transform: translateX(12px) scale(0.98);
+}
+
+.inf-stagger-item {
+  animation: inf-fade-up var(--inf-transition-slow) cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--stagger, 0) * 55ms);
+}
+
+.inf-reveal {
+  animation: inf-fade-up var(--inf-transition-slow) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes inf-meter-shimmer {
+  0% {
+    transform: translateX(-110%);
+  }
+  54% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes inf-desire-breathe {
+  0%,
+  100% {
+    opacity: 0.9;
+    filter: brightness(1) saturate(1);
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.1) saturate(1.06);
+    transform: scaleY(1.05);
+  }
+}
+
+@keyframes inf-delta-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.82) translateY(2px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06) translateY(-1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes inf-meter-flash {
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 0 transparent;
+  }
+  40% {
+    box-shadow: inset 0 0 12px color-mix(in srgb, var(--inf-tier-accent-strong) 35%, transparent);
+  }
+}
+
+@keyframes inf-infection-spike {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.12);
+  }
+}
+
+@keyframes inf-drift-beacon {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes inf-drift-scan {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+@keyframes inf-tier-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--inf-tier-accent) 0%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--inf-tier-accent) 28%, transparent);
+  }
+}
+
+.inf-meter-fill-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  transform: translateX(-100%);
+  animation: inf-meter-shimmer 2.6s var(--inf-transition-slow) infinite;
+  pointer-events: none;
+}
+
+.inf-desire-fill-breathe {
+  animation: inf-desire-breathe 2.4s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+.inf-delta-pop {
+  animation: inf-delta-pop 300ms var(--inf-transition-spring) both;
+}
+
+.inf-meter-flash {
+  animation: inf-meter-flash 480ms ease-out;
+}
+
+.inf-no-motion {
+  .inf-meter-fill-shimmer::after,
+  .inf-meter-liquid-fill__caustic,
+  .inf-meter-liquid-fill__wave,
+  .inf-meter-glass-track__specular-pass--play,
+  .inf-meter-liquid-fill__bubble,
+  .inf-meter-liquid-fill--slosh,
+  .inf-meter-liquid-distort,
+  .inf-meter-liquid-track--ripple,
+  .inf-delta-pop,
+  .inf-infection-meter__shatter,
+  .inf-desire-meter__liquid-overlay,
+  .inf-world-strip__chip--time-live::after,
+  .inf-world-strip__time-colon,
+  .inf-world-strip__time-segment {
+    animation: none !important;
+  }
+}
+
+@keyframes inf-digital-colon-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0.18;
+  }
+}
+
+@keyframes inf-digital-segment-glow {
+  0%,
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow:
+      0 0 4px color-mix(in srgb, var(--inf-accent) 22%, transparent),
+      0 0 10px color-mix(in srgb, var(--inf-accent-glow) 18%, transparent);
+  }
+  50% {
+    opacity: 0.92;
+    filter: brightness(1.12);
+    text-shadow:
+      0 0 8px color-mix(in srgb, var(--inf-accent) 38%, transparent),
+      0 0 18px color-mix(in srgb, var(--inf-accent-glow) 42%, transparent);
+  }
+}
+
+@keyframes inf-digital-scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(3px);
+  }
+}
+
+@keyframes inf-infection-shatter {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  12% {
+    opacity: 1;
+  }
+  28% {
+    transform: scale(1.02) translateX(-1px);
+  }
+  42% {
+    transform: scale(0.98) translateX(1px);
+  }
+  58% {
+    transform: scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes inf-infection-shatter-crack {
+  0% {
+    stroke-dashoffset: 120;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+}
+
+@keyframes inf-infection-fill-die {
+  0% {
+    filter: brightness(1.2) saturate(1);
+    opacity: 1;
+  }
+  45% {
+    filter: brightness(1.6) saturate(1.2);
+    opacity: 1;
+  }
+  100% {
+    filter: brightness(0.45) saturate(0.2);
+    opacity: 0.35;
+  }
+}
+
+@keyframes inf-desire-liquid-fill {
+  0% {
+    transform: translateY(100%) scaleY(1.08);
+    opacity: 0.92;
+  }
+  55% {
+    transform: translateY(8%) scaleY(1.02);
+    opacity: 0.97;
+  }
+  72% {
+    transform: translateY(-2%) scaleY(0.98);
+  }
+  100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 0.94;
+  }
+}
+
+@keyframes inf-desire-liquid-wipe {
+  0% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0.94;
+  }
+  100% {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+  }
+}
+
+@keyframes inf-desire-liquid-sheen {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes inf-liquid-wave-drift {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-25%) translateY(-1px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes inf-liquid-caustic {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.38;
+  }
+  33% {
+    transform: translate(4%, -2%) scale(1.04);
+    opacity: 0.52;
+  }
+  66% {
+    transform: translate(-3%, 1%) scale(0.98);
+    opacity: 0.44;
+  }
+}
+
+@keyframes inf-liquid-meniscus-pulse {
+  0%,
+  100% {
+    transform: scaleX(1) scaleY(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scaleX(1.08) scaleY(1.04);
+    filter: brightness(1.12);
+  }
+}
+
+@keyframes inf-liquid-bubble-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  12% {
+    opacity: 0.75;
+  }
+  72% {
+    opacity: 0.35;
+    transform: translateY(calc(-1 * var(--inf-meter-track-height, 8px) * 1.1)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--inf-meter-track-height, 8px) * 1.35)) scale(0.85);
+  }
+}
+
+@keyframes inf-liquid-slosh {
+  0%,
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+  22% {
+    transform: translateY(-1px) scaleY(1.08);
+  }
+  48% {
+    transform: translateY(0.5px) scaleY(0.96);
+  }
+  72% {
+    transform: translateY(-0.5px) scaleY(1.03);
+  }
+}
+
+@keyframes inf-liquid-distort-idle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.5px);
+  }
+}
+
+@keyframes inf-liquid-track-ripple {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  35% {
+    transform: scaleY(0.96);
+  }
+  65% {
+    transform: scaleY(1.02);
+  }
+}
+
+@keyframes inf-meter-specular-pass {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+  18% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+}

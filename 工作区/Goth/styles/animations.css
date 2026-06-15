@@ -1,0 +1,275 @@
+/* Goth — transitions */
+
+.goth-modal-enter-active,
+.goth-modal-leave-active {
+  transition: opacity var(--g-motion-medium, 0.28s) ease;
+}
+
+.goth-modal-enter-active .goth-modal-sheet,
+.goth-modal-leave-active .goth-modal-sheet {
+  transition:
+    transform 0.32s var(--g-motion-ease-out, cubic-bezier(0.22, 1, 0.36, 1)),
+    opacity var(--g-motion-medium, 0.28s) ease;
+}
+
+.goth-modal-enter-from,
+.goth-modal-leave-to {
+  opacity: 0;
+}
+
+.goth-modal-enter-from .goth-modal-sheet,
+.goth-modal-leave-to .goth-modal-sheet {
+  transform: translateY(18px) scale(0.98);
+  opacity: 0.85;
+}
+
+@media (min-width: 720px) {
+  .goth-modal-enter-from .goth-modal-sheet,
+  .goth-modal-leave-to .goth-modal-sheet {
+    transform: translateY(12px) scale(0.97);
+  }
+}
+
+.goth-page-enter-active,
+.goth-page-leave-active {
+  transition:
+    opacity var(--g-motion-medium, 0.28s) ease,
+    transform var(--g-motion-medium, 0.28s) var(--g-motion-ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.goth-page-enter-from,
+.goth-page-leave-to {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* 侧栏 Subject ↔ File 面板切换 */
+.goth-sidebar-panel-enter-active,
+.goth-sidebar-panel-leave-active {
+  transition:
+    opacity var(--g-motion-medium, 0.26s) ease,
+    transform var(--g-motion-medium, 0.26s) var(--g-motion-ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.goth-sidebar-panel-enter-from {
+  opacity: 0;
+  transform: translateY(7px);
+}
+
+.goth-sidebar-panel-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+.goth-stat-delta {
+  animation: goth-stat-flash 0.55s ease;
+}
+
+@keyframes goth-stat-flash {
+  0% {
+    filter: brightness(1.15);
+  }
+
+  40% {
+    filter: brightness(1.35);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.goth-combat-enter-active,
+.goth-combat-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.goth-combat-enter-from,
+.goth-combat-leave-to {
+  opacity: 0;
+}
+
+/* 生成中：Newton cradle（配色随 --g-text-muted） */
+.goth-generating-cradle {
+  --goth-cradle-size: 34px;
+  --goth-cradle-speed: 1.15s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--goth-cradle-size);
+  height: var(--goth-cradle-size);
+  flex-shrink: 0;
+}
+
+.goth-generating-cradle__dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 25%;
+  transform-origin: center top;
+}
+
+.goth-generating-cradle__dot::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 28%;
+  min-height: 6px;
+  border-radius: 50%;
+  background-color: var(--g-text-muted);
+  opacity: 0.88;
+}
+
+.goth-generating-cradle__dot:first-child {
+  animation: goth-cradle-swing-a var(--goth-cradle-speed) linear infinite;
+}
+
+.goth-generating-cradle__dot:last-child {
+  animation: goth-cradle-swing-b var(--goth-cradle-speed) linear infinite;
+}
+
+@keyframes goth-cradle-swing-a {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: ease-out;
+  }
+
+  25% {
+    transform: rotate(52deg);
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    transform: rotate(0deg);
+    animation-timing-function: linear;
+  }
+
+  100% {
+    transform: rotate(0deg);
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes goth-cradle-swing-b {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: linear;
+  }
+
+  50% {
+    transform: rotate(0deg);
+    animation-timing-function: ease-out;
+  }
+
+  75% {
+    transform: rotate(-52deg);
+    animation-timing-function: ease-in;
+  }
+
+  100% {
+    transform: rotate(0deg);
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes goth-backstage-section-in {
+  from {
+    opacity: 0.88;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.goth-backstage-section {
+  animation: goth-backstage-section-in var(--g-motion-medium, 0.28s) var(--g-motion-ease-out, cubic-bezier(0.22, 1, 0.36, 1))
+    both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .goth-modal-enter-active,
+  .goth-modal-leave-active,
+  .goth-modal-enter-active .goth-modal-sheet,
+  .goth-modal-leave-active .goth-modal-sheet,
+  .goth-page-enter-active,
+  .goth-page-leave-active,
+  .goth-sidebar-panel-enter-active,
+  .goth-sidebar-panel-leave-active {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .goth-page-enter-from,
+  .goth-page-leave-to,
+  .goth-sidebar-panel-enter-from,
+  .goth-sidebar-panel-leave-to {
+    transform: none;
+  }
+
+  .goth-chat-input-row::before,
+  .goth-chat-input-row::after {
+    transition-duration: 0.01ms !important;
+  }
+
+  .goth-chat-input-row:focus-within::after {
+    width: min(94%, 42rem);
+    opacity: 1;
+  }
+
+  .goth-option-chip {
+    transition-duration: 0.01ms !important;
+  }
+
+  .goth-option-chip:hover:not(:disabled),
+  .goth-option-chip:focus-visible:not(:disabled),
+  .goth-option-chip:active:not(:disabled) {
+    transform: none;
+    filter: none;
+  }
+
+  .goth-backstage__link {
+    transition-duration: 0.01ms !important;
+  }
+
+  .goth-backstage__link-icon svg {
+    transition-duration: 0.01ms !important;
+    transform: none !important;
+  }
+
+  #goth-backstage .goth-card {
+    transition-duration: 0.01ms !important;
+  }
+
+  #goth-backstage .goth-card:hover {
+    filter: none;
+  }
+
+  .goth-backstage-section__header {
+    transition-duration: 0.01ms !important;
+  }
+
+  .goth-backstage-section__header:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(120, 108, 88, 0.08),
+      0 4px 14px rgba(8, 6, 5, 0.18);
+  }
+
+  .goth-generating-cradle__dot:first-child,
+  .goth-generating-cradle__dot:last-child {
+    animation: none;
+  }
+
+  .goth-stat-delta {
+    animation: none;
+  }
+
+  .goth-backstage-section {
+    animation: none;
+  }
+}

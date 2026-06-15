@@ -1,0 +1,304 @@
+.inf-reading-canvas {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  color: var(--inf-text);
+  text-align: left;
+  writing-mode: horizontal-tb;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.inf-reading-canvas__frame {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  border: 1px solid var(--inf-reading-frame-border);
+  border-radius: var(--inf-radius-md);
+  background: color-mix(in srgb, var(--inf-surface-glass-strong) 52%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+  box-shadow:
+    var(--inf-reading-page-shadow),
+    inset 0 1px 0 color-mix(in srgb, #fff 22%, transparent);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--inf-accent) 38%, transparent),
+      transparent 40%,
+      color-mix(in srgb, var(--inf-tier-accent) 22%, transparent) 72%,
+      transparent
+    );
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+.inf-reading-canvas__page {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse 90% 55% at 12% -8%, color-mix(in srgb, var(--inf-accent) 5%, transparent), transparent 58%),
+    radial-gradient(ellipse 70% 45% at 92% 108%, color-mix(in srgb, var(--inf-tier-accent) 4%, transparent), transparent 52%),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--inf-bg-elevated) 96%, var(--inf-accent-soft)) 0%,
+      var(--inf-reading-page-bg) 38%,
+      color-mix(in srgb, var(--inf-reading-page-bg) 92%, var(--inf-bg-deep)) 100%
+    );
+}
+
+.inf-reading-canvas__ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.75;
+  background:
+    radial-gradient(circle at 18% 22%, color-mix(in srgb, var(--inf-mesh-1) 40%, transparent), transparent 42%),
+    radial-gradient(circle at 82% 78%, color-mix(in srgb, var(--inf-mesh-2) 30%, transparent), transparent 38%);
+}
+
+.inf-reading-canvas__scroll {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  contain: content;
+}
+
+.inf-reading-canvas__content {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding:
+    var(--inf-reading-content-pad-y)
+    var(--inf-reading-content-pad-x)
+    calc(var(--inf-reading-line-step) * 2.5);
+  text-align: left;
+}
+
+.inf-reading-canvas__sheet {
+  position: absolute;
+  inset:
+    var(--inf-reading-content-pad-y)
+    var(--inf-reading-content-pad-x)
+    calc(var(--inf-reading-line-step) * 1.25);
+  border-radius: var(--inf-reading-sheet-radius);
+  pointer-events: none;
+  z-index: 0;
+  background-color: var(--inf-bg-elevated);
+  background-color: color-mix(in srgb, var(--inf-bg-elevated) 90%, transparent);
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--inf-reading-line-step) * 4 - 1px),
+      var(--inf-reading-grid-line-major) calc(var(--inf-reading-line-step) * 4 - 1px),
+      var(--inf-reading-grid-line-major) calc(var(--inf-reading-line-step) * 4)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--inf-reading-line-step) - 1px),
+      var(--inf-reading-grid-line) calc(var(--inf-reading-line-step) - 1px),
+      var(--inf-reading-grid-line) var(--inf-reading-line-step)
+    );
+  background-size:
+    100% calc(var(--inf-reading-line-step) * 4),
+    100% var(--inf-reading-line-step);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--inf-accent) 8%, var(--inf-border)),
+    inset 0 1px 0 color-mix(in srgb, #fff 22%, transparent),
+    0 6px 22px color-mix(in srgb, var(--inf-text) 4%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 5%, #000 95%, transparent 100%);
+}
+
+.inf-reading-canvas__body {
+  position: relative;
+  z-index: 1;
+}
+
+.inf-maintext-renderer {
+  --inf-reading-text-pad-x: clamp(0.5rem, 1.5vw, 0.85rem);
+}
+
+.inf-prose-block {
+  margin: 0;
+  padding-inline: var(--inf-reading-text-pad-x);
+  min-height: var(--inf-reading-line-step);
+  white-space: pre-line;
+  text-align: left;
+  font-family: var(--inf-font-narrative);
+  font-weight: 500;
+  line-height: var(--inf-reading-line-step);
+  letter-spacing: 0.045em;
+  color: var(--inf-text);
+  text-shadow: var(--inf-reading-ink-shadow);
+
+  & + .inf-quote-block-wrap {
+    margin-top: var(--inf-reading-line-step);
+  }
+}
+
+.inf-quote-block-wrap + .inf-prose-block,
+.inf-quote-block-wrap + .inf-quote-block-wrap {
+  margin-top: var(--inf-reading-line-step);
+}
+
+.inf-prose-block__dropcap {
+  float: left;
+  margin: 0 0.12em 0 0;
+  font-family: var(--inf-font-narrative);
+  font-size: calc(var(--inf-reading-line-step) * 1.28);
+  font-weight: 600;
+  line-height: var(--inf-reading-line-step);
+  height: var(--inf-reading-line-step);
+  letter-spacing: 0.02em;
+  color: var(--inf-accent);
+}
+
+.inf-quote-block {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding:
+    calc(var(--inf-reading-line-step) * 0.35)
+    var(--inf-reading-text-pad-x)
+    calc(var(--inf-reading-line-step) * 0.4);
+  padding-left: calc(var(--inf-reading-text-pad-x) + 3px);
+  border: none;
+  border-radius: var(--inf-radius-sm);
+  background: color-mix(in srgb, var(--inf-quote-bg) 72%, transparent);
+  box-shadow: inset 3px 0 0 var(--inf-quote-block-accent, var(--inf-accent));
+  overflow: hidden;
+  text-align: left;
+
+  &--corner {
+    --inf-quote-block-accent: var(--inf-accent);
+    --inf-quote-block-text: color-mix(in srgb, var(--inf-accent-hover) 62%, var(--inf-text));
+    --inf-quote-block-text-shadow:
+      0 0 0.55px color-mix(in srgb, var(--inf-quote-block-text) 88%, transparent),
+      0 1px 0 color-mix(in srgb, var(--inf-accent) 10%, transparent),
+      0 0 20px color-mix(in srgb, var(--inf-accent) 16%, transparent);
+  }
+
+  &--double {
+    --inf-quote-block-accent: var(--inf-tier-accent-strong);
+    --inf-quote-block-text: color-mix(in srgb, var(--inf-tier-accent-strong) 55%, var(--inf-text));
+    --inf-quote-block-text-shadow:
+      0 0 0.55px color-mix(in srgb, var(--inf-quote-block-text) 88%, transparent),
+      0 1px 0 color-mix(in srgb, var(--inf-tier-accent-strong) 10%, transparent),
+      0 0 20px color-mix(in srgb, var(--inf-tier-accent-strong) 14%, transparent);
+  }
+
+  &--western {
+    --inf-quote-block-accent: color-mix(in srgb, var(--inf-outbreak-accent) 50%, var(--inf-accent));
+    --inf-quote-block-text: color-mix(in srgb, var(--inf-outbreak-accent) 48%, var(--inf-text));
+    --inf-quote-block-text-shadow:
+      0 0 0.55px color-mix(in srgb, var(--inf-quote-block-text) 88%, transparent),
+      0 1px 0 color-mix(in srgb, var(--inf-outbreak-accent) 10%, transparent),
+      0 0 20px color-mix(in srgb, var(--inf-outbreak-accent) 14%, transparent);
+  }
+}
+
+.inf-quote-block__edge {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--inf-quote-block-accent, var(--inf-accent)) 8%, transparent),
+    transparent 28%
+  );
+  opacity: 0.85;
+}
+
+.inf-quote-block__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  min-height: var(--inf-reading-line-step);
+}
+
+.inf-quote-block__mark {
+  flex-shrink: 0;
+  margin-top: calc(var(--inf-reading-line-step) * 0.18);
+  color: var(--inf-quote-block-accent, var(--inf-accent));
+  opacity: 0.82;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--inf-quote-block-accent, var(--inf-accent)) 28%, transparent));
+}
+
+.inf-quote-block__text {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--inf-font-quote);
+  font-size: var(--inf-quote-text-size);
+  font-weight: 500;
+  line-height: calc(var(--inf-reading-line-step) * 1.06);
+  letter-spacing: 0.085em;
+  color: var(--inf-quote-block-text, var(--inf-quote-text-base));
+  white-space: pre-line;
+  text-align: left;
+  text-shadow: var(--inf-quote-block-text-shadow, var(--inf-quote-text-shadow));
+  font-feature-settings: 'kern' 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.inf-reading-caret {
+  display: inline-block;
+  width: 2px;
+  height: calc(var(--inf-reading-line-step) * 0.68);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--inf-accent-bright);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--inf-accent-bright) 45%, transparent);
+  animation: inf-caret 1s step-end infinite;
+}
+
+.inf-no-motion .inf-reading-caret {
+  animation: none;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --inf-reading-content-pad-x: clamp(1rem, 5vw, 1.35rem);
+  }
+
+  .inf-maintext-renderer {
+    --inf-reading-text-pad-x: 0.35rem;
+  }
+
+  .inf-quote-block__text {
+    font-size: clamp(1rem, 0.5vw + 0.92rem, 1.08rem);
+    letter-spacing: 0.07em;
+  }
+}

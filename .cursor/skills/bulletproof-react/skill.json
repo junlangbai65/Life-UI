@@ -1,0 +1,21 @@
+{
+  "name": "bulletproof-react",
+  "displayName": "Bulletproof React Architecture",
+  "description": "Production-ready React architecture: feature folders, API layer, state, testing, security, performance.",
+  "version": "1.0.0",
+  "author": "alan2207",
+  "license": "MIT",
+  "source": "https://github.com/alan2207/bulletproof-react",
+  "keywords": [
+    "react",
+    "typescript",
+    "architecture",
+    "feature-folder",
+    "tanstack-query",
+    "zustand",
+    "best-practices"
+  ],
+  "platforms": ["cursor", "claude"],
+  "frameworks": ["react"],
+  "entry": "SKILL.md"
+}

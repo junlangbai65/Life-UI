@@ -1,0 +1,287 @@
+@keyframes inf-signal-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes inf-ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes inf-weather-sun-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes inf-weather-sun-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes inf-weather-cloud-drift {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+}
+
+@keyframes inf-weather-rain-fall {
+  0% {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}
+
+@keyframes inf-weather-lightning {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+  }
+  90%,
+  94% {
+    opacity: 1;
+  }
+}
+
+@keyframes inf-weather-cloud-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-1px);
+  }
+  75% {
+    transform: translateX(1px);
+  }
+}
+
+@keyframes inf-weather-snow-fall {
+  0% {
+    transform: translateY(-3px) translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(7px) translateX(1px);
+    opacity: 0;
+  }
+}
+
+@keyframes inf-weather-fog-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes inf-weather-wind-sweep {
+  0% {
+    transform: translateX(-6px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(6px);
+    opacity: 0;
+  }
+}
+
+@keyframes inf-weather-sand-streak {
+  0% {
+    transform: translateX(-8px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(8px);
+    opacity: 0;
+  }
+}
+
+.inf-weather-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--inf-accent);
+
+  &--clear .inf-weather-icon__sun-core {
+    animation: inf-weather-sun-pulse 3s ease-in-out infinite;
+  }
+
+  &--clear .inf-weather-icon__sun-rays {
+    animation: inf-weather-sun-spin 24s linear infinite;
+    transform-origin: 12px 12px;
+  }
+
+  &--partlyCloudy .inf-weather-icon__cloud,
+  &--overcast .inf-weather-icon__cloud {
+    animation: inf-weather-cloud-drift 4s ease-in-out infinite;
+  }
+
+  &--partlyCloudy .inf-weather-icon__sun-peek {
+    animation: inf-weather-sun-pulse 3.5s ease-in-out infinite;
+  }
+
+  &--drizzle .inf-weather-icon__drop {
+    animation: inf-weather-rain-fall 1.4s linear infinite;
+  }
+
+  &--drizzle .inf-weather-icon__drop:nth-child(2) {
+    animation-delay: 0.45s;
+  }
+
+  &--rain .inf-weather-icon__drop {
+    animation: inf-weather-rain-fall 1s linear infinite;
+  }
+
+  &--rain .inf-weather-icon__drop:nth-child(2) {
+    animation-delay: 0.25s;
+  }
+
+  &--rain .inf-weather-icon__drop:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+
+  &--heavyRain .inf-weather-icon__drop {
+    animation: inf-weather-rain-fall 0.65s linear infinite;
+  }
+
+  &--heavyRain .inf-weather-icon__drop:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  &--heavyRain .inf-weather-icon__drop:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  &--heavyRain .inf-weather-icon__drop:nth-child(4) {
+    animation-delay: 0.45s;
+  }
+
+  &--thunder .inf-weather-icon__cloud {
+    animation: inf-weather-cloud-shake 0.4s ease-in-out infinite;
+  }
+
+  &--thunder .inf-weather-icon__bolt {
+    animation: inf-weather-lightning 2.8s ease-in-out infinite;
+  }
+
+  &--snow .inf-weather-icon__flake {
+    animation: inf-weather-snow-fall 2.2s linear infinite;
+  }
+
+  &--snow .inf-weather-icon__flake:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+
+  &--snow .inf-weather-icon__flake:nth-child(3) {
+    animation-delay: 1.1s;
+  }
+
+  &--blizzard .inf-weather-icon__flake {
+    animation: inf-weather-snow-fall 1.1s linear infinite;
+  }
+
+  &--blizzard .inf-weather-icon__flake:nth-child(2) {
+    animation-delay: 0.25s;
+  }
+
+  &--blizzard .inf-weather-icon__flake:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+
+  &--blizzard .inf-weather-icon__flake:nth-child(4) {
+    animation-delay: 0.75s;
+  }
+
+  &--fog .inf-weather-icon__fog-layer,
+  &--haze .inf-weather-icon__fog-layer {
+    animation: inf-weather-fog-breathe 3s ease-in-out infinite;
+  }
+
+  &--fog .inf-weather-icon__fog-layer:nth-child(2),
+  &--haze .inf-weather-icon__fog-layer:nth-child(2) {
+    animation-delay: 0.8s;
+  }
+
+  &--wind .inf-weather-icon__wind-line {
+    animation: inf-weather-wind-sweep 1.6s ease-in-out infinite;
+  }
+
+  &--wind .inf-weather-icon__wind-line:nth-child(2) {
+    animation-delay: 0.35s;
+  }
+
+  &--wind .inf-weather-icon__wind-line:nth-child(3) {
+    animation-delay: 0.7s;
+  }
+
+  &--sandstorm .inf-weather-icon__sand {
+    animation: inf-weather-sand-streak 0.9s linear infinite;
+  }
+
+  &--sandstorm .inf-weather-icon__sand:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  &--sandstorm .inf-weather-icon__sand:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  &--sleet .inf-weather-icon__drop {
+    animation: inf-weather-rain-fall 1.2s linear infinite;
+  }
+
+  &--sleet .inf-weather-icon__flake {
+    animation: inf-weather-snow-fall 1.8s linear infinite;
+  }
+
+  &--sleet .inf-weather-icon__flake:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+}
+
+.inf-no-motion .inf-weather-icon,
+.inf-no-motion .inf-weather-icon * {
+  animation: none !important;
+}

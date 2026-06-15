@@ -1,0 +1,21 @@
+{
+  "name": "react-bits",
+  "displayName": "React Bits",
+  "description": "React patterns, anti-patterns, gotchas, performance and styling tips.",
+  "version": "1.0.0",
+  "author": "vasanthk",
+  "license": "CC-BY-4.0",
+  "source": "https://github.com/vasanthk/react-bits",
+  "keywords": [
+    "react",
+    "patterns",
+    "anti-patterns",
+    "jsx",
+    "hooks",
+    "performance",
+    "best-practices"
+  ],
+  "platforms": ["cursor", "claude"],
+  "frameworks": ["react"],
+  "entry": "SKILL.md"
+}

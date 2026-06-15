@@ -1,0 +1,367 @@
+// Glass tube + SVG-displacement liquid fills — material-first, no looping bloom
+
+.inf-meter-glass-track {
+  position: relative;
+  height: var(--inf-meter-track-height, 12px);
+  border-radius: 999px;
+  isolation: isolate;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--inf-surface-glass-strong) 86%, transparent) 0%,
+      color-mix(in srgb, var(--inf-surface-glass) 72%, transparent) 100%
+    );
+  border: 1px solid var(--inf-border-strong);
+  border: 1px solid color-mix(in srgb, #fff 24%, var(--inf-border-strong));
+  box-shadow:
+    inset 0 3px 8px color-mix(in srgb, var(--inf-text) 10%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, #fff 30%, transparent),
+    0 1px 2px color-mix(in srgb, var(--inf-text) 4%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(165%);
+  backdrop-filter: blur(10px) saturate(165%);
+  overflow: hidden;
+
+  &--desire {
+    --inf-meter-glass-tint: var(--inf-desire-accent);
+  }
+
+  &--infection {
+    --inf-meter-glass-tint: var(--inf-tier-accent);
+  }
+
+  &--elevated {
+    border-color: var(--inf-border-strong);
+    border-color: color-mix(in srgb, var(--inf-meter-glass-tint) 22%, var(--inf-border-strong));
+
+    .inf-meter-glass-track__refraction {
+      opacity: 0.88;
+    }
+
+    .inf-meter-liquid-fill__body {
+      filter: saturate(1.1) contrast(1.03);
+    }
+
+    .inf-meter-liquid-fill__wave {
+      animation-duration: 2.6s;
+    }
+
+    .inf-meter-liquid-fill__wave--b {
+      animation-duration: 3.4s;
+    }
+  }
+}
+
+.inf-meter-glass-track__shell {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.inf-meter-glass-track__specular {
+  position: absolute;
+  inset: 1px 10% auto 10%;
+  height: 40%;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #fff 48%, transparent) 0%,
+    color-mix(in srgb, #fff 10%, transparent) 72%,
+    transparent 100%
+  );
+  opacity: 0.8;
+}
+
+.inf-meter-glass-track__refraction {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    108deg,
+    transparent 0%,
+    color-mix(in srgb, #fff 12%, transparent) 24%,
+    transparent 46%,
+    color-mix(in srgb, var(--inf-meter-glass-tint, var(--inf-accent)) 6%, transparent) 74%,
+    transparent 100%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0.68;
+}
+
+.inf-meter-glass-track__rim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, #fff 16%, transparent),
+    inset 0 -2px 4px color-mix(in srgb, var(--inf-text) 7%, transparent);
+}
+
+.inf-meter-glass-track__specular-pass {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 42%,
+    color-mix(in srgb, #fff 42%, transparent) 50%,
+    transparent 58%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: translateX(-120%);
+  pointer-events: none;
+
+  &--play {
+    animation: inf-meter-specular-pass 780ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+.inf-meter-liquid-track {
+  &--ripple {
+    animation: inf-liquid-track-ripple 720ms ease-out;
+  }
+}
+
+.inf-meter-glass-fill {
+  position: absolute;
+  inset: 1px auto 1px 1px;
+  z-index: 1;
+  min-width: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  transform-origin: left center;
+  transition: width 760ms cubic-bezier(0.34, 1.22, 0.64, 1);
+  will-change: width;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 38%, transparent),
+    inset 0 -3px 7px color-mix(in srgb, var(--inf-meter-liquid-shadow, #000) 24%, transparent);
+
+  &.inf-meter-liquid-fill--slosh {
+    animation: inf-liquid-slosh 680ms cubic-bezier(0.34, 1.2, 0.64, 1);
+  }
+}
+
+.inf-meter-liquid-fill {
+  transform-origin: left center;
+}
+
+.inf-meter-liquid-distort {
+  position: absolute;
+  inset: 0;
+  filter: url(#inf-liquid-still);
+  animation: inf-liquid-distort-idle 9s ease-in-out infinite;
+  will-change: filter;
+
+  &--active {
+    filter: url(#inf-liquid-active);
+    animation-duration: 5.5s;
+  }
+
+  &--paused {
+    filter: none;
+    animation: none;
+  }
+}
+
+.inf-meter-liquid-fill__body {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--inf-meter-liquid-highlight, #fff) 34%, var(--inf-meter-liquid-color, var(--inf-accent))) 0%,
+    var(--inf-meter-liquid-color, var(--inf-accent)) 48%,
+    color-mix(in srgb, var(--inf-meter-liquid-color, var(--inf-accent)) 76%, #000) 100%
+  );
+  pointer-events: none;
+}
+
+.inf-meter-liquid-fill__depth {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--inf-meter-liquid-highlight, #fff) 28%, transparent) 0%,
+    transparent 42%,
+    color-mix(in srgb, var(--inf-meter-liquid-shadow, #000) 26%, transparent) 100%
+  );
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.inf-meter-liquid-fill__caustic {
+  position: absolute;
+  inset: -28% -12%;
+  z-index: 2;
+  opacity: 0.32;
+  background:
+    radial-gradient(
+      ellipse 28% 44% at 26% 64%,
+      color-mix(in srgb, var(--inf-meter-liquid-highlight, #fff) 42%, transparent),
+      transparent 74%
+    ),
+    radial-gradient(
+      ellipse 22% 36% at 70% 40%,
+      color-mix(in srgb, var(--inf-meter-liquid-highlight, #fff) 28%, transparent),
+      transparent 72%
+    );
+  mix-blend-mode: soft-light;
+  animation: inf-liquid-caustic 7.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.inf-meter-liquid-fill__surface {
+  position: absolute;
+  top: -5px;
+  left: -10%;
+  right: -10%;
+  height: 10px;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.inf-meter-liquid-fill__wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 220%;
+  height: 140%;
+  opacity: 0.62;
+  background: radial-gradient(
+    ellipse 44% 92% at 50% 100%,
+    color-mix(in srgb, var(--inf-meter-liquid-highlight, #fff) 46%, transparent),
+    transparent 68%
+  );
+  animation: inf-liquid-wave-drift 4.2s linear infinite;
+
+  &--b {
+    opacity: 0.38;
+    animation-duration: 5.6s;
+    animation-direction: reverse;
+  }
+}
+
+.inf-meter-liquid-fill__bubble {
+  position: absolute;
+  bottom: 14%;
+  width: var(--inf-liquid-bubble-size, 3px);
+  height: var(--inf-liquid-bubble-size, 3px);
+  border-radius: 50%;
+  z-index: 2;
+  background: radial-gradient(
+    circle at 30% 26%,
+    color-mix(in srgb, #fff 70%, transparent),
+    color-mix(in srgb, var(--inf-meter-liquid-highlight, #fff) 28%, transparent) 58%,
+    transparent 74%
+  );
+  opacity: 0;
+  animation: inf-liquid-bubble-rise var(--inf-liquid-bubble-duration, 3.6s) ease-in infinite;
+  pointer-events: none;
+
+  &--1 {
+    left: 16%;
+    --inf-liquid-bubble-size: 2.5px;
+  }
+
+  &--2 {
+    left: 44%;
+    --inf-liquid-bubble-size: 3px;
+    --inf-liquid-bubble-duration: 4.2s;
+    animation-delay: 1.4s;
+  }
+
+  &--3 {
+    left: 70%;
+    --inf-liquid-bubble-size: 2px;
+    --inf-liquid-bubble-duration: 3.1s;
+    animation-delay: 2.6s;
+  }
+}
+
+.inf-meter-glass-fill__meniscus {
+  position: absolute;
+  top: -2px;
+  right: -3px;
+  bottom: -2px;
+  width: 8px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.inf-meter-glass-fill__meniscus-core {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--inf-meter-liquid-highlight, #fff) 48%, transparent),
+    color-mix(in srgb, var(--inf-meter-liquid-color, var(--inf-accent)) 28%, transparent)
+  );
+  box-shadow: inset -2px 0 5px color-mix(in srgb, #fff 32%, transparent);
+}
+
+.inf-meter-glass-fill__meniscus-glint {
+  position: absolute;
+  top: 20%;
+  right: 24%;
+  width: 32%;
+  height: 26%;
+  border-radius: 50%;
+  background: color-mix(in srgb, #fff 68%, transparent);
+  filter: blur(0.4px);
+  opacity: 0.75;
+}
+
+.inf-meter-glass-fill__contact {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  z-index: 6;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #fff 55%, transparent),
+    color-mix(in srgb, var(--inf-meter-liquid-highlight, #fff) 28%, transparent) 55%,
+    transparent 100%
+  );
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.inf-meter-liquid-fill--elevated .inf-meter-liquid-fill__bubble {
+  --inf-liquid-bubble-duration: 2.6s;
+}
+
+.inf-meter-liquid-fill--elevated .inf-meter-liquid-fill__caustic {
+  animation-duration: 4.8s;
+  opacity: 0.4;
+}
+
+[data-inf-theme='dark'] {
+  .inf-meter-glass-track {
+    border-color: var(--inf-border-strong);
+    border-color: color-mix(in srgb, #fff 12%, var(--inf-border-strong));
+    box-shadow:
+      inset 0 3px 10px color-mix(in srgb, #000 32%, transparent),
+      inset 0 -1px 0 color-mix(in srgb, #fff 10%, transparent),
+      0 1px 3px color-mix(in srgb, #000 24%, transparent);
+  }
+
+  .inf-meter-glass-track__specular {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inf-meter-liquid-distort {
+    filter: none !important;
+    animation: none !important;
+  }
+}
