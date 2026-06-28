@@ -1,7 +1,10 @@
 {
   "version": "0.2.0",
   "configurations": [
+<<<<<<< HEAD
     
+=======
+>>>>>>> c5efcd76bf56ff7466cc36a0a02eea9e070a25de
     {
       "name": "编译代码并调试酒馆网页 (Chrome)",
       "type": "chrome",
