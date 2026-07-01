@@ -425,7 +425,10 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
             template: path.join(import.meta.dirname, entry.html),
             filename: path.parse(entry.html).base,
             scriptLoading: 'module',
+<<<<<<< HEAD
             inject: 'body',
+=======
+>>>>>>> 92bc9ed4a5ff1e65a494b9644780983031cdb1df
             cache: false,
           }),
           new HtmlInlineScriptWebpackPlugin(),
@@ -453,6 +456,10 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
             { from: 'klona', imports: ['klona'] },
             { from: 'vue-final-modal', imports: ['useModal'] },
             { from: 'zod', imports: ['z'] },
+<<<<<<< HEAD
+=======
+            { from: 'type-fest', imports: [['*', 'TypeFest']], type: true },
+>>>>>>> 92bc9ed4a5ff1e65a494b9644780983031cdb1df
           ],
         }),
         unpluginVueComponents({
