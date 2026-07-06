@@ -1,0 +1,30 @@
+<%_
+define('mvuGet', mvuGet);
+define('year', year);
+define('month', month);
+define('day', day);
+define('festival', festival);
+define('vacation', vacation);
+define('affection', affection);
+define('ntrStage', ntrStage);
+define('sceneType', sceneType);
+define('scenePlace', scenePlace);
+define('weekday', weekday);
+define('gradDays', gradDays);
+define('libido', libido);
+define('corruption', corruption);
+define('libidoTier', libidoTier);
+define('corruptionTier', corruptionTier);
+define('exposure', exposure);
+define('ntrCooldown', ntrCooldown);
+define('relationForm', relationForm);
+define('ntrTarget', ntrTarget);
+define('ntrFamiliarity', ntrFamiliarity);
+define('ntrFamiliarityTier', ntrFamiliarityTier);
+define('tierNtrFamiliarity', tierNtrFamiliarity);
+define('ntrCrossCount', ntrCrossCount);
+define('userSexCount', userSexCount);
+define('virginityTo', virginityTo);
+define('isNtrTargetRecord', isNtrTargetRecord);
+define('sceneIncludes', sceneIncludes);
+_%>
