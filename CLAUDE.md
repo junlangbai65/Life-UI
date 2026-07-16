@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 酒馆助手 / SillyTavern 开发工作流
 
 本仓库用于在 [SillyTavern](https://github.com/SillyTavern/SillyTavern) 中编写 [酒馆助手 (Tavern Helper)](https://n0vi028.github.io/JS-Slash-Runner-Doc/guide/关于酒馆助手/介绍.html) 支持的前端界面与脚本. 下文说明目录分工、开发流程, 以及 **Rules**（规范）与 **Skills**（专项能力）的用法.
@@ -122,6 +123,9 @@ UI 美化
 ---
 
 ## Rules 引用（Agent 上下文）
+=======
+# 酒馆助手前端界面或脚本编写
+>>>>>>> b6c722413d8cfdaf014bbb3f87518fd8c19754be
 
 @.cursor/rules/项目基本概念.mdc
 @.cursor/rules/mcp.mdc
@@ -131,4 +135,7 @@ UI 美化
 @.cursor/rules/脚本.mdc
 @.cursor/rules/mvu变量框架.mdc
 @.cursor/rules/mvu角色卡.mdc
+<<<<<<< HEAD
 @.cursor/rules/前端项目改造指南.mdc
+=======
+>>>>>>> b6c722413d8cfdaf014bbb3f87518fd8c19754be
