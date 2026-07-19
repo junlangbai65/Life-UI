@@ -425,7 +425,10 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
             template: path.join(import.meta.dirname, entry.html),
             filename: path.parse(entry.html).base,
             scriptLoading: 'module',
+<<<<<<< HEAD
             inject: 'body',
+=======
+>>>>>>> a4d60f52b8b1b0f872a80088ba7e339b0933eeb2
             cache: false,
           }),
           new HtmlInlineScriptWebpackPlugin(),
@@ -453,6 +456,10 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
             { from: 'klona', imports: ['klona'] },
             { from: 'vue-final-modal', imports: ['useModal'] },
             { from: 'zod', imports: ['z'] },
+<<<<<<< HEAD
+=======
+            { from: 'type-fest', imports: [['*', 'TypeFest']], type: true },
+>>>>>>> a4d60f52b8b1b0f872a80088ba7e339b0933eeb2
           ],
         }),
         unpluginVueComponents({
@@ -561,9 +568,23 @@ function parse_configuration(entry: Entry): (_env: any, argv: any) => webpack.Co
       const cdn = {
         sass: 'https://jspm.dev/sass',
       };
+<<<<<<< HEAD
       return callback(
         null,
         'module-import ' + (cdn[request as keyof typeof cdn] ?? `https://testingcf.jsdelivr.net/npm/${request}/+esm`),
+=======
+      const package_json = JSON.parse(fs.readFileSync(path.join(import.meta.dirname, 'package.json'), 'utf-8')) as {
+        dependencies?: Record<string, string>;
+        devDependencies?: Record<string, string>;
+      };
+      const package_versions = { ...package_json.devDependencies, ...package_json.dependencies };
+      const version = package_versions[request]?.replace(/^[~^]/, '');
+      const versioned_request = /^[.\d]+$/.test(version) ? `${request}@${version}` : request;
+      return callback(
+        null,
+        'module-import ' +
+          (cdn[request as keyof typeof cdn] ?? `https://testingcf.jsdelivr.net/npm/${versioned_request}/+esm`),
+>>>>>>> a4d60f52b8b1b0f872a80088ba7e339b0933eeb2
       );
     },
   });
