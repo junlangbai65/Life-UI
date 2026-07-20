@@ -1,6 +1,22 @@
 # tavern_helper_template
 
-酒馆助手编写前端界面或脚本的模板.
+综合性 **SillyTavern 角色卡 + 酒馆助手 UI** 制作平台：用酒馆助手编写前端界面/脚本，并用 forge 在 `cards/` 中创作与打包角色卡/世界书。
+
+Agent / AI 工作流地图见 [`AGENTS.md`](AGENTS.md)。
+
+## 平台一览
+
+| 轨道 | 目录 | 命令 / 入口 |
+|------|------|-------------|
+| UI / 脚本 | `src/` → `dist/` | `pnpm watch` / `pnpm build` |
+| 制卡方法论 | `.cursor/skills/tavern-card-builder/` | skill `tavern-card-builder` |
+| 工程写卡 | `cards/` | `pnpm card:forge -- …` |
+| ST 深参库 | `.cursor/skills/st-dev-guide-db/db/` | skill `st-dev-guide-db` |
+| 创意写卡（Vault） | `agent-foundry-vault/` | `pnpm vault:verify`；`50-创意库/` |
+| 归档项目 | `备份工作区/` | 移回 `src/` 后继续开发 |
+| 样式片段 | `样式库/` | 复制改编，不打包 |
+
+制卡栈说明：[`.cursor/skills/CARD-WORKFLOW-STACK.md`](.cursor/skills/CARD-WORKFLOW-STACK.md)。写卡项目：[cards/README.md](cards/README.md)。Vault：[agent-foundry-vault/本地集成-tavern_helper.md](agent-foundry-vault/本地集成-tavern_helper.md)。
 
 ## 使用方法
 
@@ -51,13 +67,17 @@ git update-index --skip-worktree .vscode/launch.json
 | 目录 | 用途 |
 |------|------|
 | `src/` | 当前开发中的前端界面/脚本（打包到 `dist/`） |
+| `cards/` | 角色卡/世界书源项目（`pnpm card:forge`） |
+| `agent-foundry-vault/` | Agent Foundry 创意库 / ST 指南库（上游独立仓库） |
 | `示例/` | 模板自带的可运行示例（默认一并打包） |
-| `工作区/` | 暂停/归档的完整项目，不参与打包 |
+| `备份工作区/` | 暂停/归档的完整项目，不参与打包 |
 | `样式库/` | 可复用的 UI 样式片段，不参与打包 |
 | `util/` | 工具函数与共享 HTML 资源（如 `状态栏1.html`） |
+| `初始模板/` | 新建项目脚手架 |
 | `dist/` | 构建产物（`pnpm build` / CI 生成） |
+| `@types/` | 酒馆助手与 MVU 的 TypeScript 类型 |
 
-前端项目改造指南见 `.cursor/rules/前端项目改造指南.mdc`.
+前端项目改造指南见 `.cursor/rules/前端项目改造指南.mdc`（示例：`备份工作区/ADven`、`备份工作区/Goth`）。
 
 #### 利用 jsdelivr 实现前端界面或脚本的自动更新
 
