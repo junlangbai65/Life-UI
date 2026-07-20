@@ -1,0 +1,55 @@
+---
+变量输出格式:
+  rule:
+    - you must output the update analysis and the actual update commands at once in the end of the next reply
+    - the update commands works like the **JSON Patch (RFC 6902)** standard, must be a valid JSON array containing operation objects, but supports the following operations instead:
+      - replace: replace the value of existing paths
+      - delta: update the value of existing number paths by a delta value
+      - insert: insert new items into an object or array (using `-` as array index intends appending to the end)
+      - remove
+      - move
+    - paths start from stat_data root without the `stat_data` prefix, use `/` separators (e.g. `/凌月/对user的好感度/0`)
+    - MVU tuple fields are `[value, description]`; only update index `0` for the value, never modify index `1`
+    - never replace a tuple field without `/0` suffix
+    - prefer `delta` for numeric changes
+    - don't update field names starting with `$` or `_` (Zod derived / readonly fields)
+    - update only after the behavior is fully written in **this reply's main text**; never pre-update; never patch for events finished in a **previous** message floor
+    - **read `<status_current_variable>` first**; if snapshot already shows terminal state (是否处女=false, 破处对象=ntr/user, NTR阶段≥target, 里程碑=true), **omit** those paths — write `skipped: already settled` in Analysis
+    - **mode normal** (default): each numeric field at most one delta/replace per reply (bundled 破处/里程碑 excepted)
+    - **mode time_skip**: when <user> explicitly declares elapsed time in this or the prior turn, you may bulk-replace calendar fields and use delta -N on 距毕业天数/NTR冷却; replace (not delta) 好感度/性欲等 to summary-aligned finals; Analysis must cite user quote and N
+    - if no meaningful plot change this reply, output `"[]"` or omit affection/NTR/破处 paths entirely
+    - NTR对象：生成/退场均 replace `/NTR对象/0`（value 为对象或 `"无"`）；熟悉度仅对象存在且本轮有新互动时 delta；同轮勿同时生成又退场
+    - NTR 偏线扣分：见 MVU规则总纲；**only when new behavior completes this reply**; same event never patched on consecutive floors
+    - ntr 破处 bundle: **only if** snapshot 是否处女=true **before** patch; if 破处对象 already ntr → **forbidden** to delta 好感/熟悉度/是否处女/破处对象 again
+  format: |-
+    <UpdateVariable>
+    <Analysis>$(IN ENGLISH, max 100 words)
+    - mode: ${normal|time_skip}
+    - pre-state: ${snapshot key fields, e.g. virgin=true, 破处对象=无, NTR阶段=1, 越界=0}
+    - new-this-reply: ${behaviors completed ONLY in this reply, or "none"}
+    - skipped: ${paths omitted because already settled / no new behavior, or "n/a"}
+    - ${if time_skip: user quote + elapsed game days N + calendar target}
+    - changed fields: ${old→new}
+    - ${if nothing substantive: "no numeric updates — JSONPatch []"}
+    </Analysis>
+    <JSONPatch>
+    [
+      { "op": "delta", "path": "/NTR对象/0/熟悉度", "value": 3 }
+    ]
+    </JSONPatch>
+    </UpdateVariable>
+
+  examples:
+    ntr_virginity_loss_first_time_only: |-
+      # ONLY when pre-state 是否处女=true AND 破处对象=无; ONE floor only; never repeat on later floors
+      [
+        { "op": "replace", "path": "/凌月/是否处女/0", "value": false },
+        { "op": "replace", "path": "/凌月/破处对象/0", "value": "ntr" },
+        { "op": "delta", "path": "/NTR对象/0/熟悉度", "value": 28 },
+        { "op": "delta", "path": "/凌月/性爱次数/越界/0", "value": 1 },
+        { "op": "delta", "path": "/凌月/对user的好感度/0", "value": -22 },
+        { "op": "delta", "path": "/凌月/堕落/0", "value": 6 }
+      ]
+    after_ntr_deflowered_no_patch: |-
+      # pre-state 破处对象=ntr, 是否处女=false → JSONPatch must be [] or only unrelated fields (time, chat)
+      []

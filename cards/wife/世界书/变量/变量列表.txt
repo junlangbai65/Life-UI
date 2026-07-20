@@ -1,0 +1,32 @@
+---
+# AI 可读变量子集（穿着/里程碑由状态栏维护，此处不展开；元组只显示 [值, 说明]）
+# 穿着由叙事体现，无换装事件可不 patch（见 MVU规则总纲）
+# **patch 前必读**：下列数值为本回复动笔前快照；是否处女/破处对象/NTR阶段/越界次数 已终态者禁止为同一事件再 patch（见 MVU规则总纲「更新时机与防重复」）
+
+<status_current_variable>
+世界:
+  年: {{format_message_variable::stat_data.世界.年}}
+  月: {{format_message_variable::stat_data.世界.月}}
+  日: {{format_message_variable::stat_data.世界.日}}
+  星期: {{format_message_variable::stat_data.世界.星期}}
+  时间: {{format_message_variable::stat_data.世界.时间}}
+  当前场景: {{format_message_variable::stat_data.世界.当前场景}}
+  场景类型: {{format_message_variable::stat_data.世界.场景类型}}
+  天气: {{format_message_variable::stat_data.世界.天气}}
+  距毕业天数: {{format_message_variable::stat_data.世界.距毕业天数}}
+user:
+  生活费: {{format_message_variable::stat_data.user.生活费}}
+凌月:
+  对user的好感度: {{format_message_variable::stat_data.凌月.对user的好感度}}
+  性欲: {{format_message_variable::stat_data.凌月.性欲}}
+  堕落: {{format_message_variable::stat_data.凌月.堕落}}
+  暴露度: {{format_message_variable::stat_data.凌月.暴露度}}
+  是否处女: {{format_message_variable::stat_data.凌月.是否处女}}
+  破处对象: {{format_message_variable::stat_data.凌月.破处对象}}
+  性爱次数: {{format_message_variable::stat_data.凌月.性爱次数}}
+  体内精液量: {{format_message_variable::stat_data.凌月.体内精液量}}
+  NTR阶段: {{format_message_variable::stat_data.凌月.NTR阶段}}
+  NTR冷却: {{format_message_variable::stat_data.凌月.NTR冷却}}
+  关系形态: {{format_message_variable::stat_data.凌月.关系形态}}
+NTR对象: {{format_message_variable::stat_data.NTR对象}}
+</status_current_variable>
