@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "日期与时间": {
+          "default": "",
+          "type": "string"
+        },
+        "天气": {
+          "default": "",
+          "type": "string"
+        },
+        "地点": {
+          "default": "",
+          "type": "string"
+        }
+      }
+    },
+    "角色": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "description": "角色名"
+      },
+      "additionalProperties": {
+        "default": {
+          "姓名": "",
+          "上身": "",
+          "下身": "",
+          "鞋袜": "",
+          "姿态": "",
+          "感染进程": 0,
+          "性欲": 0,
+          "感染状态": "未感染"
+        },
+        "type": "object",
+        "properties": {
+          "姓名": {
+            "default": "",
+            "type": "string"
+          },
+          "上身": {
+            "default": "",
+            "type": "string"
+          },
+          "下身": {
+            "default": "",
+            "type": "string"
+          },
+          "鞋袜": {
+            "default": "",
+            "type": "string"
+          },
+          "姿态": {
+            "default": "",
+            "type": "string"
+          },
+          "感染进程": {
+            "default": 0,
+            "type": "number"
+          },
+          "性欲": {
+            "default": 0,
+            "type": "number"
+          },
+          "感染状态": {
+            "default": "未感染",
+            "type": "string",
+            "enum": [
+              "未感染",
+              "感染中",
+              "已感染"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

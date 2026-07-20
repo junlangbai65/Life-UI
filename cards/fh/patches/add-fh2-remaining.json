@@ -1,0 +1,509 @@
+[
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/魄_Poe",
+    "value": {
+      "abstract": "科菲尔灯触发后现身的 genie 敌人，Grasp of a genie coin flip",
+      "keywords": [
+        "魄",
+        "Poe",
+        "genie"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"魄\" name_en=\"Poe\">"
+        },
+        {
+          "file": "世界书/NPC/魄_Poe.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/铃端_Bellend",
+    "value": {
+      "abstract": "屋顶跃下追击的 exoskeleton 敌人，Harden 大幅减伤",
+      "keywords": [
+        "铃端",
+        "Bellend"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"铃端\" name_en=\"Bellend\">"
+        },
+        {
+          "file": "世界书/NPC/铃端_Bellend.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/卑劣者_Vile",
+    "value": {
+      "abstract": "Old Town 戴猪面具 gas mask 的 moonscorched 村民，Talk 可秒杀",
+      "keywords": [
+        "卑劣者",
+        "Vile",
+        "猪面具"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"卑劣者\" name_en=\"Vile\">"
+        },
+        {
+          "file": "世界书/NPC/卑劣者_Vile.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/步枪手_Rifleman",
+    "value": {
+      "abstract": "moonscorched 持步枪村民，Mob 成员之一",
+      "keywords": [
+        "步枪手",
+        "Rifleman"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"步枪手\" name_en=\"Rifleman\">"
+        },
+        {
+          "file": "世界书/NPC/步枪手_Rifleman.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/半茧人_Half-cocooned",
+    "value": {
+      "abstract": "半 cocoon 化 moonscorched，持 meat mallet，Mob 成员",
+      "keywords": [
+        "半茧人",
+        "Half-cocooned",
+        "半茧"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"半茧人\" name_en=\"Half-cocooned\">"
+        },
+        {
+          "file": "世界书/NPC/半茧人_Half-cocooned.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/绞肉机手_Meat_grinder",
+    "value": {
+      "abstract": "Mob 第三成员，持 bench grinder 与 saw blade",
+      "keywords": [
+        "绞肉机手",
+        "Meat grinder",
+        "Mob"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"绞肉机手\" name_en=\"Meat grinder\">"
+        },
+        {
+          "file": "世界书/NPC/绞肉机手_Meat_grinder.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/非理性方尖碑_Irrational_Obelisk",
+    "value": {
+      "abstract": "Clothing Store 999999 HP 方尖碑，Shivers 精神攻击",
+      "keywords": [
+        "非理性方尖碑",
+        "Irrational Obelisk",
+        "方尖碑"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"非理性方尖碑\" name_en=\"Irrational Obelisk\">"
+        },
+        {
+          "file": "世界书/NPC/非理性方尖碑_Irrational_Obelisk.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/粪便猎犬_Fecal_hound",
+    "value": {
+      "abstract": "Deep Woods 恶臭 infected hound，开战即 Nausea",
+      "keywords": [
+        "粪便猎犬",
+        "Fecal hound"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"粪便猎犬\" name_en=\"Fecal hound\">"
+        },
+        {
+          "file": "世界书/NPC/粪便猎犬_Fecal_hound.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/火焰兵_Flame_Trooper",
+    "value": {
+      "abstract": "White Bunker Bremen 喷火兵，overworld flamethrower 即死",
+      "keywords": [
+        "火焰兵",
+        "Flame Trooper"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"火焰兵\" name_en=\"Flame Trooper\">"
+        },
+        {
+          "file": "世界书/NPC/火焰兵_Flame_Trooper.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/排级炮_Platoon",
+    "value": {
+      "abstract": "White Bunker Boss 之一，Sylvian Marriage of Flesh 式 amalgam 炮兽",
+      "keywords": [
+        "排级炮",
+        "Platoon",
+        "Spank tank"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"排级炮\" name_en=\"Platoon\">"
+        },
+        {
+          "file": "世界书/NPC/排级炮_Platoon.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/西尔维安女官_Sylvian_Trooper",
+    "value": {
+      "abstract": "White Bunker Boss，latex 女军官骑排级炮",
+      "keywords": [
+        "西尔维安女官",
+        "Sylvian Trooper"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"西尔维安女官\" name_en=\"Sylvian Trooper\">"
+        },
+        {
+          "file": "世界书/NPC/西尔维安女官_Sylvian_Trooper.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/排级炮Maso_Platoon_Maso",
+    "value": {
+      "abstract": "Maso 独占 Ruined Streets 超强 Platoon，每回合 coin flip",
+      "keywords": [
+        "排级炮Maso",
+        "Platoon Maso",
+        "Maso Platoon"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"排级炮Maso\" name_en=\"Platoon (Masoχ-S/M)\">"
+        },
+        {
+          "file": "世界书/NPC/排级炮Maso_Platoon_Maso.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/利维仿身_Levi_Doppelganger",
+    "value": {
+      "abstract": "Sewers Western Tunnels 模仿利维的 doppelgänger",
+      "keywords": [
+        "利维仿身",
+        "Levi Doppelgänger",
+        "Doppelgänger"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"利维仿身\" name_en=\"Levi (Doppelgänger)\">"
+        },
+        {
+          "file": "世界书/NPC/利维仿身_Levi_Doppelganger.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/玛丽娜仿身_Marina_Doppelganger",
+    "value": {
+      "abstract": "Book Store 完美模仿玛丽娜的 doppelgänger",
+      "keywords": [
+        "玛丽娜仿身",
+        "Marina Doppelgänger"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"玛丽娜仿身\" name_en=\"Marina (Doppelgänger)\">"
+        },
+        {
+          "file": "世界书/NPC/玛丽娜仿身_Marina_Doppelganger.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/奥莉薇娅仿身_Olivia_Doppelganger",
+    "value": {
+      "abstract": "Deep Woods 无轮椅狂奔模仿 Olivia 的 doppelgänger",
+      "keywords": [
+        "奥莉薇娅仿身",
+        "Olivia Doppelgänger"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"奥莉薇娅仿身\" name_en=\"Olivia (Doppelgänger)\">"
+        },
+        {
+          "file": "世界书/NPC/奥莉薇娅仿身_Olivia_Doppelganger.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/田中仿身_Tanaka_Doppelganger",
+    "value": {
+      "abstract": "Tunnel 4 bunker 模仿田中的 doppelgänger",
+      "keywords": [
+        "田中仿身",
+        "Tanaka Doppelgänger"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"田中仿身\" name_en=\"Tanaka (Doppelgänger)\">"
+        },
+        {
+          "file": "世界书/NPC/田中仿身_Tanaka_Doppelganger.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/月蚀食尸鬼_Moonscorched_Ghoul",
+    "value": {
+      "abstract": "与可招募食尸鬼不同——moonscorched 剥肤狂战士，Talk 可化敌",
+      "keywords": [
+        "月蚀食尸鬼",
+        "Moonscorched Ghoul",
+        "moonscorched ghoul"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"月蚀食尸鬼\" name_en=\"Moonscorched (Ghoul)\">"
+        },
+        {
+          "file": "世界书/NPC/月蚀食尸鬼_Moonscorched_Ghoul.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/月蚀男_Moonscorched_Male",
+    "value": {
+      "abstract": "Eastern Outskirts 被动 moonscorched，撕脸不攻击",
+      "keywords": [
+        "月蚀男",
+        "Moonscorched Male"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"月蚀男\" name_en=\"Moonscorched (Male)\">"
+        },
+        {
+          "file": "世界书/NPC/月蚀男_Moonscorched_Male.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/月蚀女_Moonscorched_Female",
+    "value": {
+      "abstract": "Eastern Outskirts 被动 moonscorched 女性村民",
+      "keywords": [
+        "月蚀女",
+        "Moonscorched Female"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"月蚀女\" name_en=\"Moonscorched (Female)\">"
+        },
+        {
+          "file": "世界书/NPC/月蚀女_Moonscorched_Female.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/口袋猫达安_Pocketcat_Daan",
+    "value": {
+      "abstract": "达安 Day 3 月蚀形态，Museum Guernica 前 Boss",
+      "keywords": [
+        "口袋猫达安",
+        "Pocketcat Daan",
+        "Daan moonscorch"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"口袋猫达安\" name_en=\"Pocketcat (Daan)\">"
+        },
+        {
+          "file": "世界书/NPC/口袋猫达安_Pocketcat_Daan.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/鼠人帮_Ratkin_gang",
+    "value": {
+      "abstract": "Foundations of Decay 六鼠 Boss 伏击",
+      "keywords": [
+        "鼠人帮",
+        "Ratkin gang"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"鼠人帮\" name_en=\"Ratkin gang\">"
+        },
+        {
+          "file": "世界书/NPC/鼠人帮_Ratkin_gang.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/世界观/月蚀机制",
+    "value": {
+      "abstract": "Rher 对 Termina 参赛者的 moonlight cancer 惩罚与三日进程",
+      "keywords": [
+        "月蚀",
+        "Moonscorch",
+        "moonscorched",
+        "月蚀机制"
+      ],
+      "path": "世界书/世界观/月蚀机制.yaml"
+    }
+  }
+]

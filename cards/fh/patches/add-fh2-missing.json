@@ -1,0 +1,1183 @@
+[
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/针魔_Needles",
+    "value": {
+      "abstract": "Termina 猎杀参赛者的 Boss，Permanent clownish grin 与针剂武器",
+      "keywords": [
+        "针魔",
+        "Needles",
+        "针线"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"针魔\" name_en=\"Needles\">"
+        },
+        {
+          "file": "世界书/NPC/针魔_Needles.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/佩尔凯莱_Perkale",
+    "value": {
+      "abstract": "Rher 使者，Termina 祭典监督者，Hollow Tower Boss",
+      "keywords": [
+        "佩尔凯莱",
+        "Per'kele",
+        "Perkele"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"佩尔凯莱\" name_en=\"Per'kele\">"
+        },
+        {
+          "file": "世界书/NPC/佩尔凯莱_Perkale.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/腐臭萨格_Rancid",
+    "value": {
+      "abstract": "Vinland sergal 战士，Altar of One God 与 Day 3 Iki Turso 处 Boss",
+      "keywords": [
+        "腐臭萨格",
+        "Rancid",
+        "Rancid the Sergal",
+        "Sergal"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"腐臭萨格\" name_en=\"Rancid the Sergal\">"
+        },
+        {
+          "file": "世界书/NPC/腐臭萨格_Rancid.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/乔尼_Jonni",
+    "value": {
+      "abstract": "Tunnel 7 死者，Bremen 士兵，可 necromancy 为 Ghoul 队友",
+      "keywords": [
+        "乔尼",
+        "Jonni"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"乔尼\" name_en=\"Jonni\">"
+        },
+        {
+          "file": "世界书/NPC/乔尼_Jonni.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/无心者_Heartless_One",
+    "value": {
+      "abstract": "New God 隐藏 Superboss，持 Red virtue",
+      "keywords": [
+        "无心者",
+        "Heartless One",
+        "Heartless Angel"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"无心者\" name_en=\"Heartless One\">"
+        },
+        {
+          "file": "世界书/NPC/无心者_Heartless_One.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/黑衣人_Man_in_Black",
+    "value": {
+      "abstract": "Abandoned House  basement 神秘人物，Black Kalev 关联",
+      "keywords": [
+        "黑衣人",
+        "Man in Black",
+        "黑衣"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"黑衣人\" name_en=\"Man in Black\">"
+        },
+        {
+          "file": "世界书/NPC/黑衣人_Man_in_Black.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/辐射者_Radiating_One",
+    "value": {
+      "abstract": "New God 商人，Imperfect circle 召唤，售 rare 装备",
+      "keywords": [
+        "辐射者",
+        "Radiating One",
+        "The Radiating One"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"辐射者\" name_en=\"Radiating One\">"
+        },
+        {
+          "file": "世界书/NPC/辐射者_Radiating_One.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/玷污者_Tainted_One",
+    "value": {
+      "abstract": "New God，以参赛者头颅换 Soul stone shard",
+      "keywords": [
+        "玷污者",
+        "Tainted One",
+        "The Tainted One"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"玷污者\" name_en=\"Tainted One\">"
+        },
+        {
+          "file": "世界书/NPC/玷污者_Tainted_One.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/卑贱者_Wretched_Being",
+    "value": {
+      "abstract": "Old Town Slums  NPC，换 Woodsman 与 Priest 头颅得 Shield of the Four",
+      "keywords": [
+        "卑贱者",
+        "Wretched Being",
+        "Wretched"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"卑贱者\" name_en=\"Wretched Being\">"
+        },
+        {
+          "file": "世界书/NPC/卑贱者_Wretched_Being.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/樵夫_Woodsman",
+    "value": {
+      "abstract": "Abandoned House 独特敌人，Well 事件与 Black Kalev 背景",
+      "keywords": [
+        "樵夫",
+        "Woodsman"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"樵夫\" name_en=\"Woodsman\">"
+        },
+        {
+          "file": "世界书/NPC/樵夫_Woodsman.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/雨果神父_Father_Hugo",
+    "value": {
+      "abstract": "St. Domek Orphanage 院长，occultist Boss Donnovan Hugo",
+      "keywords": [
+        "雨果神父",
+        "Father Hugo",
+        "Donnovan Hugo",
+        "Hugo"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"雨果神父\" name_en=\"Father Hugo\">"
+        },
+        {
+          "file": "世界书/NPC/雨果神父_Father_Hugo.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/衰败神父_Decrepit_Priest",
+    "value": {
+      "abstract": "Mayor Manor 的 Father Oscar，Alll-mer dark priest 敌人",
+      "keywords": [
+        "衰败神父",
+        "Decrepit Priest",
+        "Father Oscar",
+        "Oscar"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"衰败神父\" name_en=\"Decrepit Priest\">"
+        },
+        {
+          "file": "世界书/NPC/衰败神父_Decrepit_Priest.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/缝合怪_Stitches",
+    "value": {
+      "abstract": "Tunnel 1 Boss，疑似 Elise，创造 Sew job 与 Living flesh",
+      "keywords": [
+        "缝合怪",
+        "Stitches"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"缝合怪\" name_en=\"Stitches\">"
+        },
+        {
+          "file": "世界书/NPC/缝合怪_Stitches.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/活体血肉_Living_flesh",
+    "value": {
+      "abstract": "Tunnel 1 Boss，Stitches 创造的多人缝合肉块",
+      "keywords": [
+        "活体血肉",
+        "Living flesh",
+        "Living Flesh"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"活体血肉\" name_en=\"Living flesh\">"
+        },
+        {
+          "file": "世界书/NPC/活体血肉_Living_flesh.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/逻辑_Logic",
+    "value": {
+      "abstract": "Machine God，Reila 升格，Ending A Boss",
+      "keywords": [
+        "逻辑",
+        "Logic",
+        "Machine God",
+        "机器神"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"逻辑\" name_en=\"Logic\">"
+        },
+        {
+          "file": "世界书/NPC/逻辑_Logic.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/月神莱尔_Rher",
+    "value": {
+      "abstract": "Trickster Moon God，Ending B 最终 Boss，Termina 幕后",
+      "keywords": [
+        "月神莱尔",
+        "Rher",
+        "莱尔",
+        "Moon God",
+        "Trickster"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"月神莱尔\" name_en=\"Rher\">"
+        },
+        {
+          "file": "世界书/NPC/月神莱尔_Rher.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/哭泣瞄准镜_Weeping_scope",
+    "value": {
+      "abstract": "利维月蚀形态，上半身化为枪管",
+      "keywords": [
+        "哭泣瞄准镜",
+        "Weeping scope",
+        "Weeping Scope"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"哭泣瞄准镜\" name_en=\"Weeping scope\">"
+        },
+        {
+          "file": "世界书/NPC/哭泣瞄准镜_Weeping_scope.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/茧_Cocoon",
+    "value": {
+      "abstract": "玛丽娜月蚀形态，Church basement passageway Boss",
+      "keywords": [
+        "茧",
+        "Cocoon"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"茧\" name_en=\"Cocoon\">"
+        },
+        {
+          "file": "世界书/NPC/茧_Cocoon.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/丘格纳_Chaugnar",
+    "value": {
+      "abstract": "阿贝拉月蚀形态，Tunnel 7 generator Boss",
+      "keywords": [
+        "丘格纳",
+        "Chaugnar"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"丘格纳\" name_en=\"Chaugnar\">"
+        },
+        {
+          "file": "世界书/NPC/丘格纳_Chaugnar.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/主谋_Mastermind",
+    "value": {
+      "abstract": "奥撒月蚀形态，Mausoleum Alley Boss",
+      "keywords": [
+        "主谋",
+        "Mastermind"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"主谋\" name_en=\"Mastermind\">"
+        },
+        {
+          "file": "世界书/NPC/主谋_Mastermind.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/机械之舞_Mechanical_dance",
+    "value": {
+      "abstract": "奥莉薇娅月蚀形态，Museum 游荡 Boss",
+      "keywords": [
+        "机械之舞",
+        "Mechanical dance"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"机械之舞\" name_en=\"Mechanical dance\">"
+        },
+        {
+          "file": "世界书/NPC/机械之舞_Mechanical_dance.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/女武神_Valkyrie",
+    "value": {
+      "abstract": "卡琳月蚀形态，D ábel Island Boss",
+      "keywords": [
+        "女武神",
+        "Valkyrie"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"女武神\" name_en=\"Valkyrie\">"
+        },
+        {
+          "file": "世界书/NPC/女武神_Valkyrie.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/巨人_Giant",
+    "value": {
+      "abstract": "马尔科月蚀形态，White Mold Apartments Rher 维度",
+      "keywords": [
+        "巨人",
+        "Giant",
+        "Marcoh Giant"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"巨人\" name_en=\"Giant\">"
+        },
+        {
+          "file": "世界书/NPC/巨人_Giant.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/审判_Judgement",
+    "value": {
+      "abstract": "田月月蚀形态，Museum / White Mold Rher 维度",
+      "keywords": [
+        "审判",
+        "Judgement"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"审判\" name_en=\"Judgement\">"
+        },
+        {
+          "file": "世界书/NPC/审判_Judgement.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/绅士_Gentleman",
+    "value": {
+      "abstract": "亨利克月蚀形态，Mayor Manor lucid merchant",
+      "keywords": [
+        "绅士",
+        "Gentleman",
+        "Henryk Gentleman"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"绅士\" name_en=\"Gentleman\">"
+        },
+        {
+          "file": "世界书/NPC/绅士_Gentleman.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/怪物_Monster",
+    "value": {
+      "abstract": "卡里古拉月蚀形态，Sewers 水中 Boss",
+      "keywords": [
+        "怪物",
+        "Monster",
+        "Caligura Monster"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"怪物\" name_en=\"Monster\">"
+        },
+        {
+          "file": "世界书/NPC/怪物_Monster.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/变形障碍_Dysmorphia",
+    "value": {
+      "abstract": "萨玛丽月蚀形态，Church Rher 维度",
+      "keywords": [
+        "变形障碍",
+        "Dysmorphia"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"变形障碍\" name_en=\"Dysmorphia\">"
+        },
+        {
+          "file": "世界书/NPC/变形障碍_Dysmorphia.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/看门人_Janitor",
+    "value": {
+      "abstract": "Dream Workshop  intro 敌人，Golden Gates 可再遇",
+      "keywords": [
+        "看门人",
+        "Janitor"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"看门人\" name_en=\"Janitor\">"
+        },
+        {
+          "file": "世界书/NPC/看门人_Janitor.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/波比_Bobby",
+    "value": {
+      "abstract": "Prehevil East / Book Store 敌人，Rancid cutscene 受害者",
+      "keywords": [
+        "波比",
+        "Bobby"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"波比\" name_en=\"Bobby\">"
+        },
+        {
+          "file": "世界书/NPC/波比_Bobby.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/无头者_Headless",
+    "value": {
+      "abstract": "Church passageway、Maiden Forest 常见敌人",
+      "keywords": [
+        "无头者",
+        "Headless"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"无头者\" name_en=\"Headless\">"
+        },
+        {
+          "file": "世界书/NPC/无头者_Headless.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/猫头鹰邪教徒_Owl_cultist",
+    "value": {
+      "abstract": "Deeper/Deep Woods 伏击敌人",
+      "keywords": [
+        "猫头鹰邪教徒",
+        "Owl cultist",
+        "Owl cultist"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"猫头鹰邪教徒\" name_en=\"Owl cultist\">"
+        },
+        {
+          "file": "世界书/NPC/猫头鹰邪教徒_Owl_cultist.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/邻居_Neighbour",
+    "value": {
+      "abstract": "White Mold Apartments 与 Sewers 随机出现敌人",
+      "keywords": [
+        "邻居",
+        "Neighbour",
+        "Neighbour 14"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"邻居\" name_en=\"Neighbour\">"
+        },
+        {
+          "file": "世界书/NPC/邻居_Neighbour.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/鼠人_Ratkin",
+    "value": {
+      "abstract": "Sewers 常见敌人，Mastery over vermin 可 talk 非 hostile",
+      "keywords": [
+        "鼠人",
+        "Ratkin"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"鼠人\" name_en=\"Ratkin\">"
+        },
+        {
+          "file": "世界书/NPC/鼠人_Ratkin.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/鼠婆_Rat_hag",
+    "value": {
+      "abstract": "Sewers 独特敌人，West Junction 可 shoot down",
+      "keywords": [
+        "鼠婆",
+        "Rat hag"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"鼠婆\" name_en=\"Rat hag\">"
+        },
+        {
+          "file": "世界书/NPC/鼠婆_Rat_hag.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/缝补工_Sew_job",
+    "value": {
+      "abstract": "Stitches 创造的 stitched humanoid 敌人",
+      "keywords": [
+        "缝补工",
+        "Sew job"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"缝补工\" name_en=\"Sew job\">"
+        },
+        {
+          "file": "世界书/NPC/缝补工_Sew_job.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/朗蒂尔_Ronteal",
+    "value": {
+      "abstract": "Rher 维度大量出现的 moonscorched 敌人",
+      "keywords": [
+        "朗蒂尔",
+        "Ronteal"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"朗蒂尔\" name_en=\"Ronteal\">"
+        },
+        {
+          "file": "世界书/NPC/朗蒂尔_Ronteal.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/审判官_Inquisitor",
+    "value": {
+      "abstract": "Prehevil 内城 multiple spawn 敌人",
+      "keywords": [
+        "审判官",
+        "Inquisitor"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"审判官\" name_en=\"Inquisitor\">"
+        },
+        {
+          "file": "世界书/NPC/审判官_Inquisitor.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/村民匕首_Villager_Knives",
+    "value": {
+      "abstract": "Old House 匕首村民，可下 basement",
+      "keywords": [
+        "村民匕首",
+        "Villager Knives",
+        "Knives villager"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"村民匕首\" name_en=\"Villager (Knives)\">"
+        },
+        {
+          "file": "世界书/NPC/村民匕首_Villager_Knives.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/村民铁管_Villager_Pipe",
+    "value": {
+      "abstract": "Old House 铁管村民",
+      "keywords": [
+        "村民铁管",
+        "Villager Pipe",
+        "Pipe villager"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"村民铁管\" name_en=\"Villager (Pipe)\">"
+        },
+        {
+          "file": "世界书/NPC/村民铁管_Villager_Pipe.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/受难者_Tormented_One",
+    "value": {
+      "abstract": "F&H2 Imperfect circle Dead crow 召唤 Boss",
+      "keywords": [
+        "受难者",
+        "Tormented One",
+        "Tormented One F&H2"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"受难者\" name_en=\"Tormented One\">"
+        },
+        {
+          "file": "世界书/NPC/受难者_Tormented_One.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/鸥兄弟_Gull_bros",
+    "value": {
+      "abstract": "Orphanage Tes tich table 触发后 city 随机 stalk 的 Boss 组",
+      "keywords": [
+        "鸥兄弟",
+        "Gull bros",
+        "Gull Bros"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"鸥兄弟\" name_en=\"Gull bros\">"
+        },
+        {
+          "file": "世界书/NPC/鸥兄弟_Gull_bros.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/半人马_Centaur",
+    "value": {
+      "abstract": "Deepest Woods 隐藏 Boss",
+      "keywords": [
+        "半人马",
+        "Centaur"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"半人马\" name_en=\"Centaur\">"
+        },
+        {
+          "file": "世界书/NPC/半人马_Centaur.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/暴民_Mob",
+    "value": {
+      "abstract": "Rifleman + Half-cocooned + Meat grinder 追击事件",
+      "keywords": [
+        "暴民",
+        "Mob",
+        "Meat grinder"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"暴民\" name_en=\"Mob\">"
+        },
+        {
+          "file": "世界书/NPC/暴民_Mob.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/深红之父_Crimson_Father",
+    "value": {
+      "abstract": "Church basement 4 体敌人，1 体 cutscene only",
+      "keywords": [
+        "深红之父",
+        "Crimson Father"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"深红之父\" name_en=\"Crimson Father\">"
+        },
+        {
+          "file": "世界书/NPC/深红之父_Crimson_Father.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/柱人_Pillarman",
+    "value": {
+      "abstract": "Church basement 不可战斗 cutscene 敌人",
+      "keywords": [
+        "柱人",
+        "Pillarman"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"柱人\" name_en=\"Pillarman\">"
+        },
+        {
+          "file": "世界书/NPC/柱人_Pillarman.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/死亡面具_Death_mask",
+    "value": {
+      "abstract": "棺材 spawn tile 触发的 overworld 敌人",
+      "keywords": [
+        "死亡面具",
+        "Death mask"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"死亡面具\" name_en=\"Death mask\">"
+        },
+        {
+          "file": "世界书/NPC/死亡面具_Death_mask.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/精英士兵_Elite_Trooper",
+    "value": {
+      "abstract": "Kaiser cutscene 护卫，Central 可 shoot 玩家 30 伤害",
+      "keywords": [
+        "精英士兵",
+        "Elite Trooper",
+        "Bremen elite"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"精英士兵\" name_en=\"Elite Trooper\">"
+        },
+        {
+          "file": "世界书/NPC/精英士兵_Elite_Trooper.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/养蜂人_Beekeeper",
+    "value": {
+      "abstract": "Day 3 激活的 bee 相关敌人",
+      "keywords": [
+        "养蜂人",
+        "Beekeeper"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"养蜂人\" name_en=\"Beekeeper\">"
+        },
+        {
+          "file": "世界书/NPC/养蜂人_Beekeeper.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/堕落小天使_Fallen_cherub",
+    "value": {
+      "abstract": "Orphanage 15 体敌人",
+      "keywords": [
+        "堕落小天使",
+        "Fallen cherub"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"堕落小天使\" name_en=\"Fallen cherub\">"
+        },
+        {
+          "file": "世界书/NPC/堕落小天使_Fallen_cherub.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/暗影身影_Shadowy_figure",
+    "value": {
+      "abstract": "Orphanage 除二层外各层 roaming 敌人",
+      "keywords": [
+        "暗影身影",
+        "Shadowy figure"
+      ],
+      "scope": "specific",
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"暗影身影\" name_en=\"Shadowy figure\">"
+        },
+        {
+          "file": "世界书/NPC/暗影身影_Shadowy_figure.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  }
+]

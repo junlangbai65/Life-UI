@@ -1,20 +1,21 @@
 ---
 name: tavern-card-knowledge
-description: Use when searching or applying Tavern Helper character-card knowledge, including character cards, worldbooks, variables, regex, chat messages, presets, generation, and @types API references.
+description: "Lookup-only Tavern Helper API and card/worldbook knowledge base. Use when the user asks to look up APIs, @types, regex, floors, variables, or presets — not for creating or editing card content (use tavern-cards for that). On conflict, .cursor/rules and current @types win."
 ---
 
-# Tavern Card Knowledge
+# Tavern Card Knowledge（查阅）
 
 ## Use This Skill
 
-Use this for writing-card knowledge lookup and Tavern Helper API reference tasks, especially when the user asks about character cards, worldbooks, presets, variables, regex, chat floors/messages, generation, imports, or `@types/function/*` APIs.
+**仅查阅** Helper API / 楼层 / 正则 / 变量 / 预设等释义。  
+**创作或修改角色卡/世界书** → 使用 [`tavern-cards`](../tavern-cards/SKILL.md)，不要用本 skill 抢写卡流程。
 
 ## Workflow
 
 1. Start from [reference.md](reference.md) and search for the topic heading or source file name.
-2. Prefer the repository's high-level Tavern Helper APIs from `@types/function/*` over low-level SillyTavern exports or STScript commands.
-3. When implementation code is required, also read the relevant project rule: script, front-end interface, MVU, or Tavern Helper APIs.
-4. Treat converted knowledge as reference material. If it conflicts with `.cursor/rules/` or current `@types`, the current repository files win.
+2. Prefer high-level Tavern Helper APIs from `@types/function/*` over low-level SillyTavern exports or STScript.
+3. When implementation is required, also read the relevant project rule (script / front-end / MVU / 酒馆助手接口).
+4. If this knowledge conflicts with `.cursor/rules/` or current `@types`, **repository files win**.
 
 ## Reference Map
 

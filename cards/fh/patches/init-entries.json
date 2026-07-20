@@ -1,0 +1,894 @@
+[
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/角色速览",
+    "value": {
+      "abstract": "F&H Termina 角色与 NPC 索引速览",
+      "keywords": [
+        "角色速览",
+        "参赛者",
+        "Termina"
+      ],
+      "path": "世界书/NPC/角色速览.yaml"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/世界观/F&H世界概览",
+    "value": {
+      "abstract": "Fear & Hunger 系列世界概览：Termina 祭典、Prehevil、神系与 Kaiser",
+      "keywords": [
+        "Fear & Hunger",
+        "Termina",
+        "Prehevil",
+        "F&H"
+      ],
+      "path": "世界书/世界观/F&H世界概览.yaml"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/利维_Levi",
+    "value": {
+      "abstract": "Prehevil 出身的逃兵狙击手，Termina 参赛者，孤狼型远程战斗者",
+      "keywords": [
+        "利维",
+        "Levi"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"利维\" name_en=\"Levi\">"
+        },
+        {
+          "file": "世界书/NPC/利维_Levi.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/玛丽娜_Marina",
+    "value": {
+      "abstract": "Prehevil 本地 occultist，Dark Priest 之女，Termina 参赛者",
+      "keywords": [
+        "玛丽娜",
+        "Marina",
+        "Marina Domek"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"玛丽娜\" name_en=\"Marina\">"
+        },
+        {
+          "file": "世界书/NPC/玛丽娜_Marina.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/达安_Daan",
+    "value": {
+      "abstract": "Rondon 医生兼 occult 医者，追查亡妻之死，Termina 参赛者",
+      "keywords": [
+        "达安",
+        "Daan",
+        "Daniël"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"达安\" name_en=\"Daan\">"
+        },
+        {
+          "file": "世界书/NPC/达安_Daan.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/阿贝拉_Abella",
+    "value": {
+      "abstract": "Oldegård 机械师，NLU 地下抵抗成员，Termina 参赛者",
+      "keywords": [
+        "阿贝拉",
+        "Abella"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"阿贝拉\" name_en=\"Abella\">"
+        },
+        {
+          "file": "世界书/NPC/阿贝拉_Abella.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/奥撒_Osaa",
+    "value": {
+      "abstract": "Abyssonia 黄 mage，携带 Nas'hrah 头颅，Termina 参赛者",
+      "keywords": [
+        "奥撒",
+        "O'saa",
+        "Osaa"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"奥撒\" name_en=\"O'saa\">"
+        },
+        {
+          "file": "世界书/NPC/奥撒_Osaa.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/奥莉薇娅_Olivia",
+    "value": {
+      "abstract": "植物学家，Reila 的孪生姐妹，轮椅使用者，Termina 参赛者",
+      "keywords": [
+        "奥莉薇娅",
+        "Olivia",
+        "Olivia Haas"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"奥莉薇娅\" name_en=\"Olivia\">"
+        },
+        {
+          "file": "世界书/NPC/奥莉薇娅_Olivia.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/马尔科_Marcoh",
+    "value": {
+      "abstract": "Vatican 地下拳手，Accardo 家族外围，Termina 参赛者",
+      "keywords": [
+        "马尔科",
+        "Marcoh"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"马尔科\" name_en=\"Marcoh\">"
+        },
+        {
+          "file": "世界书/NPC/马尔科_Marcoh.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/卡琳_Karin",
+    "value": {
+      "abstract": "Bremen 战地记者，调查 Kaiser，Termina 参赛者",
+      "keywords": [
+        "卡琳",
+        "Karin",
+        "Karin Sauer"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"卡琳\" name_en=\"Karin\">"
+        },
+        {
+          "file": "世界书/NPC/卡琳_Karin.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/士兵_Soldier",
+    "value": {
+      "abstract": "前届 Termina 幸存者，Bremen 军人，理智崩坏中",
+      "keywords": [
+        "士兵",
+        "Soldier",
+        "Bremen士兵"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"士兵\" name_en=\"Soldier\">"
+        },
+        {
+          "file": "世界书/NPC/士兵_Soldier.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/村民镰刀_Villager",
+    "value": {
+      "abstract": "Prehevil Old Town moonscorch 镇民，持镰刀被迫互杀",
+      "keywords": [
+        "镰刀村民",
+        "Villager",
+        "Sickle"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"村民镰刀\" name_en=\"Villager (Sickle)\">"
+        },
+        {
+          "file": "世界书/NPC/村民镰刀_Villager.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/漆黑卡列夫_Black_Kalev",
+    "value": {
+      "abstract": "Abandoned House 外徘徊的黑山羊，与 Woodsman 事件相关",
+      "keywords": [
+        "漆黑卡列夫",
+        "Black Kalev",
+        "Kalev"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"漆黑卡列夫\" name_en=\"Black Kalev\">"
+        },
+        {
+          "file": "世界书/NPC/漆黑卡列夫_Black_Kalev.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/帕夫_Pav",
+    "value": {
+      "abstract": "Bremen 前中尉，Voroniya 灭村幸存者，刺杀 Kaiser 为目标",
+      "keywords": [
+        "帕夫",
+        "Pav",
+        "Pavel Yudin"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"帕夫\" name_en=\"Pav\">"
+        },
+        {
+          "file": "世界书/NPC/帕夫_Pav.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/萨玛丽_Samarie",
+    "value": {
+      "abstract": "Vatican dark priest 学徒，Marina 的 secret admirer",
+      "keywords": [
+        "萨玛丽",
+        "Samarie"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"萨玛丽\" name_en=\"Samarie\">"
+        },
+        {
+          "file": "世界书/NPC/萨玛丽_Samarie.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/田中_Tanaka",
+    "value": {
+      "abstract": "Edo 商人 salaryman，Termina 参赛者",
+      "keywords": [
+        "田中",
+        "Tanaka",
+        "Kida Tanaka"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"田中\" name_en=\"Tanaka\">"
+        },
+        {
+          "file": "世界书/NPC/田中_Tanaka.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/亨利克_Henryk",
+    "value": {
+      "abstract": "32 岁 Rondon 厨师，Termina 参赛者",
+      "keywords": [
+        "亨利克",
+        "Henryk"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"亨利克\" name_en=\"Henryk\">"
+        },
+        {
+          "file": "世界书/NPC/亨利克_Henryk.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/卡里古拉_Caligura",
+    "value": {
+      "abstract": "Vatican 黑帮 caporegime，绰号 Count Dragul",
+      "keywords": [
+        "卡里古拉",
+        "Caligura",
+        "Count Dragul"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"卡里古拉\" name_en=\"Caligura\">"
+        },
+        {
+          "file": "世界书/NPC/卡里古拉_Caligura.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/奥古斯特_August",
+    "value": {
+      "abstract": "Oldegård 游牧猎人，Moonless 千年 companions",
+      "keywords": [
+        "奥古斯特",
+        "August"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"奥古斯特\" name_en=\"August\">"
+        },
+        {
+          "file": "世界书/NPC/奥古斯特_August.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/多梅克神父_Father_Domek",
+    "value": {
+      "abstract": "Marina 生父，Alll-mer dark priest",
+      "keywords": [
+        "多梅克神父",
+        "Father Domek",
+        "Domek"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"多梅克神父\" name_en=\"Father Domek\">"
+        },
+        {
+          "file": "世界书/NPC/多梅克神父_Father_Domek.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/吉夫斯_Jeeves",
+    "value": {
+      "abstract": "服务 Gentleman 的 butler，moonscorched 但仍 sane",
+      "keywords": [
+        "吉夫斯",
+        "Jeeves"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"吉夫斯\" name_en=\"Jeeves\">"
+        },
+        {
+          "file": "世界书/NPC/吉夫斯_Jeeves.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/绷带男_Bandaged_man",
+    "value": {
+      "abstract": "Old Town 小铺店主，前届 Festival moonscorch 幸存者",
+      "keywords": [
+        "绷带男",
+        "Bandage Man",
+        "Bandaged man"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"绷带男\" name_en=\"Bandaged man\">"
+        },
+        {
+          "file": "世界书/NPC/绷带男_Bandaged_man.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/令人不适的家伙_Creepy_guy",
+    "value": {
+      "abstract": "Old Hotel 前 reception clerk，Marina 童年阴影",
+      "keywords": [
+        "令人不适的家伙",
+        "creepy guy",
+        "Old Hotel"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"令人不适的家伙\" name_en=\"The creepy guy\">"
+        },
+        {
+          "file": "世界书/NPC/令人不适的家伙_Creepy_guy.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/算命师_Fortune_teller",
+    "value": {
+      "abstract": "Shopping District 占卜师，提示 effigy 位置",
+      "keywords": [
+        "算命师",
+        "Fortune teller",
+        "占卜师"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"算命师\" name_en=\"Fortune teller\">"
+        },
+        {
+          "file": "世界书/NPC/算命师_Fortune_teller.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/科菲尔博士_Dr_Kefer",
+    "value": {
+      "abstract": "Dr. Kefer's Tricks & Magic 店主",
+      "keywords": [
+        "科菲尔博士",
+        "Dr. Kefer",
+        "Kefer"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"科菲尔博士\" name_en=\"Dr. Kefer\">"
+        },
+        {
+          "file": "世界书/NPC/科菲尔博士_Dr_Kefer.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/达利娅_Dalia",
+    "value": {
+      "abstract": "Karin 的保姆兼事实绑架者，背景人物",
+      "keywords": [
+        "达利娅",
+        "Dalia"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"达利娅\" name_en=\"Dalia\">"
+        },
+        {
+          "file": "世界书/NPC/达利娅_Dalia.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/利卡多_Ricardo",
+    "value": {
+      "abstract": "Vatican The Family Accardo 分支 heir，Marcoh 背景",
+      "keywords": [
+        "利卡多",
+        "Ricardo",
+        "Riccardo Accardo"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"利卡多\" name_en=\"Ricardo\">"
+        },
+        {
+          "file": "世界书/NPC/利卡多_Ricardo.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/乞丐_Beggar",
+    "value": {
+      "abstract": "Old Town gate 附近情报 NPC",
+      "keywords": [
+        "乞丐",
+        "Beggar"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"乞丐\" name_en=\"Beggar\">"
+        },
+        {
+          "file": "世界书/NPC/乞丐_Beggar.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/哈迪尔_Hadir",
+    "value": {
+      "abstract": "O'saa 前 expedition 领队，背景 wizard",
+      "keywords": [
+        "哈迪尔",
+        "Hadir",
+        "Hadil Azif"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"哈迪尔\" name_en=\"Hadir\">"
+        },
+        {
+          "file": "世界书/NPC/哈迪尔_Hadir.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/蕾拉_Reila",
+    "value": {
+      "abstract": "Olivia 孪生姐妹，Operation Logic 首席工程师，后 ascended 为 Machine God",
+      "keywords": [
+        "蕾拉",
+        "Reila",
+        "Reila Haas",
+        "Logic"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"蕾拉\" name_en=\"Reila\">"
+        },
+        {
+          "file": "世界书/NPC/蕾拉_Reila.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/永恒的图索_Tuso",
+    "value": {
+      "abstract": "Iki-Turso  nature spirit，Vinushka 盟友",
+      "keywords": [
+        "永恒的图索",
+        "Tuso",
+        "Iki Turso",
+        "Iki-Turso"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"永恒的图索\" name_en=\"Tuso the Eternal\">"
+        },
+        {
+          "file": "世界书/NPC/永恒的图索_Tuso.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/萨米里·齐姆利_Samiri_Zimri",
+    "value": {
+      "abstract": "Occult Grimoires 作者，背景 occult 理论家",
+      "keywords": [
+        "萨米里·齐姆利",
+        "Samiri Zimri",
+        "Occult Grimoires"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"萨米里·齐姆利\" name_en=\"Samiri Zimri\">"
+        },
+        {
+          "file": "世界书/NPC/萨米里·齐姆利_Samiri_Zimri.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/奥斯卡·伦特尔_Oscar_Runtel",
+    "value": {
+      "abstract": "Occult Grimoires 译者，非互动 NPC",
+      "keywords": [
+        "奥斯卡·伦特尔",
+        "Oscar Runtel",
+        "Oscar Renté"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"奥斯卡·伦特尔\" name_en=\"Oscar Runtel\">"
+        },
+        {
+          "file": "世界书/NPC/奥斯卡·伦特尔_Oscar_Runtel.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/勒嘉德凯撒_Legarde_Kaiser",
+    "value": {
+      "abstract": "F&H1 Le'garde 升格为 Bremen 总理 Kaiser，Endgame Boss",
+      "keywords": [
+        "勒嘉德",
+        "Le'garde",
+        "Legarde",
+        "凯撒",
+        "Kaiser"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"勒嘉德/凯撒\" name_en=\"Le'garde / Kaiser\">"
+        },
+        {
+          "file": "世界书/NPC/勒嘉德凯撒_Legarde_Kaiser.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/纳什拉_Nashrah",
+    "value": {
+      "abstract": "Former New God，黄 mage 创造者，O'saa 携带断头",
+      "keywords": [
+        "纳什拉",
+        "Nas'hrah",
+        "Nashrah"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"纳什拉\" name_en=\"Nas'hrah\">"
+        },
+        {
+          "file": "世界书/NPC/纳什拉_Nashrah.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/口袋猫_Pocketcat",
+    "value": {
+      "abstract": "Moon God Rher 使者，商人/Boss",
+      "keywords": [
+        "口袋猫",
+        "Pocketcat"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"口袋猫\" name_en=\"Pocketcat\">"
+        },
+        {
+          "file": "世界书/NPC/口袋猫_Pocketcat.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/无月_Moonless",
+    "value": {
+      "abstract": "cave wolf，August 千年 companions，F&H2 Boss",
+      "keywords": [
+        "无月",
+        "Moonless"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"无月\" name_en=\"Moonless\">"
+        },
+        {
+          "file": "世界书/NPC/无月_Moonless.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/食尸鬼_Ghoul",
+    "value": {
+      "abstract": "necromancy 产物，dungeon darkness 吞噬心智者",
+      "keywords": [
+        "食尸鬼",
+        "Ghoul"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"食尸鬼\" name_en=\"Ghoul\">"
+        },
+        {
+          "file": "世界书/NPC/食尸鬼_Ghoul.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/骷髅_Skeleton",
+    "value": {
+      "abstract": "Gro-goroth blood magic necromancy 高级产物",
+      "keywords": [
+        "骷髅",
+        "Skeleton"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"骷髅\" name_en=\"Skeleton\">"
+        },
+        {
+          "file": "世界书/NPC/骷髅_Skeleton.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/entryManifest/NPC/血肉傀儡_Blood_golem",
+    "value": {
+      "abstract": "Gro-goroth Blood magic 临时战斗召唤物",
+      "keywords": [
+        "血肉傀儡",
+        "Blood golem",
+        "Blood golem"
+      ],
+      "contents": [
+        {
+          "content": "---\n<character_npc character=\"血肉傀儡\" name_en=\"Blood golem\">"
+        },
+        {
+          "file": "世界书/NPC/血肉傀儡_Blood_golem.yaml"
+        },
+        {
+          "content": "</character_npc>"
+        }
+      ]
+    }
+  }
+]

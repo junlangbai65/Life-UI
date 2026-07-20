@@ -1,0 +1,3819 @@
+{
+  "projectName": "F&H",
+  "worldbookName": "Fear & Hunger",
+  "form": "worldbook",
+  "mvu": false,
+  "entryManifest": {
+    "世界观": {
+      "F&H世界概览": {
+        "path": "世界书/世界观/F&H世界概览.yaml",
+        "keywords": [
+          "Fear & Hunger",
+          "Termina",
+          "Prehevil",
+          "F&H"
+        ],
+        "abstract": "Fear & Hunger 系列世界概览：Termina 祭典、Prehevil、神系与 Kaiser",
+        "uid": 0,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "before_character_definition",
+          "order": 10
+        }
+      },
+      "月蚀机制": {
+        "path": "世界书/世界观/月蚀机制.yaml",
+        "keywords": [
+          "月蚀",
+          "Moonscorch",
+          "moonscorched",
+          "月蚀机制"
+        ],
+        "abstract": "Rher 对 Termina 参赛者的 moonlight cancer 惩罚与三日进程",
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "before_character_definition",
+          "order": 11
+        },
+        "uid": 90
+      }
+    },
+    "NPC": {
+      "角色速览": {
+        "path": "世界书/NPC/角色速览.yaml",
+        "scope": "specific",
+        "keywords": [
+          "角色速览",
+          "参赛者",
+          "Termina"
+        ],
+        "abstract": "F&H Termina 角色与 NPC 索引速览",
+        "uid": 1,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "角色速览",
+            "参赛者",
+            "Termina"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 41
+        }
+      },
+      "利维_Levi": {
+        "scope": "specific",
+        "keywords": [
+          "利维",
+          "Levi"
+        ],
+        "abstract": "Prehevil 出身的逃兵狙击手，Termina 参赛者，孤狼型远程战斗者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"利维\" name_en=\"Levi\">"
+          },
+          {
+            "file": "世界书/NPC/利维_Levi.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 2,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "利维",
+            "Levi"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 42
+        }
+      },
+      "玛丽娜_Marina": {
+        "scope": "specific",
+        "keywords": [
+          "玛丽娜",
+          "Marina",
+          "Marina Domek"
+        ],
+        "abstract": "Prehevil 本地 occultist，Dark Priest 之女，Termina 参赛者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"玛丽娜\" name_en=\"Marina\">"
+          },
+          {
+            "file": "世界书/NPC/玛丽娜_Marina.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 3,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "玛丽娜",
+            "Marina",
+            "Marina Domek"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 43
+        }
+      },
+      "达安_Daan": {
+        "scope": "specific",
+        "keywords": [
+          "达安",
+          "Daan",
+          "Daniël"
+        ],
+        "abstract": "Rondon 医生兼 occult 医者，追查亡妻之死，Termina 参赛者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"达安\" name_en=\"Daan\">"
+          },
+          {
+            "file": "世界书/NPC/达安_Daan.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 4,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "达安",
+            "Daan",
+            "Daniël"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 44
+        }
+      },
+      "阿贝拉_Abella": {
+        "scope": "specific",
+        "keywords": [
+          "阿贝拉",
+          "Abella"
+        ],
+        "abstract": "Oldegård 机械师，NLU 地下抵抗成员，Termina 参赛者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"阿贝拉\" name_en=\"Abella\">"
+          },
+          {
+            "file": "世界书/NPC/阿贝拉_Abella.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 5,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "阿贝拉",
+            "Abella"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 45
+        }
+      },
+      "奥撒_Osaa": {
+        "scope": "specific",
+        "keywords": [
+          "奥撒",
+          "O'saa",
+          "Osaa"
+        ],
+        "abstract": "Abyssonia 黄 mage，携带 Nas'hrah 头颅，Termina 参赛者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"奥撒\" name_en=\"O'saa\">"
+          },
+          {
+            "file": "世界书/NPC/奥撒_Osaa.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 6,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "奥撒",
+            "O'saa",
+            "Osaa"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 46
+        }
+      },
+      "奥莉薇娅_Olivia": {
+        "scope": "specific",
+        "keywords": [
+          "奥莉薇娅",
+          "Olivia",
+          "Olivia Haas"
+        ],
+        "abstract": "植物学家，Reila 的孪生姐妹，轮椅使用者，Termina 参赛者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"奥莉薇娅\" name_en=\"Olivia\">"
+          },
+          {
+            "file": "世界书/NPC/奥莉薇娅_Olivia.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 7,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "奥莉薇娅",
+            "Olivia",
+            "Olivia Haas"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 47
+        }
+      },
+      "马尔科_Marcoh": {
+        "scope": "specific",
+        "keywords": [
+          "马尔科",
+          "Marcoh"
+        ],
+        "abstract": "Vatican 地下拳手，Accardo 家族外围，Termina 参赛者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"马尔科\" name_en=\"Marcoh\">"
+          },
+          {
+            "file": "世界书/NPC/马尔科_Marcoh.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 8,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "马尔科",
+            "Marcoh"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 48
+        }
+      },
+      "卡琳_Karin": {
+        "scope": "specific",
+        "keywords": [
+          "卡琳",
+          "Karin",
+          "Karin Sauer"
+        ],
+        "abstract": "Bremen 战地记者，调查 Kaiser，Termina 参赛者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"卡琳\" name_en=\"Karin\">"
+          },
+          {
+            "file": "世界书/NPC/卡琳_Karin.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 9,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "卡琳",
+            "Karin",
+            "Karin Sauer"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 49
+        }
+      },
+      "士兵_Soldier": {
+        "scope": "specific",
+        "keywords": [
+          "士兵",
+          "Soldier",
+          "Bremen士兵"
+        ],
+        "abstract": "前届 Termina 幸存者，Bremen 军人，理智崩坏中",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"士兵\" name_en=\"Soldier\">"
+          },
+          {
+            "file": "世界书/NPC/士兵_Soldier.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 10,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "士兵",
+            "Soldier",
+            "Bremen士兵"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 50
+        }
+      },
+      "村民镰刀_Villager": {
+        "scope": "specific",
+        "keywords": [
+          "镰刀村民",
+          "Villager",
+          "Sickle"
+        ],
+        "abstract": "Prehevil Old Town moonscorch 镇民，持镰刀被迫互杀",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"村民镰刀\" name_en=\"Villager (Sickle)\">"
+          },
+          {
+            "file": "世界书/NPC/村民镰刀_Villager.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 11,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "镰刀村民",
+            "Villager",
+            "Sickle"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 51
+        }
+      },
+      "漆黑卡列夫_Black_Kalev": {
+        "scope": "specific",
+        "keywords": [
+          "漆黑卡列夫",
+          "Black Kalev",
+          "Kalev"
+        ],
+        "abstract": "Abandoned House 外徘徊的黑山羊，与 Woodsman 事件相关",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"漆黑卡列夫\" name_en=\"Black Kalev\">"
+          },
+          {
+            "file": "世界书/NPC/漆黑卡列夫_Black_Kalev.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 12,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "漆黑卡列夫",
+            "Black Kalev",
+            "Kalev"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 52
+        }
+      },
+      "帕夫_Pav": {
+        "scope": "specific",
+        "keywords": [
+          "帕夫",
+          "Pav",
+          "Pavel Yudin"
+        ],
+        "abstract": "Bremen 前中尉，Voroniya 灭村幸存者，刺杀 Kaiser 为目标",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"帕夫\" name_en=\"Pav\">"
+          },
+          {
+            "file": "世界书/NPC/帕夫_Pav.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 13,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "帕夫",
+            "Pav",
+            "Pavel Yudin"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 53
+        }
+      },
+      "萨玛丽_Samarie": {
+        "scope": "specific",
+        "keywords": [
+          "萨玛丽",
+          "Samarie"
+        ],
+        "abstract": "Vatican dark priest 学徒，Marina 的 secret admirer",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"萨玛丽\" name_en=\"Samarie\">"
+          },
+          {
+            "file": "世界书/NPC/萨玛丽_Samarie.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 14,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "萨玛丽",
+            "Samarie"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 54
+        }
+      },
+      "田中_Tanaka": {
+        "scope": "specific",
+        "keywords": [
+          "田中",
+          "Tanaka",
+          "Kida Tanaka"
+        ],
+        "abstract": "Edo 商人 salaryman，Termina 参赛者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"田中\" name_en=\"Tanaka\">"
+          },
+          {
+            "file": "世界书/NPC/田中_Tanaka.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 15,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "田中",
+            "Tanaka",
+            "Kida Tanaka"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 55
+        }
+      },
+      "亨利克_Henryk": {
+        "scope": "specific",
+        "keywords": [
+          "亨利克",
+          "Henryk"
+        ],
+        "abstract": "32 岁 Rondon 厨师，Termina 参赛者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"亨利克\" name_en=\"Henryk\">"
+          },
+          {
+            "file": "世界书/NPC/亨利克_Henryk.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 16,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "亨利克",
+            "Henryk"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 56
+        }
+      },
+      "卡里古拉_Caligura": {
+        "scope": "specific",
+        "keywords": [
+          "卡里古拉",
+          "Caligura",
+          "Count Dragul"
+        ],
+        "abstract": "Vatican 黑帮 caporegime，绰号 Count Dragul",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"卡里古拉\" name_en=\"Caligura\">"
+          },
+          {
+            "file": "世界书/NPC/卡里古拉_Caligura.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 17,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "卡里古拉",
+            "Caligura",
+            "Count Dragul"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 57
+        }
+      },
+      "奥古斯特_August": {
+        "scope": "specific",
+        "keywords": [
+          "奥古斯特",
+          "August"
+        ],
+        "abstract": "Oldegård 游牧猎人，Moonless 千年 companions",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"奥古斯特\" name_en=\"August\">"
+          },
+          {
+            "file": "世界书/NPC/奥古斯特_August.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 18,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "奥古斯特",
+            "August"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 58
+        }
+      },
+      "多梅克神父_Father_Domek": {
+        "scope": "specific",
+        "keywords": [
+          "多梅克神父",
+          "Father Domek",
+          "Domek"
+        ],
+        "abstract": "Marina 生父，Alll-mer dark priest",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"多梅克神父\" name_en=\"Father Domek\">"
+          },
+          {
+            "file": "世界书/NPC/多梅克神父_Father_Domek.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 19,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "多梅克神父",
+            "Father Domek",
+            "Domek"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 59
+        }
+      },
+      "吉夫斯_Jeeves": {
+        "scope": "specific",
+        "keywords": [
+          "吉夫斯",
+          "Jeeves"
+        ],
+        "abstract": "服务 Gentleman 的 butler，moonscorched 但仍 sane",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"吉夫斯\" name_en=\"Jeeves\">"
+          },
+          {
+            "file": "世界书/NPC/吉夫斯_Jeeves.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 20,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "吉夫斯",
+            "Jeeves"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 60
+        }
+      },
+      "绷带男_Bandaged_man": {
+        "scope": "specific",
+        "keywords": [
+          "绷带男",
+          "Bandage Man",
+          "Bandaged man"
+        ],
+        "abstract": "Old Town 小铺店主，前届 Festival moonscorch 幸存者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"绷带男\" name_en=\"Bandaged man\">"
+          },
+          {
+            "file": "世界书/NPC/绷带男_Bandaged_man.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 21,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "绷带男",
+            "Bandage Man",
+            "Bandaged man"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 61
+        }
+      },
+      "令人不适的家伙_Creepy_guy": {
+        "scope": "specific",
+        "keywords": [
+          "令人不适的家伙",
+          "creepy guy",
+          "Old Hotel"
+        ],
+        "abstract": "Old Hotel 前 reception clerk，Marina 童年阴影",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"令人不适的家伙\" name_en=\"The creepy guy\">"
+          },
+          {
+            "file": "世界书/NPC/令人不适的家伙_Creepy_guy.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 22,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "令人不适的家伙",
+            "creepy guy",
+            "Old Hotel"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 62
+        }
+      },
+      "算命师_Fortune_teller": {
+        "scope": "specific",
+        "keywords": [
+          "算命师",
+          "Fortune teller",
+          "占卜师"
+        ],
+        "abstract": "Shopping District 占卜师，提示 effigy 位置",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"算命师\" name_en=\"Fortune teller\">"
+          },
+          {
+            "file": "世界书/NPC/算命师_Fortune_teller.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 23,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "算命师",
+            "Fortune teller",
+            "占卜师"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 63
+        }
+      },
+      "科菲尔博士_Dr_Kefer": {
+        "scope": "specific",
+        "keywords": [
+          "科菲尔博士",
+          "Dr. Kefer",
+          "Kefer"
+        ],
+        "abstract": "Dr. Kefer's Tricks & Magic 店主",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"科菲尔博士\" name_en=\"Dr. Kefer\">"
+          },
+          {
+            "file": "世界书/NPC/科菲尔博士_Dr_Kefer.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 24,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "科菲尔博士",
+            "Dr. Kefer",
+            "Kefer"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 64
+        }
+      },
+      "达利娅_Dalia": {
+        "scope": "specific",
+        "keywords": [
+          "达利娅",
+          "Dalia"
+        ],
+        "abstract": "Karin 的保姆兼事实绑架者，背景人物",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"达利娅\" name_en=\"Dalia\">"
+          },
+          {
+            "file": "世界书/NPC/达利娅_Dalia.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 25,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "达利娅",
+            "Dalia"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 65
+        }
+      },
+      "利卡多_Ricardo": {
+        "scope": "specific",
+        "keywords": [
+          "利卡多",
+          "Ricardo",
+          "Riccardo Accardo"
+        ],
+        "abstract": "Vatican The Family Accardo 分支 heir，Marcoh 背景",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"利卡多\" name_en=\"Ricardo\">"
+          },
+          {
+            "file": "世界书/NPC/利卡多_Ricardo.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 26,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "利卡多",
+            "Ricardo",
+            "Riccardo Accardo"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 66
+        }
+      },
+      "乞丐_Beggar": {
+        "scope": "specific",
+        "keywords": [
+          "乞丐",
+          "Beggar"
+        ],
+        "abstract": "Old Town gate 附近情报 NPC",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"乞丐\" name_en=\"Beggar\">"
+          },
+          {
+            "file": "世界书/NPC/乞丐_Beggar.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 27,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "乞丐",
+            "Beggar"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 67
+        }
+      },
+      "哈迪尔_Hadir": {
+        "scope": "specific",
+        "keywords": [
+          "哈迪尔",
+          "Hadir",
+          "Hadil Azif"
+        ],
+        "abstract": "O'saa 前 expedition 领队，背景 wizard",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"哈迪尔\" name_en=\"Hadir\">"
+          },
+          {
+            "file": "世界书/NPC/哈迪尔_Hadir.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 28,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "哈迪尔",
+            "Hadir",
+            "Hadil Azif"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 68
+        }
+      },
+      "蕾拉_Reila": {
+        "scope": "specific",
+        "keywords": [
+          "蕾拉",
+          "Reila",
+          "Reila Haas",
+          "Logic"
+        ],
+        "abstract": "Olivia 孪生姐妹，Operation Logic 首席工程师，后 ascended 为 Machine God",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"蕾拉\" name_en=\"Reila\">"
+          },
+          {
+            "file": "世界书/NPC/蕾拉_Reila.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 29,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "蕾拉",
+            "Reila",
+            "Reila Haas",
+            "Logic"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 69
+        }
+      },
+      "永恒的图索_Tuso": {
+        "scope": "specific",
+        "keywords": [
+          "永恒的图索",
+          "Tuso",
+          "Iki Turso",
+          "Iki-Turso"
+        ],
+        "abstract": "Iki-Turso  nature spirit，Vinushka 盟友",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"永恒的图索\" name_en=\"Tuso the Eternal\">"
+          },
+          {
+            "file": "世界书/NPC/永恒的图索_Tuso.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 30,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "永恒的图索",
+            "Tuso",
+            "Iki Turso",
+            "Iki-Turso"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 70
+        }
+      },
+      "萨米里·齐姆利_Samiri_Zimri": {
+        "scope": "specific",
+        "keywords": [
+          "萨米里·齐姆利",
+          "Samiri Zimri",
+          "Occult Grimoires"
+        ],
+        "abstract": "Occult Grimoires 作者，背景 occult 理论家",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"萨米里·齐姆利\" name_en=\"Samiri Zimri\">"
+          },
+          {
+            "file": "世界书/NPC/萨米里·齐姆利_Samiri_Zimri.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 31,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "萨米里·齐姆利",
+            "Samiri Zimri",
+            "Occult Grimoires"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 71
+        }
+      },
+      "奥斯卡·伦特尔_Oscar_Runtel": {
+        "scope": "specific",
+        "keywords": [
+          "奥斯卡·伦特尔",
+          "Oscar Runtel",
+          "Oscar Renté"
+        ],
+        "abstract": "Occult Grimoires 译者，非互动 NPC",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"奥斯卡·伦特尔\" name_en=\"Oscar Runtel\">"
+          },
+          {
+            "file": "世界书/NPC/奥斯卡·伦特尔_Oscar_Runtel.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 32,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "奥斯卡·伦特尔",
+            "Oscar Runtel",
+            "Oscar Renté"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 72
+        }
+      },
+      "勒嘉德凯撒_Legarde_Kaiser": {
+        "scope": "specific",
+        "keywords": [
+          "勒嘉德",
+          "Le'garde",
+          "Legarde",
+          "凯撒",
+          "Kaiser"
+        ],
+        "abstract": "F&H1 Le'garde 升格为 Bremen 总理 Kaiser，Endgame Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"勒嘉德/凯撒\" name_en=\"Le'garde / Kaiser\">"
+          },
+          {
+            "file": "世界书/NPC/勒嘉德凯撒_Legarde_Kaiser.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 33,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "勒嘉德",
+            "Le'garde",
+            "Legarde",
+            "凯撒",
+            "Kaiser"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 73
+        }
+      },
+      "纳什拉_Nashrah": {
+        "scope": "specific",
+        "keywords": [
+          "纳什拉",
+          "Nas'hrah",
+          "Nashrah"
+        ],
+        "abstract": "Former New God，黄 mage 创造者，O'saa 携带断头",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"纳什拉\" name_en=\"Nas'hrah\">"
+          },
+          {
+            "file": "世界书/NPC/纳什拉_Nashrah.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 34,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "纳什拉",
+            "Nas'hrah",
+            "Nashrah"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 74
+        }
+      },
+      "口袋猫_Pocketcat": {
+        "scope": "specific",
+        "keywords": [
+          "口袋猫",
+          "Pocketcat"
+        ],
+        "abstract": "Moon God Rher 使者，商人/Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"口袋猫\" name_en=\"Pocketcat\">"
+          },
+          {
+            "file": "世界书/NPC/口袋猫_Pocketcat.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 35,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "口袋猫",
+            "Pocketcat"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 75
+        }
+      },
+      "无月_Moonless": {
+        "scope": "specific",
+        "keywords": [
+          "无月",
+          "Moonless"
+        ],
+        "abstract": "cave wolf，August 千年 companions，F&H2 Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"无月\" name_en=\"Moonless\">"
+          },
+          {
+            "file": "世界书/NPC/无月_Moonless.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 36,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "无月",
+            "Moonless"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 76
+        }
+      },
+      "食尸鬼_Ghoul": {
+        "scope": "specific",
+        "keywords": [
+          "食尸鬼",
+          "Ghoul"
+        ],
+        "abstract": "necromancy 产物，dungeon darkness 吞噬心智者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"食尸鬼\" name_en=\"Ghoul\">"
+          },
+          {
+            "file": "世界书/NPC/食尸鬼_Ghoul.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 37,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "食尸鬼",
+            "Ghoul"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 77
+        }
+      },
+      "骷髅_Skeleton": {
+        "scope": "specific",
+        "keywords": [
+          "骷髅",
+          "Skeleton"
+        ],
+        "abstract": "Gro-goroth blood magic necromancy 高级产物",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"骷髅\" name_en=\"Skeleton\">"
+          },
+          {
+            "file": "世界书/NPC/骷髅_Skeleton.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 38,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "骷髅",
+            "Skeleton"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 78
+        }
+      },
+      "血肉傀儡_Blood_golem": {
+        "scope": "specific",
+        "keywords": [
+          "血肉傀儡",
+          "Blood golem",
+          "Blood golem"
+        ],
+        "abstract": "Gro-goroth Blood magic 临时战斗召唤物",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"血肉傀儡\" name_en=\"Blood golem\">"
+          },
+          {
+            "file": "世界书/NPC/血肉傀儡_Blood_golem.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 39,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "血肉傀儡",
+            "Blood golem",
+            "Blood golem"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 79
+        }
+      },
+      "针魔_Needles": {
+        "scope": "specific",
+        "keywords": [
+          "针魔",
+          "Needles",
+          "针线"
+        ],
+        "abstract": "Termina 猎杀参赛者的 Boss，Permanent clownish grin 与针剂武器",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"针魔\" name_en=\"Needles\">"
+          },
+          {
+            "file": "世界书/NPC/针魔_Needles.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 40,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "针魔",
+            "Needles",
+            "针线"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 80
+        }
+      },
+      "佩尔凯莱_Perkale": {
+        "scope": "specific",
+        "keywords": [
+          "佩尔凯莱",
+          "Per'kele",
+          "Perkele"
+        ],
+        "abstract": "Rher 使者，Termina 祭典监督者，Hollow Tower Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"佩尔凯莱\" name_en=\"Per'kele\">"
+          },
+          {
+            "file": "世界书/NPC/佩尔凯莱_Perkale.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 41,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "佩尔凯莱",
+            "Per'kele",
+            "Perkele"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 81
+        }
+      },
+      "腐臭萨格_Rancid": {
+        "scope": "specific",
+        "keywords": [
+          "腐臭萨格",
+          "Rancid",
+          "Rancid the Sergal",
+          "Sergal"
+        ],
+        "abstract": "Vinland sergal 战士，Altar of One God 与 Day 3 Iki Turso 处 Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"腐臭萨格\" name_en=\"Rancid the Sergal\">"
+          },
+          {
+            "file": "世界书/NPC/腐臭萨格_Rancid.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 42,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "腐臭萨格",
+            "Rancid",
+            "Rancid the Sergal",
+            "Sergal"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 82
+        }
+      },
+      "乔尼_Jonni": {
+        "scope": "specific",
+        "keywords": [
+          "乔尼",
+          "Jonni"
+        ],
+        "abstract": "Tunnel 7 死者，Bremen 士兵，可 necromancy 为 Ghoul 队友",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"乔尼\" name_en=\"Jonni\">"
+          },
+          {
+            "file": "世界书/NPC/乔尼_Jonni.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 43,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "乔尼",
+            "Jonni"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 83
+        }
+      },
+      "无心者_Heartless_One": {
+        "scope": "specific",
+        "keywords": [
+          "无心者",
+          "Heartless One",
+          "Heartless Angel"
+        ],
+        "abstract": "New God 隐藏 Superboss，持 Red virtue",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"无心者\" name_en=\"Heartless One\">"
+          },
+          {
+            "file": "世界书/NPC/无心者_Heartless_One.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 44,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "无心者",
+            "Heartless One",
+            "Heartless Angel"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 84
+        }
+      },
+      "黑衣人_Man_in_Black": {
+        "scope": "specific",
+        "keywords": [
+          "黑衣人",
+          "Man in Black",
+          "黑衣"
+        ],
+        "abstract": "Abandoned House  basement 神秘人物，Black Kalev 关联",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"黑衣人\" name_en=\"Man in Black\">"
+          },
+          {
+            "file": "世界书/NPC/黑衣人_Man_in_Black.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 45,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "黑衣人",
+            "Man in Black",
+            "黑衣"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 85
+        }
+      },
+      "辐射者_Radiating_One": {
+        "scope": "specific",
+        "keywords": [
+          "辐射者",
+          "Radiating One",
+          "The Radiating One"
+        ],
+        "abstract": "New God 商人，Imperfect circle 召唤，售 rare 装备",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"辐射者\" name_en=\"Radiating One\">"
+          },
+          {
+            "file": "世界书/NPC/辐射者_Radiating_One.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 46,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "辐射者",
+            "Radiating One",
+            "The Radiating One"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 86
+        }
+      },
+      "玷污者_Tainted_One": {
+        "scope": "specific",
+        "keywords": [
+          "玷污者",
+          "Tainted One",
+          "The Tainted One"
+        ],
+        "abstract": "New God，以参赛者头颅换 Soul stone shard",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"玷污者\" name_en=\"Tainted One\">"
+          },
+          {
+            "file": "世界书/NPC/玷污者_Tainted_One.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 47,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "玷污者",
+            "Tainted One",
+            "The Tainted One"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 87
+        }
+      },
+      "卑贱者_Wretched_Being": {
+        "scope": "specific",
+        "keywords": [
+          "卑贱者",
+          "Wretched Being",
+          "Wretched"
+        ],
+        "abstract": "Old Town Slums  NPC，换 Woodsman 与 Priest 头颅得 Shield of the Four",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"卑贱者\" name_en=\"Wretched Being\">"
+          },
+          {
+            "file": "世界书/NPC/卑贱者_Wretched_Being.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 48,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "卑贱者",
+            "Wretched Being",
+            "Wretched"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 88
+        }
+      },
+      "樵夫_Woodsman": {
+        "scope": "specific",
+        "keywords": [
+          "樵夫",
+          "Woodsman"
+        ],
+        "abstract": "Abandoned House 独特敌人，Well 事件与 Black Kalev 背景",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"樵夫\" name_en=\"Woodsman\">"
+          },
+          {
+            "file": "世界书/NPC/樵夫_Woodsman.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 49,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "樵夫",
+            "Woodsman"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 89
+        }
+      },
+      "雨果神父_Father_Hugo": {
+        "scope": "specific",
+        "keywords": [
+          "雨果神父",
+          "Father Hugo",
+          "Donnovan Hugo",
+          "Hugo"
+        ],
+        "abstract": "St. Domek Orphanage 院长，occultist Boss Donnovan Hugo",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"雨果神父\" name_en=\"Father Hugo\">"
+          },
+          {
+            "file": "世界书/NPC/雨果神父_Father_Hugo.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 50,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "雨果神父",
+            "Father Hugo",
+            "Donnovan Hugo",
+            "Hugo"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 90
+        }
+      },
+      "衰败神父_Decrepit_Priest": {
+        "scope": "specific",
+        "keywords": [
+          "衰败神父",
+          "Decrepit Priest",
+          "Father Oscar",
+          "Oscar"
+        ],
+        "abstract": "Mayor Manor 的 Father Oscar，Alll-mer dark priest 敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"衰败神父\" name_en=\"Decrepit Priest\">"
+          },
+          {
+            "file": "世界书/NPC/衰败神父_Decrepit_Priest.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 51,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "衰败神父",
+            "Decrepit Priest",
+            "Father Oscar",
+            "Oscar"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 91
+        }
+      },
+      "缝合怪_Stitches": {
+        "scope": "specific",
+        "keywords": [
+          "缝合怪",
+          "Stitches"
+        ],
+        "abstract": "Tunnel 1 Boss，疑似 Elise，创造 Sew job 与 Living flesh",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"缝合怪\" name_en=\"Stitches\">"
+          },
+          {
+            "file": "世界书/NPC/缝合怪_Stitches.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 52,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "缝合怪",
+            "Stitches"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 92
+        }
+      },
+      "活体血肉_Living_flesh": {
+        "scope": "specific",
+        "keywords": [
+          "活体血肉",
+          "Living flesh",
+          "Living Flesh"
+        ],
+        "abstract": "Tunnel 1 Boss，Stitches 创造的多人缝合肉块",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"活体血肉\" name_en=\"Living flesh\">"
+          },
+          {
+            "file": "世界书/NPC/活体血肉_Living_flesh.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 53,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "活体血肉",
+            "Living flesh",
+            "Living Flesh"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 93
+        }
+      },
+      "逻辑_Logic": {
+        "scope": "specific",
+        "keywords": [
+          "逻辑",
+          "Logic",
+          "Machine God",
+          "机器神"
+        ],
+        "abstract": "Machine God，Reila 升格，Ending A Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"逻辑\" name_en=\"Logic\">"
+          },
+          {
+            "file": "世界书/NPC/逻辑_Logic.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 54,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "逻辑",
+            "Logic",
+            "Machine God",
+            "机器神"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 94
+        }
+      },
+      "月神莱尔_Rher": {
+        "scope": "specific",
+        "keywords": [
+          "月神莱尔",
+          "Rher",
+          "莱尔",
+          "Moon God",
+          "Trickster"
+        ],
+        "abstract": "Trickster Moon God，Ending B 最终 Boss，Termina 幕后",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"月神莱尔\" name_en=\"Rher\">"
+          },
+          {
+            "file": "世界书/NPC/月神莱尔_Rher.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 55,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "月神莱尔",
+            "Rher",
+            "莱尔",
+            "Moon God",
+            "Trickster"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 95
+        }
+      },
+      "哭泣瞄准镜_Weeping_scope": {
+        "scope": "specific",
+        "keywords": [
+          "哭泣瞄准镜",
+          "Weeping scope",
+          "Weeping Scope"
+        ],
+        "abstract": "利维月蚀形态，上半身化为枪管",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"哭泣瞄准镜\" name_en=\"Weeping scope\">"
+          },
+          {
+            "file": "世界书/NPC/哭泣瞄准镜_Weeping_scope.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 56,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "哭泣瞄准镜",
+            "Weeping scope",
+            "Weeping Scope"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 96
+        }
+      },
+      "茧_Cocoon": {
+        "scope": "specific",
+        "keywords": [
+          "茧",
+          "Cocoon"
+        ],
+        "abstract": "玛丽娜月蚀形态，Church basement passageway Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"茧\" name_en=\"Cocoon\">"
+          },
+          {
+            "file": "世界书/NPC/茧_Cocoon.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 57,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "茧",
+            "Cocoon"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 97
+        }
+      },
+      "丘格纳_Chaugnar": {
+        "scope": "specific",
+        "keywords": [
+          "丘格纳",
+          "Chaugnar"
+        ],
+        "abstract": "阿贝拉月蚀形态，Tunnel 7 generator Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"丘格纳\" name_en=\"Chaugnar\">"
+          },
+          {
+            "file": "世界书/NPC/丘格纳_Chaugnar.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 58,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "丘格纳",
+            "Chaugnar"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 98
+        }
+      },
+      "主谋_Mastermind": {
+        "scope": "specific",
+        "keywords": [
+          "主谋",
+          "Mastermind"
+        ],
+        "abstract": "奥撒月蚀形态，Mausoleum Alley Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"主谋\" name_en=\"Mastermind\">"
+          },
+          {
+            "file": "世界书/NPC/主谋_Mastermind.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 59,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "主谋",
+            "Mastermind"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 99
+        }
+      },
+      "机械之舞_Mechanical_dance": {
+        "scope": "specific",
+        "keywords": [
+          "机械之舞",
+          "Mechanical dance"
+        ],
+        "abstract": "奥莉薇娅月蚀形态，Museum 游荡 Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"机械之舞\" name_en=\"Mechanical dance\">"
+          },
+          {
+            "file": "世界书/NPC/机械之舞_Mechanical_dance.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 60,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "机械之舞",
+            "Mechanical dance"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 100
+        }
+      },
+      "女武神_Valkyrie": {
+        "scope": "specific",
+        "keywords": [
+          "女武神",
+          "Valkyrie"
+        ],
+        "abstract": "卡琳月蚀形态，D ábel Island Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"女武神\" name_en=\"Valkyrie\">"
+          },
+          {
+            "file": "世界书/NPC/女武神_Valkyrie.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 61,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "女武神",
+            "Valkyrie"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 101
+        }
+      },
+      "巨人_Giant": {
+        "scope": "specific",
+        "keywords": [
+          "巨人",
+          "Giant",
+          "Marcoh Giant"
+        ],
+        "abstract": "马尔科月蚀形态，White Mold Apartments Rher 维度",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"巨人\" name_en=\"Giant\">"
+          },
+          {
+            "file": "世界书/NPC/巨人_Giant.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 62,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "巨人",
+            "Giant",
+            "Marcoh Giant"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 102
+        }
+      },
+      "审判_Judgement": {
+        "scope": "specific",
+        "keywords": [
+          "审判",
+          "Judgement"
+        ],
+        "abstract": "田月月蚀形态，Museum / White Mold Rher 维度",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"审判\" name_en=\"Judgement\">"
+          },
+          {
+            "file": "世界书/NPC/审判_Judgement.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 63,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "审判",
+            "Judgement"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 103
+        }
+      },
+      "绅士_Gentleman": {
+        "scope": "specific",
+        "keywords": [
+          "绅士",
+          "Gentleman",
+          "Henryk Gentleman"
+        ],
+        "abstract": "亨利克月蚀形态，Mayor Manor lucid merchant",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"绅士\" name_en=\"Gentleman\">"
+          },
+          {
+            "file": "世界书/NPC/绅士_Gentleman.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 64,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "绅士",
+            "Gentleman",
+            "Henryk Gentleman"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 104
+        }
+      },
+      "怪物_Monster": {
+        "scope": "specific",
+        "keywords": [
+          "怪物",
+          "Monster",
+          "Caligura Monster"
+        ],
+        "abstract": "卡里古拉月蚀形态，Sewers 水中 Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"怪物\" name_en=\"Monster\">"
+          },
+          {
+            "file": "世界书/NPC/怪物_Monster.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 65,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "怪物",
+            "Monster",
+            "Caligura Monster"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 105
+        }
+      },
+      "变形障碍_Dysmorphia": {
+        "scope": "specific",
+        "keywords": [
+          "变形障碍",
+          "Dysmorphia"
+        ],
+        "abstract": "萨玛丽月蚀形态，Church Rher 维度",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"变形障碍\" name_en=\"Dysmorphia\">"
+          },
+          {
+            "file": "世界书/NPC/变形障碍_Dysmorphia.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 66,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "变形障碍",
+            "Dysmorphia"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 106
+        }
+      },
+      "看门人_Janitor": {
+        "scope": "specific",
+        "keywords": [
+          "看门人",
+          "Janitor"
+        ],
+        "abstract": "Dream Workshop  intro 敌人，Golden Gates 可再遇",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"看门人\" name_en=\"Janitor\">"
+          },
+          {
+            "file": "世界书/NPC/看门人_Janitor.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 67,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "看门人",
+            "Janitor"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 107
+        }
+      },
+      "波比_Bobby": {
+        "scope": "specific",
+        "keywords": [
+          "波比",
+          "Bobby"
+        ],
+        "abstract": "Prehevil East / Book Store 敌人，Rancid cutscene 受害者",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"波比\" name_en=\"Bobby\">"
+          },
+          {
+            "file": "世界书/NPC/波比_Bobby.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 68,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "波比",
+            "Bobby"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 108
+        }
+      },
+      "无头者_Headless": {
+        "scope": "specific",
+        "keywords": [
+          "无头者",
+          "Headless"
+        ],
+        "abstract": "Church passageway、Maiden Forest 常见敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"无头者\" name_en=\"Headless\">"
+          },
+          {
+            "file": "世界书/NPC/无头者_Headless.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 69,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "无头者",
+            "Headless"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 109
+        }
+      },
+      "猫头鹰邪教徒_Owl_cultist": {
+        "scope": "specific",
+        "keywords": [
+          "猫头鹰邪教徒",
+          "Owl cultist",
+          "Owl cultist"
+        ],
+        "abstract": "Deeper/Deep Woods 伏击敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"猫头鹰邪教徒\" name_en=\"Owl cultist\">"
+          },
+          {
+            "file": "世界书/NPC/猫头鹰邪教徒_Owl_cultist.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 70,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "猫头鹰邪教徒",
+            "Owl cultist",
+            "Owl cultist"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 110
+        }
+      },
+      "邻居_Neighbour": {
+        "scope": "specific",
+        "keywords": [
+          "邻居",
+          "Neighbour",
+          "Neighbour 14"
+        ],
+        "abstract": "White Mold Apartments 与 Sewers 随机出现敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"邻居\" name_en=\"Neighbour\">"
+          },
+          {
+            "file": "世界书/NPC/邻居_Neighbour.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 71,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "邻居",
+            "Neighbour",
+            "Neighbour 14"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 111
+        }
+      },
+      "鼠人_Ratkin": {
+        "scope": "specific",
+        "keywords": [
+          "鼠人",
+          "Ratkin"
+        ],
+        "abstract": "Sewers 常见敌人，Mastery over vermin 可 talk 非 hostile",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"鼠人\" name_en=\"Ratkin\">"
+          },
+          {
+            "file": "世界书/NPC/鼠人_Ratkin.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 72,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "鼠人",
+            "Ratkin"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 112
+        }
+      },
+      "鼠婆_Rat_hag": {
+        "scope": "specific",
+        "keywords": [
+          "鼠婆",
+          "Rat hag"
+        ],
+        "abstract": "Sewers 独特敌人，West Junction 可 shoot down",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"鼠婆\" name_en=\"Rat hag\">"
+          },
+          {
+            "file": "世界书/NPC/鼠婆_Rat_hag.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 73,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "鼠婆",
+            "Rat hag"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 113
+        }
+      },
+      "缝补工_Sew_job": {
+        "scope": "specific",
+        "keywords": [
+          "缝补工",
+          "Sew job"
+        ],
+        "abstract": "Stitches 创造的 stitched humanoid 敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"缝补工\" name_en=\"Sew job\">"
+          },
+          {
+            "file": "世界书/NPC/缝补工_Sew_job.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 74,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "缝补工",
+            "Sew job"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 114
+        }
+      },
+      "朗蒂尔_Ronteal": {
+        "scope": "specific",
+        "keywords": [
+          "朗蒂尔",
+          "Ronteal"
+        ],
+        "abstract": "Rher 维度大量出现的 moonscorched 敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"朗蒂尔\" name_en=\"Ronteal\">"
+          },
+          {
+            "file": "世界书/NPC/朗蒂尔_Ronteal.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 75,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "朗蒂尔",
+            "Ronteal"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 115
+        }
+      },
+      "审判官_Inquisitor": {
+        "scope": "specific",
+        "keywords": [
+          "审判官",
+          "Inquisitor"
+        ],
+        "abstract": "Prehevil 内城 multiple spawn 敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"审判官\" name_en=\"Inquisitor\">"
+          },
+          {
+            "file": "世界书/NPC/审判官_Inquisitor.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 76,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "审判官",
+            "Inquisitor"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 116
+        }
+      },
+      "村民匕首_Villager_Knives": {
+        "scope": "specific",
+        "keywords": [
+          "村民匕首",
+          "Villager Knives",
+          "Knives villager"
+        ],
+        "abstract": "Old House 匕首村民，可下 basement",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"村民匕首\" name_en=\"Villager (Knives)\">"
+          },
+          {
+            "file": "世界书/NPC/村民匕首_Villager_Knives.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 77,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "村民匕首",
+            "Villager Knives",
+            "Knives villager"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 117
+        }
+      },
+      "村民铁管_Villager_Pipe": {
+        "scope": "specific",
+        "keywords": [
+          "村民铁管",
+          "Villager Pipe",
+          "Pipe villager"
+        ],
+        "abstract": "Old House 铁管村民",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"村民铁管\" name_en=\"Villager (Pipe)\">"
+          },
+          {
+            "file": "世界书/NPC/村民铁管_Villager_Pipe.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 78,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "村民铁管",
+            "Villager Pipe",
+            "Pipe villager"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 118
+        }
+      },
+      "受难者_Tormented_One": {
+        "scope": "specific",
+        "keywords": [
+          "受难者",
+          "Tormented One",
+          "Tormented One F&H2"
+        ],
+        "abstract": "F&H2 Imperfect circle Dead crow 召唤 Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"受难者\" name_en=\"Tormented One\">"
+          },
+          {
+            "file": "世界书/NPC/受难者_Tormented_One.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 79,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "受难者",
+            "Tormented One",
+            "Tormented One F&H2"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 119
+        }
+      },
+      "鸥兄弟_Gull_bros": {
+        "scope": "specific",
+        "keywords": [
+          "鸥兄弟",
+          "Gull bros",
+          "Gull Bros"
+        ],
+        "abstract": "Orphanage Tes tich table 触发后 city 随机 stalk 的 Boss 组",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"鸥兄弟\" name_en=\"Gull bros\">"
+          },
+          {
+            "file": "世界书/NPC/鸥兄弟_Gull_bros.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 80,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "鸥兄弟",
+            "Gull bros",
+            "Gull Bros"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 120
+        }
+      },
+      "半人马_Centaur": {
+        "scope": "specific",
+        "keywords": [
+          "半人马",
+          "Centaur"
+        ],
+        "abstract": "Deepest Woods 隐藏 Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"半人马\" name_en=\"Centaur\">"
+          },
+          {
+            "file": "世界书/NPC/半人马_Centaur.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 81,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "半人马",
+            "Centaur"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 121
+        }
+      },
+      "暴民_Mob": {
+        "scope": "specific",
+        "keywords": [
+          "暴民",
+          "Mob",
+          "Meat grinder"
+        ],
+        "abstract": "Rifleman + Half-cocooned + Meat grinder 追击事件",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"暴民\" name_en=\"Mob\">"
+          },
+          {
+            "file": "世界书/NPC/暴民_Mob.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 82,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "暴民",
+            "Mob",
+            "Meat grinder"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 122
+        }
+      },
+      "深红之父_Crimson_Father": {
+        "scope": "specific",
+        "keywords": [
+          "深红之父",
+          "Crimson Father"
+        ],
+        "abstract": "Church basement 4 体敌人，1 体 cutscene only",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"深红之父\" name_en=\"Crimson Father\">"
+          },
+          {
+            "file": "世界书/NPC/深红之父_Crimson_Father.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 83,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "深红之父",
+            "Crimson Father"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 123
+        }
+      },
+      "柱人_Pillarman": {
+        "scope": "specific",
+        "keywords": [
+          "柱人",
+          "Pillarman"
+        ],
+        "abstract": "Church basement 不可战斗 cutscene 敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"柱人\" name_en=\"Pillarman\">"
+          },
+          {
+            "file": "世界书/NPC/柱人_Pillarman.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 84,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "柱人",
+            "Pillarman"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 124
+        }
+      },
+      "死亡面具_Death_mask": {
+        "scope": "specific",
+        "keywords": [
+          "死亡面具",
+          "Death mask"
+        ],
+        "abstract": "棺材 spawn tile 触发的 overworld 敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"死亡面具\" name_en=\"Death mask\">"
+          },
+          {
+            "file": "世界书/NPC/死亡面具_Death_mask.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 85,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "死亡面具",
+            "Death mask"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 125
+        }
+      },
+      "精英士兵_Elite_Trooper": {
+        "scope": "specific",
+        "keywords": [
+          "精英士兵",
+          "Elite Trooper",
+          "Bremen elite"
+        ],
+        "abstract": "Kaiser cutscene 护卫，Central 可 shoot 玩家 30 伤害",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"精英士兵\" name_en=\"Elite Trooper\">"
+          },
+          {
+            "file": "世界书/NPC/精英士兵_Elite_Trooper.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 86,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "精英士兵",
+            "Elite Trooper",
+            "Bremen elite"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 126
+        }
+      },
+      "养蜂人_Beekeeper": {
+        "scope": "specific",
+        "keywords": [
+          "养蜂人",
+          "Beekeeper"
+        ],
+        "abstract": "Day 3 激活的 bee 相关敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"养蜂人\" name_en=\"Beekeeper\">"
+          },
+          {
+            "file": "世界书/NPC/养蜂人_Beekeeper.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 87,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "养蜂人",
+            "Beekeeper"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 127
+        }
+      },
+      "堕落小天使_Fallen_cherub": {
+        "scope": "specific",
+        "keywords": [
+          "堕落小天使",
+          "Fallen cherub"
+        ],
+        "abstract": "Orphanage 15 体敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"堕落小天使\" name_en=\"Fallen cherub\">"
+          },
+          {
+            "file": "世界书/NPC/堕落小天使_Fallen_cherub.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 88,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "堕落小天使",
+            "Fallen cherub"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 128
+        }
+      },
+      "暗影身影_Shadowy_figure": {
+        "scope": "specific",
+        "keywords": [
+          "暗影身影",
+          "Shadowy figure"
+        ],
+        "abstract": "Orphanage 除二层外各层 roaming 敌人",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"暗影身影\" name_en=\"Shadowy figure\">"
+          },
+          {
+            "file": "世界书/NPC/暗影身影_Shadowy_figure.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "uid": 89,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "暗影身影",
+            "Shadowy figure"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 129
+        }
+      },
+      "魄_Poe": {
+        "scope": "specific",
+        "keywords": [
+          "魄",
+          "Poe",
+          "genie"
+        ],
+        "abstract": "科菲尔灯触发后现身的 genie 敌人，Grasp of a genie coin flip",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"魄\" name_en=\"Poe\">"
+          },
+          {
+            "file": "世界书/NPC/魄_Poe.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "魄",
+            "Poe",
+            "genie"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 20
+        },
+        "uid": 91
+      },
+      "铃端_Bellend": {
+        "scope": "specific",
+        "keywords": [
+          "铃端",
+          "Bellend"
+        ],
+        "abstract": "屋顶跃下追击的 exoskeleton 敌人，Harden 大幅减伤",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"铃端\" name_en=\"Bellend\">"
+          },
+          {
+            "file": "世界书/NPC/铃端_Bellend.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "铃端",
+            "Bellend"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 21
+        },
+        "uid": 92
+      },
+      "卑劣者_Vile": {
+        "scope": "specific",
+        "keywords": [
+          "卑劣者",
+          "Vile",
+          "猪面具"
+        ],
+        "abstract": "Old Town 戴猪面具 gas mask 的 moonscorched 村民，Talk 可秒杀",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"卑劣者\" name_en=\"Vile\">"
+          },
+          {
+            "file": "世界书/NPC/卑劣者_Vile.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "卑劣者",
+            "Vile",
+            "猪面具"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 22
+        },
+        "uid": 93
+      },
+      "步枪手_Rifleman": {
+        "scope": "specific",
+        "keywords": [
+          "步枪手",
+          "Rifleman"
+        ],
+        "abstract": "moonscorched 持步枪村民，Mob 成员之一",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"步枪手\" name_en=\"Rifleman\">"
+          },
+          {
+            "file": "世界书/NPC/步枪手_Rifleman.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "步枪手",
+            "Rifleman"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 23
+        },
+        "uid": 94
+      },
+      "半茧人_Half-cocooned": {
+        "scope": "specific",
+        "keywords": [
+          "半茧人",
+          "Half-cocooned",
+          "半茧"
+        ],
+        "abstract": "半 cocoon 化 moonscorched，持 meat mallet，Mob 成员",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"半茧人\" name_en=\"Half-cocooned\">"
+          },
+          {
+            "file": "世界书/NPC/半茧人_Half-cocooned.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "半茧人",
+            "Half-cocooned",
+            "半茧"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 24
+        },
+        "uid": 95
+      },
+      "绞肉机手_Meat_grinder": {
+        "scope": "specific",
+        "keywords": [
+          "绞肉机手",
+          "Meat grinder",
+          "Mob"
+        ],
+        "abstract": "Mob 第三成员，持 bench grinder 与 saw blade",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"绞肉机手\" name_en=\"Meat grinder\">"
+          },
+          {
+            "file": "世界书/NPC/绞肉机手_Meat_grinder.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "绞肉机手",
+            "Meat grinder",
+            "Mob"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 25
+        },
+        "uid": 96
+      },
+      "非理性方尖碑_Irrational_Obelisk": {
+        "scope": "specific",
+        "keywords": [
+          "非理性方尖碑",
+          "Irrational Obelisk",
+          "方尖碑"
+        ],
+        "abstract": "Clothing Store 999999 HP 方尖碑，Shivers 精神攻击",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"非理性方尖碑\" name_en=\"Irrational Obelisk\">"
+          },
+          {
+            "file": "世界书/NPC/非理性方尖碑_Irrational_Obelisk.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "非理性方尖碑",
+            "Irrational Obelisk",
+            "方尖碑"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 26
+        },
+        "uid": 97
+      },
+      "粪便猎犬_Fecal_hound": {
+        "scope": "specific",
+        "keywords": [
+          "粪便猎犬",
+          "Fecal hound"
+        ],
+        "abstract": "Deep Woods 恶臭 infected hound，开战即 Nausea",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"粪便猎犬\" name_en=\"Fecal hound\">"
+          },
+          {
+            "file": "世界书/NPC/粪便猎犬_Fecal_hound.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "粪便猎犬",
+            "Fecal hound"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 27
+        },
+        "uid": 98
+      },
+      "火焰兵_Flame_Trooper": {
+        "scope": "specific",
+        "keywords": [
+          "火焰兵",
+          "Flame Trooper"
+        ],
+        "abstract": "White Bunker Bremen 喷火兵，overworld flamethrower 即死",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"火焰兵\" name_en=\"Flame Trooper\">"
+          },
+          {
+            "file": "世界书/NPC/火焰兵_Flame_Trooper.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "火焰兵",
+            "Flame Trooper"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 28
+        },
+        "uid": 99
+      },
+      "排级炮_Platoon": {
+        "scope": "specific",
+        "keywords": [
+          "排级炮",
+          "Platoon",
+          "Spank tank"
+        ],
+        "abstract": "White Bunker Boss 之一，Sylvian Marriage of Flesh 式 amalgam 炮兽",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"排级炮\" name_en=\"Platoon\">"
+          },
+          {
+            "file": "世界书/NPC/排级炮_Platoon.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "排级炮",
+            "Platoon",
+            "Spank tank"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 29
+        },
+        "uid": 100
+      },
+      "西尔维安女官_Sylvian_Trooper": {
+        "scope": "specific",
+        "keywords": [
+          "西尔维安女官",
+          "Sylvian Trooper"
+        ],
+        "abstract": "White Bunker Boss，latex 女军官骑排级炮",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"西尔维安女官\" name_en=\"Sylvian Trooper\">"
+          },
+          {
+            "file": "世界书/NPC/西尔维安女官_Sylvian_Trooper.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "西尔维安女官",
+            "Sylvian Trooper"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 30
+        },
+        "uid": 101
+      },
+      "排级炮Maso_Platoon_Maso": {
+        "scope": "specific",
+        "keywords": [
+          "排级炮Maso",
+          "Platoon Maso",
+          "Maso Platoon"
+        ],
+        "abstract": "Maso 独占 Ruined Streets 超强 Platoon，每回合 coin flip",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"排级炮Maso\" name_en=\"Platoon (Masoχ-S/M)\">"
+          },
+          {
+            "file": "世界书/NPC/排级炮Maso_Platoon_Maso.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "排级炮Maso",
+            "Platoon Maso",
+            "Maso Platoon"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 31
+        },
+        "uid": 102
+      },
+      "利维仿身_Levi_Doppelganger": {
+        "scope": "specific",
+        "keywords": [
+          "利维仿身",
+          "Levi Doppelgänger",
+          "Doppelgänger"
+        ],
+        "abstract": "Sewers Western Tunnels 模仿利维的 doppelgänger",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"利维仿身\" name_en=\"Levi (Doppelgänger)\">"
+          },
+          {
+            "file": "世界书/NPC/利维仿身_Levi_Doppelganger.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "利维仿身",
+            "Levi Doppelgänger",
+            "Doppelgänger"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 32
+        },
+        "uid": 103
+      },
+      "玛丽娜仿身_Marina_Doppelganger": {
+        "scope": "specific",
+        "keywords": [
+          "玛丽娜仿身",
+          "Marina Doppelgänger"
+        ],
+        "abstract": "Book Store 完美模仿玛丽娜的 doppelgänger",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"玛丽娜仿身\" name_en=\"Marina (Doppelgänger)\">"
+          },
+          {
+            "file": "世界书/NPC/玛丽娜仿身_Marina_Doppelganger.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "玛丽娜仿身",
+            "Marina Doppelgänger"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 33
+        },
+        "uid": 104
+      },
+      "奥莉薇娅仿身_Olivia_Doppelganger": {
+        "scope": "specific",
+        "keywords": [
+          "奥莉薇娅仿身",
+          "Olivia Doppelgänger"
+        ],
+        "abstract": "Deep Woods 无轮椅狂奔模仿 Olivia 的 doppelgänger",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"奥莉薇娅仿身\" name_en=\"Olivia (Doppelgänger)\">"
+          },
+          {
+            "file": "世界书/NPC/奥莉薇娅仿身_Olivia_Doppelganger.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "奥莉薇娅仿身",
+            "Olivia Doppelgänger"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 34
+        },
+        "uid": 105
+      },
+      "田中仿身_Tanaka_Doppelganger": {
+        "scope": "specific",
+        "keywords": [
+          "田中仿身",
+          "Tanaka Doppelgänger"
+        ],
+        "abstract": "Tunnel 4 bunker 模仿田中的 doppelgänger",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"田中仿身\" name_en=\"Tanaka (Doppelgänger)\">"
+          },
+          {
+            "file": "世界书/NPC/田中仿身_Tanaka_Doppelganger.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "田中仿身",
+            "Tanaka Doppelgänger"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 35
+        },
+        "uid": 106
+      },
+      "月蚀食尸鬼_Moonscorched_Ghoul": {
+        "scope": "specific",
+        "keywords": [
+          "月蚀食尸鬼",
+          "Moonscorched Ghoul",
+          "moonscorched ghoul"
+        ],
+        "abstract": "与可招募食尸鬼不同——moonscorched 剥肤狂战士，Talk 可化敌",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"月蚀食尸鬼\" name_en=\"Moonscorched (Ghoul)\">"
+          },
+          {
+            "file": "世界书/NPC/月蚀食尸鬼_Moonscorched_Ghoul.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "月蚀食尸鬼",
+            "Moonscorched Ghoul",
+            "moonscorched ghoul"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 36
+        },
+        "uid": 107
+      },
+      "月蚀男_Moonscorched_Male": {
+        "scope": "specific",
+        "keywords": [
+          "月蚀男",
+          "Moonscorched Male"
+        ],
+        "abstract": "Eastern Outskirts 被动 moonscorched，撕脸不攻击",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"月蚀男\" name_en=\"Moonscorched (Male)\">"
+          },
+          {
+            "file": "世界书/NPC/月蚀男_Moonscorched_Male.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "月蚀男",
+            "Moonscorched Male"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 37
+        },
+        "uid": 108
+      },
+      "月蚀女_Moonscorched_Female": {
+        "scope": "specific",
+        "keywords": [
+          "月蚀女",
+          "Moonscorched Female"
+        ],
+        "abstract": "Eastern Outskirts 被动 moonscorched 女性村民",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"月蚀女\" name_en=\"Moonscorched (Female)\">"
+          },
+          {
+            "file": "世界书/NPC/月蚀女_Moonscorched_Female.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "月蚀女",
+            "Moonscorched Female"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 38
+        },
+        "uid": 109
+      },
+      "口袋猫达安_Pocketcat_Daan": {
+        "scope": "specific",
+        "keywords": [
+          "口袋猫达安",
+          "Pocketcat Daan",
+          "Daan moonscorch"
+        ],
+        "abstract": "达安 Day 3 月蚀形态，Museum Guernica 前 Boss",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"口袋猫达安\" name_en=\"Pocketcat (Daan)\">"
+          },
+          {
+            "file": "世界书/NPC/口袋猫达安_Pocketcat_Daan.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "口袋猫达安",
+            "Pocketcat Daan",
+            "Daan moonscorch"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 39
+        },
+        "uid": 110
+      },
+      "鼠人帮_Ratkin_gang": {
+        "scope": "specific",
+        "keywords": [
+          "鼠人帮",
+          "Ratkin gang"
+        ],
+        "abstract": "Foundations of Decay 六鼠 Boss 伏击",
+        "contents": [
+          {
+            "content": "---\n<character_npc character=\"鼠人帮\" name_en=\"Ratkin gang\">"
+          },
+          {
+            "file": "世界书/NPC/鼠人帮_Ratkin_gang.yaml"
+          },
+          {
+            "content": "</character_npc>"
+          }
+        ],
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "鼠人帮",
+            "Ratkin gang"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 40
+        },
+        "uid": 111
+      }
+    }
+  },
+  "typeLists": {
+    "before_char": [
+      "EJS预处理",
+      "世界观",
+      "扮演准则",
+      "时间线",
+      "地理"
+    ],
+    "after_char": [
+      "角色",
+      "NPC"
+    ],
+    "depth": [
+      "事件",
+      "MVU"
+    ]
+  },
+  "strategyThresholds": {
+    "角色": {
+      "basic": {
+        "threshold": 5,
+        "required": true
+      },
+      "other": {
+        "threshold": 2,
+        "required": false
+      },
+      "personality": {
+        "threshold": 2,
+        "required": true
+      },
+      "tri_faceted": {
+        "threshold": 2,
+        "required": false
+      }
+    },
+    "事件": 0,
+    "地理": {
+      "faction": {
+        "threshold": 4,
+        "required": false
+      },
+      "region": {
+        "threshold": 4,
+        "required": false
+      },
+      "scene": {
+        "threshold": 4,
+        "required": false
+      }
+    },
+    "MVU": {
+      "initvar": {
+        "threshold": null,
+        "required": false
+      },
+      "output_format": {
+        "threshold": "Infinity",
+        "required": false
+      },
+      "update_rules": {
+        "threshold": "Infinity",
+        "required": false
+      },
+      "variable_list": {
+        "threshold": "Infinity",
+        "required": false
+      }
+    },
+    "NPC": 0,
+    "EJS预处理": "Infinity",
+    "扮演准则": "Infinity",
+    "时间线": {
+      "history": {
+        "threshold": "Infinity",
+        "required": false
+      },
+      "plot": {
+        "threshold": "Infinity",
+        "required": false
+      }
+    },
+    "世界观": "Infinity"
+  },
+  "partOrder": {
+    "角色": [
+      "basic",
+      "personality",
+      "tri_faceted",
+      "other"
+    ],
+    "地理": [
+      "region",
+      "scene",
+      "faction"
+    ],
+    "MVU": [
+      "variable_list",
+      "update_rules",
+      "output_format",
+      "initvar"
+    ],
+    "时间线": [
+      "history",
+      "plot"
+    ]
+  },
+  "depth_defaults": {
+    "role": "system",
+    "depth": 0
+  },
+  "description": "Fear & Hunger 系列 lorebook，收录 Termina 参赛者、NPC 与特殊存在设定。资料来源：fearandhunger.wiki.gg",
+  "first_messages": [],
+  "creator": "",
+  "creator_notes": "Lorebook-only project. Content in 简体中文.",
+  "version": "1.0",
+  "create_date": "2026-07-05T20:40:10.438Z"
+}

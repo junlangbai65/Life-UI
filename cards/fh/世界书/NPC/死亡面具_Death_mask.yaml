@@ -1,0 +1,21 @@
+基本信息:
+  姓名: 死亡面具
+  英文名: Death mask
+  身份: 独特敌人
+  所属: Old Town / Prehevil 多区 coffin tiles
+
+外貌特征:
+  关键特征: 踩 spawn tile 三次后出现
+
+性格核心:
+  行为模式:
+    - F&H mode 最多 2 random 种类
+    - Maso 全部 6 种可用
+    - Easy mode  absent
+
+与<user>的关系:
+  关系: 探索触发敌人
+  互动方式: 掉落 Death mask + Chainmail dress 等
+
+语言特征:
+  参考语料: []

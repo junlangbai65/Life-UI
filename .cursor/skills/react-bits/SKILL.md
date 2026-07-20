@@ -1,10 +1,9 @@
 ---
 name: react-bits
 description: >-
-  React patterns, anti-patterns, gotchas, perf and styling tips from react-bits.
-  Use when writing or reviewing React components, JSX conditionals, state updates,
-  HOCs, lists/keys, or avoiding common React mistakes. Triggers on: React pattern,
-  anti-pattern, setState, JSX conditional, HOC, pure component, synthetic events.
+  SIDE TRACK: React patterns/anti-patterns for React/TSX or @pixi/react only.
+  Do not load by default for Vue Tavern Helper UI (src/). Triggers on React
+  pattern, anti-pattern, setState, JSX conditional, HOC, synthetic events.
 license: CC-BY-4.0
 metadata:
   author: vasanthk

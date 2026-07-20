@@ -1,0 +1,168 @@
+# wife 项目创作规划（2026-07-06 EJS 触发审计后）
+# 事实来源：与 tavern-cards-state.json 同步维护
+
+project:
+  name: 指腹为婚的幼小娇妻
+  worldbookName: 住进我家的未婚妻
+  form: charactercard
+  mvu: true
+
+optimization_baseline:
+  date: "2026-07-06"
+  before:
+    packed_json_bytes: 265343
+    worldbook_content_chars: 104424
+  after:
+    packed_json_bytes: 241025
+    worldbook_content_chars: 84570
+  notes: EJS 审计后 variable_gate 条目改 constant；玩法指导终局分支交由毕业结局指引独占
+
+strategyThresholds_intent:
+  角色:
+    basic: constant（仅 1 条）
+    personality: selective（threshold 1；调色盘、二次解释）
+    tri_faceted: selective（threshold 1；三面性）
+    other: selective（threshold 1；仅亲密偏好 keyword_selective）
+    variable_gate: constant（NTR调制、风险轴、亲密情感需求；仅 @@if 门控）
+  EJS预处理: constant
+  世界观: constant（NTR 原型 @@if variable_gate）
+  扮演准则: constant
+  阶段指导: constant（毕业结局 @@if；玩法指导段落控制无条目门控）
+  MVU: constant
+
+ejs:
+  snapshot_split:
+    core: 世界书/EJS/变量快照_核心.txt
+    calendar: 世界书/EJS/变量快照_校历.txt
+    calendar_inject:
+      - EJS预处理
+      - 玩法指导
+  entries:
+    - name: EJS预处理
+      complexity: 动态文本
+      trigger_mode: constant
+    - name: 玩法指导
+      complexity: 段落控制
+      trigger_mode: constant
+      note: gradDays<=0 空分支；终局定义见毕业结局指引
+    - name: 毕业结局指引
+      complexity: 条目显隐
+      trigger_mode: variable_gate
+      gate: gradDays<=0
+    - name: 世界观-NTR原型
+      complexity: 条目显隐
+      trigger_mode: variable_gate
+      gate: "ntrStage>=1 || ntrCooldown>0 || NTR对象记录 || matchChatMessages(NTR词)"
+    - name: 凌月_性格调色盘
+      complexity: 段落控制
+      trigger_mode: keyword_selective
+      keywords: [凌月, 小月]
+    - name: 凌月_三面性
+      complexity: 段落控制
+      trigger_mode: keyword_selective
+      keywords: [凌月]
+    - name: 凌月_二次解释
+      complexity: 条目显隐 + 段落控制
+      trigger_mode: keyword_selective
+      rephrase: true
+      gate: "affection>=101 || matchChatMessages(捉弄/足/NTR)"
+    - name: 凌月_亲密偏好
+      complexity: 条目显隐
+      trigger_mode: keyword_selective
+      gate: "居家 && affection>=201 && (亲密关键词 || libido>=55)"
+    - name: 凌月_亲密情感需求
+      complexity: 条目显隐
+      trigger_mode: variable_gate
+      gate: "affection>=201 || libido>=40"
+    - name: 凌月_NTR状态调制
+      complexity: 条目显隐 + 段落控制
+      trigger_mode: variable_gate
+      gate: ntrStage>=1
+    - name: 凌月_风险轴调制
+      complexity: 条目显隐 + 段落控制
+      trigger_mode: variable_gate
+      gate: "libido>=40 || corruption>=20 || ntrStage>=1"
+
+mvu:
+  ai_visible_fields:
+    - 世界.{年,月,日,星期,时间,当前场景,场景类型,天气,距毕业天数}
+    - user.生活费
+    - 凌月.{对user的好感度,性欲,堕落,暴露度,是否处女,破处对象,性爱次数,NTR阶段,NTR冷却,关系形态,体内精液量}
+    - NTR对象
+  hidden_from_ai:
+    - 凌月.穿着.*
+    - 凌月.里程碑.*
+    - $好感阶段
+    - $NTR阶段名
+    - 元组 description（index 1）
+  wearing_policy: 叙事体现为主；更新规则保留轻量 check，变量列表不展开
+  patch_clarity: "2026-07-06 补 type 声明、NTR对象 JSON 示例、玩法指导 JSON 路径；删除废弃 变量快照.txt"
+  time_skip:
+    enabled: true
+    trigger: user 显式声明时间跨度（本轮或上轮输入）
+    requires: 正文日历锚点 + 关系/生活摘要；Analysis mode:time_skip
+  guard:
+    script: 脚本/Zod.txt
+    note: 须为纯 JS（无 TS/export）；registerMvuSchema 在 waitGlobalInitialized('Mvu') 后执行
+    build: node cards/wife/scripts/build-zod-script.mjs
+    zod_pipeline: mag_command_parsed_for_zod（成功后无 display_data/delta_data 楼层内嵌 schema）
+
+entries:
+  - name: EJS预处理
+    type: EJS预处理
+    strategy: constant
+  - name: 世界观-节日与校历
+    type: 世界观
+    strategy: constant
+  - name: 世界观-NTR原型
+    type: 世界观
+    strategy: constant
+    ejs_gate: true
+  - name: 经济系统
+    type: 扮演准则
+    strategy: constant
+  - name: 玩法指导
+    type: 阶段指导
+    strategy: constant
+  - name: 毕业结局指引
+    type: 阶段指导
+    strategy: constant
+    ejs_gate: true
+  - name: 凌月_基础信息
+    type: 角色
+    part: basic
+    strategy: constant
+  - name: 凌月_性格调色盘
+    type: 角色
+    part: personality
+    strategy: selective
+  - name: 凌月_三面性
+    type: 角色
+    part: tri_faceted
+    strategy: selective
+  - name: 凌月_二次解释
+    type: 角色
+    part: personality
+    rephrase: true
+    strategy: selective
+    ejs_gate: true
+  - name: 凌月_亲密偏好
+    type: 角色
+    part: other
+    strategy: selective
+    ejs_gate: true
+  - name: 凌月_亲密情感需求
+    type: 角色
+    part: variable_gate
+    strategy: constant
+    ejs_gate: true
+  - name: 凌月_NTR状态调制
+    type: 角色
+    part: variable_gate
+    strategy: constant
+    ejs_gate: true
+  - name: 凌月_风险轴调制
+    type: 角色
+    part: variable_gate
+    strategy: constant
+    ejs_gate: true

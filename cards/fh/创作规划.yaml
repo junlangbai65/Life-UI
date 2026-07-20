@@ -1,0 +1,124 @@
+project:
+  name: F&H
+  worldbookName: Fear & Hunger
+  form: worldbook
+  mvu: false
+
+world:
+  overview: Fear & Hunger 系列黑暗奇幻 RPG 世界。F&H2: Termina 以 1940 年代东欧虚构首都 Prehevil 为舞台，十四名参赛者被迫参与 Termina 祭典，三日期限内互杀直至 Moon God Rher 选出胜者。旧神、新神、月蚀、Logic 机器神与 Kaiser（Le'garde 升格）构成多层阴谋。
+  source: https://fearandhunger.wiki.gg/
+
+style:
+  perspective: 第三人称
+  tone: 冷峻、压抑、带黑色幽默
+  mood: 恐怖生存、道德灰度
+
+entries:
+  - name: F&H世界概览
+    type: 世界观
+    path: 世界书/世界观/F&H世界概览.yaml
+  - name: 角色速览
+    type: NPC
+    path: 世界书/NPC/角色速览.yaml
+
+characters:
+  普通角色:
+    - 利维 (Levi)
+    - 玛丽娜 (Marina)
+    - 达安 (Daan)
+    - 阿贝拉 (Abella)
+    - 奥撒 (O'saa)
+    - 奥莉薇娅 (Olivia)
+    - 马尔科 (Marcoh)
+    - 卡琳 (Karin)
+    - 士兵 (Soldier)
+    - 村民镰刀 (Villager - Sickle)
+    - 漆黑卡列夫 (Black Kalev)
+    - 帕夫 (Pav)
+    - 萨玛丽 (Samarie)
+    - 田中 (Tanaka)
+    - 亨利克 (Henryk)
+    - 卡里古拉 (Caligura)
+    - 奥古斯特 (August)
+    - 多梅克神父 (Father Domek)
+    - 吉夫斯 (Jeeves)
+    - 绷带男 (Bandaged man)
+    - 令人不适的家伙 (The creepy guy)
+    - 算命师 (Fortune teller)
+    - 科菲尔博士 (Dr. Kefer)
+    - 达利娅 (Dalia)
+    - 利卡多 (Ricardo)
+    - 乞丐 (Beggar)
+    - 哈迪尔 (Hadir)
+    - 蕾拉 (Reila)
+    - 永恒的图索 (Tuso the Eternal)
+    - 萨米里·齐姆利 (Samiri Zimri)
+    - 奥斯卡·伦特尔 (Oscar Runtel)
+  特殊角色:
+    - 勒嘉德凯撒 (Le'garde / Kaiser)
+    - 纳什拉 (Nas'hrah)
+    - 口袋猫 (Pocketcat)
+    - 无月 (Moonless)
+    - 食尸鬼 (Ghoul)
+    - 骷髅 (Skeleton)
+    - 血肉傀儡 (Blood golem)
+
+  F&H2补全_剧情关键:
+    - 针魔 (Needles)
+    - 佩尔凯莱 (Per'kele)
+    - 腐臭萨格 (Rancid the Sergal)
+    - 乔尼 (Jonni)
+    - 无心者 (Heartless One)
+    - 黑衣人 (Man in Black)
+    - 辐射者 (Radiating One)
+    - 玷污者 (Tainted One)
+    - 卑贱者 (Wretched Being)
+    - 樵夫 (Woodsman)
+    - 雨果神父 (Father Hugo)
+    - 衰败神父 (Decrepit Priest / Father Oscar)
+    - 缝合怪 (Stitches)
+    - 活体血肉 (Living flesh)
+    - 逻辑 (Logic)
+    - 月神莱尔 (Rher)
+
+  F&H2补全_月蚀形态:
+    - 哭泣瞄准镜 (Weeping scope / Levi)
+    - 茧 (Cocoon / Marina)
+    - 丘格纳 (Chaugnar / Abella)
+    - 主谋 (Mastermind / O'saa)
+    - 机械之舞 (Mechanical dance / Olivia)
+    - 女武神 (Valkyrie / Karin)
+    - 巨人 (Giant / Marcoh)
+    - 审判 (Judgement / Tanaka)
+    - 绅士 (Gentleman / Henryk)
+    - 怪物 (Monster / Caligura)
+    - 变形障碍 (Dysmorphia / Samarie)
+
+  F&H2补全_常见敌人:
+    - 看门人、波比、无头者、猫头鹰邪教徒、邻居、鼠人、鼠婆、缝补工、朗蒂尔、审判官
+    - 村民匕首、村民铁管、受难者、鸥兄弟、半人马、暴民、深红之父、柱人、死亡面具
+    - 精英士兵、养蜂人、堕落小天使、暗影身影
+
+  F&H2补全_剩余:
+    - 魄 (Poe)
+    - 铃端 (Bellend)
+    - 卑劣者 (Vile)
+    - 步枪手 (Rifleman)
+    - 半茧人 (Half-cocooned)
+    - 绞肉机手 (Meat grinder / Mob)
+    - 非理性方尖碑 (Irrational Obelisk)
+    - 粪便猎犬 (Fecal hound)
+    - 火焰兵 (Flame Trooper)
+    - 排级炮 (Platoon)
+    - 西尔维安女官 (Sylvian Trooper)
+    - 排级炮Maso (Platoon Masoχ-S/M)
+    - 利维仿身 (Levi Doppelgänger)
+    - 玛丽娜仿身 (Marina Doppelgänger)
+    - 奥莉薇娅仿身 (Olivia Doppelgänger)
+    - 田中仿身 (Tanaka Doppelgänger)
+    - 月蚀食尸鬼 (Moonscorched Ghoul)
+    - 月蚀男 (Moonscorched Male)
+    - 月蚀女 (Moonscorched Female)
+    - 口袋猫达安 (Pocketcat Daan)
+    - 鼠人帮 (Ratkin gang)
+    - 月蚀机制 (Moonscorch，世界观)

@@ -1,0 +1,79 @@
+<%_
+if (typeof resolveFestival === 'undefined') {
+  var resolveFestival = function(y, m, d) {
+    var springRanges = {
+      2024: [[2, 9], [2, 10], [2, 11], [2, 12]],
+      2025: [[1, 28], [1, 29], [1, 30], [1, 31]],
+      2026: [[2, 16], [2, 17], [2, 18], [2, 19]],
+    };
+    var lantern = { 2024: [2, 24], 2025: [2, 12], 2026: [3, 3] };
+    var dragonBoat = { 2024: [6, 10], 2025: [5, 31], 2026: [6, 19] };
+    var qixi = { 2024: [8, 10], 2025: [8, 29], 2026: [8, 19] };
+    var midAutumn = { 2024: [9, 17], 2025: [10, 6], 2026: [9, 25] };
+    var qingming = { 2024: [4, 4], 2025: [4, 4], 2026: [4, 5] };
+
+    for (var i = 0; i < (springRanges[y] || []).length; i++) {
+      var pair = springRanges[y][i];
+      if (m === pair[0] && d === pair[1]) return '春节';
+    }
+    var lb = lantern[y];
+    if (lb && m === lb[0] && d === lb[1]) return '元宵节';
+    var db = dragonBoat[y];
+    if (db && m === db[0] && d === db[1]) return '端午节';
+    var qx = qixi[y];
+    if (qx && m === qx[0] && d === qx[1]) return '七夕';
+    var ma = midAutumn[y];
+    if (ma && m === ma[0] && d === ma[1]) return '中秋节';
+    var qm = qingming[y];
+    if (qm && m === qm[0] && d === qm[1]) return '清明节';
+
+    if (m === 1 && d === 1) return '元旦';
+    if (m === 2 && d === 14) return '情人节';
+    if (m === 3 && d === 14) return '白色情人节';
+    if (m === 5 && d === 1) return '劳动节';
+    if (m === 5 && d === 20) return '520';
+    if (m === 6 && d === 1) return '儿童节';
+    if (m === 10 && d === 1) return '国庆节';
+    if (m === 10 && d === 31) return '万圣节';
+    if (m === 11 && d === 11) return '双十一';
+    if (m === 12 && d === 25) return '圣诞节';
+    return '无';
+  };
+}
+if (typeof toOrd === 'undefined') {
+  var toOrd = function(m, d) {
+    return m * 100 + d;
+  };
+}
+if (typeof inDateRange === 'undefined') {
+  var inDateRange = function(y, m, d, sy, sm, sd, ey, em, ed) {
+    var cur = y * 10000 + toOrd(m, d);
+    var start = sy * 10000 + toOrd(sm, sd);
+    var end = ey * 10000 + toOrd(em, ed);
+    return cur >= start && cur <= end;
+  };
+}
+if (typeof resolveVacation === 'undefined') {
+  var resolveVacation = function(y, m, d) {
+    var periods = [
+      { sy: 2025, sm: 1, sd: 18, ey: 2025, em: 2, ed: 16, type: '寒假' },
+      { sy: 2025, sm: 7, sd: 1, ey: 2025, em: 8, ed: 31, type: '暑假' },
+      { sy: 2026, sm: 1, sd: 24, ey: 2026, em: 2, ed: 28, type: '寒假' },
+      { sy: 2026, sm: 6, sd: 9, ey: 2026, em: 6, ed: 30, type: '暑假' },
+    ];
+    for (var p = 0; p < periods.length; p++) {
+      var period = periods[p];
+      if (inDateRange(y, m, d, period.sy, period.sm, period.sd, period.ey, period.em, period.ed)) {
+        return period.type;
+      }
+    }
+    return '无';
+  };
+}
+
+if (typeof year === 'undefined') var year = mvuGet('stat_data.世界.年', 2024);
+if (typeof month === 'undefined') var month = mvuGet('stat_data.世界.月', 9);
+if (typeof day === 'undefined') var day = mvuGet('stat_data.世界.日', 1);
+if (typeof festival === 'undefined') var festival = resolveFestival(year, month, day);
+if (typeof vacation === 'undefined') var vacation = resolveVacation(year, month, day);
+_%>

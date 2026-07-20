@@ -1,0 +1,14 @@
+# getvar 诊断（默认禁用；启用后在提示词中可见下列输出）
+# 条目内已注入变量快照；单独启用时也可运行，不依赖其它条目 define
+# 用于确认 MVU ZOD 元组在 EJS getvar 中的返回形态
+
+getvar诊断:
+  好感度_type: <%= typeof getvar('stat_data.凌月.对user的好感度', { defaults: 50 }) %>
+  好感度_json: <%= JSON.stringify(getvar('stat_data.凌月.对user的好感度', { defaults: 50 })) %>
+  好感度_mvuGet: <%= mvuGet('stat_data.凌月.对user的好感度', 50) %>
+  当前场景_type: <%= typeof getvar('stat_data.世界.当前场景', { defaults: '' }) %>
+  当前场景_json: <%= JSON.stringify(getvar('stat_data.世界.当前场景', { defaults: '' })) %>
+  当前场景_mvuGet: <%= mvuGet('stat_data.世界.当前场景', '') %>
+  解读: |
+    - 若 json 为 [50,"..."] 而 mvuGet 为 50，则业务逻辑须用 mvuGet（已接入变量快照）
+    - 若 json 直接为 50，则 getvar 已自动解包，mvuGet 仍兼容

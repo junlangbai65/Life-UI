@@ -1,0 +1,143 @@
+<%_
+if (typeof mvuGet === 'undefined') {
+  var mvuGet = function(path, defaults) {
+    var v = getvar(path, { defaults: defaults });
+    return Array.isArray(v) && typeof v[1] === 'string' ? v[0] : v;
+  };
+}
+if (typeof resolveFestival === 'undefined') {
+  var resolveFestival = function(y, m, d) {
+    var springRanges = {
+      2024: [[2, 9], [2, 10], [2, 11], [2, 12]],
+      2025: [[1, 28], [1, 29], [1, 30], [1, 31]],
+      2026: [[2, 16], [2, 17], [2, 18], [2, 19]],
+    };
+    var lantern = { 2024: [2, 24], 2025: [2, 12], 2026: [3, 3] };
+    var dragonBoat = { 2024: [6, 10], 2025: [5, 31], 2026: [6, 19] };
+    var qixi = { 2024: [8, 10], 2025: [8, 29], 2026: [8, 19] };
+    var midAutumn = { 2024: [9, 17], 2025: [10, 6], 2026: [9, 25] };
+    var qingming = { 2024: [4, 4], 2025: [4, 4], 2026: [4, 5] };
+
+    for (var i = 0; i < (springRanges[y] || []).length; i++) {
+      var pair = springRanges[y][i];
+      if (m === pair[0] && d === pair[1]) return '春节';
+    }
+    var lb = lantern[y];
+    if (lb && m === lb[0] && d === lb[1]) return '元宵节';
+    var db = dragonBoat[y];
+    if (db && m === db[0] && d === db[1]) return '端午节';
+    var qx = qixi[y];
+    if (qx && m === qx[0] && d === qx[1]) return '七夕';
+    var ma = midAutumn[y];
+    if (ma && m === ma[0] && d === ma[1]) return '中秋节';
+    var qm = qingming[y];
+    if (qm && m === qm[0] && d === qm[1]) return '清明节';
+
+    if (m === 1 && d === 1) return '元旦';
+    if (m === 2 && d === 14) return '情人节';
+    if (m === 3 && d === 14) return '白色情人节';
+    if (m === 5 && d === 1) return '劳动节';
+    if (m === 5 && d === 20) return '520';
+    if (m === 6 && d === 1) return '儿童节';
+    if (m === 10 && d === 1) return '国庆节';
+    if (m === 10 && d === 31) return '万圣节';
+    if (m === 11 && d === 11) return '双十一';
+    if (m === 12 && d === 25) return '圣诞节';
+    return '无';
+  };
+}
+if (typeof toOrd === 'undefined') {
+  var toOrd = function(m, d) {
+    return m * 100 + d;
+  };
+}
+if (typeof inDateRange === 'undefined') {
+  var inDateRange = function(y, m, d, sy, sm, sd, ey, em, ed) {
+    var cur = y * 10000 + toOrd(m, d);
+    var start = sy * 10000 + toOrd(sm, sd);
+    var end = ey * 10000 + toOrd(em, ed);
+    return cur >= start && cur <= end;
+  };
+}
+if (typeof resolveVacation === 'undefined') {
+  var resolveVacation = function(y, m, d) {
+    var periods = [
+      { sy: 2025, sm: 1, sd: 18, ey: 2025, em: 2, ed: 16, type: '寒假' },
+      { sy: 2025, sm: 7, sd: 1, ey: 2025, em: 8, ed: 31, type: '暑假' },
+      { sy: 2026, sm: 1, sd: 24, ey: 2026, em: 2, ed: 28, type: '寒假' },
+      { sy: 2026, sm: 6, sd: 9, ey: 2026, em: 6, ed: 30, type: '暑假' },
+    ];
+    for (var p = 0; p < periods.length; p++) {
+      var period = periods[p];
+      if (inDateRange(y, m, d, period.sy, period.sm, period.sd, period.ey, period.em, period.ed)) {
+        return period.type;
+      }
+    }
+    return '无';
+  };
+}
+if (typeof tierLibido === 'undefined') {
+  var tierLibido = function(v) {
+    if (v < 40) return '低迷';
+    if (v < 55) return '偏升';
+    if (v < 75) return '高涨';
+    return '迫切';
+  };
+}
+if (typeof tierCorruption === 'undefined') {
+  var tierCorruption = function(v) {
+    if (v < 20) return '洁净';
+    if (v < 50) return '沾染';
+    if (v < 80) return '深陷';
+    return '沉溺';
+  };
+}
+if (typeof isNtrTargetRecord === 'undefined') {
+  var isNtrTargetRecord = function(t) {
+    return t !== '无' && t !== null && typeof t === 'object' && !Array.isArray(t);
+  };
+}
+if (typeof sceneIncludes === 'undefined') {
+  var sceneIncludes = function(substr) {
+    return String(scenePlace || '').indexOf(substr) !== -1;
+  };
+}
+
+if (typeof year === 'undefined') var year = mvuGet('stat_data.世界.年', 2024);
+if (typeof month === 'undefined') var month = mvuGet('stat_data.世界.月', 9);
+if (typeof day === 'undefined') var day = mvuGet('stat_data.世界.日', 1);
+if (typeof festival === 'undefined') var festival = resolveFestival(year, month, day);
+if (typeof vacation === 'undefined') var vacation = resolveVacation(year, month, day);
+if (typeof affection === 'undefined') var affection = mvuGet('stat_data.凌月.对user的好感度', 50);
+if (typeof ntrStage === 'undefined') var ntrStage = mvuGet('stat_data.凌月.NTR阶段', 0);
+if (typeof sceneType === 'undefined') var sceneType = mvuGet('stat_data.世界.场景类型', '居家');
+if (typeof scenePlace === 'undefined') var scenePlace = mvuGet('stat_data.世界.当前场景', '合租公寓·客厅');
+if (typeof weekday === 'undefined') var weekday = mvuGet('stat_data.世界.星期', '日');
+if (typeof gradDays === 'undefined') var gradDays = mvuGet('stat_data.世界.距毕业天数', 652);
+if (typeof libido === 'undefined') var libido = mvuGet('stat_data.凌月.性欲', 20);
+if (typeof corruption === 'undefined') var corruption = mvuGet('stat_data.凌月.堕落', 0);
+if (typeof libidoTier === 'undefined') var libidoTier = tierLibido(libido);
+if (typeof corruptionTier === 'undefined') var corruptionTier = tierCorruption(corruption);
+if (typeof exposure === 'undefined') var exposure = mvuGet('stat_data.凌月.暴露度', 0);
+if (typeof ntrCooldown === 'undefined') var ntrCooldown = mvuGet('stat_data.凌月.NTR冷却', 0);
+if (typeof relationForm === 'undefined') var relationForm = mvuGet('stat_data.凌月.关系形态', '默认');
+if (typeof ntrTarget === 'undefined') var ntrTarget = mvuGet('stat_data.NTR对象', '无');
+if (typeof ntrCrossCount === 'undefined') var ntrCrossCount = mvuGet('stat_data.凌月.性爱次数.越界', 0);
+if (typeof userSexCount === 'undefined') var userSexCount = mvuGet('stat_data.凌月.性爱次数.与user', 0);
+if (typeof virginityTo === 'undefined') var virginityTo = mvuGet('stat_data.凌月.破处对象', '无');
+_%>
+
+# getvar 诊断（默认禁用；启用后在提示词中可见下列输出）
+# 条目内已注入变量快照；单独启用时也可运行，不依赖其它条目 define
+# 用于确认 MVU ZOD 元组在 EJS getvar 中的返回形态
+
+getvar诊断:
+  好感度_type: <%= typeof getvar('stat_data.凌月.对user的好感度', { defaults: 50 }) %>
+  好感度_json: <%= JSON.stringify(getvar('stat_data.凌月.对user的好感度', { defaults: 50 })) %>
+  好感度_mvuGet: <%= mvuGet('stat_data.凌月.对user的好感度', 50) %>
+  当前场景_type: <%= typeof getvar('stat_data.世界.当前场景', { defaults: '' }) %>
+  当前场景_json: <%= JSON.stringify(getvar('stat_data.世界.当前场景', { defaults: '' })) %>
+  当前场景_mvuGet: <%= mvuGet('stat_data.世界.当前场景', '') %>
+  解读: |
+    - 若 json 为 [50,"..."] 而 mvuGet 为 50，则业务逻辑须用 mvuGet（已接入变量快照）
+    - 若 json 直接为 50，则 getvar 已自动解包，mvuGet 仍兼容

@@ -3,6 +3,7 @@ import HtmlInlineScriptWebpackPlugin from 'html-inline-script-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import _ from 'lodash';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { createServer, type Server as HttpServer } from 'node:http';
 import { ChildProcess, exec, spawn } from 'node:child_process';
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
@@ -22,6 +23,7 @@ const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').def
 
 interface Config {
   port: number;
+  staticPort: number;
   entries: Entry[];
 }
 interface Entry {
@@ -76,12 +78,58 @@ function glob_script_files() {
 
 const config: Config = {
   port: 6621,
+  staticPort: 6622,
   entries: glob_script_files().map(parse_entry),
 };
 
 let io: Server;
+let staticServer: HttpServer;
+function watch_dist_static_server(compiler: webpack.Compiler) {
+  if (!compiler.options.watch) {
+    return;
+  }
+  if (staticServer) {
+    return;
+  }
+  const staticPort = config.staticPort ?? 6622;
+  const distRoot = path.join(import.meta.dirname, 'dist');
+  staticServer = createServer((req, res) => {
+    try {
+      const urlPath = decodeURIComponent(new URL(req.url ?? '/', 'http://127.0.0.1').pathname);
+      const filePath = path.normalize(path.join(distRoot, urlPath));
+      if (!filePath.startsWith(distRoot)) {
+        res.writeHead(403);
+        res.end('Forbidden');
+        return;
+      }
+      if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+        res.writeHead(404);
+        res.end('Not Found');
+        return;
+      }
+      res.writeHead(200, {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': filePath.endsWith('.html')
+          ? 'text/html; charset=utf-8'
+          : filePath.endsWith('.js')
+            ? 'text/javascript; charset=utf-8'
+            : 'application/octet-stream',
+      });
+      res.end(fs.readFileSync(filePath));
+    } catch {
+      res.writeHead(500);
+      res.end('Internal Server Error');
+    }
+  });
+  staticServer.listen(staticPort, '127.0.0.1', () => {
+    console.info(
+      `\x1b[36m[tavern_helper]\x1b[0m dist 静态服务 http://127.0.0.1:${staticPort}/ （body.load 本地预览用）`,
+    );
+  });
+}
 function watch_tavern_helper(compiler: webpack.Compiler) {
   if (compiler.options.watch) {
+    watch_dist_static_server(compiler);
     if (!io) {
       const port = config.port ?? 6621;
       io = new Server(port, { cors: { origin: '*' } });

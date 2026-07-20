@@ -1,0 +1,19 @@
+{
+  "name": "tavern-cards",
+  "displayName": "Tavern Cards",
+  "description": "Create, edit, and evaluate SillyTavern character cards and worldbooks with tavern-cards-forge CLI.",
+  "version": "1.0.0",
+  "author": "ai4rpg",
+  "license": "Personal use",
+  "type": "workflow",
+  "keywords": [
+    "sillytavern",
+    "character-card",
+    "worldbook",
+    "mvu",
+    "ejs",
+    "tavern-cards-forge"
+  ],
+  "platforms": ["cursor"],
+  "entry": "SKILL.md"
+}

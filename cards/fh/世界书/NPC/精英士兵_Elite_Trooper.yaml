@@ -1,0 +1,20 @@
+基本信息:
+  姓名: 精英士兵
+  英文名: Elite Trooper
+  身份: 环境/Cutscene 敌人
+  所属: Bremen 军；Prehevil Central
+
+外貌特征:
+  关键特征: Bremen elite helmet + chestplate
+
+性格核心:
+  行为模式:
+    - Kaiser cutscene 不可 fought
+    - 靠近 chest 过久被射 30 party damage
+
+与<user>的关系:
+  关系: Kaiser 卫队
+  互动方式: 避免 linger
+
+语言特征:
+  参考语料: []

@@ -1,0 +1,19 @@
+基本信息:
+  姓名: 养蜂人
+  英文名: Beekeeper
+  身份: 常见敌人（Day 3）
+  所属: Ruined Streets、Sewers Western Tunnels、Back Alleys garage
+
+外貌特征:
+  关键特征: Day 3 only active
+
+性格核心:
+  行为模式:
+    - Back Alleys 需 bee garage 两步触发
+
+与<user>的关系:
+  关系: Day 3 新增威胁
+  互动方式: 常规战斗
+
+语言特征:
+  参考语料: []

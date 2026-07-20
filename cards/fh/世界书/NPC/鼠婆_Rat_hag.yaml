@@ -1,0 +1,19 @@
+基本信息:
+  姓名: 鼠婆
+  英文名: Rat hag
+  身份: 独特敌人
+  所属: Sewers - West Junction、Old Apartments Back Alleys
+
+外貌特征:
+  关键特征: West Junction 可无法战斗仅 shoot
+
+性格核心:
+  行为模式:
+    - shoot down 会连带 kill Western Tunnels 1 体 Rat hag
+
+与<user>的关系:
+  关系: Sewer 威胁
+  互动方式: 远程先制
+
+语言特征:
+  参考语料: []

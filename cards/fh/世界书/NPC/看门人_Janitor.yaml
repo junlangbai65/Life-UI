@@ -1,0 +1,20 @@
+基本信息:
+  姓名: 看门人
+  英文名: Janitor
+  身份: 常见敌人
+  所属: The Dream (Workshop)
+
+外貌特征:
+  关键特征: intro 战败则 permanently disappear
+
+性格核心:
+  核心特质: intro 教学战
+  行为模式:
+    - Golden Gates 可重返 Workshop
+
+与<user>的关系:
+  关系: 教程/可选再战
+  互动方式: 标准敌人
+
+语言特征:
+  参考语料: []

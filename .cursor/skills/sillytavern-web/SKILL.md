@@ -1,11 +1,10 @@
 ---
 name: sillytavern-web
 description: >-
-  Fully automated SillyTavern ecosystem integration. Installs lorebooks, presets,
-  and AI chat functionality into any web project with one command. Auto-detects
-  framework, installs dependencies, generates all code files, and creates UI components.
-  Triggers on: sillytavern, tavernlike, /sillytavern-web, /tavernlike, lorebook,
-  integrate AI chat, add character cards, world info system.
+  SIDE TRACK only: install lorebooks/presets/AI chat into a standalone web app
+  (not Tavern Helper iframe). Triggers on /sillytavern-web or /tavernlike.
+  Do NOT use for src/ webpack UI, cards/ forge, or SillyTavern iframe work —
+  use tavern-cards + .cursor/rules instead.
 license: MIT
 metadata:
   author: User
@@ -15,6 +14,10 @@ metadata:
 ---
 
 # /sillytavern-web — Automated SillyTavern Integrator
+
+**旁轨：** 面向**独立 Web 项目**嵌入 lorebook / 聊天，**不是**本仓库 `src/` 酒馆助手 iframe 打包流程。
+
+平台主线路由见仓库根目录 [`AGENTS.md`](../../../AGENTS.md)。写卡用 `tavern-cards`；酒馆 UI 用 `.cursor/rules` + `src/`。
 
 **One-command integration of SillyTavern's lorebook system into any web project.**
 

@@ -1,0 +1,19 @@
+基本信息:
+  姓名: 村民（铁管）
+  英文名: Villager (Pipe)
+  身份: 敌人
+  所属: Old House
+
+外貌特征:
+  关键特征: 持 rusty pipe
+
+性格核心:
+  行为模式:
+    - 1-2 体；Gate 未杀移 basement
+
+与<user>的关系:
+  关系: Old Town 早期敌人
+  互动方式: 常规/necromancy
+
+语言特征:
+  参考语料: []

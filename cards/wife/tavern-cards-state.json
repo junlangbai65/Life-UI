@@ -1,0 +1,796 @@
+{
+  "projectName": "指腹为婚的幼小娇妻",
+  "worldbookName": "住进我家的未婚妻",
+  "form": "charactercard",
+  "mvu": true,
+  "entryManifest": {
+    "角色": {
+      "凌月_基础信息": {
+        "scope": "specific",
+        "part": "basic",
+        "keywords": [
+          "凌月",
+          "小月"
+        ],
+        "abstract": "凌月基础档案：幼脸未婚妻、白月光公共印象、同居domestic",
+        "contents": [
+          {
+            "content": "<凌月_基础信息>"
+          },
+          {
+            "file": "世界书/角色/凌月/基础信息.yaml"
+          },
+          {
+            "content": "</凌月_基础信息>"
+          }
+        ],
+        "uid": 0,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 40
+        }
+      },
+      "凌月_性格调色盘": {
+        "scope": "specific",
+        "part": "personality",
+        "keywords": [
+          "凌月"
+        ],
+        "abstract": "凌月多阶段调色盘：聪明底色、哥们、足玩渠道、好感四阶段EJS",
+        "contents": [
+          {
+            "content": "<凌月_性格调色盘>"
+          },
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/角色/凌月/性格调色盘.txt"
+          },
+          {
+            "content": "</凌月_性格调色盘>"
+          }
+        ],
+        "uid": 1,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "凌月"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 41
+        }
+      },
+      "凌月_三面性": {
+        "scope": "specific",
+        "part": "tri_faceted",
+        "keywords": [
+          "凌月"
+        ],
+        "abstract": "凌月两面性：学校白月光与家中哥们赤脚面",
+        "contents": [
+          {
+            "content": "<凌月_三面性>"
+          },
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/角色/凌月/三面性.yaml"
+          },
+          {
+            "content": "</凌月_三面性>"
+          }
+        ],
+        "uid": 2,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "凌月"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 42
+        }
+      },
+      "凌月_二次解释": {
+        "scope": "specific",
+        "part": "personality",
+        "rephrase": true,
+        "keywords": [
+          "凌月"
+        ],
+        "abstract": "凌月二次解释：玩伴捉弄、A/B边界、足渠道、NTR情感纠偏",
+        "contents": [
+          {
+            "content": "@@if (Array.isArray(v=getvar('stat_data.凌月.对user的好感度',{defaults:0}))?v[0]:v)>=101 || matchChatMessages(['捉弄','足','脚','NTR','越界','出轨','偷情','隔壁'])\n<凌月_二次解释>"
+          },
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/角色/凌月/二次解释.yaml"
+          },
+          {
+            "content": "</凌月_二次解释>"
+          }
+        ],
+        "uid": 3,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "凌月"
+          ]
+        },
+        "position": {
+          "type": "at_depth",
+          "role": "system",
+          "depth": 0,
+          "order": 100
+        }
+      },
+      "凌月_亲密偏好": {
+        "scope": "specific",
+        "part": "other",
+        "keywords": [
+          "凌月"
+        ],
+        "abstract": "凌月bedroom亲密偏好：足部性交互偏好、敏感带（乳房/大腿内侧）、台词库",
+        "contents": [
+          {
+            "content": "@@if (Array.isArray(v=getvar('stat_data.世界.场景类型',{defaults:'居家'}))?v[0]:v)==='居家' && (Array.isArray(v=getvar('stat_data.凌月.对user的好感度',{defaults:0}))?v[0]:v)>=201 && (matchChatMessages(['床','卧室','房间','亲密','做爱','脱','色色','插','射']) || (Array.isArray(v=getvar('stat_data.凌月.性欲',{defaults:0}))?v[0]:v)>=55)\n<凌月_亲密偏好>"
+          },
+          {
+            "file": "世界书/角色/凌月/亲密偏好.yaml"
+          },
+          {
+            "content": "</凌月_亲密偏好>"
+          }
+        ],
+        "uid": 4,
+        "enabled": true,
+        "strategy": {
+          "type": "selective",
+          "keys": [
+            "凌月"
+          ]
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 43
+        }
+      },
+      "凌月_亲密情感需求": {
+        "scope": "specific",
+        "part": "variable_gate",
+        "keywords": [
+          "凌月"
+        ],
+        "abstract": "凌月亲密情感需求：被回应、投注可迁移、反应转移",
+        "contents": [
+          {
+            "content": "@@if (Array.isArray(v=getvar('stat_data.凌月.对user的好感度',{defaults:0}))?v[0]:v)>=201 || (Array.isArray(v=getvar('stat_data.凌月.性欲',{defaults:0}))?v[0]:v)>=40\n<凌月_亲密情感需求>"
+          },
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/角色/凌月/亲密情感需求.yaml"
+          },
+          {
+            "content": "</凌月_亲密情感需求>"
+          }
+        ],
+        "uid": 5,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 44
+        }
+      },
+      "凌月_NTR状态调制": {
+        "scope": "specific",
+        "part": "variable_gate",
+        "keywords": [
+          "凌月",
+          "NTR",
+          "越界",
+          "出轨",
+          "隔壁",
+          "偷情"
+        ],
+        "abstract": "凌月NTR阶段EJS调制：预警/越界/暴露，与好感正交",
+        "contents": [
+          {
+            "content": "@@if (Array.isArray(v=getvar('stat_data.凌月.NTR阶段',{defaults:0}))?v[0]:v)>=1\n<凌月_NTR状态调制>"
+          },
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/角色/凌月/NTR状态调制.txt"
+          },
+          {
+            "content": "</凌月_NTR状态调制>"
+          }
+        ],
+        "uid": 6,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 45
+        }
+      },
+      "凌月_风险轴调制": {
+        "scope": "specific",
+        "part": "variable_gate",
+        "keywords": [
+          "凌月"
+        ],
+        "abstract": "凌月风险轴EJS：性欲/堕落四档调制，正交于好感与NTR阶段",
+        "contents": [
+          {
+            "content": "@@if (Array.isArray(v=getvar('stat_data.凌月.性欲',{defaults:0}))?v[0]:v)>=40 || (Array.isArray(v=getvar('stat_data.凌月.堕落',{defaults:0}))?v[0]:v)>=20 || (Array.isArray(v=getvar('stat_data.凌月.NTR阶段',{defaults:0}))?v[0]:v)>=1\n<凌月_风险轴调制>"
+          },
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/角色/凌月/风险轴调制.txt"
+          },
+          {
+            "content": "</凌月_风险轴调制>"
+          }
+        ],
+        "uid": 7,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "after_character_definition",
+          "order": 46
+        }
+      }
+    },
+    "扮演准则": {
+      "经济系统": {
+        "path": "世界书/扮演准则/经济系统.yaml",
+        "scope": "specific",
+        "keywords": [],
+        "abstract": "经济系统：2024二线物价锚定、user.生活费口径与单次扣款铁律",
+        "uid": 8,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "before_character_definition",
+          "order": 30
+        },
+        "recursion": {
+          "prevent_incoming": true,
+          "prevent_outgoing": true
+        }
+      }
+    },
+    "MVU": {
+      "[mvu_update]变量输出格式": {
+        "path": "世界书/变量/变量输出格式.txt",
+        "part": "output_format",
+        "keywords": [],
+        "abstract": "MVU变量输出格式",
+        "uid": 9,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "at_depth",
+          "role": "system",
+          "depth": 0,
+          "order": 60
+        }
+      },
+      "变量列表": {
+        "path": "世界书/变量/变量列表.txt",
+        "part": "variable_list",
+        "keywords": [],
+        "abstract": "MVU变量列表",
+        "uid": 10,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "at_depth",
+          "role": "system",
+          "depth": 0,
+          "order": 70
+        }
+      },
+      "[mvu_update]MVU规则总纲": {
+        "path": "世界书/变量/MVU规则总纲.yaml",
+        "part": "update_rules",
+        "keywords": [],
+        "abstract": "MVU规则总纲：概念说明与逐字段更新 check 清单",
+        "uid": 11,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "at_depth",
+          "role": "system",
+          "depth": 0,
+          "order": 80
+        }
+      },
+      "[InitVar]变量初始值": {
+        "path": "世界书/变量/initvar.yaml",
+        "part": "initvar",
+        "keywords": [],
+        "abstract": "MVU初始变量",
+        "uid": 12,
+        "enabled": false,
+        "position": {
+          "type": "at_depth",
+          "role": "system",
+          "depth": 0,
+          "order": 90
+        }
+      }
+    },
+    "EJS预处理": {
+      "EJS预处理": {
+        "keywords": [],
+        "abstract": "EJS变量预处理：define好感、NTR、场景、校历等玩法门控变量",
+        "contents": [
+          {
+            "content": "@@generate_before"
+          },
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/EJS/变量快照_校历.txt"
+          },
+          {
+            "file": "世界书/EJS/EJS预处理.txt"
+          }
+        ],
+        "uid": 13,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "before_character_definition",
+          "order": 10
+        }
+      },
+      "getvar诊断": {
+        "keywords": [],
+        "abstract": "EJS getvar/MVU元组形态诊断（默认禁用，排查时启用）",
+        "contents": [
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/EJS/变量快照_校历.txt"
+          },
+          {
+            "file": "世界书/EJS/getvar诊断.txt"
+          }
+        ],
+        "uid": 14,
+        "enabled": false,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "before_character_definition",
+          "order": 11
+        }
+      }
+    },
+    "阶段指导": {
+      "玩法指导": {
+        "scope": "catalog",
+        "keywords": [],
+        "abstract": "玩法主持：毕业/NTR五池/假期/节日/学期周循环互斥分支与A/B边界",
+        "contents": [
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/EJS/变量快照_校历.txt"
+          },
+          {
+            "file": "世界书/阶段指导/玩法指导.txt"
+          }
+        ],
+        "uid": 15,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "at_depth",
+          "role": "system",
+          "depth": 0,
+          "order": 50
+        }
+      },
+      "毕业结局指引": {
+        "scope": "catalog",
+        "keywords": [],
+        "abstract": "毕业终局四结局：好感/堕落/关系形态择一路，含定义与描写方向",
+        "contents": [
+          {
+            "content": "@@if (Array.isArray(v=getvar('stat_data.世界.距毕业天数',{defaults:652}))?v[0]:v)<=0"
+          },
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/阶段指导/毕业结局指引.txt"
+          }
+        ],
+        "uid": 16,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "at_depth",
+          "role": "system",
+          "depth": 0,
+          "order": 51
+        }
+      }
+    },
+    "世界观": {
+      "世界观-节日与校历": {
+        "path": "世界书/世界观/世界观-节日与校历.yaml",
+        "keywords": [],
+        "abstract": "节日与校历锚定：公历与农历节日表、EJS日期推导说明、节日主持铁律",
+        "uid": 17,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "before_character_definition",
+          "order": 20
+        }
+      },
+      "世界观-NTR原型": {
+        "keywords": [],
+        "abstract": "NTR五类原型锚定：特征、场景、生命周期、闺蜜/家犬默许边界",
+        "contents": [
+          {
+            "content": "@@if (Array.isArray(v=getvar('stat_data.凌月.NTR阶段',{defaults:0}))?v[0]:v)>=1 || (Array.isArray(v=getvar('stat_data.凌月.NTR冷却',{defaults:0}))?v[0]:v)>0 || (function(){var t=getvar('stat_data.NTR对象',{defaults:'无'});var o=Array.isArray(t)?t[0]:t;return o!=='无'&&o!=null&&typeof o==='object'&&!Array.isArray(o);})() || matchChatMessages(['NTR','越界','出轨','偷情','隔壁','暧昧','隔壁房','偷听'])"
+          },
+          {
+            "file": "世界书/EJS/变量快照_核心.txt"
+          },
+          {
+            "file": "世界书/世界观/世界观-NTR原型.yaml"
+          }
+        ],
+        "uid": 18,
+        "enabled": true,
+        "strategy": {
+          "type": "constant"
+        },
+        "position": {
+          "type": "before_character_definition",
+          "order": 21
+        }
+      }
+    }
+  },
+  "typeLists": {
+    "before_char": [
+      "EJS预处理",
+      "世界观",
+      "扮演准则",
+      "时间线",
+      "地理"
+    ],
+    "after_char": [
+      "角色",
+      "NPC"
+    ],
+    "depth": [
+      "阶段指导",
+      "事件",
+      "MVU"
+    ]
+  },
+  "strategyThresholds": {
+    "角色": {
+      "basic": {
+        "threshold": 5,
+        "required": true
+      },
+      "other": {
+        "threshold": 1,
+        "required": false
+      },
+      "personality": {
+        "threshold": 1,
+        "required": true
+      },
+      "tri_faceted": {
+        "threshold": 1,
+        "required": false
+      },
+      "variable_gate": {
+        "threshold": "Infinity",
+        "required": false
+      }
+    },
+    "事件": 0,
+    "地理": {
+      "faction": {
+        "threshold": 4,
+        "required": false
+      },
+      "region": {
+        "threshold": 4,
+        "required": false
+      },
+      "scene": {
+        "threshold": 4,
+        "required": false
+      }
+    },
+    "MVU": {
+      "initvar": {
+        "threshold": null,
+        "required": false
+      },
+      "output_format": {
+        "threshold": "Infinity",
+        "required": false
+      },
+      "update_rules": {
+        "threshold": "Infinity",
+        "required": false
+      },
+      "variable_list": {
+        "threshold": "Infinity",
+        "required": false
+      }
+    },
+    "NPC": 0,
+    "EJS预处理": "Infinity",
+    "扮演准则": "Infinity",
+    "时间线": {
+      "history": {
+        "threshold": "Infinity",
+        "required": false
+      },
+      "plot": {
+        "threshold": "Infinity",
+        "required": false
+      }
+    },
+    "世界观": "Infinity",
+    "阶段指导": "Infinity"
+  },
+  "partOrder": {
+    "角色": [
+      "basic",
+      "personality",
+      "tri_faceted",
+      "other",
+      "variable_gate"
+    ],
+    "地理": [
+      "region",
+      "scene",
+      "faction"
+    ],
+    "MVU": [
+      "variable_list",
+      "update_rules",
+      "output_format",
+      "initvar"
+    ],
+    "时间线": [
+      "history",
+      "plot"
+    ]
+  },
+  "depth_defaults": {
+    "role": "system",
+    "depth": 0
+  },
+  "description": "",
+  "first_messages": [
+    "开场白/0.txt"
+  ],
+  "creator": "",
+  "creator_notes": "",
+  "version": "1.0",
+  "create_date": "2026-07-03T02:42:09.260Z",
+  "extensions": {
+    "tavern_helper": {
+      "scripts": {
+        "MVU": {
+          "type": "script",
+          "script_file": "脚本/MVU.txt",
+          "enabled": true,
+          "id": "d0311ca6-5e9a-498e-a777-f74dc4dc6b12",
+          "info": "",
+          "button": {
+            "enabled": true,
+            "buttons": [
+              {
+                "name": "重新处理变量",
+                "visible": true
+              },
+              {
+                "name": "重新读取初始变量",
+                "visible": true
+              },
+              {
+                "name": "快照楼层",
+                "visible": false
+              },
+              {
+                "name": "重演楼层",
+                "visible": false
+              },
+              {
+                "name": "重试额外模型解析",
+                "visible": false
+              },
+              {
+                "name": "清除旧楼层变量",
+                "visible": false
+              }
+            ]
+          },
+          "data": {}
+        },
+        "Zod": {
+          "type": "script",
+          "script_file": "脚本/Zod.txt",
+          "enabled": true,
+          "id": "5b3b09af-35e3-4149-a0f7-2f08776ed6a1",
+          "info": "",
+          "button": {
+            "enabled": true,
+            "buttons": []
+          },
+          "data": {}
+        },
+        "状态栏挂载": {
+          "type": "script",
+          "script_file": "脚本/状态栏挂载.txt",
+          "enabled": false,
+          "id": "a8e4c1b2-7f3d-4a9e-b6c5-0123456789ab",
+          "info": "",
+          "button": {
+            "enabled": true,
+            "buttons": []
+          },
+          "data": {}
+        }
+      },
+      "variables": {}
+    },
+    "talkativeness": "0.5",
+    "fav": false,
+    "depth_prompt": {
+      "prompt": "",
+      "depth": 4,
+      "role": "system"
+    }
+  },
+  "regex_scripts": {
+    "对AI隐藏状态栏": {
+      "id": "b5f2606f-69cc-4a6a-8ebb-bd8a3b7f671f",
+      "findRegex": "<StatusPlaceHolderImpl/>",
+      "replaceString": "",
+      "trimStrings": [],
+      "placement": [
+        2
+      ],
+      "disabled": false,
+      "markdownOnly": false,
+      "promptOnly": true,
+      "runOnEdit": true,
+      "substituteRegex": 0,
+      "minDepth": null,
+      "maxDepth": null
+    },
+    "状态栏界面": {
+      "id": "ce6da13c-4e35-4057-8964-3192b7903acc",
+      "findRegex": "<StatusPlaceHolderImpl/>",
+      "replace_file": "正则/状态栏界面.html",
+      "trimStrings": [],
+      "placement": [
+        2
+      ],
+      "disabled": false,
+      "markdownOnly": true,
+      "promptOnly": false,
+      "runOnEdit": true,
+      "substituteRegex": 0,
+      "minDepth": null,
+      "maxDepth": null
+    },
+    "对AI隐藏变量更新": {
+      "id": "aa12731a-97c4-4450-ac2f-0bfe1d6a4f64",
+      "findRegex": "/<(update(?:variable)?)>(?:(?!.*<\\/\\1>)(?:(?!<\\1>).)*$|(?:(?!<\\1>).)*<\\/\\1?>)/gsi",
+      "replaceString": "",
+      "trimStrings": [],
+      "placement": [
+        1,
+        2
+      ],
+      "disabled": false,
+      "markdownOnly": false,
+      "promptOnly": true,
+      "runOnEdit": false,
+      "substituteRegex": 0,
+      "minDepth": null,
+      "maxDepth": null
+    },
+    "变量更新中美化": {
+      "id": "b9d5f25b-a9d0-41bf-8a69-602d64bbde22",
+      "findRegex": "/<(update(?:variable)?)>(?!.*<\\/\\1>)\\s*((?:(?!<\\1>).)*)\\s*$/gsi",
+      "replace_file": "正则/变量更新中美化.html",
+      "trimStrings": [],
+      "placement": [
+        1,
+        2
+      ],
+      "disabled": false,
+      "markdownOnly": true,
+      "promptOnly": false,
+      "runOnEdit": false,
+      "substituteRegex": 0,
+      "minDepth": null,
+      "maxDepth": null
+    },
+    "变量更新美化": {
+      "id": "92d49340-fe5e-4929-871f-43d110e5ec76",
+      "findRegex": "/<(update(?:variable)?)>\\s*((?:(?!<\\1>).)*)\\s*<\\/\\1>/gsi",
+      "replace_file": "正则/变量更新美化.html",
+      "trimStrings": [],
+      "placement": [
+        1,
+        2
+      ],
+      "disabled": false,
+      "markdownOnly": true,
+      "promptOnly": false,
+      "runOnEdit": false,
+      "substituteRegex": 0,
+      "minDepth": null,
+      "maxDepth": null
+    }
+  }
+}

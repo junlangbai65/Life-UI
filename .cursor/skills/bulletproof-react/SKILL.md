@@ -1,10 +1,9 @@
 ---
 name: bulletproof-react
 description: >-
-  Production-ready React architecture guide from bulletproof-react. Use when
-  structuring React/TSX apps, organizing features, API layer, state management,
-  testing, security, or performance. Triggers on: React project structure,
-  feature folders, TanStack Query, Zustand, React architecture, scalable React.
+  SIDE TRACK: React architecture for React/TSX or @pixi/react subprojects only.
+  Do not load by default for Vue Tavern Helper UI (src/). Triggers on React
+  project structure, feature folders, TanStack Query, Zustand, scalable React.
 license: MIT
 metadata:
   author: alan2207

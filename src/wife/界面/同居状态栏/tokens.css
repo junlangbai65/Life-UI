@@ -1,0 +1,52 @@
+:root,
+[data-theme='light'] {
+  --c-page: #f2f2f7;
+  --c-surface: #ffffff;
+  --c-surface-elevated: #ffffff;
+  --c-label: #000000;
+  --c-label-secondary: rgba(60, 60, 67, 0.6);
+  --c-separator: rgba(60, 60, 67, 0.12);
+  --c-fill: rgba(120, 120, 128, 0.16);
+  --c-accent-affection: #ff8fab;
+  --c-accent-wallet: #5ac8fa;
+  --c-ntr-safe: #8e8e93;
+  --c-ntr-warn: #ff9f0a;
+  --c-ntr-cross: #bf5af2;
+  --c-ntr-expose: #ff453a;
+  --c-endgame: #5856d6;
+  --c-scrollbar-thumb: rgba(120, 120, 128, 0.45);
+  --c-scrollbar-track: transparent;
+  --radius-group: 12px;
+  --radius-pill: 20px;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'Helvetica Neue', sans-serif;
+  --ease-ios: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --duration-fast: 220ms;
+  --duration-meter: 450ms;
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+  --meter-height: 6px;
+  --meter-height-thin: 4px;
+  --shadow-group: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--c-accent-wallet) 35%, transparent);
+}
+
+[data-theme='dark'] {
+  --c-page: #000000;
+  --c-surface: #1c1c1e;
+  --c-surface-elevated: #2c2c2e;
+  --c-label: #ffffff;
+  --c-label-secondary: rgba(235, 235, 245, 0.6);
+  --c-separator: rgba(84, 84, 88, 0.65);
+  --c-fill: rgba(120, 120, 128, 0.36);
+  --c-scrollbar-thumb: rgba(235, 235, 245, 0.35);
+  --shadow-group: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-meter: 0ms;
+  }
+}

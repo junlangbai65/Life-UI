@@ -7,7 +7,15 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "dump": "node dump_schema.ts",
-    "sync": "node tavern_sync.mjs"
+    "sync": "node tavern_sync.mjs",
+    "card:forge": "node .cursor/skills/tavern-cards/scripts/tavern-cards-forge.mjs",
+    "vault:verify": "node agent-foundry-vault/scripts/verify-repo.mjs",
+    "vault:harness-smoke": "node agent-foundry-vault/scripts/harness-smoke.mjs",
+    "vault:pull": "git -C agent-foundry-vault pull",
+    "wife:statusbar:inline": "pnpm build && node scripts/sync-wife-statusbar-inline.mjs",
+    "wife:verify:ejs": "node scripts/verify-wife-ejs.mjs",
+    "wife:build:zod": "node cards/wife/scripts/build-zod-script.mjs",
+    "wife:probe:mvu": "node scripts/probe-wife-mvu-getvar-shape.mjs"
   },
   "browserslist": [
     "defaults and partially supports es6-module"

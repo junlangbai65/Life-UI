@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary: #2c2f33;
+  --bg-secondary: #23272a;
+  --text-primary: #ffffff;
+  --text-secondary: #b9bbbe;
+  --accent-highlight: #ff8fab;
+  --accent-user: #88c0d0;
+  --font-main: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--text-primary);
+  background: transparent;
+}

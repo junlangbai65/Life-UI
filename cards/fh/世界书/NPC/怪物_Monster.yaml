@@ -1,0 +1,25 @@
+基本信息:
+  姓名: 怪物
+  英文名: Monster
+  身份: 月蚀 Boss
+  原身: 卡里古拉 (Caligura)
+
+外貌特征:
+  整体印象: sewer 水中露头
+  关键特征: 需 walk around 触发 attack
+
+性格核心:
+  核心特质: Day 2 Night 未杀 Caligura
+  行为模式:
+    - Southern/Mid/West Junction sewers
+    - Hexen 可学 Steal → 15.303 Ammo
+
+与<user>的关系:
+  关系: 卡里古拉失败路线 Boss
+  互动方式: 杀 Monster 后 Steal skill 来源
+
+背景要点:
+  - 与 Caligura ghoulish 形态延续
+
+语言特征:
+  参考语料: []

@@ -1,0 +1,23 @@
+基本信息:
+  姓名: 绞肉机手
+  英文名: Meat grinder
+  身份: Mob 事件敌人（非可制作武器同名条目）
+  所属: Prehevil 多区 Mob 追击
+
+外貌特征:
+  关键特征: 与 Rifleman、Half-cocooned 组队出现
+
+性格核心:
+  行为模式:
+    - 掷瓶 trigger 后与其他 Mob 成员 chase
+    - 部分地图不可枪击或 Trenchgun 无法眩晕
+
+与<user>的关系:
+  关系: Mob 组合威胁
+  互动方式: 见暴民条目；掉落 Bench grinder、Saw blade
+
+背景要点:
+  - Easy 模式无 Mob 事件
+
+语言特征:
+  参考语料: []

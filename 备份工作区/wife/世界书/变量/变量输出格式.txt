@@ -1,0 +1,46 @@
+---
+变量输出格式:
+  rule:
+    - you must output the update analysis and the actual update commands at once in the end of the next reply
+    - the update commands works like the **JSON Patch (RFC 6902)** standard, must be a valid JSON array containing operation objects, but supports the following operations instead:
+      - replace: replace the value of existing paths
+      - delta: update the value of existing number paths by a delta value
+      - insert: insert new items into an object or array (using `-` as array index intends appending to the end)
+      - remove
+      - move
+    - paths start from stat_data root without the `stat_data` prefix, use `/` separators (e.g. `/凌月/对user的好感度/0`)
+    - MVU tuple fields are `[value, description]`; only update index `0` for the value, never modify index `1`
+    - never replace a tuple field without `/0` suffix (wrong: `"path": "/世界/当前场景", "value": "..."`; correct: `"path": "/世界/当前场景/0", "value": "..."`)
+    - prefer `delta` for numeric changes (affection, libido, funds, etc.)
+    - don't update field names starting with `$` or `_` (Zod derived / readonly fields)
+    - update only after the behavior is fully written in this reply; never pre-update
+    - each numeric field at most one delta/replace per reply (bundled 破处/里程碑 excepted)
+    - if no meaningful plot change, omit most numeric deltas
+  format: |-
+    <UpdateVariable>
+    <Analysis>$(IN ENGLISH, no more than 80 words)
+    - ${calculate time passed: ...}
+    - ${did a new game-day start this reply: yes/no}
+    - ${list behaviors completed this reply (not planned): ...}
+    - ${for each changed field: completed? cooldown ok? decay vs rise? old + delta = new}
+    - ${if cross-day: list decay candidates (精液量/暴露度/堕落/NTR冷却/gradDays)}
+    - ${if nothing substantive happened: state "no numeric updates"}
+    </Analysis>
+    <JSONPatch>
+    [
+      { "op": "replace", "path": "/世界/日/0", "value": 2 },
+      { "op": "replace", "path": "/世界/星期/0", "value": "一" },
+      { "op": "delta", "path": "/世界/距毕业天数/0", "value": -1 },
+      { "op": "delta", "path": "/凌月/NTR冷却/0", "value": -1 },
+      { "op": "delta", "path": "/凌月/体内精液量/0", "value": -15 },
+      { "op": "delta", "path": "/凌月/暴露度/0", "value": -3 },
+      { "op": "replace", "path": "/世界/时间/0", "value": "15:30" },
+      { "op": "delta", "path": "/user/生活费/0", "value": -15 },
+      { "op": "replace", "path": "/凌月/是否处女/0", "value": false },
+      { "op": "replace", "path": "/凌月/破处对象/0", "value": "user" },
+      { "op": "delta", "path": "/凌月/对user的好感度/0", "value": 30 },
+      { "op": "replace", "path": "/NTR对象/0", "value": "无" },
+      ...
+    ]
+    </JSONPatch>
+    </UpdateVariable>
