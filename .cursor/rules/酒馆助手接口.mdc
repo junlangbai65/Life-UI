@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 ---
 description: 当需要调用酒馆助手 API、消息楼层、世界书、变量、生成等接口时, 你应该参考本文件
 alwaysApply: false
 ---
 
+=======
+>>>>>>> f24091c9a91d583dafdb4867d858268ebc487545
 # 酒馆助手接口
 
 `@types` 文件夹中定义了酒馆助手所提供的所有接口, [酒馆助手官方文档](https://n0vi028.github.io/JS-Slash-Runner-Doc/)中也对这些接口进行了类似的说明:
